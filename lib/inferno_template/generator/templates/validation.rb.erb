@@ -1,0 +1,40 @@
+require_relative '../../../validation_test'
+require_relative './<%= profile_identifier %>_read_test'
+
+module InfernoTemplate
+  module <%= module_name %>
+    class <%= class_name %> < Inferno::Test
+      include InfernoTemplate::ValidationTest
+      include InfernoTemplate::<%= module_name %>
+
+      id :<%= test_id %>
+      title '<%= resource_type %> resources returned during previous tests conform to the <%= profile_name %>'
+      description %(
+<%= description %>
+      )
+
+      output :dar_code_found, :dar_extension_found
+
+      #uses_request :<%= profile_identifier %>_request
+      
+      def resource_type
+        '<%= resource_type %>'
+      end
+
+      def scratch_resources
+        scratch[:<%= profile_identifier %>_resources] ||= {}
+      end
+
+      def <%= profile_identifier %>_resource
+        <%= module_name %>::<%= specific_resource_type %>ReadTest.new().<%= profile_identifier %>_resource
+      end 
+
+      run do
+        perform_validation_test([<%= profile_identifier %>_resource] || [],
+                                '<%= profile_url %>',
+                                '<%= profile_version %>',
+                                skip_if_empty: <%= skip_if_empty %>)
+      end
+    end
+  end
+end
