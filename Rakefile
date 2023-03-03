@@ -14,10 +14,10 @@ namespace :db do
   end
 end
 
-namespace :inferno_template do
+namespace :carin4bb do
   desc 'Test Generator'
   task :generate do
-    require_relative 'lib/inferno_template/generator'
-    InfernoTemplate::Generator.generate
+    require_relative 'lib/carin4bb/generator'
+    CARINForBlueButton::Generator.generate
   end
 end

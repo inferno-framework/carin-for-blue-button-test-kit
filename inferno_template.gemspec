@@ -1,13 +1,13 @@
-require_relative 'lib/inferno_template/version'
+require_relative 'lib/carin4bb/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'inferno_template'
-  spec.version       = InfernoTemplate::VERSION
-  spec.authors       = ['Inferno Team']
-  spec.email         = ['inferno@groups.mitre.org']
+  spec.name          = 'carin4bb'
+  spec.version       = CARINForBlueButton::VERSION
+  spec.authors       = ['John Morrison']
+  spec.email         = ['jmorrison@leaporbit.com']
   spec.date          = Time.now.utc.strftime('%Y-%m-%d')
-  spec.summary       = 'Inferno Test Kit Template'
-  spec.description   = 'Inferno Test Kit Template'
+  spec.summary       = 'CARIN for Blue Button Test Kit'
+  spec.description   = 'CARIN for Blue Button Test Kit'
   spec.homepage      = 'https://github.com/inferno-framework/inferno-template'
   spec.license       = 'Apache-2.0'
   spec.add_runtime_dependency 'inferno_core', '~> 0.4.2'
