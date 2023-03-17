@@ -17,11 +17,11 @@ module CARINForBlueButton
       end
   
       def read_and_validate(resource_to_read)
-  
-        #assert_response_status(200) -- I haven't implemented response status and ID comparison since
-        #                               I was missing a reference server... these are soon to come :)
+        id = resource_id(resource_to_read)
+
+        assert_response_status(200) 
         assert_resource_type(resource_type, resource: resource_to_read)
-        #TODO check resource ID
+        assert resource.id.present? && resource.id == id, bad_resource_id_message(id)
   
         if resource_to_read.is_a? FHIR::Reference
           all_scratch_resources << resource

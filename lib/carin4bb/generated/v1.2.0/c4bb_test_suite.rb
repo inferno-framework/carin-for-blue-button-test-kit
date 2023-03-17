@@ -11,12 +11,12 @@ require_relative 'explanation_of_benefit_pharmacy_group'
 require_relative 'explanation_of_benefit_professional_non_clinician_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
-require_relative 'related_person_group'
+require_relative '../../capability_statement/capability_statement_group'
 
 module CARINForBlueButton
-  module CARIN4BBV200
+  module CARIN4BBV120
     class C4BBTestKit < Inferno::TestSuite
-      title 'CARIN for Blue Button v2.0.0'
+      title 'CARIN for Blue Button v1.2.0'
       version VERSION
 
       def self.metadata
@@ -26,10 +26,10 @@ module CARINForBlueButton
       end
 
       validator do
-        url ENV.fetch('V200_VALIDATOR_URL', 'http://validator_service:4567')
+        url ENV.fetch('V120_VALIDATOR_URL', 'http://validator_service:4567')
       end
 
-      id :c4bb_v200
+      id :c4bb_v120
 
       input :url,
         title: 'FHIR Endpoint',
@@ -44,18 +44,17 @@ module CARINForBlueButton
         oauth_credentials :smart_credentials
       end
 
-  
-      group from: :c4bb_v200_patient
-      group from: :c4bb_v200_coverage
-      group from: :c4bb_v200_explanation_of_benefit
-      group from: :c4bb_v200_explanation_of_benefit_inpatient_institutional
-      group from: :c4bb_v200_explanation_of_benefit_outpatient_institutional
-      group from: :c4bb_v200_explanation_of_benefit_oral
-      group from: :c4bb_v200_explanation_of_benefit_pharmacy
-      group from: :c4bb_v200_explanation_of_benefit_professional_non_clinician
-      group from: :c4bb_v200_organization
-      group from: :c4bb_v200_practitioner
-      group from: :c4bb_v200_related_person
+      group from: :capability_statement_group
+      group from: :c4bb_v120_patient
+      group from: :c4bb_v120_coverage
+      group from: :c4bb_v120_explanation_of_benefit
+      group from: :c4bb_v120_explanation_of_benefit_inpatient_institutional
+      group from: :c4bb_v120_explanation_of_benefit_outpatient_institutional
+      group from: :c4bb_v120_explanation_of_benefit_oral
+      group from: :c4bb_v120_explanation_of_benefit_pharmacy
+      group from: :c4bb_v120_explanation_of_benefit_professional_non_clinician
+      group from: :c4bb_v120_organization
+      group from: :c4bb_v120_practitioner
     end
   end
 end

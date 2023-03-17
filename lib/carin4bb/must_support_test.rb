@@ -13,7 +13,6 @@ module CARINForBlueButton
 
     def perform_must_support_test(resources)
       skip_if resources.blank?, "No #{resource_type} resources were found"
-      puts resources
 
       missing_elements(resources)
       missing_slices(resources)

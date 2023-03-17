@@ -444,13 +444,13 @@ module CARINForBlueButton
 
     def search_params_with_values(search_param_names, patient_id, include_system: false)
       resources = scratch_resources_for_patient(patient_id)
-
-      if resources.empty?
-        return search_param_names.each_with_object({}) do |name, params|
-          value = patient_id_param?(name) ? patient_id : nil
-          params[name] = value
-        end
-      end
+      
+      #if resources.empty?
+        #return search_param_names.each_with_object({}) do |name, params|
+          #value = patient_id_param?(name) ? patient_id : nil
+          #params[name] = value
+       # end
+      #end
 
       params_with_partial_value = resources.each_with_object({}) do |resource, outer_params|
         results_from_one_resource = search_param_names.each_with_object({}) do |name, params|

@@ -45,7 +45,7 @@ module CARINForBlueButton
   
       group from: :c4bb_v110_patient
       group from: :c4bb_v110_coverage
-      #group from: :c4bb_v110_explanation_of_benefit
+      group from: :c4bb_v110_explanation_of_benefit
       group from: :c4bb_v110_explanation_of_benefit_inpatient_institutional
       group from: :c4bb_v110_explanation_of_benefit_outpatient_institutional
       group from: :c4bb_v110_explanation_of_benefit_pharmacy

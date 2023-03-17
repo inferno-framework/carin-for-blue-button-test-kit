@@ -1,0 +1,131 @@
+---
+:name: C4BB_Organization
+:class_name: C4bbOrganizationSequence
+:version: v1.2.0
+:reformatted_version: v120
+:resource: Organization
+:profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization
+:profile_name: C4BB Organization
+:profile_version: 1.2.0
+:title: Organization
+:short_description: Verify support for the server capabilities required by the C4BB
+  Organization.
+:interactions:
+- :code: search-type
+  :expectation: MAY
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+:operations: []
+:searches: []
+:search_definitions: {}
+:include_params: []
+:revincludes: []
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices:
+  - :name: Organization.identifier:NPI
+    :path: identifier
+    :discriminator:
+      :type: patternIdentifier
+      :path: ''
+      :system: http://hl7.org/fhir/sid/us-npi
+  - :name: Organization.identifier:tax
+    :path: identifier
+    :discriminator:
+      :type: patternIdentifier
+      :path: ''
+      :system: urn:oid:2.16.840.1.113883.4.4
+  - :name: Organization.identifier:payerid
+    :path: identifier
+    :discriminator:
+      :type: patternIdentifier
+      :path: ''
+      :system: 
+  - :name: Organization.identifier:naiccode
+    :path: identifier
+    :discriminator:
+      :type: patternIdentifier
+      :path: ''
+      :system: urn:oid:2.16.840.1.113883.6.300
+  :elements:
+  - :path: meta
+  - :path: meta.lastUpdated
+  - :path: identifier
+  - :path: active
+  - :path: name
+  - :path: telecom
+  - :path: telecom.system
+  - :path: telecom.value
+  - :path: address
+  - :path: address.line
+  - :path: address.city
+  - :path: address.state
+  - :path: address.postalCode
+  - :path: address.country
+:mandatory_elements:
+- Organization.meta
+- Organization.meta.lastUpdated
+- Organization.meta.profile
+- Organization.active
+- Organization.name
+:bindings:
+- :type: Coding
+  :strength: extensible
+  :system: http://hl7.org/fhir/ValueSet/security-labels
+  :path: meta.security
+- :type: Coding
+  :strength: example
+  :system: http://hl7.org/fhir/ValueSet/common-tags
+  :path: meta.tag
+- :type: code
+  :strength: preferred
+  :system: http://hl7.org/fhir/ValueSet/languages
+  :path: language
+- :type: CodeableConcept
+  :strength: example
+  :system: http://hl7.org/fhir/ValueSet/organization-type
+  :path: type
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/contact-point-system
+  :path: telecom.system
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/contact-point-use
+  :path: telecom.use
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/address-use
+  :path: address.use
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/address-type
+  :path: address.type
+- :type: string
+  :strength: extensible
+  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-usps-state
+  :path: address.state
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/ValueSet/contactentity-type
+  :path: contact.purpose
+:references:
+- :path: Organization.partOf
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Organization
+- :path: Organization.endpoint
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Endpoint
+:tests:
+- :id: c4bb_v120_organization_read_test
+  :file_name: organization_read_test.rb
+- :id: c4bb_v120_organization_validation_test
+  :file_name: organization_validation_test.rb
+- :id: c4bb_v120_organization_must_support_test
+  :file_name: organization_must_support_test.rb
+:id: c4bb_v120_organization
+:file_name: organization_group.rb
+:delayed_references: []
