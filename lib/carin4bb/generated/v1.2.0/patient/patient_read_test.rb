@@ -18,7 +18,7 @@ module CARINForBlueButton
         description: "patient Resource ID"
     
     
-      makes_request :patient_request
+      #makes_request :patient_request
 
       def resource_type
         'Patient'
@@ -28,15 +28,21 @@ module CARINForBlueButton
         scratch[:patient_resources] ||= {}
       end
 
-      def patient_resource
-        fhir_read(:patient, patient_ids, name: :patient_request)
-        #file = File.open('lib/carin4bb/ext/examples/patient_ex_1.json', 'r')
-        #resource = FHIR::Json.from_json(file.read)
-        resource
+      #def patient_resource
+      #  fhir_read(:patient, patient_ids, name: :patient_request)
+      #  #file = File.open('lib/carin4bb/ext/examples/patient_ex_1.json', 'r')
+      #  #resource = FHIR::Json.from_json(file.read)
+      #  resource
+      #end
+
+      def patient_id_list
+        return [nil] unless respond_to? :patient_ids
+  
+        patient_ids.split(',').map(&:strip)
       end
 
       run do
-        perform_read_test([patient_resource])
+        perform_read_test(patient_id_list)
       end
     end
   end

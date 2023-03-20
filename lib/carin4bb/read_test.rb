@@ -9,10 +9,12 @@ module CARINForBlueButton
   
         if config.options[:read_all_resources]
           resources.each do |resource|
-            read_and_validate(resource)
+            filtered_resource = patient_resource(resource)
+            read_and_validate(filtered_resource)
           end
         else
-          read_and_validate(resources.first)
+          filtered_resource = patient_resource(resources.first)
+          read_and_validate(filtered_resource)
         end
       end
   
@@ -43,6 +45,13 @@ module CARINForBlueButton
   
       def resource_class
         FHIR.const_get(resource_type)
+      end
+
+      def patient_resource(given_patient_id)
+        fhir_read(:patient, given_patient_id, name: :patient_request)
+        #file = File.open('lib/carin4bb/ext/examples/patient_ex_1.json', 'r')
+        #resource = FHIR::Json.from_json(file.read)
+        resource
       end
     end
   end
