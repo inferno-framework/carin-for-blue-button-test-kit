@@ -1,6 +1,6 @@
-module USCoreTestKit
+module CARINForBlueButton
   class ProfileSupportTest < Inferno::Test
-    id :us_core_profile_support
+    id :carin_bb_profile_support
     title 'Capability Statement lists support for required US Core Profiles'
     description %(
       The US Core Implementation Guide states:
@@ -26,13 +26,13 @@ module USCoreTestKit
             rest.resource.each { |resource| resources << resource.type }
           end.uniq
 
-      assert supported_resources.include?('Patient'), 'US Core Patient profile not supported'
+      assert supported_resources.include?('Patient'), 'CARIN for Blue Button Patient profile not supported'
 
-      us_core_resources = config.options[:us_core_resources]
+      carin_bb_resources = config.options[:carin_bb_resources]
 
-      other_resources = us_core_resources.reject { |resource_type| resource_type == 'Patient' }
+      other_resources = carin_bb_resources.reject { |resource_type| resource_type == 'Patient' }
       other_resources_supported = other_resources.any? { |resource| supported_resources.include? resource }
-      assert other_resources_supported, 'No US Core resources other than Patient are supported'
+      assert other_resources_supported, 'No CARIN for Blue Button resources other than Patient are supported'
 
       if config.options[:required_resources].present?
         missing_resources = config.options[:required_resources] - supported_resources

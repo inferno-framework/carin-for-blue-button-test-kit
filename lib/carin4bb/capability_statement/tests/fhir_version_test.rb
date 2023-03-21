@@ -1,12 +1,13 @@
-module USCoreTestKit
+module CARINForBlueButton
   class FHIRVersionTest < Inferno::Test
-    id :us_core_fhir_version
+    id :carin_bb_fhir_version
     title 'Server is using FHIR R4'
     description %(
         This test inspects the CapabilityStatement returned by the server to
         verify that the server is using FHIR R4.
       )
 
+      # TODO: Ensure that R4 is what we want to be using
     run do
       server_version = fhir_client.detect_version.to_s.upcase
       assert server_version == 'R4', "Server is using FHIR version #{server_version} rather than R4"

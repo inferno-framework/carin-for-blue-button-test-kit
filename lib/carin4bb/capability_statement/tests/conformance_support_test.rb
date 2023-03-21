@@ -1,6 +1,6 @@
-module USCoreTestKit
+module CARINForBlueButton
   class ConformanceSupportTest < Inferno::Test
-    id :us_core_conformance_support
+    id :carin_bb_conformance_support
     title 'FHIR Server supports the conformance interaction'
     description %(
       The conformance 'whole system' interaction provides a method to get the
