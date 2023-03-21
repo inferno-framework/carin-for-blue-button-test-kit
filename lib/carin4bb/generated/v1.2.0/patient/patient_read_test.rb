@@ -16,9 +16,6 @@ module CARINForBlueButton
         title: "patient IDs",
         type: 'text',
         description: "patient Resource ID"
-    
-    
-      #makes_request :patient_request
 
       def resource_type
         'Patient'
@@ -28,16 +25,8 @@ module CARINForBlueButton
         scratch[:patient_resources] ||= {}
       end
 
-      #def patient_resource
-      #  fhir_read(:patient, patient_ids, name: :patient_request)
-      #  #file = File.open('lib/carin4bb/ext/examples/patient_ex_1.json', 'r')
-      #  #resource = FHIR::Json.from_json(file.read)
-      #  resource
-      #end
-
       def patient_id_list
         return [nil] unless respond_to? :patient_ids
-  
         patient_ids.split(',').map(&:strip)
       end
 
