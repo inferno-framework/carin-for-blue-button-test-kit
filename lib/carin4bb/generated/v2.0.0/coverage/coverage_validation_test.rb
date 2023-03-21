@@ -23,8 +23,6 @@ fail if their code/system are not found in the valueset.
       )
 
       output :dar_code_found, :dar_extension_found
-
-      #uses_request :coverage_request
       
       def resource_type
         'Coverage'
@@ -34,12 +32,8 @@ fail if their code/system are not found in the valueset.
         scratch[:coverage_resources] ||= {}
       end
 
-      def coverage_resource
-        CARIN4BBV200::CoverageReadTest.new().coverage_resource
-      end 
-
       run do
-        perform_validation_test([coverage_resource] || [],
+        perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage',
                                 '2.0.0',
                                 skip_if_empty: true)

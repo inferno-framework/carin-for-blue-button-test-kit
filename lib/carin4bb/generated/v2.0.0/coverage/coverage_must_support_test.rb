@@ -33,8 +33,6 @@ module CARINForBlueButton
 
       id :c4bb_v200_coverage_must_support_test
 
-      #uses_request :coverage_request
-
       def resource_type
         'Coverage'
       end
@@ -47,12 +45,8 @@ module CARINForBlueButton
         scratch[:coverage_resources] ||= {}
       end
 
-      def coverage_resource
-        CARIN4BBV200::CoverageReadTest.new().coverage_resource
-      end 
-
       run do
-        perform_must_support_test([coverage_resource])
+        perform_must_support_test(all_scratch_resources)
       end
     end
   end

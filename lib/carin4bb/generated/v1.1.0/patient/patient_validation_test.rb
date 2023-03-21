@@ -23,8 +23,6 @@ fail if their code/system are not found in the valueset.
       )
 
       output :dar_code_found, :dar_extension_found
-
-      #uses_request :patient_request
       
       def resource_type
         'Patient'
@@ -34,12 +32,8 @@ fail if their code/system are not found in the valueset.
         scratch[:patient_resources] ||= {}
       end
 
-      def patient_resource
-        CARIN4BBV110::PatientReadTest.new().patient_resource
-      end 
-
       run do
-        perform_validation_test([patient_resource] || [],
+        perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient',
                                 '1.1.0',
                                 skip_if_empty: true)

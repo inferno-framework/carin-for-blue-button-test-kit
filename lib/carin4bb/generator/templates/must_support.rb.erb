@@ -24,8 +24,6 @@ module CARINForBlueButton
 
       id :<%= test_id %>
 
-      #uses_request :<%= profile_identifier %>_request
-
       def resource_type
         '<%= resource_type %>'
       end
@@ -38,12 +36,8 @@ module CARINForBlueButton
         scratch[:<%= profile_identifier %>_resources] ||= {}
       end
 
-      def <%= profile_identifier %>_resource
-        <%= module_name %>::<%= specific_resource_type %>ReadTest.new().<%= profile_identifier %>_resource
-      end 
-
       run do
-        perform_must_support_test([<%= profile_identifier %>_resource])
+        perform_must_support_test(all_scratch_resources)
       end
     end
   end

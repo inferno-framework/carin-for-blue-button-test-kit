@@ -16,9 +16,6 @@ module CARINForBlueButton
         title: "related_person IDs",
         type: 'text',
         description: "related_person Resource ID"
-    
-    
-      #makes_request :related_person_request
 
       def resource_type
         'RelatedPerson'
@@ -28,15 +25,13 @@ module CARINForBlueButton
         scratch[:related_person_resources] ||= {}
       end
 
-      def related_person_resource
-        #fhir_read(:related_person, related_person_ids)
-        file = File.open('lib/carin4bb/ext/examples/related_person_ex_1.json', 'r')
-        resource = FHIR::Json.from_json(file.read)
-        resource
+      def related_person_id_list
+        return [nil] unless respond_to? :related_person_ids
+        related_person_ids.split(',').map(&:strip)
       end
 
       run do
-        perform_read_test([related_person_resource])
+        perform_read_test(related_person_id_list)
       end
     end
   end

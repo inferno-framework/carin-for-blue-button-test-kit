@@ -37,8 +37,6 @@ module CARINForBlueButton
 
       id :c4bb_v120_organization_must_support_test
 
-      #uses_request :organization_request
-
       def resource_type
         'Organization'
       end
@@ -51,12 +49,8 @@ module CARINForBlueButton
         scratch[:organization_resources] ||= {}
       end
 
-      def organization_resource
-        CARIN4BBV120::OrganizationReadTest.new().organization_resource
-      end 
-
       run do
-        perform_must_support_test([organization_resource])
+        perform_must_support_test(all_scratch_resources)
       end
     end
   end

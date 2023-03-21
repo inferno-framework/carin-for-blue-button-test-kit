@@ -16,9 +16,6 @@ module CARINForBlueButton
         title: "<%= profile_identifier %> IDs",
         type: 'text',
         description: "<%= profile_identifier %> Resource ID"
-    
-    
-      #makes_request :<%= profile_identifier %>_request
 
       def resource_type
         '<%= resource_type %>'
@@ -28,15 +25,13 @@ module CARINForBlueButton
         scratch[:<%= profile_identifier %>_resources] ||= {}
       end
 
-      def <%= profile_identifier %>_resource
-        #fhir_read(:<%= profile_identifier %>, <%= profile_identifier%>_ids)
-        file = File.open('lib/carin4bb/ext/examples/<%= profile_identifier %>_ex_1.json', 'r')
-        resource = FHIR::Json.from_json(file.read)
-        resource
+      def <%= profile_identifier %>_id_list
+        return [nil] unless respond_to? :<%= profile_identifier %>_ids
+        <%= profile_identifier %>_ids.split(',').map(&:strip)
       end
 
       run do
-        perform_read_test([<%= profile_identifier %>_resource])
+        perform_read_test(<%= profile_identifier %>_id_list)
       end
     end
   end

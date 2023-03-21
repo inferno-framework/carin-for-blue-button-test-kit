@@ -23,8 +23,6 @@ fail if their code/system are not found in the valueset.
       )
 
       output :dar_code_found, :dar_extension_found
-
-      #uses_request :related_person_request
       
       def resource_type
         'RelatedPerson'
@@ -34,12 +32,8 @@ fail if their code/system are not found in the valueset.
         scratch[:related_person_resources] ||= {}
       end
 
-      def related_person_resource
-        CARIN4BBV200::RelatedPersonReadTest.new().related_person_resource
-      end 
-
       run do
-        perform_validation_test([related_person_resource] || [],
+        perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-RelatedPerson',
                                 '2.0.0',
                                 skip_if_empty: true)

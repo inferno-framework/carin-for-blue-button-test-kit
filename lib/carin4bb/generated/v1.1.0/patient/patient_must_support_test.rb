@@ -49,8 +49,6 @@ module CARINForBlueButton
 
       id :c4bb_v110_patient_must_support_test
 
-      #uses_request :patient_request
-
       def resource_type
         'Patient'
       end
@@ -63,12 +61,8 @@ module CARINForBlueButton
         scratch[:patient_resources] ||= {}
       end
 
-      def patient_resource
-        CARIN4BBV110::PatientReadTest.new().patient_resource
-      end 
-
       run do
-        perform_must_support_test([patient_resource])
+        perform_must_support_test(all_scratch_resources)
       end
     end
   end

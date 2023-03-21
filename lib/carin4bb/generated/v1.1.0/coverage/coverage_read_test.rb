@@ -16,9 +16,6 @@ module CARINForBlueButton
         title: "coverage IDs",
         type: 'text',
         description: "coverage Resource ID"
-    
-    
-      #makes_request :coverage_request
 
       def resource_type
         'Coverage'
@@ -28,15 +25,13 @@ module CARINForBlueButton
         scratch[:coverage_resources] ||= {}
       end
 
-      def coverage_resource
-        #fhir_read(:coverage, coverage_ids)
-        file = File.open('lib/carin4bb/ext/examples/coverage_ex_1.json', 'r')
-        resource = FHIR::Json.from_json(file.read)
-        resource
+      def coverage_id_list
+        return [nil] unless respond_to? :coverage_ids
+        coverage_ids.split(',').map(&:strip)
       end
 
       run do
-        perform_read_test([coverage_resource])
+        perform_read_test(coverage_id_list)
       end
     end
   end

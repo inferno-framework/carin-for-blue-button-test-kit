@@ -27,8 +27,6 @@ module CARINForBlueButton
 
       id :c4bb_v200_related_person_must_support_test
 
-      #uses_request :related_person_request
-
       def resource_type
         'RelatedPerson'
       end
@@ -41,12 +39,8 @@ module CARINForBlueButton
         scratch[:related_person_resources] ||= {}
       end
 
-      def related_person_resource
-        CARIN4BBV200::RelatedPersonReadTest.new().related_person_resource
-      end 
-
       run do
-        perform_must_support_test([related_person_resource])
+        perform_must_support_test(all_scratch_resources)
       end
     end
   end
