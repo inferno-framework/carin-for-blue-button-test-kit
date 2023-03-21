@@ -16,9 +16,6 @@ module CARINForBlueButton
         title: "organization IDs",
         type: 'text',
         description: "organization Resource ID"
-    
-    
-      #makes_request :organization_request
 
       def resource_type
         'Organization'
@@ -28,15 +25,13 @@ module CARINForBlueButton
         scratch[:organization_resources] ||= {}
       end
 
-      def organization_resource
-        #fhir_read(:organization, organization_ids)
-        file = File.open('lib/carin4bb/ext/examples/organization_ex_1.json', 'r')
-        resource = FHIR::Json.from_json(file.read)
-        resource
+      def organization_id_list
+        return [nil] unless respond_to? :organization_ids
+        organization_ids.split(',').map(&:strip)
       end
 
       run do
-        perform_read_test([organization_resource])
+        perform_read_test(organization_id_list)
       end
     end
   end

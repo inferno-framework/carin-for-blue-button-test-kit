@@ -23,8 +23,6 @@ fail if their code/system are not found in the valueset.
       )
 
       output :dar_code_found, :dar_extension_found
-
-      #uses_request :explanation_of_benefit_request
       
       def resource_type
         'ExplanationOfBenefit'
@@ -34,12 +32,8 @@ fail if their code/system are not found in the valueset.
         scratch[:explanation_of_benefit_resources] ||= {}
       end
 
-      def explanation_of_benefit_resource
-        CARIN4BBV110::ExplanationOfBenefitReadTest.new().explanation_of_benefit_resource
-      end 
-
       run do
-        perform_validation_test([explanation_of_benefit_resource] || [],
+        perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit',
                                 '1.1.0',
                                 skip_if_empty: true)

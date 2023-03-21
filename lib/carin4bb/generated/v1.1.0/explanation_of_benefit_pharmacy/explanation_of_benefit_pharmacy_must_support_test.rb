@@ -83,8 +83,6 @@ module CARINForBlueButton
 
       id :c4bb_v110_explanation_of_benefit_pharmacy_must_support_test
 
-      #uses_request :explanation_of_benefit_pharmacy_request
-
       def resource_type
         'ExplanationOfBenefit'
       end
@@ -97,12 +95,8 @@ module CARINForBlueButton
         scratch[:explanation_of_benefit_pharmacy_resources] ||= {}
       end
 
-      def explanation_of_benefit_pharmacy_resource
-        CARIN4BBV110::ExplanationOfBenefitPharmacyReadTest.new().explanation_of_benefit_pharmacy_resource
-      end 
-
       run do
-        perform_must_support_test([explanation_of_benefit_pharmacy_resource])
+        perform_must_support_test(all_scratch_resources)
       end
     end
   end

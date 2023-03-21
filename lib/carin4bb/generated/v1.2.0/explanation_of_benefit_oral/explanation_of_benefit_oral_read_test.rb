@@ -16,9 +16,6 @@ module CARINForBlueButton
         title: "explanation_of_benefit_oral IDs",
         type: 'text',
         description: "explanation_of_benefit_oral Resource ID"
-    
-    
-      #makes_request :explanation_of_benefit_oral_request
 
       def resource_type
         'ExplanationOfBenefit'
@@ -28,15 +25,13 @@ module CARINForBlueButton
         scratch[:explanation_of_benefit_oral_resources] ||= {}
       end
 
-      def explanation_of_benefit_oral_resource
-        #fhir_read(:explanation_of_benefit_oral, explanation_of_benefit_oral_ids)
-        file = File.open('lib/carin4bb/ext/examples/explanation_of_benefit_oral_ex_1.json', 'r')
-        resource = FHIR::Json.from_json(file.read)
-        resource
+      def explanation_of_benefit_oral_id_list
+        return [nil] unless respond_to? :explanation_of_benefit_oral_ids
+        explanation_of_benefit_oral_ids.split(',').map(&:strip)
       end
 
       run do
-        perform_read_test([explanation_of_benefit_oral_resource])
+        perform_read_test(explanation_of_benefit_oral_id_list)
       end
     end
   end

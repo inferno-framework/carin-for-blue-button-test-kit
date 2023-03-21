@@ -23,8 +23,6 @@ fail if their code/system are not found in the valueset.
       )
 
       output :dar_code_found, :dar_extension_found
-
-      #uses_request :organization_request
       
       def resource_type
         'Organization'
@@ -34,12 +32,8 @@ fail if their code/system are not found in the valueset.
         scratch[:organization_resources] ||= {}
       end
 
-      def organization_resource
-        CARIN4BBV200::OrganizationReadTest.new().organization_resource
-      end 
-
       run do
-        perform_validation_test([organization_resource] || [],
+        perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization',
                                 '2.0.0',
                                 skip_if_empty: true)

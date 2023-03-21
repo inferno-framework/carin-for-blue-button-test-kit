@@ -26,8 +26,6 @@ module CARINForBlueButton
 
       id :c4bb_v120_practitioner_must_support_test
 
-      #uses_request :practitioner_request
-
       def resource_type
         'Practitioner'
       end
@@ -40,12 +38,8 @@ module CARINForBlueButton
         scratch[:practitioner_resources] ||= {}
       end
 
-      def practitioner_resource
-        CARIN4BBV120::PractitionerReadTest.new().practitioner_resource
-      end 
-
       run do
-        perform_must_support_test([practitioner_resource])
+        perform_must_support_test(all_scratch_resources)
       end
     end
   end
