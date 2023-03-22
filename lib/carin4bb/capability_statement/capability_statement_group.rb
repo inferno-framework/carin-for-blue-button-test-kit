@@ -1,3 +1,7 @@
+require_relative './tests/conformance_support_test'
+require_relative './tests/fhir_version_test'
+require_relative './tests/json_support_test'
+require_relative './tests/profile_support_test'
 require_relative './tests/instantiates_test'
 
 module CARINForBlueButton
