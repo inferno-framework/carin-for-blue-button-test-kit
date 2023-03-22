@@ -11,6 +11,7 @@ require_relative 'explanation_of_benefit_pharmacy_group'
 require_relative 'explanation_of_benefit_professional_non_clinician_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
+require_relative '../../capability_statement/capability_statement_group'
 
 module CARINForBlueButton
   module CARIN4BBV120
@@ -44,6 +45,7 @@ module CARINForBlueButton
       end
 
   
+      group from: :capability_statement_group
       group from: :c4bb_v120_patient
       group from: :c4bb_v120_coverage
       group from: :c4bb_v120_explanation_of_benefit
