@@ -239,6 +239,10 @@ GEM
       connection_pool (>= 2.2.5, < 3)
       rack (~> 2.0)
       redis (>= 4.5.0, < 5)
+    smart_app_launch_test_kit (0.2.2)
+      inferno_core (>= 0.4.2)
+      jwt (~> 2.2)
+      tls_test_kit (~> 0.2.0)
     sqlite3 (1.5.3-x86_64-linux)
     strings (0.2.1)
       strings-ansi (~> 0.2)
@@ -247,6 +251,8 @@ GEM
     strings-ansi (0.2.0)
     thor (1.2.1)
     tilt (2.0.11)
+    tls_test_kit (0.2.0)
+      inferno_core (>= 0.4.1)
     tty-color (0.6.0)
     tty-markdown (0.7.1)
       kramdown (>= 1.16.2, < 3.0)
@@ -283,6 +289,7 @@ DEPENDENCIES
   factory_bot (~> 6.1)
   foreman
   rspec (~> 3.10)
+  smart_app_launch_test_kit (~> 0.2.2)
   webmock (~> 3.11)
 
 BUNDLED WITH
