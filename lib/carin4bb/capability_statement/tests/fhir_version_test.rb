@@ -7,7 +7,6 @@ module CARINForBlueButton
         verify that the server is using FHIR R4.
       )
 
-      # TODO: Ensure that R4 is what we want to be using
     run do
       server_version = fhir_client.detect_version.to_s.upcase
       assert server_version == 'R4', "Server is using FHIR version #{server_version} rather than R4"
