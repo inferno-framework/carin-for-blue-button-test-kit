@@ -1,17 +1,13 @@
 module CARINForBlueButton
   class ProfileSupportTest < Inferno::Test
     id :carin_bb_profile_support
-    title 'Capability Statement lists support for required US Core Profiles'
+    title 'Capability Statement lists support for required CARIN BlueButton Profiles'
     description %(
-      The US Core Implementation Guide states:
+      The CARIN BlueButton Implementation Guide states:
 
       ```
-      The US Core Server SHALL:
-      1. Support the US Core Patient resource profile.
-      2. Support at least one additional resource profile from the list of US
-         Core Profiles.
-
-      In order to support USCDI, servers must support all USCDI resources.
+      The C4BB Server SHALL:
+      1. Support all profiles defined in this Implementation Guide.
       ```
     )
     uses_request :capability_statement
@@ -26,24 +22,10 @@ module CARINForBlueButton
             rest.resource.each { |resource| resources << resource.type }
           end.uniq
 
-      assert supported_resources.include?('Patient'), 'CARIN for Blue Button Patient profile not supported'
-
       carin_bb_resources = config.options[:carin_bb_resources]
-
-      other_resources = carin_bb_resources.reject { |resource_type| resource_type == 'Patient' }
-      other_resources_supported = other_resources.any? { |resource| supported_resources.include? resource }
-      assert other_resources_supported, 'No CARIN for Blue Button resources other than Patient are supported'
-
-      if config.options[:required_resources].present?
-        missing_resources = config.options[:required_resources] - supported_resources
-
-        missing_resource_list =
-          missing_resources
-          .map { |resource| "`#{resource}`" }
-          .join(', ')
-
-        assert missing_resources.empty?,
-               "The CapabilityStatement did not list support for the following resources: #{missing_resource_list}"
+      carin_bb_resources.each do |resource_type|
+        fail_message = 'CARIN for Blue Button ' + resource_type + ' profile not supported'
+        assert supported_resources.include?(resource_type), fail_message
       end
     end
   end
