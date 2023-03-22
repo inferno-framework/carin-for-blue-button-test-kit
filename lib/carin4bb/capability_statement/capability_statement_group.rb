@@ -10,7 +10,21 @@ module CARINForBlueButton
 
       run_as_group
 
-      PROFILES = {} #TODO: Figure out what to add here for the profile support test
+      PROFILES = {
+        'Coverage' => ['http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage'].freeze,
+        'ExplanationOfBenefit' => [
+          'http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit',
+          'http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Inpatient-Institutional',
+          'http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Outpatient-Institutional',
+          'http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Oral',
+          'http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Pharmacy',
+          'http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Professional-NonClinician'
+        ].freeze,
+        'Organization' => ['http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization'].freeze,
+        'Patient' => ['http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient'].freeze,
+        'Practitioner' => ['http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner'].freeze,
+        'RelatedPerson' => ['http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-RelatedPerson'].freeze
+    }.freeze
 
       test from: :tls_version_test,
           id: :standalone_auth_tls,
