@@ -1,4 +1,5 @@
 require 'inferno/dsl/oauth_credentials'
+require 'smart_app_launch_test_kit'
 require_relative '../../version'
 
 require_relative 'patient_group'
@@ -38,6 +39,15 @@ module CARINForBlueButton
         type: :oauth_credentials,
         optional: true
 
+
+      group do
+        title 'Auth'
+    
+        group from: :smart_discovery
+        group from: :smart_standalone_launch
+        group from: :smart_openid_connect
+      end
+      
       fhir_client do
         url :url
         oauth_credentials :smart_credentials
