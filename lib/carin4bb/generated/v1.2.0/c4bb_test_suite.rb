@@ -1,6 +1,8 @@
 require 'inferno/dsl/oauth_credentials'
 require_relative '../../version'
 
+require_relative '../../capability_statement/capability_statement_group'
+
 require_relative 'patient_group'
 require_relative 'coverage_group'
 require_relative 'explanation_of_benefit_group'
@@ -11,7 +13,6 @@ require_relative 'explanation_of_benefit_pharmacy_group'
 require_relative 'explanation_of_benefit_professional_non_clinician_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
-require_relative '../../capability_statement/capability_statement_group'
 
 module CARINForBlueButton
   module CARIN4BBV120
@@ -44,8 +45,8 @@ module CARINForBlueButton
         oauth_credentials :smart_credentials
       end
 
-  
       group from: :capability_statement_group
+  
       group from: :c4bb_v120_patient
       group from: :c4bb_v120_coverage
       group from: :c4bb_v120_explanation_of_benefit
