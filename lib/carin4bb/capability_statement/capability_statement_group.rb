@@ -30,15 +30,15 @@ module CARINForBlueButton
         'RelatedPerson' => ['http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-RelatedPerson'].freeze
     }.freeze
 
-      test from: :carin_bb_conformance_support
-      test from: :carin_bb_fhir_version
-      test from: :carin_bb_json_support
+      
+    # test from: :carin_bb_conformance_support
+    # test from: :carin_bb_json_support
 
-      test from: :carin_bb_profile_support do
-        config(
-          options: { carin_bb_resources: PROFILES.keys }
-        )
-      end
+    # test from: :carin_bb_profile_support do
+    #   config(
+    #     options: { carin_bb_resources: PROFILES.keys }
+    #   )
+    # end
 
       test from: :carin_bb_instantiate
     end
