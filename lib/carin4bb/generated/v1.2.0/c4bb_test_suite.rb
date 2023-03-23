@@ -46,6 +46,7 @@ module CARINForBlueButton
         url :url
         oauth_credentials :smart_credentials
       end
+
   
       group from: :c4bb_v120_patient
       group from: :c4bb_v120_coverage
