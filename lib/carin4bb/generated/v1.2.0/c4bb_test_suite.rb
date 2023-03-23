@@ -39,20 +39,13 @@ module CARINForBlueButton
         type: :oauth_credentials,
         optional: true
 
-
-      group do
-        title 'Auth'
-    
-        group from: :smart_discovery
-        group from: :smart_standalone_launch
-        group from: :smart_openid_connect
-      end
+      # SMART Test Suite requirement
+      group from: :smart_standalone_launch
       
       fhir_client do
         url :url
         oauth_credentials :smart_credentials
       end
-
   
       group from: :c4bb_v120_patient
       group from: :c4bb_v120_coverage
