@@ -17,6 +17,8 @@ module CARINForBlueButton
         type: 'text',
         description: "explanation_of_benefit_inpatient_institutional Resource ID"
 
+      input_order :url, :smart_credentials, :explanation_of_benefit_inpatient_institutional_ids
+      
       def resource_type
         'ExplanationOfBenefit'
       end

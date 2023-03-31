@@ -17,6 +17,8 @@ module CARINForBlueButton
         type: 'text',
         description: "practitioner Resource ID"
 
+      input_order :url, :smart_credentials, :practitioner_ids
+      
       def resource_type
         'Practitioner'
       end

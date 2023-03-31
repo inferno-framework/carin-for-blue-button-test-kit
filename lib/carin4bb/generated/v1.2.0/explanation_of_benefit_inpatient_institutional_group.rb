@@ -1,13 +1,6 @@
 require_relative 'explanation_of_benefit_inpatient_institutional/explanation_of_benefit_inpatient_institutional_read_test'
     require_relative 'explanation_of_benefit_inpatient_institutional/explanation_of_benefit_inpatient_institutional_validation_test'
     require_relative 'explanation_of_benefit_inpatient_institutional/explanation_of_benefit_inpatient_institutional_must_support_test'
-    require_relative 'explanation_of_benefit_inpatient_institutional/explanation_of_benefit_inpatient_institutional_id_search_test'
-    require_relative 'explanation_of_benefit_inpatient_institutional/explanation_of_benefit_inpatient_institutional_patient_search_test'
-    require_relative 'explanation_of_benefit_inpatient_institutional/explanation_of_benefit_inpatient_institutional_lastupdated_search_test'
-    require_relative 'explanation_of_benefit_inpatient_institutional/explanation_of_benefit_inpatient_institutional_type_search_test'
-    require_relative 'explanation_of_benefit_inpatient_institutional/explanation_of_benefit_inpatient_institutional_identifier_search_test'
-    require_relative 'explanation_of_benefit_inpatient_institutional/explanation_of_benefit_inpatient_institutional_service_date_search_test'
-    require_relative 'explanation_of_benefit_inpatient_institutional/explanation_of_benefit_inpatient_institutional_service_start_date_search_test'
     
     module CARINForBlueButton
       module CARIN4BBV120
@@ -23,35 +16,6 @@ must contain resources conforming to the C4BB ExplanationOfBenefit Inpatient Ins
 specified in the CARIN for Blue Button v1.2.0 Implementation Guide.
 
 # Testing Methodology
-## Searching
-This test sequence will first perform each required search associated
-with this resource. This sequence will perform searches with the
-following parameters:
-
-* _id
-* patient
-* _lastUpdated
-* type
-* identifier
-* service-date
-* service-start-date
-
-### Search Parameters
-The first search uses the selected patient(s) from the prior launch
-sequence. Any subsequent searches will look for its parameter values
-from the results of the first search. For example, the `identifier`
-search in the patient sequence is performed by looking for an existing
-`Patient.identifier` from any of the resources returned in the `_id`
-search. If a value cannot be found this way, the search is skipped.
-
-### Search Validation
-Inferno will retrieve up to the first 20 bundle pages of the reply for
-ExplanationOfBenefit resources and save them for subsequent tests. Each of
-these resources is then checked to see if it matches the searched
-parameters in accordance with [FHIR search
-guidelines](https://www.hl7.org/fhir/search.html). The test will fail,
-for example, if a Patient search for `gender=male` returns a `female`
-patient.
 
 
 ## Must Support
@@ -88,13 +52,6 @@ read succeeds.
           test from: :c4bb_v120_explanation_of_benefit_inpatient_institutional_read_test
           test from: :c4bb_v120_explanation_of_benefit_inpatient_institutional_validation_test
           test from: :c4bb_v120_explanation_of_benefit_inpatient_institutional_must_support_test
-          test from: :c4bb_v120_explanation_of_benefit_inpatient_institutional__id_search_test
-          test from: :c4bb_v120_explanation_of_benefit_inpatient_institutional_patient_search_test
-          test from: :c4bb_v120_explanation_of_benefit_inpatient_institutional__lastUpdated_search_test
-          test from: :c4bb_v120_explanation_of_benefit_inpatient_institutional_type_search_test
-          test from: :c4bb_v120_explanation_of_benefit_inpatient_institutional_identifier_search_test
-          test from: :c4bb_v120_explanation_of_benefit_inpatient_institutional_service_date_search_test
-          test from: :c4bb_v120_explanation_of_benefit_inpatient_institutional_service_start_date_search_test
         end
       end
     end

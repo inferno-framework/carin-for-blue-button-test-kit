@@ -17,6 +17,8 @@ module CARINForBlueButton
         type: 'text',
         description: "related_person Resource ID"
 
+      input_order :url, :smart_credentials, :related_person_ids
+      
       def resource_type
         'RelatedPerson'
       end
