@@ -214,6 +214,8 @@ module CARINForBlueButton
                 ['insurance.coverage']
             when 'ExplanationOfBenefit:insurer'
                 ['insurer']
+            when 'Coverage:payor'
+                ['payor']
             when 'ExplanationOfBenefit:*'
                 ['patient', 'provider', 'careTeam', 'insurance.coverage', 'insurer']
             else
