@@ -97,6 +97,13 @@ module CARINForBlueButton
       def test_id_list
         @test_id_list ||=
           group_metadata.tests.map { |test| test[:id] }
+        
+        # Remove calls to search tests for EOB subgroups (all subgroup search tests handled in EOB root tests)
+        if is_eob_subgroup?
+          @test_id_list = @test_id_list.select { |test_name| !test_name.include?("search_test") }
+        end
+
+        @test_id_list
       end
 
       def test_file_list
@@ -105,10 +112,17 @@ module CARINForBlueButton
             name_without_suffix = test[:file_name].delete_suffix('.rb')
             name_without_suffix.start_with?('..') ? name_without_suffix : "#{profile_identifier}/#{name_without_suffix}"
           end
+        
+        # Remove calls to search tests for EOB subgroups (all subgroup search tests handled in EOB root tests)
+        if is_eob_subgroup?
+          @test_file_list = @test_file_list.select { |test_name| !test_name.include?("search_test") }
+        end
+
+        @test_file_list
       end
 
       def required_searches
-        if !group_metadata.searches.nil?
+        if !group_metadata.searches.nil? && !is_eob_subgroup?
             group_metadata.searches.select { |search| search[:expectation] == 'SHALL' }
         else
             []
@@ -186,6 +200,10 @@ module CARINForBlueButton
         The test will attempt to read each reference found and will fail if no
         read succeeds.
         DESCRIPTION
+      end
+
+      def is_eob_subgroup?
+        base_output_file_name.match(/benefit_.+_group/)
       end
     end
   end
