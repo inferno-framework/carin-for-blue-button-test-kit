@@ -1,10 +1,10 @@
-require_relative '../../../search_test'
+require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
 module CARINForBlueButton
   module CARIN4BBV200
     class CoverageLastupdatedSearchTest < Inferno::Test
-      include CARINForBlueButton::SearchTest
+      include CARINForBlueButton::CarinSearchTest
 
       title 'Server returns valid results for Coverage search by _lastUpdated'
       description %(
@@ -17,8 +17,14 @@ none are returned, the test is skipped.
       )
 
       id :c4bb_v200_coverage__lastUpdated_search_test
-      optional
-  
+
+      input :c4bb_v200_coverage__lastUpdated_search_test_param,
+        title: 'Coverage search parameter for _lastUpdated
+',
+        type: 'text',
+        description: 'Coverage search parameter: _lastUpdated
+'
+
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'Coverage',
@@ -35,7 +41,7 @@ none are returned, the test is skipped.
       end
 
       run do
-        run_search_test
+        run_search_test(c4bb_v200_coverage__lastUpdated_search_test_param)
       end
     end
   end

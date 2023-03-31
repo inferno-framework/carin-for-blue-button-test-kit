@@ -9,6 +9,13 @@ require_relative 'explanation_of_benefit/explanation_of_benefit_read_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_service_date_search_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_service_start_date_search_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_billable_period_start_search_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_patient_search_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_provider_search_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_careteam_search_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_coverage_search_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_insurer_search_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_payee_search_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_all_search_test'
     
     module CARINForBlueButton
       module CARIN4BBV200
@@ -98,6 +105,13 @@ read succeeds.
           test from: :c4bb_v200_explanation_of_benefit_service_date_search_test
           test from: :c4bb_v200_explanation_of_benefit_service_start_date_search_test
           test from: :c4bb_v200_explanation_of_benefit_billable_period_start_search_test
+          test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_patient_search_test
+          test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_provider_search_test
+          test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_careteam_search_test
+          test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_coverage_search_test
+          test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_insurer_search_test
+          test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_payee_search_test
+          test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_All_search_test
         end
       end
     end

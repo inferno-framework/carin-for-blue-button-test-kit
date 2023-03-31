@@ -1,10 +1,10 @@
-require_relative '../../../search_test'
+require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
 module CARINForBlueButton
   module CARIN4BBV200
     class ExplanationOfBenefitIdSearchTest < Inferno::Test
-      include CARINForBlueButton::SearchTest
+      include CARINForBlueButton::CarinSearchTest
 
       title 'Server returns valid results for ExplanationOfBenefit search by _id'
       description %(
@@ -25,8 +25,14 @@ requirement of US Core v2.0.0.
       )
 
       id :c4bb_v200_explanation_of_benefit__id_search_test
-      optional
-  
+
+      input :c4bb_v200_explanation_of_benefit__id_search_test_param,
+        title: 'ExplanationOfBenefit search parameter for _id
+',
+        type: 'text',
+        description: 'ExplanationOfBenefit search parameter: _id
+'
+
       def self.properties
         @properties ||= SearchTestProperties.new(
           first_search: true,
@@ -46,7 +52,7 @@ requirement of US Core v2.0.0.
       end
 
       run do
-        run_search_test
+        run_search_test(c4bb_v200_explanation_of_benefit__id_search_test_param)
       end
     end
   end

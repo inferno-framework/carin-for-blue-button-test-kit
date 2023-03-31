@@ -163,6 +163,8 @@
   :file_name: coverage_id_search_test.rb
 - :id: c4bb_v200_coverage__lastUpdated_search_test
   :file_name: coverage_lastupdated_search_test.rb
+- :id: c4bb_v200_coverage_include_Coverage_payor_search_test
+  :file_name: coverage_coverage_payor_search_test.rb
 :id: c4bb_v200_coverage
 :file_name: coverage_group.rb
 :delayed_references:

@@ -2,6 +2,7 @@ require_relative 'coverage/coverage_read_test'
     require_relative 'coverage/coverage_validation_test'
     require_relative 'coverage/coverage_must_support_test'
     require_relative 'coverage/coverage_id_search_test'
+    require_relative 'coverage/coverage_coverage_payor_search_test'
     
     module CARINForBlueButton
       module CARIN4BBV120
@@ -77,6 +78,7 @@ read succeeds.
           test from: :c4bb_v120_coverage_validation_test
           test from: :c4bb_v120_coverage_must_support_test
           test from: :c4bb_v120_coverage__id_search_test
+          test from: :c4bb_v120_coverage_include_Coverage_payor_search_test
         end
       end
     end

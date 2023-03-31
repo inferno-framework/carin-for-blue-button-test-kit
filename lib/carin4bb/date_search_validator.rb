@@ -19,16 +19,16 @@ module CARINForBlueButton
   
       def get_fhir_period_range(period)
         range = { start: nil, end: nil }
-        range[:start] = DateTime.xmlschema(period.start) unless period.start.nil?
-        return range if period.end.nil?
+        range[:start] = DateTime.xmlschema(period[:start]) unless period[:start].nil?
+        return range if period[:end].nil?
   
-        period_end_beginning = DateTime.xmlschema(period.end)
+        period_end_beginning = DateTime.xmlschema(period[:end])
         range[:end] =
-          if /^\d{4}$/.match?(period.end) # YYYY
+          if /^\d{4}$/.match?(period[:end]) # YYYY
             period_end_beginning.next_year - 1.seconds
-          elsif /^\d{4}-\d{2}$/.match?(period.end) # YYYY-MM
+          elsif /^\d{4}-\d{2}$/.match?(period[:end]) # YYYY-MM
             period_end_beginning.next_month - 1.seconds
-          elsif /^\d{4}-\d{2}-\d{2}$/.match?(period.end) # YYYY-MM-DD
+          elsif /^\d{4}-\d{2}-\d{2}$/.match?(period[:end]) # YYYY-MM-DD
             period_end_beginning.next_day - 1.seconds
           else # YYYY-MM-DDThh:mm:ss+zz:zz
             period_end_beginning
@@ -67,7 +67,7 @@ module CARINForBlueButton
       end
   
       def validate_date_search(search_value, target_value)
-        if target_value.instance_of? FHIR::Period
+        if target_value.class == Hash
           validate_period_search(search_value, target_value)
         else
           validate_datetime_search(search_value, target_value)

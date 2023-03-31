@@ -1,10 +1,10 @@
-require_relative '../../../search_test'
+require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
 module CARINForBlueButton
   module CARIN4BBV120
     class CoverageIdSearchTest < Inferno::Test
-      include CARINForBlueButton::SearchTest
+      include CARINForBlueButton::CarinSearchTest
 
       title 'Server returns valid results for Coverage search by _id'
       description %(
@@ -25,8 +25,14 @@ requirement of US Core v1.2.0.
       )
 
       id :c4bb_v120_coverage__id_search_test
-      optional
-  
+
+      input :c4bb_v120_coverage__id_search_test_param,
+        title: 'Coverage search parameter for _id
+',
+        type: 'text',
+        description: 'Coverage search parameter: _id
+'
+
       def self.properties
         @properties ||= SearchTestProperties.new(
           first_search: true,
@@ -46,7 +52,7 @@ requirement of US Core v1.2.0.
       end
 
       run do
-        run_search_test
+        run_search_test(c4bb_v120_coverage__id_search_test_param)
       end
     end
   end
