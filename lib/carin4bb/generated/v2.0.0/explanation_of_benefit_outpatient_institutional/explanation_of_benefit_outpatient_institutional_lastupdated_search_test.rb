@@ -1,10 +1,10 @@
-require_relative '../../../search_test'
+require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
 module CARINForBlueButton
   module CARIN4BBV200
     class ExplanationOfBenefitOutpatientInstitutionalLastupdatedSearchTest < Inferno::Test
-      include CARINForBlueButton::SearchTest
+      include CARINForBlueButton::CarinSearchTest
 
       title 'Server returns valid results for ExplanationOfBenefit search by _lastUpdated'
       description %(
@@ -17,8 +17,14 @@ none are returned, the test is skipped.
       )
 
       id :c4bb_v200_explanation_of_benefit_outpatient_institutional__lastUpdated_search_test
-      optional
-  
+
+      input :c4bb_v200_explanation_of_benefit_outpatient_institutional__lastUpdated_search_test_param,
+        title: 'ExplanationOfBenefit search parameter for _lastUpdated
+',
+        type: 'text',
+        description: 'ExplanationOfBenefit search parameter: _lastUpdated
+'
+
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'ExplanationOfBenefit',
@@ -35,7 +41,7 @@ none are returned, the test is skipped.
       end
 
       run do
-        run_search_test
+        run_search_test(c4bb_v200_explanation_of_benefit_outpatient_institutional__lastUpdated_search_test_param)
       end
     end
   end

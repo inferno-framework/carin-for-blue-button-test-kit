@@ -7,6 +7,12 @@ require_relative 'explanation_of_benefit/explanation_of_benefit_read_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_type_search_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_identifier_search_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_service_date_search_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_patient_search_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_provider_search_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_careteam_search_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_coverage_search_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_insurer_search_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_all_search_test'
     
     module CARINForBlueButton
       module CARIN4BBV110
@@ -92,6 +98,12 @@ read succeeds.
           test from: :c4bb_v110_explanation_of_benefit_type_search_test
           test from: :c4bb_v110_explanation_of_benefit_identifier_search_test
           test from: :c4bb_v110_explanation_of_benefit_service_date_search_test
+          test from: :c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_patient_search_test
+          test from: :c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_provider_search_test
+          test from: :c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_careteam_search_test
+          test from: :c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_coverage_search_test
+          test from: :c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_insurer_search_test
+          test from: :c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_All_search_test
         end
       end
     end

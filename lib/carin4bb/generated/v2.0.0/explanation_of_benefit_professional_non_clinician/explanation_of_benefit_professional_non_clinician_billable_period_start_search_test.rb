@@ -1,10 +1,10 @@
-require_relative '../../../search_test'
+require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
 module CARINForBlueButton
   module CARIN4BBV200
     class ExplanationOfBenefitProfessionalNonClinicianBillablePeriodStartSearchTest < Inferno::Test
-      include CARINForBlueButton::SearchTest
+      include CARINForBlueButton::CarinSearchTest
 
       title 'Server returns valid results for ExplanationOfBenefit search by billable-period-start'
       description %(
@@ -17,8 +17,14 @@ none are returned, the test is skipped.
       )
 
       id :c4bb_v200_explanation_of_benefit_professional_non_clinician_billable_period_start_search_test
-      optional
-  
+
+      input :c4bb_v200_explanation_of_benefit_professional_non_clinician_billable_period_start_search_test_param,
+        title: 'ExplanationOfBenefit search parameter for billable-period-start
+',
+        type: 'text',
+        description: 'ExplanationOfBenefit search parameter: billable-period-start
+'
+
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'ExplanationOfBenefit',
@@ -35,7 +41,7 @@ none are returned, the test is skipped.
       end
 
       run do
-        run_search_test
+        run_search_test(c4bb_v200_explanation_of_benefit_professional_non_clinician_billable_period_start_search_test_param)
       end
     end
   end

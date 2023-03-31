@@ -7,15 +7,16 @@ module CARINForBlueButton
       def resolve_path(elements, path)
         elements = Array.wrap(elements)
         return elements if path.blank?
-  
+        
         paths = path.split('.')
         segment = paths.first
         remaining_path = paths.drop(1).join('.')
-  
+
         elements.flat_map do |element|
           child = get_next_value(element, segment)
           resolve_path(child, remaining_path)
         end.compact
+
       end
   
       def find_a_value_at(element, path, include_dar: false)
@@ -63,7 +64,7 @@ module CARINForBlueButton
       end
   
       def get_next_value(element, property)
-        element[property.to_s]
+        element[property.to_s.strip]
       rescue NoMethodError
         nil
       end

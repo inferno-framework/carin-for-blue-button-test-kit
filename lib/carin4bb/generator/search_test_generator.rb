@@ -1,5 +1,6 @@
 require_relative 'naming'
 require_relative 'special_cases'
+require_relative 'include_search_test_generator'
 
 module CARINForBlueButton
   class Generator
@@ -11,6 +12,7 @@ module CARINForBlueButton
             .select { |group| group.searches.present? }
             .each do |group|
               group.searches.each { |search| new(group, search, base_output_dir).generate }
+              group.include_params.each{ |param| IncludeSearchTestGenerator.new(group, param, base_output_dir).generate }
             end
         end
       end
@@ -279,6 +281,18 @@ module CARINForBlueButton
         #{post_search_description}
 
         DESCRIPTION
+      end
+
+      def input_title
+        <<~INPUT_TITLE
+        #{resource_type} search parameter for #{search_param_name_string}
+        INPUT_TITLE
+      end
+
+      def input_description
+        <<~INPUT_DESCRIPTION
+        #{resource_type} search parameter: #{search_param_name_string}
+        INPUT_DESCRIPTION
       end
     end
   end
