@@ -17,6 +17,8 @@ module CARINForBlueButton
         type: 'text',
         description: "coverage Resource ID"
 
+      input_order :url, :smart_credentials, :coverage_ids
+      
       def resource_type
         'Coverage'
       end

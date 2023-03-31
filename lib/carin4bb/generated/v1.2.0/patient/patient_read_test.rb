@@ -17,6 +17,8 @@ module CARINForBlueButton
         type: 'text',
         description: "patient Resource ID"
 
+      input_order :url, :smart_credentials, :patient_ids
+      
       def resource_type
         'Patient'
       end

@@ -17,6 +17,8 @@ module CARINForBlueButton
         type: 'text',
         description: "organization Resource ID"
 
+      input_order :url, :smart_credentials, :organization_ids
+      
       def resource_type
         'Organization'
       end
