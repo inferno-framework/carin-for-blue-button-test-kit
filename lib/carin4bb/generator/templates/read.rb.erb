@@ -17,6 +17,8 @@ module CARINForBlueButton
         type: 'text',
         description: "<%= profile_identifier %> Resource ID"
 
+      input_order :url, :smart_credentials, :<%= profile_identifier %>_ids
+      
       def resource_type
         '<%= resource_type %>'
       end
