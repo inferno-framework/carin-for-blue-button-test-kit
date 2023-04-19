@@ -1,4 +1,4 @@
-require_relative 'lib/carin4bb/version'
+require_relative 'lib/carin_for_blue_button_test_kit/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'carin_for_blue_button_test_kit'

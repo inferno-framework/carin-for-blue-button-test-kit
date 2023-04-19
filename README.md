@@ -16,7 +16,7 @@ When you are done, `run bundle exec inferno services` stop to stop the backgroun
 TEST GENERATION\
 The CARIN for Blue Button test kit has an implemeneted test generator. It extracts necessarry data elements from CARIN for Blue Button Implementation Guide archive files and generates tests accordingly. The repo currently contains suites for IG versions 1.1.0, 1.2.0, and 2.0.0.\
 To generate a test suite for a different CARIN for Blue Button IG version:\
-Navigate to `CARIN-for-Blue-Button-Test-Kit/lib/carin4bb/igs/`\
+Navigate to `CARIN-for-Blue-Button-Test-Kit/lib/carin_for_blue_button_test_kit/igs/`\
 Drop your package.tgz file for the IG version into this folder. You may want to rename it before hand.\
 run the command `rake carin4bb:generate` to run the generator.\
 Run Inferno and verify that your new suite was generated and is available as an option

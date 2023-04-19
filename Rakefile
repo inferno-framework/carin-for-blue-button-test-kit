@@ -17,7 +17,7 @@ end
 namespace :carin4bb do
   desc 'Test Generator'
   task :generate do
-    require_relative 'lib/carin4bb/generator'
+    require_relative 'lib/carin_for_blue_button_test_kit/generator'
     CarinForBlueButtonTestKit::Generator.generate
   end
 end
