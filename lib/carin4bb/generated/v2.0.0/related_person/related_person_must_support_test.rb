@@ -2,11 +2,11 @@ require_relative '../../../must_support_test'
 require_relative './related_person_read_test'
 require_relative '../../../generator/group_metadata'
 
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   module CARIN4BBV200
     class RelatedPersonMustSupportTest < Inferno::Test
-      include CARINForBlueButton::MustSupportTest
-      include CARINForBlueButton::CARIN4BBV200
+      include CarinForBlueButtonTestKit::MustSupportTest
+      include CarinForBlueButtonTestKit::CARIN4BBV200
 
       title 'All must support elements are provided in the RelatedPerson resources returned'
       description %(

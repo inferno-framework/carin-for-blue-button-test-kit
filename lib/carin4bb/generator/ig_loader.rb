@@ -5,7 +5,7 @@ require 'rubygems/package'
 require 'zlib'
 require_relative 'ig_resources'
 
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   class Generator
     class IGLoader
       attr_accessor :ig_file_name

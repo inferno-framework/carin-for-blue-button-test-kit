@@ -2,7 +2,7 @@ require_relative 'explanation_of_benefit_professional_non_clinician/explanation_
     require_relative 'explanation_of_benefit_professional_non_clinician/explanation_of_benefit_professional_non_clinician_validation_test'
     require_relative 'explanation_of_benefit_professional_non_clinician/explanation_of_benefit_professional_non_clinician_must_support_test'
     
-    module CARINForBlueButton
+    module CarinForBlueButtonTestKit
       module CARIN4BBV200
         class ExplanationOfBenefitProfessionalNonClinicianGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Professional NonClinician Tests'

@@ -2,7 +2,7 @@ require_relative 'patient/patient_read_test'
     require_relative 'patient/patient_validation_test'
     require_relative 'patient/patient_must_support_test'
     
-    module CARINForBlueButton
+    module CarinForBlueButtonTestKit
       module CARIN4BBV200
         class PatientGroup < Inferno::TestGroup
           title 'Patient Tests'

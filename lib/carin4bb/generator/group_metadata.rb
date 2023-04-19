@@ -1,4 +1,4 @@
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
     class Generator
       class GroupMetadata
         ATTRIBUTES = [

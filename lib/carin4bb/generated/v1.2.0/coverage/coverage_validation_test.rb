@@ -1,11 +1,11 @@
 require_relative '../../../validation_test'
 require_relative './coverage_read_test'
 
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   module CARIN4BBV120
     class CoverageValidationTest < Inferno::Test
-      include CARINForBlueButton::ValidationTest
-      include CARINForBlueButton::CARIN4BBV120
+      include CarinForBlueButtonTestKit::ValidationTest
+      include CarinForBlueButtonTestKit::CARIN4BBV120
 
       id :c4bb_v120_coverage_validation_test
       title 'Coverage resources returned during previous tests conform to the C4BB Coverage'

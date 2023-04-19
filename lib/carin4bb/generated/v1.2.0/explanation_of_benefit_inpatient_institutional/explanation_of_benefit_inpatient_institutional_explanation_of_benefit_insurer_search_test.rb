@@ -1,10 +1,10 @@
 require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   module CARIN4BBV120
     class ExplanationOfBenefitInpatientInstitutionalExplanationOfBenefit_insurerSearchTest < Inferno::Test
-      include CARINForBlueButton::CarinSearchTest
+      include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for ExplanationOfBenefit search by _include=ExplanationOfBenefit:insurer'
       description %(

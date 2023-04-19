@@ -2,7 +2,7 @@ require_relative 'lib/carin4bb/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'carin_for_blue_button_test_kit'
-  spec.version       = CARINForBlueButton::VERSION
+  spec.version       = CarinForBlueButtonTestKit::VERSION
   spec.authors       = ['John Morrison']
   spec.email         = ['jmorrison@leaporbit.com']
   spec.date          = Time.now.utc.strftime('%Y-%m-%d')

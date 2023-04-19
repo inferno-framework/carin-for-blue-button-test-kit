@@ -2,10 +2,10 @@ require_relative '../../../read_test'
 require 'json'
 require_relative '../../../ext/fhir_models'
 
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   module CARIN4BBV200
     class PractitionerReadTest < Inferno::Test
-      include CARINForBlueButton::ReadTest
+      include CarinForBlueButtonTestKit::ReadTest
 
       title 'Server returns correct Practitioner resource from Practitioner read interaction'
       description 'A server SHALL support the Practitioner read interaction.'

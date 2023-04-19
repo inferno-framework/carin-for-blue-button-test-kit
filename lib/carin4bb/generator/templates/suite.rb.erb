@@ -6,7 +6,7 @@ require_relative '../../capability_statement/capability_statement_group'
 
 <% group_file_list.each do |file_name| %>require_relative '<%= file_name %>'
 <% end %>
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   module <%= module_name %>
     class <%= class_name %> < Inferno::TestSuite
       title '<%= title %>'

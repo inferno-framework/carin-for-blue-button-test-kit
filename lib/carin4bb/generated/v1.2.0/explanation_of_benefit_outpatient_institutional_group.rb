@@ -2,7 +2,7 @@ require_relative 'explanation_of_benefit_outpatient_institutional/explanation_of
     require_relative 'explanation_of_benefit_outpatient_institutional/explanation_of_benefit_outpatient_institutional_validation_test'
     require_relative 'explanation_of_benefit_outpatient_institutional/explanation_of_benefit_outpatient_institutional_must_support_test'
     
-    module CARINForBlueButton
+    module CarinForBlueButtonTestKit
       module CARIN4BBV120
         class ExplanationOfBenefitOutpatientInstitutionalGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Outpatient Institutional Tests'

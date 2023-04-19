@@ -2,7 +2,7 @@ require_relative 'explanation_of_benefit_pharmacy/explanation_of_benefit_pharmac
     require_relative 'explanation_of_benefit_pharmacy/explanation_of_benefit_pharmacy_validation_test'
     require_relative 'explanation_of_benefit_pharmacy/explanation_of_benefit_pharmacy_must_support_test'
     
-    module CARINForBlueButton
+    module CarinForBlueButtonTestKit
       module CARIN4BBV120
         class ExplanationOfBenefitPharmacyGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Pharmacy Tests'

@@ -1,11 +1,11 @@
 require_relative '../../../validation_test'
 require_relative './explanation_of_benefit_professional_non_clinician_read_test'
 
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   module CARIN4BBV110
     class ExplanationOfBenefitProfessionalNonClinicianValidationTest < Inferno::Test
-      include CARINForBlueButton::ValidationTest
-      include CARINForBlueButton::CARIN4BBV110
+      include CarinForBlueButtonTestKit::ValidationTest
+      include CarinForBlueButtonTestKit::CARIN4BBV110
 
       id :c4bb_v110_explanation_of_benefit_professional_non_clinician_validation_test
       title 'ExplanationOfBenefit resources returned during previous tests conform to the C4BB ExplanationOfBenefit Professional NonClinician'

@@ -2,7 +2,7 @@ require_relative 'organization/organization_read_test'
     require_relative 'organization/organization_validation_test'
     require_relative 'organization/organization_must_support_test'
     
-    module CARINForBlueButton
+    module CarinForBlueButtonTestKit
       module CARIN4BBV110
         class OrganizationGroup < Inferno::TestGroup
           title 'Organization Tests'

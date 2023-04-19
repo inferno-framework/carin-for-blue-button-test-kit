@@ -2,7 +2,7 @@ require_relative 'coverage/coverage_read_test'
     require_relative 'coverage/coverage_validation_test'
     require_relative 'coverage/coverage_must_support_test'
     
-    module CARINForBlueButton
+    module CarinForBlueButtonTestKit
       module CARIN4BBV110
         class CoverageGroup < Inferno::TestGroup
           title 'Coverage Tests'

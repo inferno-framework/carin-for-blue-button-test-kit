@@ -1,4 +1,4 @@
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
     module CARIN4BBV120
       module ResourceList
         RESOURCE_LIST = [

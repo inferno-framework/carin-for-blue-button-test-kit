@@ -4,7 +4,7 @@ require_relative 'coverage/coverage_read_test'
     require_relative 'coverage/coverage_id_search_test'
     require_relative 'coverage/coverage_coverage_payor_search_test'
     
-    module CARINForBlueButton
+    module CarinForBlueButtonTestKit
       module CARIN4BBV120
         class CoverageGroup < Inferno::TestGroup
           title 'Coverage Tests'

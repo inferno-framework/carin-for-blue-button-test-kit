@@ -17,7 +17,7 @@ require_relative 'explanation_of_benefit/explanation_of_benefit_read_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_payee_search_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_all_search_test'
     
-    module CARINForBlueButton
+    module CarinForBlueButtonTestKit
       module CARIN4BBV200
         class ExplanationOfBenefitGroup < Inferno::TestGroup
           title 'Explanation Of Benefit Tests'

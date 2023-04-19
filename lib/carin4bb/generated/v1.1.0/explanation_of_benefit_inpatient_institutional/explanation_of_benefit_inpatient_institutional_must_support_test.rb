@@ -2,11 +2,11 @@ require_relative '../../../must_support_test'
 require_relative './explanation_of_benefit_inpatient_institutional_read_test'
 require_relative '../../../generator/group_metadata'
 
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   module CARIN4BBV110
     class ExplanationOfBenefitInpatientInstitutionalMustSupportTest < Inferno::Test
-      include CARINForBlueButton::MustSupportTest
-      include CARINForBlueButton::CARIN4BBV110
+      include CarinForBlueButtonTestKit::MustSupportTest
+      include CarinForBlueButtonTestKit::CARIN4BBV110
 
       title 'All must support elements are provided in the ExplanationOfBenefit resources returned'
       description %(

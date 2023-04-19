@@ -1,11 +1,11 @@
 require_relative '../../../validation_test'
 require_relative './explanation_of_benefit_oral_read_test'
 
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   module CARIN4BBV200
     class ExplanationOfBenefitOralValidationTest < Inferno::Test
-      include CARINForBlueButton::ValidationTest
-      include CARINForBlueButton::CARIN4BBV200
+      include CarinForBlueButtonTestKit::ValidationTest
+      include CarinForBlueButtonTestKit::CARIN4BBV200
 
       id :c4bb_v200_explanation_of_benefit_oral_validation_test
       title 'ExplanationOfBenefit resources returned during previous tests conform to the C4BB ExplanationOfBenefit Oral'

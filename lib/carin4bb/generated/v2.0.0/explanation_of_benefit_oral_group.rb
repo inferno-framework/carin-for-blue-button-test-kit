@@ -2,7 +2,7 @@ require_relative 'explanation_of_benefit_oral/explanation_of_benefit_oral_read_t
     require_relative 'explanation_of_benefit_oral/explanation_of_benefit_oral_validation_test'
     require_relative 'explanation_of_benefit_oral/explanation_of_benefit_oral_must_support_test'
     
-    module CARINForBlueButton
+    module CarinForBlueButtonTestKit
       module CARIN4BBV200
         class ExplanationOfBenefitOralGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Oral Tests'

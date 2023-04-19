@@ -1,4 +1,4 @@
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   class FHIRVersionTest < Inferno::Test
     id :carin_bb_fhir_version
     title 'Server is using FHIR R4'

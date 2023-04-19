@@ -2,7 +2,7 @@ require_relative 'practitioner/practitioner_read_test'
     require_relative 'practitioner/practitioner_validation_test'
     require_relative 'practitioner/practitioner_must_support_test'
     
-    module CARINForBlueButton
+    module CarinForBlueButtonTestKit
       module CARIN4BBV120
         class PractitionerGroup < Inferno::TestGroup
           title 'Practitioner Tests'

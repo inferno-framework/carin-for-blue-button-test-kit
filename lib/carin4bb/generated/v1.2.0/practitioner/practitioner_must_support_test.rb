@@ -2,11 +2,11 @@ require_relative '../../../must_support_test'
 require_relative './practitioner_read_test'
 require_relative '../../../generator/group_metadata'
 
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   module CARIN4BBV120
     class PractitionerMustSupportTest < Inferno::Test
-      include CARINForBlueButton::MustSupportTest
-      include CARINForBlueButton::CARIN4BBV120
+      include CarinForBlueButtonTestKit::MustSupportTest
+      include CarinForBlueButtonTestKit::CARIN4BBV120
 
       title 'All must support elements are provided in the Practitioner resources returned'
       description %(

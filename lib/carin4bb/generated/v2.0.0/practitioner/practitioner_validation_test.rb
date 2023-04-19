@@ -1,11 +1,11 @@
 require_relative '../../../validation_test'
 require_relative './practitioner_read_test'
 
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   module CARIN4BBV200
     class PractitionerValidationTest < Inferno::Test
-      include CARINForBlueButton::ValidationTest
-      include CARINForBlueButton::CARIN4BBV200
+      include CarinForBlueButtonTestKit::ValidationTest
+      include CarinForBlueButtonTestKit::CARIN4BBV200
 
       id :c4bb_v200_practitioner_validation_test
       title 'Practitioner resources returned during previous tests conform to the C4BB Practitioner'

@@ -1,4 +1,4 @@
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
     class InstantiatesTest < Inferno::Test
       id :carin_bb_instantiate
       title 'Server instantiates CARIN BlueButton '

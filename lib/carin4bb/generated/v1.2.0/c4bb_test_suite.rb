@@ -15,7 +15,7 @@ require_relative 'explanation_of_benefit_professional_non_clinician_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
 
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   module CARIN4BBV120
     class C4BBTestKit < Inferno::TestSuite
       title 'CARIN for Blue Button v1.2.0'

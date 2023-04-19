@@ -1,11 +1,11 @@
 require_relative '../../../validation_test'
 require_relative './organization_read_test'
 
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   module CARIN4BBV110
     class OrganizationValidationTest < Inferno::Test
-      include CARINForBlueButton::ValidationTest
-      include CARINForBlueButton::CARIN4BBV110
+      include CarinForBlueButtonTestKit::ValidationTest
+      include CarinForBlueButtonTestKit::CARIN4BBV110
 
       id :c4bb_v110_organization_validation_test
       title 'Organization resources returned during previous tests conform to the C4BB Organization'

@@ -1,4 +1,4 @@
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
     class Generator
       module SpecialCases
         RESOURCES_TO_EXCLUDE = [

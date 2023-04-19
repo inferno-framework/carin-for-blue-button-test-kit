@@ -1,6 +1,6 @@
 require_relative 'naming'
 
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   class Generator
     class SuiteGenerator
       class << self

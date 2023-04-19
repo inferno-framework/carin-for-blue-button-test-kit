@@ -1,11 +1,11 @@
 require_relative '../../../validation_test'
 require_relative './patient_read_test'
 
-module CARINForBlueButton
+module CarinForBlueButtonTestKit
   module CARIN4BBV110
     class PatientValidationTest < Inferno::Test
-      include CARINForBlueButton::ValidationTest
-      include CARINForBlueButton::CARIN4BBV110
+      include CarinForBlueButtonTestKit::ValidationTest
+      include CarinForBlueButtonTestKit::CARIN4BBV110
 
       id :c4bb_v110_patient_validation_test
       title 'Patient resources returned during previous tests conform to the C4BB Patient'
