@@ -1,4 +1,5 @@
-require_relative 'ext/fhir_models'
+require 'inferno/ext/fhir_models'
+
 require_relative 'generator/ig_loader'
 require_relative 'generator/ig_metadata_extractor'
 require_relative 'generator/resource_list_generator'
@@ -12,7 +13,7 @@ require_relative 'generator/search_test_generator'
 module CarinForBlueButtonTestKit
     class Generator
         def self.generate
-            ig_packages = Dir.glob(File.join(Dir.pwd, 'lib', 'carin4bb', 'igs', '*.tgz'))
+            ig_packages = Dir.glob(File.join(Dir.pwd, 'lib', 'carin_for_blue_button_test_kit', 'igs', '*.tgz'))
       
             ig_packages.each do |ig_package|
               new(ig_package).generate

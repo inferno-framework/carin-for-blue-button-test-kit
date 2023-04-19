@@ -1,6 +1,5 @@
 require_relative '../../../read_test'
 require 'json'
-require_relative '../../../ext/fhir_models'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV200
@@ -18,7 +17,7 @@ module CarinForBlueButtonTestKit
         description: "related_person Resource ID"
 
       input_order :url, :smart_credentials, :related_person_ids
-      
+
       def resource_type
         'RelatedPerson'
       end

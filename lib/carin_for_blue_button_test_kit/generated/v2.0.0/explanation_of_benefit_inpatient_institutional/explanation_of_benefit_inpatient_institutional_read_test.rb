@@ -1,6 +1,5 @@
 require_relative '../../../read_test'
 require 'json'
-require_relative '../../../ext/fhir_models'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV200
@@ -18,7 +17,7 @@ module CarinForBlueButtonTestKit
         description: "explanation_of_benefit_inpatient_institutional Resource ID"
 
       input_order :url, :smart_credentials, :explanation_of_benefit_inpatient_institutional_ids
-      
+
       def resource_type
         'ExplanationOfBenefit'
       end

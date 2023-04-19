@@ -1,6 +1,5 @@
 require_relative '../../../read_test'
 require 'json'
-require_relative '../../../ext/fhir_models'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV110
@@ -18,7 +17,7 @@ module CarinForBlueButtonTestKit
         description: "organization Resource ID"
 
       input_order :url, :smart_credentials, :organization_ids
-      
+
       def resource_type
         'Organization'
       end

@@ -5924,7 +5924,7 @@
       :discriminator:
         :type: patternIdentifier
         :path: ''
-        :system: 
+        :system:
     - :name: Organization.identifier:naiccode
       :path: identifier
       :discriminator:
