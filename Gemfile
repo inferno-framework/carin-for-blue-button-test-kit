@@ -7,5 +7,4 @@ gemspec
 group :development, :test do
   gem 'debug'
   gem 'foreman'
-  gem 'smart_app_launch_test_kit', '~> 0.2.2'
 end
