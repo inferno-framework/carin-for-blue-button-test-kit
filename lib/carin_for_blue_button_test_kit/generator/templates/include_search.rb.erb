@@ -6,7 +6,7 @@ module CarinForBlueButtonTestKit
     class <%= class_name %> < Inferno::Test
       include CarinForBlueButtonTestKit::CarinSearchTest
 
-      title 'Server returns valid results for <%= resource_type %> search by _include=<%= search_param %>'
+      title 'Server returns valid results for <%= resource_type %> search by id + _include=<%= search_param %>'
       description %(
 <%= description %>
       )
@@ -20,12 +20,17 @@ module CarinForBlueButtonTestKit
 
       id :<%= test_id %>
 
+      input :<%= input_id %>,
+        title: '<%= input_title %>',
+        type: 'text',
+        description: '<%= input_description %>'
+
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
       end
 
       run do
-        run_search_test('<%=include_search_param%>', include_search: <%=include_search%>)
+        run_search_test('<%=include_search_param%>', include_search: <%=include_search%>, resource_id: <%= input_id %>)
       end
     end
   end

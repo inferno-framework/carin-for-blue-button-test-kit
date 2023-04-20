@@ -63,6 +63,18 @@ module CarinForBlueButtonTestKit
             "#{Naming.upper_camel_case_for_profile(group_metadata)}#{remove_star}SearchTest"
           end
 
+          def input_id
+            "c4bb_#{group_metadata.reformatted_version}_#{profile_identifier}__id_search_test_param"
+          end
+
+          def input_title
+            "#{resource_type} search parameter for _id"
+          end
+
+          def input_description
+            "#{resource_type} search parameter: _id"
+          end
+
           def removed_hyphen
             search_param.gsub('-', '')
           end

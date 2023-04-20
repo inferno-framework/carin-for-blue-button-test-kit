@@ -23,10 +23,11 @@ module CarinForBlueButtonTestKit
                         :params_with_comparators,
                         :multiple_or_search_params
 
-        def run_search_test(param_value, include_search: false)
+        def run_search_test(param_value, include_search: false, resource_id: nil)
             search_params = {}
 
-            if include_search 
+            if include_search
+                search_params = { _id: resource_id }
                 run_include_search(search_params, param_value)
                 return
             end
