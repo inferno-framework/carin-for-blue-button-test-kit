@@ -34,8 +34,15 @@ module CarinForBlueButtonTestKit
 
       # SMART Test Suite requirement
       group from: :smart_discovery
-      group from: :smart_standalone_launch
-      
+      group from: :smart_standalone_launch,
+        config: {
+          outputs: {
+            patient_id: {
+              name: :patient_ids
+            }
+          }
+        }
+
       fhir_client do
         url :url
         oauth_credentials :smart_credentials
