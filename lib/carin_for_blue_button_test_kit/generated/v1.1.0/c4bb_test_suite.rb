@@ -41,6 +41,7 @@ module CarinForBlueButtonTestKit
         optional: true
 
       # SMART Test Suite requirement
+      group from: :smart_discovery
       group from: :smart_standalone_launch
       
       fhir_client do
