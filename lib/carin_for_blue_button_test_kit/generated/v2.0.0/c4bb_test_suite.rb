@@ -47,9 +47,8 @@ module CarinForBlueButtonTestKit
       group from: :smart_standalone_launch,
         config: {
           outputs: {
-            patient_id: {
-              name: :patient_ids
-            }
+            patient_id: { name: :patient_ids },
+            smart_credentials: { name: :smart_credentials }
           }
         }
 
