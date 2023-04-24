@@ -265,7 +265,7 @@ module CarinForBlueButtonTestKit
         Additionally, this test will check that GET and POST search methods
         return the same number of results. Search by POST is required by the
         FHIR R4 specification, and these tests interpret search by GET as a
-        requirement of US Core #{group_metadata.version}.
+        requirement of CARIN IG for Blue Button® #{group_metadata.version}.
         POST_SEARCH_DESCRIPTION
       end
 
