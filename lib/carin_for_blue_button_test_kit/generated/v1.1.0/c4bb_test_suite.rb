@@ -41,8 +41,10 @@ module CarinForBlueButtonTestKit
         optional: true
 
       # SMART Test Suite requirement
-      group from: :smart_discovery
+      group from: :smart_discovery,
+        run_as_group: true
       group from: :smart_standalone_launch,
+        run_as_group: true,
         config: {
           outputs: {
             patient_id: { name: :patient_ids },
