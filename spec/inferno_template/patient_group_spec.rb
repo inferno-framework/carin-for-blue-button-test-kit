@@ -1,4 +1,4 @@
-RSpec.describe CARINForBlueButton::PatientGroup do
+RSpec.describe CarinForBlueButtonTestKit::PatientGroup do
   let(:suite) { Inferno::Repositories::TestSuites.new.find('test_suite_template') }
   let(:group) { suite.groups[1] }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }

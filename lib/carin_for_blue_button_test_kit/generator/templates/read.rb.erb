@@ -1,0 +1,39 @@
+require_relative '../../../read_test'
+require 'json'
+
+module CarinForBlueButtonTestKit
+  module <%= module_name %>
+    class <%= class_name %> < Inferno::Test
+      include CarinForBlueButtonTestKit::ReadTest
+
+      title 'Server returns correct <%= resource_type %> resource from <%= resource_type %> read interaction'
+      description 'A server <%= conformance_expectation %> support the <%= resource_type %> read interaction.'
+
+      id :<%= test_id %>
+
+      input :<%= profile_identifier %>_ids,
+        title: "<%= profile_identifier %> IDs",
+        type: 'text',
+        description: "<%= profile_identifier %> Resource ID"
+
+      input_order :url, :smart_credentials, :<%= profile_identifier %>_ids
+
+      def resource_type
+        '<%= resource_type %>'
+      end
+
+      def scratch_resources
+        scratch[:<%= profile_identifier %>_resources] ||= {}
+      end
+
+      def <%= profile_identifier %>_id_list
+        return [nil] unless respond_to? :<%= profile_identifier %>_ids
+        <%= profile_identifier %>_ids.split(',').map(&:strip)
+      end
+
+      run do
+        perform_read_test(<%= profile_identifier %>_id_list)
+      end
+    end
+  end
+end
