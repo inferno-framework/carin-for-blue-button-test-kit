@@ -36,8 +36,8 @@ search. If a value cannot be found this way, the search is skipped.
 
 ### Search Validation
 Inferno will retrieve up to the first 20 bundle pages of the reply for
-Coverage resources and save them for subsequent tests. Each of
-these resources is then checked to see if it matches the searched
+Coverage resources and save them for subsequent tests.
+Each resource is then checked to see if it matches the searched
 parameters in accordance with [FHIR search
 guidelines](https://www.hl7.org/fhir/search.html). The test will fail,
 for example, if a Patient search for `gender=male` returns a `female`
@@ -54,7 +54,7 @@ elements.
 ## Profile Validation
 Each resource returned from the first search is expected to conform to
 the [C4BB Coverage](http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage). Each element is checked against
-teminology binding and cardinality requirements.
+terminology binding and cardinality requirements.
 
 Elements with a required binding are validated against their bound
 ValueSet. If the code/system in the element is not part of the ValueSet,

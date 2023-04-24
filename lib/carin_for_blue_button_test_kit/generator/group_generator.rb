@@ -157,8 +157,8 @@ module CarinForBlueButtonTestKit
 
         ### Search Validation
         Inferno will retrieve up to the first 20 bundle pages of the reply for
-        #{search_validation_resource_type} and save them for subsequent tests. Each of
-        these resources is then checked to see if it matches the searched
+        #{search_validation_resource_type} and save them for subsequent tests.
+        Each resource is then checked to see if it matches the searched
         parameters in accordance with [FHIR search
         guidelines](https://www.hl7.org/fhir/search.html). The test will fail,
         for example, if a Patient search for `gender=male` returns a `female`
@@ -188,7 +188,7 @@ module CarinForBlueButtonTestKit
         ## Profile Validation
         Each resource returned from the first search is expected to conform to
         the [#{profile_name}](#{profile_url}). Each element is checked against
-        teminology binding and cardinality requirements.
+        terminology binding and cardinality requirements.
 
         Elements with a required binding are validated against their bound
         ValueSet. If the code/system in the element is not part of the ValueSet,

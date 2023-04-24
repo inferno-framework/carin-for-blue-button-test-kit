@@ -28,7 +28,7 @@ elements.
 ## Profile Validation
 Each resource returned from the first search is expected to conform to
 the [C4BB Organization](http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization). Each element is checked against
-teminology binding and cardinality requirements.
+terminology binding and cardinality requirements.
 
 Elements with a required binding are validated against their bound
 ValueSet. If the code/system in the element is not part of the ValueSet,
