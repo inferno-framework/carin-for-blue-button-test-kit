@@ -17,7 +17,7 @@ require_relative 'practitioner_group'
 module CarinForBlueButtonTestKit
   module CARIN4BBV110
     class C4BBTestKit < Inferno::TestSuite
-      title 'CARIN for Blue Button v1.1.0'
+      title 'CARIN IG for Blue Button® v1.1.0'
       version VERSION
 
       def self.metadata

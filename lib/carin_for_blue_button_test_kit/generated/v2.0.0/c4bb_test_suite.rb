@@ -19,7 +19,7 @@ require_relative 'related_person_group'
 module CarinForBlueButtonTestKit
   module CARIN4BBV200
     class C4BBTestKit < Inferno::TestSuite
-      title 'CARIN for Blue Button v2.0.0'
+      title 'CARIN IG for Blue Button® v2.0.0'
       version VERSION
 
       def self.metadata

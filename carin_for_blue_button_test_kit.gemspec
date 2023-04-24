@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['John Morrison']
   spec.email         = ['jmorrison@leaporbit.com']
   spec.date          = Time.now.utc.strftime('%Y-%m-%d')
-  spec.summary       = 'CARIN for Blue Button Test Kit'
-  spec.description   = 'CARIN for Blue Button Test Kit'
+  spec.summary       = 'CARIN IG for Blue Button® Test Kit'
+  spec.description   = 'CARIN IG for Blue Button® Test Kit'
   spec.homepage      = 'https://github.com/inferno-framework/carin-for-blue-button-test-kit'
   spec.license       = 'Apache-2.0'
   spec.add_runtime_dependency 'inferno_core', '~> 0.4.2'

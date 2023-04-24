@@ -45,7 +45,7 @@ module CarinForBlueButtonTestKit
       end
 
       def title
-        "CARIN for Blue Button #{ig_metadata.ig_version}"
+        "CARIN IG for Blue Button® #{ig_metadata.ig_version}"
       end
 
       def validator_env_name

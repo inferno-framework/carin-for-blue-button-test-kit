@@ -1,3 +1,5 @@
+# CARIN IG for Blue Button® Test Kit
+
 ## Running Locally
 INSTALLATION\
 Install [Docker](https://docs.docker.com/get-started/).\
@@ -14,7 +16,7 @@ Navigate to http://localhost:4567 to access Inferno, where your test suite will 
 When you are done, `run bundle exec inferno services` stop to stop the background services.\
 
 TEST GENERATION\
-The CARIN for Blue Button test kit has an implemeneted test generator. It extracts necessarry data elements from CARIN for Blue Button Implementation Guide archive files and generates tests accordingly. The repo currently contains suites for IG versions 1.1.0 and 2.0.0.\
+The CARIN IG for Blue Button® Test Kit has an implemeneted test generator. It extracts necessarry data elements from CARIN for Blue Button Implementation Guide archive files and generates tests accordingly. The repo currently contains suites for IG versions 1.1.0 and 2.0.0.\
 To generate a test suite for a different CARIN for Blue Button IG version:\
 Navigate to `CARIN-for-Blue-Button-Test-Kit/lib/carin_for_blue_button_test_kit/igs/`\
 Drop your package.tgz file for the IG version into this folder. You may want to rename it before hand.\
