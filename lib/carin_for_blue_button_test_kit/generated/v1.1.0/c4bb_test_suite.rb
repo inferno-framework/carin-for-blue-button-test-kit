@@ -19,6 +19,16 @@ module CarinForBlueButtonTestKit
     class C4BBTestKit < Inferno::TestSuite
       title 'CARIN IG for Blue Button® v1.1.0'
       version VERSION
+      links [
+        {
+          label: 'Open Source',
+          url: 'https://github.com/inferno-framework/carin-for-blue-button-test-kit'
+        },
+        {
+          label: 'Implementation Guide',
+          url: 'http://hl7.org/fhir/us/carin-bb/STU1.1'
+        }
+      ]
 
       def self.metadata
         @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true)[:groups].map do |raw_metadata|

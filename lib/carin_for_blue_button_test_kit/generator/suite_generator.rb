@@ -52,6 +52,17 @@ module CarinForBlueButtonTestKit
         "#{ig_metadata.reformatted_version.upcase}_VALIDATOR_URL"
       end
 
+      def ig_link
+        case ig_metadata.ig_version
+        when 'v1.1.0'
+          'http://hl7.org/fhir/us/carin-bb/STU1.1'
+        when 'v2.0.0'
+          'http://hl7.org/fhir/us/carin-bb/STU2'
+        else
+          'http://hl7.org/fhir/us/carin-bb/history.html'
+        end
+      end
+
       def generate
         File.open(output_file_name, 'w') { |f| f.write(output) }
       end

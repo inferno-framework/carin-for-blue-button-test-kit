@@ -11,6 +11,16 @@ module CarinForBlueButtonTestKit
     class <%= class_name %> < Inferno::TestSuite
       title '<%= title %>'
       version VERSION
+      links [
+        {
+          label: 'Open Source',
+          url: 'https://github.com/inferno-framework/carin-for-blue-button-test-kit'
+        },
+        {
+          label: 'Implementation Guide',
+          url: '<%= ig_link %>'
+        }
+      ]
 
       def self.metadata
         @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true)[:groups].map do |raw_metadata|
