@@ -10,6 +10,9 @@ module CarinForBlueButtonTestKit
   module <%= module_name %>
     class <%= class_name %> < Inferno::TestSuite
       title '<%= title %>'
+      description %(
+        The CARIN for Blue Button test suite validates system conformance to the HL7® FHIR® [CARIN for Blue Button® Implementation Guide](<%=ig_link %>).
+      )
       version VERSION
       links [
         {

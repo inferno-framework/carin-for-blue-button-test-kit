@@ -8,8 +8,8 @@ for the CARIN IG for Blue Button®
 ## Instructions
 
 It is highly recommended that you use [Docker](https://www.docker.com/) to run
-these tests so that you don't have to configure ruby and the FHIR validator
-service. For more information on how to run Inferno, visit [Inferno's
+these tests so that you don't have to configure ruby and the HL7® FHIR®
+validator service. For more information on how to run Inferno, visit [Inferno's
 documentation](https://inferno-framework.github.io/inferno-core/getting-started.html)
 
 - Clone this repo.
@@ -31,3 +31,8 @@ To generate a test suite for a different CARIN for Blue Button IG version:
 - Run the command `bundle exec rake carin4bb:generate` to run the generator.
 - Run Inferno and verify that your new suite was generated and is available as
   an option
+
+## Trademark Notice
+
+HL7, FHIR and the FHIR [FLAME DESIGN] are the registered trademarks of Health
+Level Seven International and their use does not constitute endorsement by HL7.
