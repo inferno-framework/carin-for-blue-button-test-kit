@@ -70,14 +70,24 @@ module CarinForBlueButtonTestKit
         case profile_identifier
         when 'explanation_of_benefit_inpatient_institutional'
           return "ExplanationOfBenefitInpatientInstitutional"
+        when 'explanation_of_benefit_inpatient_institutional_nonfinancial'
+          return "ExplanationOfBenefitInpatientInstitutionalNonFinancial"
         when 'explanation_of_benefit_oral'
           return "ExplanationOfBenefitOral"
+        when 'explanation_of_benefit_oral_nonfinancial'
+          return "ExplanationOfBenefitOralNonFinancial"
         when 'explanation_of_benefit_outpatient_institutional'
           return "ExplanationOfBenefitOutpatientInstitutional"
+        when 'explanation_of_benefit_outpatient_institutional_nonfinancial'
+          return "ExplanationOfBenefitOutpatientInstitutionalNonFinancial"
         when 'explanation_of_benefit_pharmacy'
           return "ExplanationOfBenefitPharmacy"
+        when 'explanation_of_benefit_pharmacy_nonfinancial'
+          return "ExplanationOfBenefitPharmacyNonFinancial"
         when 'explanation_of_benefit_professional_non_clinician'
           return "ExplanationOfBenefitProfessionalNonClinician"
+        when 'explanation_of_benefit_professional_non_clinician_nonfinancial'
+          return "ExplanationOfBenefitProfessionalNonClinicianNonFinancial"
         else
           return self.resource_type
         end
