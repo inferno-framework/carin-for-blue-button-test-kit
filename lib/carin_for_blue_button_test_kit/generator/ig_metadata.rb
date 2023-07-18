@@ -4,7 +4,7 @@ module CarinForBlueButtonTestKit
         attr_accessor :ig_version, :groups
   
         def reformatted_version
-          @reformatted_version ||= ig_version.delete('.')
+          @reformatted_version ||= ig_version.delete('.-')
         end
   
         def ordered_groups

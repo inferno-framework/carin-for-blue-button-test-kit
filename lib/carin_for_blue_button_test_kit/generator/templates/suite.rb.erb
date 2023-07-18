@@ -12,6 +12,10 @@ module CarinForBlueButtonTestKit
       title '<%= title %>'
       description %(
         The CARIN for Blue Button test suite validates system conformance to the HL7® FHIR® [CARIN for Blue Button® Implementation Guide](<%=ig_link %>).
+
+        <% if module_name.include? ('FINANCIAL')%>
+        Development build for the [non-financial branch](https://build.fhir.org/ig/HL7/carin-bb/branches/non-financial/). 
+        <% end%>
       )
       version VERSION
       links [
