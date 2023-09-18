@@ -44,7 +44,7 @@ RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
         )
         
         result = run(patient_must_support_test)
-        puts result.result_message
+        puts result.result
     end
 
 end

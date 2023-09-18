@@ -145,7 +145,7 @@
     ],
     "gender" : "male",
     "birthDate" : "1986-01-01",
-    "deceased[x]" : [
+    "deceased" : [
       {
         "deceasedBoolean" : "false"
       }
