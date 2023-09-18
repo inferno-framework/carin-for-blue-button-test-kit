@@ -51,6 +51,7 @@
       {
         "system" : "phone",
         "value" : "(301)666-1212",
+        "use" : "home",
         "rank" : 2
       }
     ],
@@ -64,7 +65,14 @@
         ],
         "city" : "Pittsburgh",
         "state" : "PA",
-        "postalCode" : "12519"
+        "postalCode" : "12519",
+        "country" : "USA",
+        "period" : [
+          {
+            "start" : "2022-09-18",
+            "end" : "2023-09-18"
+          }
+        ]
       }
     ],
     "maritalStatus" : {
@@ -74,5 +82,10 @@
           "code" : "UNK"
         }
       ]
-    }
+    },
+    "communication" : [
+      {
+        "language" : "English"
+      }
+    ]
   }

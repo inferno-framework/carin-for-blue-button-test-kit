@@ -27,13 +27,13 @@ RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
         Inferno::TestRunner.new(test_session: test_session, test_run: test_run).run(runnable)
     end 
     
-    it 'prints out the contents' do
-        puts json_string
-    end
+    # it 'prints out the contents' do
+    #     puts json_string
+    # end
 
-    it 'creates a resource' do 
-        puts patient_resource.id
-    end
+    # it 'creates a resource' do 
+    #     puts patient_resource.id
+    # end
 
     it 'runs the actual test and returns a result' do
         allow_any_instance_of(patient_must_support_test)
