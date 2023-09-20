@@ -145,11 +145,6 @@
     ],
     "gender" : "male",
     "birthDate" : "1986-01-01",
-    "deceased" : [
-      {
-        "deceasedBoolean" : "false"
-      }
-    ],
     "address" : [
       {
         "type" : "physical",
@@ -181,4 +176,3 @@
         "language" : "English"
       }
     ]
-  }

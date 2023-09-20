@@ -1,10 +1,8 @@
 RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
-    puts "Must support test!"
-    let(:json_string) do 
-        File.read(File.join(__dir__, '..', 'fixtures', 'c4bb_patient_example.json'))
-    end 
 
-    let(:patient_resource) { FHIR.from_contents(json_string) }
+    let(:json_string_stub) do 
+        File.read(File.join(__dir__, '..', 'fixtures', 'c4bb_patient_stub.json'))
+    end 
 
     let(:patient_must_support_test) { Inferno::Repositories::Tests.new.find('c4bb_v200_patient_must_support_test')}
 
@@ -26,25 +24,77 @@ RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
         end
         Inferno::TestRunner.new(test_session: test_session, test_run: test_run).run(runnable)
     end 
-    
-    # it 'prints out the contents' do
-    #     puts json_string
-    # end
 
-    # it 'creates a resource' do 
-    #     puts patient_resource.id
-    # end
-
-    it 'runs the actual test and returns a result' do
-        allow_any_instance_of(patient_must_support_test)
-        .to receive(:scratch_resources).and_return(
-          {
-            all: [patient_resource]
-          }
-        )
-        
-        result = run(patient_must_support_test)
-        puts result.result
+    def generate_patient_resource(json_addition)
+        complete_json_string = json_string_stub + json_addition
+        return FHIR.from_contents(complete_json_string)
     end
 
+    def execute_mock_test(patient_resource) 
+      allow_any_instance_of(patient_must_support_test)
+      .to receive(:scratch_resources).and_return(
+      {
+          all: [patient_resource]
+      }
+      )
+      return run(patient_must_support_test)
+    end
+
+    describe 'must support test for choice elements with correct deceased inputs'
+      def run_expect_pass(patient_resource)
+          result = execute_mock_test(patient_resource)
+        expect(result.result).to eq('pass')
+      end
+  
+      it 'supports deceasedBoolean type' do
+          deceased_boolean = ', "deceased" : 
+            {
+              "deceasedBoolean" : "false"
+            }
+          }'
+
+          run_expect_pass(generate_patient_resource(deceased_boolean))
+      end
+
+      it 'supports deceasedDatetime type' do
+        deceased_datetime = ', "deceased" : 
+          {
+            "deceasedDatetime" : "2022-09-15"
+          }
+        }'
+        
+        run_expect_pass(generate_patient_resource(deceased_datetime))
+      end
+
+      it 'supports both deceasedBoolean and deceasedDatetime in value' do
+        deceased_both = ', "deceased" : [
+            {
+              "deceasedBoolean" : "true"
+            },
+            {
+              "deceasedDatetime" : "2022-09-15"
+            }
+          ]
+        }'
+        
+        run_expect_pass(generate_patient_resource(deceased_both))
+      end
+
+      
+    describe 'must support test for choice elements with incorrect deceased inputs'
+
+      def run_expect_error(patient_resource) 
+        result = execute_mock_test(patient_resource)
+        expect(result.result).to eq('skip')
+        expect(result.result_message).to include('deceased[x]')
+      end
+
+      it 'fails when deceased not present' do
+        run_expect_error(generate_patient_resource('}'))
+      end
+
+      it 'fails when deceased values not formatted as slice' do
+        deceased_incorrect = ', "deceasedBoolean" : "false" }'
+        run_expect_error(generate_patient_resource(deceased_incorrect))
+      end
 end
