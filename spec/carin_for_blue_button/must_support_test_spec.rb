@@ -103,4 +103,9 @@ RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
         deceased_incorrect = ', "deceasedBoolean" : "false" }'
         run_expect_error(generate_patient_resource(deceased_incorrect))
       end
+
+      it 'fails when deceased values not formatted as slice when reading from file' do
+        json_string = File.read(File.join(__dir__, '..', 'fixtures', 'c4bb_patient_error_example.json'))
+        run_expect_error(FHIR.from_contents(json_string))
+      end
 end
