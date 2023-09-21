@@ -25,6 +25,7 @@ RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
         Inferno::TestRunner.new(test_session: test_session, test_run: test_run).run(runnable)
     end 
 
+
     def generate_patient_resource(json_addition)
         complete_json_string = json_string_stub + json_addition
         return FHIR.from_contents(complete_json_string)
@@ -46,6 +47,11 @@ RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
         expect(result.result).to eq('pass')
       end
   
+      it 'supports deceasedBoolean type when parsing from file' do
+        json_string = File.read(File.join(__dir__, '..', 'fixtures', 'c4bb_patient_example.json'))
+        run_expect_pass(FHIR.from_contents(json_string))
+      end
+
       it 'supports deceasedBoolean type' do
           deceased_boolean = ', "deceased" : 
             {
