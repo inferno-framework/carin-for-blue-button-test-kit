@@ -3,11 +3,11 @@ require 'json'
 module CarinForBlueButtonTestKit
     module FHIRResourceNavigation
       DAR_EXTENSION_URL = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason'.freeze
-  
+
       def resolve_path(elements, path)
         elements = Array.wrap(elements)
         return elements if path.blank?
-        
+
         paths = path.split('.')
         segment = paths.first
         remaining_path = paths.drop(1).join('.')
@@ -18,7 +18,7 @@ module CarinForBlueButtonTestKit
         end.compact
 
       end
-  
+
       def find_a_value_at(element, path, include_dar: false)
         return nil if element.nil?
 
@@ -32,19 +32,20 @@ module CarinForBlueButtonTestKit
           end
 
           return elements.find { |el| yield(el) } if block_given?
-          
+
           return elements.first
         end
-  
+
         path_segments = path.split('.')
         segment = path_segments.shift.delete_suffix('[x]').to_sym
-        
+        binding.pry if path == 'deceased[x]'
+
         no_elements_present =
           elements.none? do |element|
           child = get_next_value(element, segment)
           child.present? || child == false
         end
-  
+
         return nil if no_elements_present
 
         remaining_path = path_segments.join('.')
@@ -56,18 +57,17 @@ module CarinForBlueButtonTestKit
             else
               find_a_value_at(child, remaining_path, include_dar: include_dar)
             end
-  
+
           return element_found if element_found.present? || element_found == false
         end
-  
+
         nil
       end
-  
+
       def get_next_value(element, property)
-        element[property.to_s.strip]
+        element.send(property)
       rescue NoMethodError
         nil
       end
     end
   end
-  

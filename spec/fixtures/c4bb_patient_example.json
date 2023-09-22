@@ -1,10 +1,7 @@
 {
   "resourceType" : "Patient",
   "id" : "Patient1",
-  "deceased" : 
-    {
-      "deceasedBoolean" : "false"
-    },
+  "deceasedDateTime" : "2022-09-15",
   "meta" : {
     "lastUpdated" : "2020-07-07T13:26:22.0314215+00:00",
     "profile" : [
@@ -177,7 +174,9 @@
   },
   "communication" : [
     {
-      "language" : "English"
+      "language" : {
+        "text": "English"
+      }
     }
   ]
 }
