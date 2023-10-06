@@ -44,7 +44,6 @@ RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
     describe 'must support test for choice elements with correct deceased inputs' do
       def run_expect_pass(patient_resource)
           result = execute_mock_test(patient_resource)
-          binding.pry
         expect(result.result).to eq('pass')
       end
 

@@ -38,7 +38,6 @@ module CarinForBlueButtonTestKit
 
         path_segments = path.split('.')
         segment = path_segments.shift.delete_suffix('[x]').to_sym
-        binding.pry if path == 'deceased[x]'
 
         no_elements_present =
           elements.none? do |element|
@@ -65,7 +64,8 @@ module CarinForBlueButtonTestKit
       end
 
       def get_next_value(element, property)
-        element.send(property)
+        choiceKey = element.keys.find {|key| key.to_s.start_with?(property.to_s)}
+        return element[choiceKey]
       rescue NoMethodError
         nil
       end
