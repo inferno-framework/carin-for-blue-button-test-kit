@@ -247,11 +247,11 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - 'billablePeriod '
-      - " item.serviced"
+      - billablePeriod
+      - item.serviced
       :full_paths:
-      - 'ExplanationOfBenefit.billablePeriod '
-      - " ExplanationOfBenefit.item.serviced"
+      - ExplanationOfBenefit.billablePeriod
+      - ExplanationOfBenefit.item.serviced
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -263,17 +263,17 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: Period
       :contains_multiple: false
     :service-start-date:
       :paths:
-      - 'billablePeriod.start '
-      - " item.servicedDate "
-      - " item.servicedPeriod.start"
+      - billablePeriod.start
+      - item.servicedDate
+      - item.servicedPeriod.start
       :full_paths:
-      - 'ExplanationOfBenefit.billablePeriod.start '
-      - " ExplanationOfBenefit.item.servicedDate "
-      - " ExplanationOfBenefit.item.servicedPeriod.start"
+      - ExplanationOfBenefit.billablePeriod.start
+      - ExplanationOfBenefit.item.servicedDate
+      - ExplanationOfBenefit.item.servicedPeriod.start
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -285,7 +285,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: dateTime
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -885,11 +885,11 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - 'billablePeriod '
-      - " item.serviced"
+      - billablePeriod
+      - item.serviced
       :full_paths:
-      - 'ExplanationOfBenefit.billablePeriod '
-      - " ExplanationOfBenefit.item.serviced"
+      - ExplanationOfBenefit.billablePeriod
+      - ExplanationOfBenefit.item.serviced
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -901,17 +901,17 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: Period
       :contains_multiple: false
     :service-start-date:
       :paths:
-      - 'billablePeriod.start '
-      - " item.servicedDate "
-      - " item.servicedPeriod.start"
+      - billablePeriod.start
+      - item.servicedDate
+      - item.servicedPeriod.start
       :full_paths:
-      - 'ExplanationOfBenefit.billablePeriod.start '
-      - " ExplanationOfBenefit.item.servicedDate "
-      - " ExplanationOfBenefit.item.servicedPeriod.start"
+      - ExplanationOfBenefit.billablePeriod.start
+      - ExplanationOfBenefit.item.servicedDate
+      - ExplanationOfBenefit.item.servicedPeriod.start
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -923,7 +923,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: dateTime
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -1930,11 +1930,11 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - 'billablePeriod '
-      - " item.serviced"
+      - billablePeriod
+      - item.serviced
       :full_paths:
-      - 'ExplanationOfBenefit.billablePeriod '
-      - " ExplanationOfBenefit.item.serviced"
+      - ExplanationOfBenefit.billablePeriod
+      - ExplanationOfBenefit.item.serviced
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -1946,17 +1946,17 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: Period
       :contains_multiple: false
     :service-start-date:
       :paths:
-      - 'billablePeriod.start '
-      - " item.servicedDate "
-      - " item.servicedPeriod.start"
+      - billablePeriod.start
+      - item.servicedDate
+      - item.servicedPeriod.start
       :full_paths:
-      - 'ExplanationOfBenefit.billablePeriod.start '
-      - " ExplanationOfBenefit.item.servicedDate "
-      - " ExplanationOfBenefit.item.servicedPeriod.start"
+      - ExplanationOfBenefit.billablePeriod.start
+      - ExplanationOfBenefit.item.servicedDate
+      - ExplanationOfBenefit.item.servicedPeriod.start
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -1968,7 +1968,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: dateTime
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -2928,11 +2928,11 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - 'billablePeriod '
-      - " item.serviced"
+      - billablePeriod
+      - item.serviced
       :full_paths:
-      - 'ExplanationOfBenefit.billablePeriod '
-      - " ExplanationOfBenefit.item.serviced"
+      - ExplanationOfBenefit.billablePeriod
+      - ExplanationOfBenefit.item.serviced
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -2944,17 +2944,17 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: Period
       :contains_multiple: false
     :service-start-date:
       :paths:
-      - 'billablePeriod.start '
-      - " item.servicedDate "
-      - " item.servicedPeriod.start"
+      - billablePeriod.start
+      - item.servicedDate
+      - item.servicedPeriod.start
       :full_paths:
-      - 'ExplanationOfBenefit.billablePeriod.start '
-      - " ExplanationOfBenefit.item.servicedDate "
-      - " ExplanationOfBenefit.item.servicedPeriod.start"
+      - ExplanationOfBenefit.billablePeriod.start
+      - ExplanationOfBenefit.item.servicedDate
+      - ExplanationOfBenefit.item.servicedPeriod.start
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -2966,7 +2966,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: dateTime
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -3947,11 +3947,11 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - 'billablePeriod '
-      - " item.serviced"
+      - billablePeriod
+      - item.serviced
       :full_paths:
-      - 'ExplanationOfBenefit.billablePeriod '
-      - " ExplanationOfBenefit.item.serviced"
+      - ExplanationOfBenefit.billablePeriod
+      - ExplanationOfBenefit.item.serviced
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -3963,17 +3963,17 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: Period
       :contains_multiple: false
     :service-start-date:
       :paths:
-      - 'billablePeriod.start '
-      - " item.servicedDate "
-      - " item.servicedPeriod.start"
+      - billablePeriod.start
+      - item.servicedDate
+      - item.servicedPeriod.start
       :full_paths:
-      - 'ExplanationOfBenefit.billablePeriod.start '
-      - " ExplanationOfBenefit.item.servicedDate "
-      - " ExplanationOfBenefit.item.servicedPeriod.start"
+      - ExplanationOfBenefit.billablePeriod.start
+      - ExplanationOfBenefit.item.servicedDate
+      - ExplanationOfBenefit.item.servicedPeriod.start
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -3985,7 +3985,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: dateTime
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -4897,11 +4897,11 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - 'billablePeriod '
-      - " item.serviced"
+      - billablePeriod
+      - item.serviced
       :full_paths:
-      - 'ExplanationOfBenefit.billablePeriod '
-      - " ExplanationOfBenefit.item.serviced"
+      - ExplanationOfBenefit.billablePeriod
+      - ExplanationOfBenefit.item.serviced
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -4913,17 +4913,17 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: Period
       :contains_multiple: false
     :service-start-date:
       :paths:
-      - 'billablePeriod.start '
-      - " item.servicedDate "
-      - " item.servicedPeriod.start"
+      - billablePeriod.start
+      - item.servicedDate
+      - item.servicedPeriod.start
       :full_paths:
-      - 'ExplanationOfBenefit.billablePeriod.start '
-      - " ExplanationOfBenefit.item.servicedDate "
-      - " ExplanationOfBenefit.item.servicedPeriod.start"
+      - ExplanationOfBenefit.billablePeriod.start
+      - ExplanationOfBenefit.item.servicedDate
+      - ExplanationOfBenefit.item.servicedPeriod.start
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -4935,7 +4935,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: dateTime
       :contains_multiple: false
     :billable-period-start:
       :paths:
