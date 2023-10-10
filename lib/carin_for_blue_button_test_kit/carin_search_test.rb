@@ -132,7 +132,7 @@ module CarinForBlueButtonTestKit
                               coding[:system.to_s] == system && coding[:code.to_s]&.casecmp?(code)
                             end
                           else
-                            codings&.any? { |coding| coding.code&.casecmp?(search_value) }
+                            codings&.any? { |coding| coding[:code.to_s]&.casecmp?(param_value) }
                           end
                         when 'Identifier'
                           if param_value.include? '|'
