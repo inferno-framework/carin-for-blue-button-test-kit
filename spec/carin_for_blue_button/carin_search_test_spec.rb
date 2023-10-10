@@ -242,4 +242,74 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
     end
   end
+
+  describe 'carin search requiring type' do
+    let(:type_search_test) do
+      Class.new(Inferno::Test) do
+        include CarinForBlueButtonTestKit::CarinSearchTest
+
+        def properties
+          @properties ||= CarinForBlueButtonTestKit::SearchTestProperties.new(
+            resource_type: 'ExplanationOfBenefit',
+            search_param_names: ['type']
+          )
+        end
+
+        def self.metadata
+          @metadata ||=
+            CarinForBlueButtonTestKit::Generator::GroupMetadata.new(
+              YAML.load_file(
+                File.join(
+                  __dir__,
+                  '..',
+                  'fixtures',
+                  'eob_metadata_v200.yml'
+                ),
+                aliases: true
+              )
+            )
+        end
+
+        def scratch_resources
+          scratch[:explanation_of_benefit_resources] ||= {}
+        end
+
+        fhir_client { url :url }
+        input :url, :type
+
+        run do
+          run_search_test(type)
+        end
+      end
+    end
+
+    let(:type) { 'institutional' }
+    let(:eob) { FHIR.from_contents(eob_json_string) }
+    let(:bundle) do
+      FHIR::Bundle.new(entry: [{ resource: eob }])
+    end
+
+    before do
+      Inferno::Repositories::Tests.new.insert(type_search_test)
+      setup_mock_test(type_search_test, eob)
+    end
+
+    it 'passes if a 200 is received' do
+      stub_request(:get, "#{url}/ExplanationOfBenefit?type=#{type}")
+        .to_return(status: 200, body: bundle.to_json)
+
+      result = run(type_search_test, type:, url:)
+      expect(result.result).to eq('pass')
+    end
+
+    it 'fails if a 400 is received' do
+      stub_request(:get, "#{url}/ExplanationOfBenefit?type=#{type}")
+        .to_return(status: 400, body: bundle.to_json)
+
+      result = run(type_search_test, type:, url:)
+
+      expect(result.result).to eq('fail')
+      expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
+    end
+  end
 end
