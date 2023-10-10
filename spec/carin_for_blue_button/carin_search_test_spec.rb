@@ -216,6 +216,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
     end
   end
+<<<<<<< HEAD
 
   describe 'carin Patient _id search test' do
     let(:id_search_test) do
@@ -376,3 +377,6 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
   end
 
 end
+=======
+end
+>>>>>>> 09912b7 (Added spec for service-date, service-start-date, & billable-period-start search params")
