@@ -35,41 +35,9 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
   describe 'carin search requiring service-date' do
     let(:service_date_search_test) do
-      Class.new(Inferno::Test) do
-        include CarinForBlueButtonTestKit::CarinSearchTest
-
-        def properties
-          @properties ||= CarinForBlueButtonTestKit::SearchTestProperties.new(
-            resource_type: 'ExplanationOfBenefit',
-            search_param_names: ['service-date']
-          )
-        end
-
-        def self.metadata
-          @metadata ||=
-            CarinForBlueButtonTestKit::Generator::GroupMetadata.new(
-              YAML.load_file(
-                File.join(
-                  __dir__,
-                  '..',
-                  'fixtures',
-                  'eob_metadata_v200.yml'
-                ),
-                aliases: true
-              )
-            )
-        end
-
-        def scratch_resources
-          scratch[:explanation_of_benefit_resources] ||= {}
-        end
-
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitServiceDateSearchTest) do
         fhir_client { url :url }
-        input :url, :service_date
-
-        run do
-          run_search_test(service_date)
-        end
+        input :url
       end
     end
 
@@ -88,7 +56,11 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?service-date=#{service_date}")
         .to_return(status: 200, body: bundle.to_json)
 
-      result = run(service_date_search_test, service_date:, url:)
+      result = run(
+        service_date_search_test,
+        c4bb_v200_explanation_of_benefit_service_date_search_test_param: service_date,
+        url:
+      )
       expect(result.result).to eq('pass')
     end
 
@@ -96,8 +68,12 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?service-date=#{service_date}")
         .to_return(status: 400, body: bundle.to_json)
 
-      result = run(service_date_search_test, service_date:, url:)
-
+      result = run(
+        service_date_search_test,
+        c4bb_v200_explanation_of_benefit_service_date_search_test_param: service_date,
+        url:
+      )
+      # binding.pry
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
     end
@@ -105,41 +81,9 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
   describe 'carin search requiring service-start-date' do
     let(:service_start_date_search_test) do
-      Class.new(Inferno::Test) do
-        include CarinForBlueButtonTestKit::CarinSearchTest
-
-        def properties
-          @properties ||= CarinForBlueButtonTestKit::SearchTestProperties.new(
-            resource_type: 'ExplanationOfBenefit',
-            search_param_names: ['service-start-date']
-          )
-        end
-
-        def self.metadata
-          @metadata ||=
-            CarinForBlueButtonTestKit::Generator::GroupMetadata.new(
-              YAML.load_file(
-                File.join(
-                  __dir__,
-                  '..',
-                  'fixtures',
-                  'eob_metadata_v200.yml'
-                ),
-                aliases: true
-              )
-            )
-        end
-
-        def scratch_resources
-          scratch[:explanation_of_benefit_resources] ||= {}
-        end
-
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitServiceStartDateSearchTest) do
         fhir_client { url :url }
-        input :url, :service_start_date
-
-        run do
-          run_search_test(service_start_date)
-        end
+        input :url
       end
     end
 
@@ -158,7 +102,11 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?service-start-date=#{service_start_date}")
         .to_return(status: 200, body: bundle.to_json)
 
-      result = run(service_start_date_search_test, service_start_date:, url:)
+      result = run(
+        service_start_date_search_test,
+        c4bb_v200_explanation_of_benefit_service_start_date_search_test_param: service_start_date,
+        url:
+      )
       expect(result.result).to eq('pass')
     end
 
@@ -166,7 +114,11 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?service-start-date=#{service_start_date}")
         .to_return(status: 400, body: bundle.to_json)
 
-      result = run(service_start_date_search_test, service_start_date:, url:)
+      result = run(
+        service_start_date_search_test,
+        c4bb_v200_explanation_of_benefit_service_start_date_search_test_param: service_start_date,
+        url:
+      )
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
@@ -175,41 +127,9 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
   describe 'carin search requiring billable-period-start' do
     let(:billable_period_start_search_test) do
-      Class.new(Inferno::Test) do
-        include CarinForBlueButtonTestKit::CarinSearchTest
-
-        def properties
-          @properties ||= CarinForBlueButtonTestKit::SearchTestProperties.new(
-            resource_type: 'ExplanationOfBenefit',
-            search_param_names: ['billable-period-start']
-          )
-        end
-
-        def self.metadata
-          @metadata ||=
-            CarinForBlueButtonTestKit::Generator::GroupMetadata.new(
-              YAML.load_file(
-                File.join(
-                  __dir__,
-                  '..',
-                  'fixtures',
-                  'eob_metadata_v200.yml'
-                ),
-                aliases: true
-              )
-            )
-        end
-
-        def scratch_resources
-          scratch[:explanation_of_benefit_resources] ||= {}
-        end
-
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitBillablePeriodStartSearchTest) do
         fhir_client { url :url }
-        input :url, :billable_period_start
-
-        run do
-          run_search_test(billable_period_start)
-        end
+        input :url
       end
     end
 
@@ -228,7 +148,11 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?billable-period-start=#{billable_period_start}")
         .to_return(status: 200, body: bundle.to_json)
 
-      result = run(billable_period_start_search_test, billable_period_start:, url:)
+      result = run(
+        billable_period_start_search_test,
+        c4bb_v200_explanation_of_benefit_billable_period_start_search_test_param: billable_period_start,
+        url:
+      )
       expect(result.result).to eq('pass')
     end
 
@@ -236,7 +160,11 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?billable-period-start=#{billable_period_start}")
         .to_return(status: 400, body: bundle.to_json)
 
-      result = run(billable_period_start_search_test, billable_period_start:, url:)
+      result = run(
+        billable_period_start_search_test,
+        c4bb_v200_explanation_of_benefit_billable_period_start_search_test_param: billable_period_start,
+        url:
+      )
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
@@ -245,41 +173,9 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
   describe 'carin search requiring type' do
     let(:type_search_test) do
-      Class.new(Inferno::Test) do
-        include CarinForBlueButtonTestKit::CarinSearchTest
-
-        def properties
-          @properties ||= CarinForBlueButtonTestKit::SearchTestProperties.new(
-            resource_type: 'ExplanationOfBenefit',
-            search_param_names: ['type']
-          )
-        end
-
-        def self.metadata
-          @metadata ||=
-            CarinForBlueButtonTestKit::Generator::GroupMetadata.new(
-              YAML.load_file(
-                File.join(
-                  __dir__,
-                  '..',
-                  'fixtures',
-                  'eob_metadata_v200.yml'
-                ),
-                aliases: true
-              )
-            )
-        end
-
-        def scratch_resources
-          scratch[:explanation_of_benefit_resources] ||= {}
-        end
-
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitTypeSearchTest) do
         fhir_client { url :url }
-        input :url, :type
-
-        run do
-          run_search_test(type)
-        end
+        input :url
       end
     end
 
@@ -298,7 +194,11 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?type=#{type}")
         .to_return(status: 200, body: bundle.to_json)
 
-      result = run(type_search_test, type:, url:)
+      result = run(
+        type_search_test,
+        c4bb_v200_explanation_of_benefit_type_search_test_param: type,
+        url:
+      )
       expect(result.result).to eq('pass')
     end
 
@@ -306,7 +206,11 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?type=#{type}")
         .to_return(status: 400, body: bundle.to_json)
 
-      result = run(type_search_test, type:, url:)
+      result = run(
+        type_search_test,
+        c4bb_v200_explanation_of_benefit_type_search_test_param: type,
+        url:
+      )
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
