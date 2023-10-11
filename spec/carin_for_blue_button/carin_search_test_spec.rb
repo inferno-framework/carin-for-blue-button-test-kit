@@ -73,7 +73,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
         c4bb_v200_explanation_of_benefit_service_date_search_test_param: service_date,
         url:
       )
-      # binding.pry
+
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
     end
