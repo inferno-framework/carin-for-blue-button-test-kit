@@ -4,7 +4,6 @@ require_relative 'date_search_validator'
 require_relative 'fhir_resource_navigation'
 require_relative 'search_test_properties'
 
-
 module CarinForBlueButtonTestKit
   module CarinSearchTest
     extend Forwardable
@@ -160,57 +159,86 @@ module CarinForBlueButtonTestKit
     end
 
     def run_include_search(search_params, param_value)
-        search_params['_include'] = param_value
+      search_params['_include'] = param_value
 
-        fhir_search(resource_type, params: search_params)
-        assert_response_status(200)
-        assert_resource_type(:bundle)
+      fhir_search(resource_type, params: search_params)
+      assert_response_status(200)
+      assert_resource_type(:bundle)
 
-        returned_resources_all = extract_resources_from_bundle(bundle: resource, response: response)
-        returned_resources_resource_type = returned_resources_all.select{|item| item.resourceType == resource_type}
+      returned_resources_all = extract_resources_from_bundle(bundle: resource, response: response)
+      returned_resources_resource_type = returned_resources_all.select{|item| item.resourceType == resource_type}
 
-        skip_if returned_resources_resource_type.blank?, self.no_resources_message
+      skip_if returned_resources_resource_type.blank?, self.no_resources_message
 
-        returned_resources_resource_type.each do |resource|
-            match_found = false
-            reference_found = false
-            paths = include_param_paths(param_value)
-            
-            if param_value != 'ExplanationOfBenefit:*'
-                paths.each do |path|
-                    values_found = resolve_path(resource.source_hash, path)
+      returned_resources_resource_type.each do |resource|
+          match_found = false
+          reference_bool = true
+          paths = include_param_paths(param_value)
+          
+          if param_value != 'ExplanationOfBenefit:*'
+              paths.each do |path|
+                  values_found = resolve_path(resource.source_hash, path)
 
-                    values_found.each do |reference|
-                        referenced_resource_id = reference['reference'].split('/')[-1]
-                        referenced_resource_type = reference['reference'].split('/')[-2]
+                  values_found.each do |reference|
+                      referenced_resource_id = reference['reference'].split('/')[-1]
+                      referenced_resource_type = reference['reference'].split('/')[-2]
 
-                        referenced_resources = returned_resources_all.select{|item| item.resourceType == referenced_resource_type}
+                      referenced_resources = returned_resources_all.select{|item| item.resourceType == referenced_resource_type}
 
-                        assert referenced_resources.present?, `No #{referenced_resource_type} resources were included in the search results`
-                        
+                      assert referenced_resources.present?, "No " + referenced_resource_type + " resources were included in the search results"
+                      
+                      reference_found = false
+                      referenced_resources.each do |referenced_resource|
+                          reference_found = referenced_resource_id == referenced_resource.id
+                          break if reference_found
+                      end
 
-                        referenced_resources.each do |referenced_resource|
-                            reference_found = referenced_resource_id == referenced_resource.id
-                        end
-                    end
+                      # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
+                      if !reference_found
+                          reference_bool = false
+                      end
+                  
+                  end
 
-                    match_found = (values_found.length > 0)
+                  match_found = (values_found.length > 0)
 
-                    break if match_found && reference_found
-                end
-                assert match_found, "Returned resource did not match the search parameter"
-                assert reference_found, "Returned resource did not include the _include resource parameter"
-                return
-            else
-                values_found = []
+                  break if match_found
+              end
+              assert match_found, "Returned resource did not match the search parameter"
+              assert reference_bool, "Returned resource did not include the _include resource parameter"
+              return
+          else
+              values_found = []
+              reference_bool = true
 
-                paths.each do |path|
-                    values_found += resolve_path(resource.source_hash, path)
-                end
+              paths.each do |path|
+                  values_found += resolve_path(resource.source_hash, path)
+              end
 
-                match_found = (values_found.length >= 5)
+              values_found.each do |reference|
+                  referenced_resource_id = reference['reference'].split('/')[-1]
+                  referenced_resource_type = reference['reference'].split('/')[-2]
 
-                assert match_found, "Returned resource did not match the search parameter"  
+                  referenced_resources = returned_resources_all.select{|item| item.resourceType == referenced_resource_type}
+
+                  assert referenced_resources.present?, "No " + referenced_resource_type + " resources were included in the search results"
+                  
+                  reference_found = false
+                  referenced_resources.each do |referenced_resource|
+                      reference_found = referenced_resource_id == referenced_resource.id
+                      break if reference_found
+                  end
+                  
+                  # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
+                  if !reference_found
+                      reference_bool = false
+                  end
+              end
+
+              match_found = (values_found.length >= 5)
+
+              assert match_found, "Returned resource did not match the search parameter"  
+              assert reference_bool, "Returned resource did not include the _include resource parameter"
             end  
         end          
     end
