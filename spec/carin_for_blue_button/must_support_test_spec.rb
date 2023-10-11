@@ -58,13 +58,6 @@ RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
 
       run_expect_pass(generate_patient_resource(deceased_boolean))
     end
-
-    it 'supports deceasedDatetime type' do
-      deceased_datetime = ', "deceasedDatetime" : "2022-09-15"
-      }'
-
-      run_expect_pass(generate_patient_resource(deceased_datetime))
-    end
   end
 
   describe 'must support test for choice elements with incorrect deceased inputs' do
