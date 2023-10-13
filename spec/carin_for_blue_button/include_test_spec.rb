@@ -129,6 +129,7 @@ RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
 
         result = run(explanation_of_benefit_include_test, search_param: 'ExplanationOfBenefit:patient', c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id, url: url)
         expect(result.result).to eq('fail')
+        expect(result.result_message).to eq('Returned resource did not include the _include resource parameter')
         expect(request).to have_been_made.once
       end
 
@@ -142,6 +143,7 @@ RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
 
         result = run(explanation_of_benefit_include_test, search_param: 'ExplanationOfBenefit:patient', c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id, url: url)
         expect(result.result).to eq('fail')
+        expect(result.result_message).to eq('No Patient resources were included in the search results')
         expect(request).to have_been_made.once
       end
     end
