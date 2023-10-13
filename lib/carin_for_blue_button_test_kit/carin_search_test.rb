@@ -171,49 +171,13 @@ module CarinForBlueButtonTestKit
       skip_if returned_resources_resource_type.blank?, self.no_resources_message
 
       returned_resources_resource_type.each do |resource|
-          match_found = false
-          reference_bool = true
-          paths = include_param_paths(param_value)
-          
-          if param_value != 'ExplanationOfBenefit:*'
-              paths.each do |path|
-                  values_found = resolve_path(resource.source_hash, path)
-
-                  values_found.each do |reference|
-                      referenced_resource_id = reference['reference'].split('/')[-1]
-                      referenced_resource_type = reference['reference'].split('/')[-2]
-
-                      referenced_resources = returned_resources_all.select{|item| item.resourceType == referenced_resource_type}
-
-                      assert referenced_resources.present?, "No " + referenced_resource_type + " resources were included in the search results"
-                      
-                      reference_found = false
-                      referenced_resources.each do |referenced_resource|
-                          reference_found = referenced_resource_id == referenced_resource.id
-                          break if reference_found
-                      end
-
-                      # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
-                      if !reference_found
-                          reference_bool = false
-                      end
-                  
-                  end
-
-                  match_found = (values_found.length > 0)
-
-                  break if match_found
-              end
-              assert match_found, "Returned resource did not match the search parameter"
-              assert reference_bool, "Returned resource did not include the _include resource parameter"
-              return
-          else
-              values_found = []
-              reference_bool = true
-
-              paths.each do |path|
-                  values_found += resolve_path(resource.source_hash, path)
-              end
+        match_found = false
+        reference_bool = true
+        paths = include_param_paths(param_value)
+        
+        if param_value != 'ExplanationOfBenefit:*'
+          paths.each do |path|
+              values_found = resolve_path(resource.source_hash, path)
 
               values_found.each do |reference|
                   referenced_resource_id = reference['reference'].split('/')[-1]
@@ -228,42 +192,78 @@ module CarinForBlueButtonTestKit
                       reference_found = referenced_resource_id == referenced_resource.id
                       break if reference_found
                   end
-                  
+
                   # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
                   if !reference_found
                       reference_bool = false
                   end
+              
               end
 
-              match_found = (values_found.length >= 5)
+              match_found = (values_found.length > 0)
 
-              assert match_found, "Returned resource did not match the search parameter"  
-              assert reference_bool, "Returned resource did not include the _include resource parameter"
-            end  
-        end          
+              break if match_found
+          end
+          assert match_found, "Returned resource did not match the search parameter"
+          assert reference_bool, "Returned resource did not include the _include resource parameter"
+          return
+        else
+          values_found = []
+          reference_bool = true
+
+          paths.each do |path|
+              values_found += resolve_path(resource.source_hash, path)
+          end
+
+          values_found.each do |reference|
+              referenced_resource_id = reference['reference'].split('/')[-1]
+              referenced_resource_type = reference['reference'].split('/')[-2]
+
+              referenced_resources = returned_resources_all.select{|item| item.resourceType == referenced_resource_type}
+
+              assert referenced_resources.present?, "No " + referenced_resource_type + " resources were included in the search results"
+              
+              reference_found = false
+              referenced_resources.each do |referenced_resource|
+                  reference_found = referenced_resource_id == referenced_resource.id
+                  break if reference_found
+              end
+              
+              # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
+              if !reference_found
+                  reference_bool = false
+              end
+          end
+
+          match_found = (values_found.length >= 5)
+
+          assert match_found, "Returned resource did not match the search parameter"  
+          assert reference_bool, "Returned resource did not include the _include resource parameter"
+        end  
+      end          
     end
 
     def include_param_paths(param)
-        case param
-        when 'ExplanationOfBenefit:patient'
-            ['patient']
-        when 'ExplanationOfBenefit:provider'
-            ['provider']
-        when 'ExplanationOfBenefit:care-team'
-            ['careTeam.provider']
-        when 'ExplanationOfBenefit:coverage'
-            ['insurance.coverage']
-        when 'ExplanationOfBenefit:insurer'
-            ['insurer']
-        when 'ExplanationOfBenefit:payee'
-            ['payee.party']
-        when 'Coverage:payor'
-            ['payor']
-        when 'ExplanationOfBenefit:*'
-            ['patient', 'provider', 'careTeam.provider', 'insurance.coverage', 'insurer']
-        else
-            []
-        end
+      case param
+      when 'ExplanationOfBenefit:patient'
+          ['patient']
+      when 'ExplanationOfBenefit:provider'
+          ['provider']
+      when 'ExplanationOfBenefit:care-team'
+          ['careTeam.provider']
+      when 'ExplanationOfBenefit:coverage'
+          ['insurance.coverage']
+      when 'ExplanationOfBenefit:insurer'
+          ['insurer']
+      when 'ExplanationOfBenefit:payee'
+          ['payee.party']
+      when 'Coverage:payor'
+          ['payor']
+      when 'ExplanationOfBenefit:*'
+          ['patient', 'provider', 'careTeam.provider', 'insurance.coverage', 'insurer']
+      else
+          []
+      end
     end
   end
 end
