@@ -80,11 +80,11 @@
     :contains_multiple: true
   :service-date:
     :paths:
-    - 'billablePeriod '
-    - " item.serviced"
+    - billablePeriod
+    - item.serviced
     :full_paths:
-    - 'ExplanationOfBenefit.billablePeriod '
-    - " ExplanationOfBenefit.item.serviced"
+    - ExplanationOfBenefit.billablePeriod
+    - ExplanationOfBenefit.item.serviced
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -96,7 +96,7 @@
       :eb: MAY
       :ap: MAY
     :values: []
-    :type: date
+    :type: Period
     :contains_multiple: false
 :include_params:
 - ExplanationOfBenefit:patient

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'value_extractor'
 
 module CarinForBlueButtonTestKit
@@ -15,14 +17,14 @@ module CarinForBlueButtonTestKit
       def search_definition
         @search_definition ||=
           {
-            paths: paths,
-            full_paths: full_paths,
-            comparators: comparators,
-            values: values,
-            type: type,
+            paths:,
+            full_paths:,
+            comparators:,
+            values:,
+            type:,
             contains_multiple: contains_multiple?,
             multiple_or: multiple_or_expectation,
-            chain: chain
+            chain:
           }.compact
       end
 
@@ -31,27 +33,22 @@ module CarinForBlueButtonTestKit
       end
 
       def param_hash
-        if !param.nil?
-            param.source_hash
-        else
-            nil
-        end
+        return if param.nil?
+
+        param.source_hash
       end
 
       def full_paths
-        @full_paths ||=
-          begin
-            if !param.nil?
-                path = param.expression.gsub(/.where\((.*)/, '')
-                path = path[1..-2] if path.start_with?('(') && path.end_with?(')')
-                path.scan(/[. ]as[( ]([^)]*)[)]?/).flatten.map do |as_type|
-                path.gsub!(/[. ]as[( ](#{as_type}[^)]*)[)]?/, as_type.upcase_first) if as_type.present?
-                end
-                path.split('|')
-            else
-                []
-            end
-          end
+        @full_paths ||= if !param.nil?
+                          path = param.expression.gsub(/.where\((.*)/, '')
+                          path = path[1..-2] if path.start_with?('(') && path.end_with?(')')
+                          path.scan(/[. ]as[( ]([^)]*)[)]?/).flatten.map do |as_type|
+                            path.gsub!(/[. ]as[( ](#{as_type}[^)]*)[)]?/, as_type.upcase_first) if as_type.present?
+                          end
+                          path.split('|').map(&:strip)
+                        else
+                          []
+                        end
       end
 
       def paths
@@ -80,26 +77,22 @@ module CarinForBlueButtonTestKit
       end
 
       def comparators
-        if !param.nil?
-            {}.tap do |comparators|
-                param.comparator&.each_with_index do |comparator, index|
-                comparators[comparator.to_sym] = comparator_expectation(comparator_expectation_extensions[index])
-                end
-            end
+        return if param.nil?
+
+        {}.tap do |comparators|
+          param.comparator&.each_with_index do |comparator, index|
+            comparators[comparator.to_sym] = comparator_expectation(comparator_expectation_extensions[index])
+          end
         end
       end
 
       def type
         if profile_element.present?
           profile_element.type.first.code
-        else
+        elsif !param.nil?
           # search is a variable type, eg. Condition.onsetDateTime - element
           # in profile def is Condition.onset[x]
-           if !param.nil?
-            param.type
-           else
-            nil
-           end
+          param.type
         end
       end
 
@@ -120,34 +113,28 @@ module CarinForBlueButtonTestKit
         return nil if param.chain.blank?
 
         param.chain
-          .zip(chain_expectations)
-          .map { |chain, expectation| { chain: chain, expectation: expectation } }
+             .zip(chain_expectations)
+             .map { |chain, expectation| { chain:, expectation: } }
       end
 
       def multiple_or_expectation
-        if !param_hash.nil? then
-          begin
-            return param_hash['_multipleOr']['extension'].first['valueCode']
-          rescue NoMethodError
-            return nil
-          end
-        else
-          return nil
+        return nil if param_hash.nil?
+
+        begin
+          param_hash['_multipleOr']['extension'].first['valueCode']
+        rescue NoMethodError
+          nil
         end
       end
 
       def values
-        values = (
-            values_from_pattern_codeable_concept_slices +
-            values_from_required_binding_slices +
-            values_from_fixed_codes +
-            values_from_pattern_coding +
-            values_from_pattern_codeable_concept
-          ).uniq.presence ||
+        (values_from_pattern_codeable_concept_slices +
+                  values_from_required_binding_slices +
+                  values_from_fixed_codes +
+                  values_from_pattern_coding +
+                  values_from_pattern_codeable_concept).uniq.presence ||
           value_extractor.values_from_value_set_binding(profile_element).presence ||
           value_extractor.values_from_resource_metadata(paths).presence || []
-
-        values
       end
 
       def slices
@@ -156,10 +143,8 @@ module CarinForBlueButtonTestKit
         profile_elements.select do |element|
           full_paths.include?(element.path) &&
             element.sliceName.present? &&
-            (
-              element.patternCodeableConcept.present? ||
-              element.binding.present? && element.binding.strength == 'required'
-            )
+            (element.patternCodeableConcept.present? ||
+             element.binding.present? && element.binding.strength == 'required')
         end
       end
 
@@ -182,7 +167,7 @@ module CarinForBlueButtonTestKit
 
         profile_elements
           .select { |element| element.path == "#{profile_element.path}.coding.code" && element.fixedCode.present? }
-          .map { |element| element.fixedCode }
+          .map(&:fixedCode)
       end
 
       def values_from_pattern_coding
