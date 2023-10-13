@@ -180,24 +180,12 @@ module CarinForBlueButtonTestKit
               values_found = resolve_path(resource.source_hash, path)
 
               values_found.each do |reference|
-                  referenced_resource_id = reference['reference'].split('/')[-1]
-                  referenced_resource_type = reference['reference'].split('/')[-2]
+                reference_found = find_included_resource(reference, returned_resources_all)
 
-                  referenced_resources = returned_resources_all.select{|item| item.resourceType == referenced_resource_type}
-
-                  assert referenced_resources.present?, "No " + referenced_resource_type + " resources were included in the search results"
-                  
-                  reference_found = false
-                  referenced_resources.each do |referenced_resource|
-                      reference_found = referenced_resource_id == referenced_resource.id
-                      break if reference_found
-                  end
-
-                  # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
-                  if !reference_found
-                      reference_bool = false
-                  end
-              
+                # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
+                if !reference_found
+                    reference_bool = false
+                end
               end
 
               match_found = (values_found.length > 0)
@@ -216,23 +204,12 @@ module CarinForBlueButtonTestKit
           end
 
           values_found.each do |reference|
-              referenced_resource_id = reference['reference'].split('/')[-1]
-              referenced_resource_type = reference['reference'].split('/')[-2]
-
-              referenced_resources = returned_resources_all.select{|item| item.resourceType == referenced_resource_type}
-
-              assert referenced_resources.present?, "No " + referenced_resource_type + " resources were included in the search results"
+            reference_found = find_included_resource(reference, returned_resources_all)
               
-              reference_found = false
-              referenced_resources.each do |referenced_resource|
-                  reference_found = referenced_resource_id == referenced_resource.id
-                  break if reference_found
-              end
-              
-              # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
-              if !reference_found
-                  reference_bool = false
-              end
+            # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
+            if !reference_found
+                reference_bool = false
+            end
           end
 
           match_found = (values_found.length >= 5)
@@ -241,6 +218,23 @@ module CarinForBlueButtonTestKit
           assert reference_bool, "Returned resource did not include the _include resource parameter"
         end  
       end          
+    end
+
+    def find_included_resource(reference, returned_resources_all)
+      referenced_resource_id = reference['reference'].split('/')[-1]
+      referenced_resource_type = reference['reference'].split('/')[-2]
+
+      referenced_resources = returned_resources_all.select{|item| item.resourceType == referenced_resource_type}
+
+      assert referenced_resources.present?, "No " + referenced_resource_type + " resources were included in the search results"
+      
+      reference_found = false
+      referenced_resources.each do |referenced_resource|
+          reference_found = referenced_resource_id == referenced_resource.id
+          break if reference_found
+      end
+
+      return reference_found
     end
 
     def include_param_paths(param)
