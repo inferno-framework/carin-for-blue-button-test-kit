@@ -220,9 +220,13 @@ module CarinForBlueButtonTestKit
       end          
     end
 
+
     def find_included_resource(reference, returned_resources_all)
-      referenced_resource_id = reference['reference'].split('/')[-1]
-      referenced_resource_type = reference['reference'].split('/')[-2]
+      referenced_resource_id = reference['reference']
+
+      assert !referenced_resource_id.start_with?('#'), "Reference id is not in the correct format of [ResourceType]/[ResourceID]"
+  
+      referenced_resource_type = referenced_resource_id.split('/')[-2]
 
       referenced_resources = returned_resources_all.select{|item| item.resourceType == referenced_resource_type}
 
@@ -230,11 +234,16 @@ module CarinForBlueButtonTestKit
       
       reference_found = false
       referenced_resources.each do |referenced_resource|
-          reference_found = referenced_resource_id == referenced_resource.id
-          break if reference_found
+        reference_found = is_reference_match?(referenced_resource_id, referenced_resource.id)
+        break if reference_found
       end
 
       return reference_found
+    end
+
+    def is_reference_match? (reference, local_reference)
+      regex_pattern = /^(#{Regexp.escape(local_reference)}|\S+\/#{Regexp.escape(local_reference)}(?:[\/|]\S+)*)$/
+      reference.match?(regex_pattern)
     end
 
     def include_param_paths(param)

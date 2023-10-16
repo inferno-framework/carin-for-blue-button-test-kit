@@ -133,6 +133,19 @@ RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
         expect(request).to have_been_made.once
       end
 
+      it 'fails performing an _include search for ExplanationOfBenefit:patient when reference id is formatted incorrectly' do
+        # Expect that test fails when Explanation of Benefit patient reference id is in incorrect format
+        bundle.entry[0].resource.patient.reference = '#Patient1'
+
+        request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_patient}")
+          .to_return(status: 200, body: bundle.to_json)
+
+        result = run(explanation_of_benefit_include_test, search_param: 'ExplanationOfBenefit:patient', c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id, url: url)
+        expect(result.result).to eq('fail')
+        expect(result.result_message).to eq('Reference id is not in the correct format of [ResourceType]/[ResourceID]')
+        expect(request).to have_been_made.once
+      end
+
       it 'fails performing an _include search for ExplanationOfBenefit:patient when there is the wrong resource with correct id' do
         
         # Expect that test fails when only organization resource with correct patient id is present in bundle
