@@ -64,8 +64,7 @@ module CarinForBlueButtonTestKit
     end
 
     def get_next_value(element, property)
-      choiceKey = element.keys.find { |key| key.to_s.start_with?(property.to_s) }
-      element[choiceKey]
+      element.send(property)
     rescue NoMethodError
       nil
     end

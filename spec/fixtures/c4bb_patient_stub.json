@@ -173,6 +173,8 @@
     },
     "communication" : [
       {
-        "language" : "English"
+        "language" : {
+          "text": "English"
+        }
       }
     ]

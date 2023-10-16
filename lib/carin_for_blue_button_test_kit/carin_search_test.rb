@@ -110,11 +110,11 @@ module CarinForBlueButtonTestKit
                  else
                    metadata.search_definitions[name.to_sym][:type]
                  end
-
+          
           values_found =
-            resolve_path(resource.source_hash, path)
+            resolve_path(resource, path)
             .map do |value|
-              value[:reference.to_s] || value
+              value || value.reference
             end
 
           match_found = case type
@@ -124,25 +124,25 @@ module CarinForBlueButtonTestKit
                           end
                         when 'CodeableConcept'
                           codings = values_found.flat_map do |val|
-                            val[:coding.to_s] || nil
+                            val.coding || nil
                           end.compact
                           if param_value.include? '|'
                             system = param_value.split('|').first
                             code = param_value.split('|').last
                             codings&.any? do |coding|
-                              coding[:system.to_s] == system && coding[:code.to_s]&.casecmp?(code)
+                              coding.system == system && coding.code&.casecmp?(code)
                             end
                           else
-                            codings&.any? { |coding| coding[:code.to_s]&.casecmp?(param_value) }
+                            codings&.any? { |coding| coding.code&.casecmp?(param_value) }
                           end
                         when 'Identifier'
                           if param_value.include? '|'
                             values_found.any? do |identifier|
-                              puts "#{identifier[:system.to_s]}|#{identifier[:value.to_s]}"
-                              "#{identifier[:system.to_s]}|#{identifier[:value.to_s]}" == param_value
+                              puts "#{identifier.system}|#{identifier.value}"
+                              "#{identifier.system}|#{identifier.value}" == param_value
                             end
                           else
-                            values_found.any? { |identifier| identifier[:value] == param_value }
+                            values_found.any? { |identifier| identifier.value == param_value }
                           end
                         when 'Period', 'date', 'instant', 'dateTime'
                           values_found.any? { |date| validate_date_search(param_value, date) }
@@ -177,7 +177,7 @@ module CarinForBlueButtonTestKit
         
         if param_value != 'ExplanationOfBenefit:*'
           paths.each do |path|
-              values_found = resolve_path(resource.source_hash, path)
+              values_found = resolve_path(resource, path)
 
               values_found.each do |reference|
                 reference_found = find_included_resource(reference, returned_resources_all)
@@ -200,7 +200,7 @@ module CarinForBlueButtonTestKit
           reference_bool = true
 
           paths.each do |path|
-              values_found += resolve_path(resource.source_hash, path)
+              values_found += resolve_path(resource, path)
           end
 
           values_found.each do |reference|
