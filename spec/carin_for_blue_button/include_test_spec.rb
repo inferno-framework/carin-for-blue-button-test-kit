@@ -1,4 +1,4 @@
-RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
+RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     
     let(:patient_include_test) { Inferno::Repositories::Tests.new.find('c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_patient_search_test')}
 
