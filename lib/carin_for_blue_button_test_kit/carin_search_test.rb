@@ -222,7 +222,7 @@ module CarinForBlueButtonTestKit
 
 
     def find_included_resource(reference, returned_resources_all)
-      referenced_resource_id = reference['reference']
+      referenced_resource_id = reference.reference
 
       assert !referenced_resource_id.start_with?('#'), "Reference id is not in the correct format of [ResourceType]/[ResourceID]"
   
