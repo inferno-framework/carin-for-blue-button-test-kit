@@ -54,14 +54,5 @@ RSpec.describe CarinForBlueButtonTestKit::ValidationTest do
         )
         expect(result.result).to eq('pass')
       end
-
-    #   it 'fails if patient resource fails validation check' do
-        
-    #     allow_any_instance_of(patient_validation_test).to receive(:resource_is_valid?).and_return(false)
-    #     result = run(
-    #         patient_validation_test
-    #     )
-    #     expect(result.result).to eq('fail')
-    #   end
     end
 end
