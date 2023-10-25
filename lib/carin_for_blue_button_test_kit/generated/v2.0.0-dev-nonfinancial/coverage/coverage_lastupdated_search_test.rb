@@ -19,11 +19,10 @@ none are returned, the test is skipped.
       id :c4bb_v200devnonfinancial_coverage__lastUpdated_search_test
 
       input :c4bb_v200devnonfinancial_coverage__lastUpdated_search_test_param,
-        title: 'Coverage search parameter for _lastUpdated
-',
+        title: 'Coverage search parameter for _lastUpdated',
         type: 'text',
-        description: 'Coverage search parameter: _lastUpdated
-'
+        description: 'Coverage search parameter: _lastUpdated',
+        optional: true
 
       def self.properties
         @properties ||= SearchTestProperties.new(
@@ -41,6 +40,7 @@ none are returned, the test is skipped.
       end
 
       run do
+        skip '_lastUpdated optional and not provided' unless c4bb_v200_coverage__lastUpdated_search_test_param.present?
         run_search_test(c4bb_v200devnonfinancial_coverage__lastUpdated_search_test_param)
       end
     end

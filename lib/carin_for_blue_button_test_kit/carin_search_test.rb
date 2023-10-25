@@ -37,7 +37,17 @@ module CarinForBlueButtonTestKit
       search_params[search_param_names[0]] = param_value
 
       fhir_search(resource_type, params: search_params)
-      assert_response_status(200)
+     
+      # _lastUpdated on Coverage resource is optional and should be skipped if unsuccessful
+      if search_param_names[0] == '_lastUpdated' && resource_type == 'Coverage'
+          warning do 
+            assert_response_status(200)
+          end
+          skip_if response[:status] != 200, '_lastUpdated search query was unsuccessful and did not respond with a 200 status'
+      else
+        assert_response_status(200)
+      end
+
       assert_resource_type(:bundle)
 
       returned_resources = extract_resources_from_bundle(bundle: resource, response:).select do |item|
