@@ -25,6 +25,10 @@ module CarinForBlueButtonTestKit
                    :params_with_comparators,
                    :multiple_or_search_params
 
+    def all_scratch_resources
+      scratch_resources[:all] ||= []
+    end
+
     def run_search_test(param_value, include_search: false, resource_id: nil)
       search_params = {}
 
@@ -45,6 +49,8 @@ module CarinForBlueButtonTestKit
       end
 
       skip_if returned_resources.blank?, no_resources_message
+
+      all_scratch_resources.concat(returned_resources).uniq! if first_search?
 
       returned_resources.each do |resource|
         check_resource_against_params(resource, search_params)
@@ -146,7 +152,8 @@ module CarinForBlueButtonTestKit
                         when 'Period', 'date', 'instant', 'dateTime'
                           values_found.any? { |date| validate_date_search(param_value, date) }
                         when 'http://hl7.org/fhirpath/System.String'
-                          values_found.any? { |str| param_value == str }
+                          param_value = param_value.split(',').map(&:strip)
+                          values_found.any? { |str| param_value.include?(str) }
                         else
                           false
                         end
