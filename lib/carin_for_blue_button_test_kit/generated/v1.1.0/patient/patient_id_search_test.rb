@@ -4,7 +4,7 @@ require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
 module CarinForBlueButtonTestKit
-  module CARIN4BBV200DEVNONFINANCIAL
+  module CARIN4BBV110
     class PatientIdSearchTest < Inferno::Test
       include CarinForBlueButtonTestKit::CarinSearchTest
 
@@ -20,7 +20,7 @@ module CarinForBlueButtonTestKit
 
       )
 
-      id :c4bb_v200devnonfinancial_patient_id_search_test
+      id :c4bb_v110_patient_id_search_test
       input :patient_ids,
             title: 'Patient IDs',
             description: 'Comma separated list of patient IDs (e.g. patient1,patient2)'
@@ -44,7 +44,7 @@ module CarinForBlueButtonTestKit
       end
 
       run do
-        run_search_test(c4bb_v200devnonfinancial_patient__id_search_test_param)
+        run_search_test(patient_ids)
       end
     end
   end
