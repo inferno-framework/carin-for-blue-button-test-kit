@@ -200,14 +200,7 @@ module CarinForBlueButtonTestKit
           paths.each do |path|
               values_found = resolve_path(resource, path)
 
-              values_found.each do |reference|
-                reference_found = find_included_resource(reference, returned_resources_all)
-
-                # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
-                if !reference_found
-                    reference_bool = false
-                end
-              end
+              reference_bool = values_found.all? { |reference| find_included_resource(reference, returned_resources_all) }
 
               match_found = (values_found.length > 0)
 
@@ -215,10 +208,8 @@ module CarinForBlueButtonTestKit
           end
           assert match_found, "Returned resource did not match the search parameter"
           assert reference_bool, "Returned resource did not include the _include resource parameter"
-          return
         else
           values_found = []
-          reference_bool = true
 
           paths.each do |path|
               values_found += resolve_path(resource, path)
@@ -251,15 +242,10 @@ module CarinForBlueButtonTestKit
 
       referenced_resources = returned_resources_all.select{|item| item.resourceType == referenced_resource_type}
 
-      assert referenced_resources.present?, "No " + referenced_resource_type + " resources were included in the search results"
+      assert referenced_resources.present?, "No #{referenced_resource_type} resources were included in the search results"
+      
+      referenced_resources.any? { |referenced_resource| is_reference_match?(referenced_resource_id, referenced_resource.id) }
 
-      reference_found = false
-      referenced_resources.each do |referenced_resource|
-        reference_found = is_reference_match?(referenced_resource_id, referenced_resource.id)
-        break if reference_found
-      end
-
-      return reference_found
     end
 
     def is_reference_match? (reference, local_reference)
