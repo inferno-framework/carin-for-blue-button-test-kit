@@ -215,14 +215,7 @@ module CarinForBlueButtonTestKit
               values_found += resolve_path(resource, path)
           end
 
-          values_found.each do |reference|
-            reference_found = find_included_resource(reference, returned_resources_all)
-
-            # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
-            if !reference_found
-                reference_bool = false
-            end
-          end
+          reference_bool = values_found.all? { |reference| find_included_resource(reference, returned_resources_all) }
 
           match_found = (values_found.length >= 5)
 
