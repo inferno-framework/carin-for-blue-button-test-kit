@@ -1,6 +1,7 @@
 require_relative 'organization/organization_read_test'
     require_relative 'organization/organization_validation_test'
     require_relative 'organization/organization_must_support_test'
+    require_relative 'organization/organization_lastupdated_search_test'
     
     module CarinForBlueButtonTestKit
       module CARIN4BBV200
@@ -75,6 +76,7 @@ read succeeds.
           test from: :c4bb_v200_organization_read_test
           test from: :c4bb_v200_organization_validation_test
           test from: :c4bb_v200_organization_must_support_test
+          test from: :c4bb_v200_organization__lastUpdated_search_test
         end
       end
     end
