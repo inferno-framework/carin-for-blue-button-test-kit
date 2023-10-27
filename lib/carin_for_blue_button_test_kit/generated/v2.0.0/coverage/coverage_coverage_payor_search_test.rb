@@ -8,8 +8,7 @@ module CarinForBlueButtonTestKit
 
       title 'Server returns valid results for Coverage search by id + _include=Coverage:payor'
       description %(
-Tests that the server responds correctly when using _include="Coverage:payor" as a search parameter 
-
+        Tests that the server responds correctly when using _include="Coverage:payor" as a search parameter 
       )
 
       def self.properties

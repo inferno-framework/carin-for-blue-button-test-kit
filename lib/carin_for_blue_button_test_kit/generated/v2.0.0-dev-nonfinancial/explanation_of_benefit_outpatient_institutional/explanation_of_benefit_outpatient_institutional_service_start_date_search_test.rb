@@ -8,12 +8,10 @@ module CarinForBlueButtonTestKit
 
       title 'Server returns valid results for ExplanationOfBenefit search by service-start-date'
       description %(
-A server SHALL support searching by
-service-start-date on the ExplanationOfBenefit resource. This test
-will pass if resources are returned and match the search criteria. If
-none are returned, the test is skipped.
-
-
+        A server SHALL support searching by
+        service-start-date on the ExplanationOfBenefit resource. This test
+        will pass if resources are returned and match the search criteria. If
+        none are returned, the test is skipped.
       )
 
       id :c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_service_start_date_search_test

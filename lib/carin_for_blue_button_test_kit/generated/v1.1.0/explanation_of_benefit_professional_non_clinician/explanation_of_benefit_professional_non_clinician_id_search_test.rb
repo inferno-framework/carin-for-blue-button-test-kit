@@ -8,20 +8,18 @@ module CarinForBlueButtonTestKit
 
       title 'Server returns valid results for ExplanationOfBenefit search by _id'
       description %(
-A server SHALL support searching by
-_id on the ExplanationOfBenefit resource. This test
-will pass if resources are returned and match the search criteria. If
-none are returned, the test is skipped.
+        A server SHALL support searching by
+        _id on the ExplanationOfBenefit resource. This test
+        will pass if resources are returned and match the search criteria. If
+        none are returned, the test is skipped.
 
-Because this is the first search of the sequence, resources in the
-response will be used for subsequent tests.
+        Because this is the first search of the sequence, resources in the
+        response will be used for subsequent tests.
 
-Additionally, this test will check that GET and POST search methods
-return the same number of results. Search by POST is required by the
-FHIR R4 specification, and these tests interpret search by GET as a
-requirement of CARIN IG for Blue Button® v1.1.0.
-
-
+        Additionally, this test will check that GET and POST search methods
+        return the same number of results. Search by POST is required by the
+        FHIR R4 specification, and these tests interpret search by GET as a
+        requirement of CARIN IG for Blue Button® v1.1.0.
       )
 
       id :c4bb_v110_explanation_of_benefit_professional_non_clinician__id_search_test

@@ -8,12 +8,10 @@ module CarinForBlueButtonTestKit
 
       title 'Server returns valid results for ExplanationOfBenefit search by type'
       description %(
-A server SHALL support searching by
-type on the ExplanationOfBenefit resource. This test
-will pass if resources are returned and match the search criteria. If
-none are returned, the test is skipped.
-
-
+        A server SHALL support searching by
+        type on the ExplanationOfBenefit resource. This test
+        will pass if resources are returned and match the search criteria. If
+        none are returned, the test is skipped.
       )
 
       id :c4bb_v200devnonfinancial_explanation_of_benefit_oral_non_financial_type_search_test

@@ -8,8 +8,7 @@ module CarinForBlueButtonTestKit
 
       title 'Server returns valid results for ExplanationOfBenefit search by id + _include=ExplanationOfBenefit:patient'
       description %(
-Tests that the server responds correctly when using _include="ExplanationOfBenefit:patient" as a search parameter 
-
+        Tests that the server responds correctly when using _include="ExplanationOfBenefit:patient" as a search parameter 
       )
 
       def self.properties

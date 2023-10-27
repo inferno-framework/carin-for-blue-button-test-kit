@@ -8,12 +8,10 @@ module CarinForBlueButtonTestKit
 
       title 'Server returns valid results for ExplanationOfBenefit search by identifier'
       description %(
-A server SHALL support searching by
-identifier on the ExplanationOfBenefit resource. This test
-will pass if resources are returned and match the search criteria. If
-none are returned, the test is skipped.
-
-
+        A server SHALL support searching by
+        identifier on the ExplanationOfBenefit resource. This test
+        will pass if resources are returned and match the search criteria. If
+        none are returned, the test is skipped.
       )
 
       id :c4bb_v110_explanation_of_benefit_pharmacy_identifier_search_test
