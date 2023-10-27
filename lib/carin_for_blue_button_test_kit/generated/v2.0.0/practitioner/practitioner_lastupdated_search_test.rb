@@ -3,7 +3,7 @@ require_relative '../../../generator/group_metadata'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV200
-    class PractitionerLastUpdatedSearchTest < Inferno::Test
+    class PractitionerLastupdatedSearchTest < Inferno::Test
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for Practitioner search by _lastUpdated'

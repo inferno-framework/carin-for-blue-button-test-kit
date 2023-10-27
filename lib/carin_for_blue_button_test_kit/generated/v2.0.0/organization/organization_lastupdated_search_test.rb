@@ -3,7 +3,7 @@ require_relative '../../../generator/group_metadata'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV200
-    class OrganizationLastUpdatedSearchTest < Inferno::Test
+    class OrganizationLastupdatedSearchTest < Inferno::Test
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for Organization search by _lastUpdated'

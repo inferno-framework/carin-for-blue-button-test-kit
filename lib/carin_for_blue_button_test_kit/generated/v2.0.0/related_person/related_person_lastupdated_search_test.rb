@@ -3,7 +3,7 @@ require_relative '../../../generator/group_metadata'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV200
-    class RelatedPersonLastUpdatedSearchTest < Inferno::Test
+    class RelatedPersonLastupdatedSearchTest < Inferno::Test
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for RelatedPerson search by _lastUpdated'
