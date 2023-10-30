@@ -27,13 +27,13 @@
   :expectation: SHOULD
 :search_definitions:
   :_id:
-    :paths: []
-    :full_paths: []
+    :paths: id
+    :full_paths: Organization.id
     :values: []
     :contains_multiple: false
   :_lastUpdated:
-    :paths: []
-    :full_paths: []
+    :paths: meta.lastUpdated
+    :full_paths: Organization.meta.lastUpdated
     :values: []
     :contains_multiple: false
 :include_params: []

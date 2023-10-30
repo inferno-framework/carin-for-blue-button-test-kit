@@ -29,13 +29,13 @@
     :expectation: SHOULD
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: Coverage.id
       :values: []
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: Coverage.meta.lastUpdated
       :values: []
       :contains_multiple: false
   :include_params:
@@ -203,9 +203,9 @@
     - billable-period-start
     :expectation: SHALL
   :search_definitions:
-    :_id:
-      :paths: []
-      :full_paths: []
+     :_id:
+      :paths: id
+      :full_paths: ExplanationOfBenefit.id
       :values: []
       :contains_multiple: false
     :patient:
@@ -218,8 +218,8 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: ExplanationOfBenefit.meta.lastUpdated
       :values: []
       :contains_multiple: false
     :type:
@@ -844,8 +844,8 @@
     :expectation: SHALL
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: ExplanationOfBenefit.id
       :values: []
       :contains_multiple: false
     :patient:
@@ -858,8 +858,8 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: ExplanationOfBenefit.meta.lastUpdated
       :values: []
       :contains_multiple: false
     :type:
@@ -1889,8 +1889,8 @@
     :expectation: SHALL
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: ExplanationOfBenefit.id
       :values: []
       :contains_multiple: false
     :patient:
@@ -1903,8 +1903,8 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: ExplanationOfBenefit.meta.lastUpdated
       :values: []
       :contains_multiple: false
     :type:
@@ -2838,8 +2838,8 @@
     :expectation: SHALL
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: ExplanationOfBenefit.id
       :values: []
       :contains_multiple: false
     :patient:
@@ -2852,8 +2852,8 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: ExplanationOfBenefit.meta.lastUpdated
       :values: []
       :contains_multiple: false
     :type:
@@ -3836,8 +3836,8 @@
     :expectation: SHALL
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: ExplanationOfBenefit.id
       :values: []
       :contains_multiple: false
     :patient:
@@ -3850,8 +3850,8 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: ExplanationOfBenefit.meta.lastUpdated
       :values: []
       :contains_multiple: false
     :type:
@@ -4737,8 +4737,8 @@
     :expectation: SHALL
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: ExplanationOfBenefit.id
       :values: []
       :contains_multiple: false
     :patient:
@@ -4751,8 +4751,8 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: ExplanationOfBenefit.meta.lastUpdated
       :values: []
       :contains_multiple: false
     :type:
@@ -5756,8 +5756,8 @@
     :expectation: SHALL
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: ExplanationOfBenefit.id
       :values: []
       :contains_multiple: false
     :patient:
@@ -5770,8 +5770,8 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: ExplanationOfBenefit.meta.lastUpdated
       :values: []
       :contains_multiple: false
     :type:
@@ -6712,8 +6712,8 @@
     :expectation: SHALL
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: ExplanationOfBenefit.id
       :values: []
       :contains_multiple: false
     :patient:
@@ -6726,8 +6726,8 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: ExplanationOfBenefit.meta.lastUpdated
       :values: []
       :contains_multiple: false
     :type:
@@ -7661,8 +7661,8 @@
     :expectation: SHALL
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: ExplanationOfBenefit.id
       :values: []
       :contains_multiple: false
     :patient:
@@ -7675,8 +7675,8 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: ExplanationOfBenefit.meta.lastUpdated
       :values: []
       :contains_multiple: false
     :type:
@@ -8545,8 +8545,8 @@
     :expectation: SHALL
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: ExplanationOfBenefit.id
       :values: []
       :contains_multiple: false
     :patient:
@@ -8559,8 +8559,8 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: ExplanationOfBenefit.meta.lastUpdated
       :values: []
       :contains_multiple: false
     :type:
@@ -9598,8 +9598,8 @@
     :expectation: SHALL
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: ExplanationOfBenefit.id
       :values: []
       :contains_multiple: false
     :patient:
@@ -9612,8 +9612,8 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: ExplanationOfBenefit.meta.lastUpdated
       :values: []
       :contains_multiple: false
     :type:
@@ -10570,13 +10570,13 @@
     :expectation: SHOULD
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: Organization.id
       :values: []
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: Organization.meta.lastUpdated
       :values: []
       :contains_multiple: false
   :include_params: []
@@ -10696,13 +10696,13 @@
     :expectation: SHOULD
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: Patient.id
       :values: []
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: Patient.meta.lastUpdated
       :values: []
       :contains_multiple: false
   :include_params: []
@@ -10910,13 +10910,13 @@
     :expectation: SHOULD
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: Practitioner.id
       :values: []
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: Practitioner.meta.lastUpdated
       :values: []
       :contains_multiple: false
   :include_params: []
@@ -11012,13 +11012,13 @@
     :expectation: SHOULD
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths: id
+      :full_paths: RelatedPerson.id
       :values: []
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths: meta.lastUpdated
+      :full_paths: RelatedPerson.meta.lastUpdated
       :values: []
       :contains_multiple: false
   :include_params: []
