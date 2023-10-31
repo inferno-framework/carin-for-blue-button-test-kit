@@ -2,7 +2,7 @@ require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
 module CarinForBlueButtonTestKit
-  module CARIN4BBV200
+  module CARIN4BBV200DEVNONFINANCIAL
     class PatientLastupdatedSearchTest < Inferno::Test
       include CarinForBlueButtonTestKit::CarinSearchTest
 
@@ -16,11 +16,11 @@ none are returned, the test is skipped.
 
       )
 
-      id :c4bb_v200_patient__lastUpdated_search_test
+      id :c4bb_v200devnonfinancial_patient__lastUpdated_search_test
       optional
       
 
-      input :c4bb_v200_patient__lastUpdated_search_test_param,
+      input :c4bb_v200devnonfinancial_patient__lastUpdated_search_test_param,
         title: 'Patient search parameter for _lastUpdated
 ',
         type: 'text',
@@ -44,7 +44,7 @@ none are returned, the test is skipped.
       end
 
       run do
-        run_search_test(c4bb_v200_patient__lastUpdated_search_test_param)
+        run_search_test(c4bb_v200devnonfinancial_patient__lastUpdated_search_test_param)
       end
     end
   end

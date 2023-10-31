@@ -1,6 +1,7 @@
 require_relative 'patient/patient_read_test'
     require_relative 'patient/patient_validation_test'
     require_relative 'patient/patient_must_support_test'
+    require_relative 'patient/patient_id_search_test'
     require_relative 'patient/patient_lastupdated_search_test'
     
     module CarinForBlueButtonTestKit
@@ -76,6 +77,7 @@ read succeeds.
           test from: :c4bb_v200_patient_read_test
           test from: :c4bb_v200_patient_validation_test
           test from: :c4bb_v200_patient_must_support_test
+          test from: :c4bb_v200_patient__id_search_test
           test from: :c4bb_v200_patient__lastUpdated_search_test
         end
       end

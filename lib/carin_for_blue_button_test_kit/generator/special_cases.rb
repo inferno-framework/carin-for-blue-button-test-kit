@@ -2,10 +2,6 @@ module CarinForBlueButtonTestKit
     class Generator
       module SpecialCases
         RESOURCES_TO_EXCLUDE = [
-          'Patient',
-          'Organization',
-          'Practitioner',
-          'RelatedPerson'
         ].freeze
   
         PROFILES_TO_EXCLUDE = [

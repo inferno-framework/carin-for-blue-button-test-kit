@@ -12,14 +12,20 @@ A server SHOULD support searching by
 _lastUpdated on the Organization resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
+
+
       )
 
       id :c4bb_v200_organization__lastUpdated_search_test
+      optional
+      
 
       input :c4bb_v200_organization__lastUpdated_search_test_param,
-        title: 'Organization search parameter for _lastUpdated',
+        title: 'Organization search parameter for _lastUpdated
+',
         type: 'text',
-        description: 'Organization search parameter: _lastUpdated',
+        description: 'Organization search parameter: _lastUpdated
+',
         optional: true
 
       def self.properties
@@ -38,7 +44,6 @@ none are returned, the test is skipped.
       end
 
       run do
-        skip '_lastUpdated optional and not provided' unless c4bb_v200_organization__lastUpdated_search_test_param.present?
         run_search_test(c4bb_v200_organization__lastUpdated_search_test_param)
       end
     end

@@ -240,6 +240,8 @@
   :file_name: patient_validation_test.rb
 - :id: c4bb_v200_patient_must_support_test
   :file_name: patient_must_support_test.rb
+- :id: c4bb_v200_patient__id_search_test
+  :file_name: patient_id_search_test.rb
 - :id: c4bb_v200_patient__lastUpdated_search_test
   :file_name: patient_lastupdated_search_test.rb
 :id: c4bb_v200_patient

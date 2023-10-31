@@ -8,7 +8,6 @@ module CarinForBlueButtonTestKit
       class << self
         def generate(ig_metadata, base_output_dir)
           ig_metadata.groups
-            .reject { |group| SpecialCases.exclude_group? group }
             .select { |group| group.searches.present? }
             .each do |group|
               group.searches.each { |search| new(group, search, base_output_dir).generate }
