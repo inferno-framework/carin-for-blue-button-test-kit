@@ -184,9 +184,8 @@
   - :names:
     - service-date
     :expectation: SHALL
-    :names_not_must_support_or_mandatory:
-    - service-date
-    :must_support_or_mandatory: false
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
       :paths:
@@ -249,8 +248,8 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - 'billablePeriod '
-      - " item.serviced"
+      - billablePeriod
+      - item.serviced
       :full_paths:
       - ExplanationOfBenefit.billablePeriod
       - ExplanationOfBenefit.item.serviced
@@ -784,9 +783,8 @@
   - :names:
     - service-date
     :expectation: SHALL
-    :names_not_must_support_or_mandatory:
-    - service-date
-    :must_support_or_mandatory: false
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
       :paths:
@@ -845,8 +843,8 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - 'billablePeriod '
-      - " item.serviced"
+      - billablePeriod
+      - item.serviced
       :full_paths:
       - ExplanationOfBenefit.billablePeriod
       - ExplanationOfBenefit.item.serviced
@@ -1799,9 +1797,8 @@
   - :names:
     - service-date
     :expectation: SHALL
-    :names_not_must_support_or_mandatory:
-    - service-date
-    :must_support_or_mandatory: false
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
       :paths:
@@ -1860,8 +1857,8 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - 'billablePeriod '
-      - " item.serviced"
+      - billablePeriod
+      - item.serviced
       :full_paths:
       - ExplanationOfBenefit.billablePeriod
       - ExplanationOfBenefit.item.serviced
@@ -2764,9 +2761,8 @@
   - :names:
     - service-date
     :expectation: SHALL
-    :names_not_must_support_or_mandatory:
-    - service-date
-    :must_support_or_mandatory: false
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
       :paths:
@@ -2825,8 +2821,8 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - 'billablePeriod '
-      - " item.serviced"
+      - billablePeriod
+      - item.serviced
       :full_paths:
       - ExplanationOfBenefit.billablePeriod
       - ExplanationOfBenefit.item.serviced
@@ -3643,9 +3639,8 @@
   - :names:
     - service-date
     :expectation: SHALL
-    :names_not_must_support_or_mandatory:
-    - service-date
-    :must_support_or_mandatory: false
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
       :paths:
@@ -3704,8 +3699,8 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - 'billablePeriod '
-      - " item.serviced"
+      - billablePeriod
+      - item.serviced
       :full_paths:
       - ExplanationOfBenefit.billablePeriod
       - ExplanationOfBenefit.item.serviced
