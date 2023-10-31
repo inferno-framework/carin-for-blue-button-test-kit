@@ -45,8 +45,8 @@
   :expectation: SHALL
 :search_definitions:
   :_id:
-    :paths: id
-    :full_paths: ExplanationOfBenefit.id
+    :paths: []
+    :full_paths: []
     :values: []
     :contains_multiple: false
   :patient:
@@ -59,8 +59,8 @@
     :type: Reference
     :contains_multiple: false
   :_lastUpdated:
-    :paths: meta.lastUpdated
-    :full_paths: ExplanationOfBenefit.meta.lastUpdated
+    :paths: []
+    :full_paths: []
     :values: []
     :contains_multiple: false
   :type:
