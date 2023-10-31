@@ -36,16 +36,16 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - Coverage.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :_lastUpdated:
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Coverage.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -57,7 +57,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
   :include_params:
   - Coverage:payor
@@ -244,10 +244,10 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - ExplanationOfBenefit.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -262,7 +262,7 @@
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - ExplanationOfBenefit.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -274,7 +274,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -917,10 +917,10 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - ExplanationOfBenefit.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -935,7 +935,7 @@
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - ExplanationOfBenefit.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -947,7 +947,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -1995,10 +1995,10 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - ExplanationOfBenefit.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -2013,7 +2013,7 @@
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - ExplanationOfBenefit.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -2025,7 +2025,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -2977,10 +2977,10 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - ExplanationOfBenefit.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -2995,7 +2995,7 @@
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - ExplanationOfBenefit.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -3007,7 +3007,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -4008,10 +4008,10 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - ExplanationOfBenefit.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -4026,7 +4026,7 @@
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - ExplanationOfBenefit.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -4038,7 +4038,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -4942,10 +4942,10 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - ExplanationOfBenefit.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -4960,7 +4960,7 @@
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - ExplanationOfBenefit.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -4972,7 +4972,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -5994,10 +5994,10 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - ExplanationOfBenefit.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -6012,7 +6012,7 @@
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - ExplanationOfBenefit.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -6024,7 +6024,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -6983,10 +6983,10 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - ExplanationOfBenefit.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -7001,7 +7001,7 @@
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - ExplanationOfBenefit.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -7013,7 +7013,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -7965,10 +7965,10 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - ExplanationOfBenefit.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -7983,7 +7983,7 @@
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - ExplanationOfBenefit.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -7995,7 +7995,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -8882,10 +8882,10 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - ExplanationOfBenefit.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -8900,7 +8900,7 @@
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - ExplanationOfBenefit.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -8912,7 +8912,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -9968,10 +9968,10 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - ExplanationOfBenefit.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -9986,7 +9986,7 @@
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - ExplanationOfBenefit.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -9998,7 +9998,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -10961,16 +10961,16 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - Organization.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :_lastUpdated:
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Organization.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -10982,7 +10982,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
   :include_params: []
   :revincludes: []
@@ -11108,16 +11108,16 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - Patient.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :_lastUpdated:
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Patient.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -11129,7 +11129,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
   :include_params: []
   :revincludes: []
@@ -11343,16 +11343,16 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - Practitioner.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :_lastUpdated:
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Practitioner.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -11364,7 +11364,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
   :include_params: []
   :revincludes: []
@@ -11466,16 +11466,16 @@
       :paths:
       - id
       :full_paths:
-      - Resource.id
+      - RelatedPerson.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :_lastUpdated:
       :paths:
       - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - RelatedPerson.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -11487,7 +11487,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
   :include_params: []
   :revincludes: []
