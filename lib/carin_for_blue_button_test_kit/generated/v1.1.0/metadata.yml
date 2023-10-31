@@ -159,26 +159,43 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory:
+    - service-date
+    :must_support_or_mandatory: false
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - Resource.id
+      :comparators: {}
       :values: []
+      :type: token
       :contains_multiple: false
     :patient:
       :paths:
@@ -190,9 +207,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - Resource.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: date
       :contains_multiple: false
     :type:
       :paths:
@@ -219,8 +249,8 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - billablePeriod
-      - item.serviced
+      - 'billablePeriod '
+      - " item.serviced"
       :full_paths:
       - ExplanationOfBenefit.billablePeriod
       - ExplanationOfBenefit.item.serviced
@@ -729,26 +759,43 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory:
+    - service-date
+    :must_support_or_mandatory: false
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - Resource.id
+      :comparators: {}
       :values: []
+      :type: token
       :contains_multiple: false
     :patient:
       :paths:
@@ -760,9 +807,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - Resource.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: date
       :contains_multiple: false
     :type:
       :paths:
@@ -785,8 +845,8 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - billablePeriod
-      - item.serviced
+      - 'billablePeriod '
+      - " item.serviced"
       :full_paths:
       - ExplanationOfBenefit.billablePeriod
       - ExplanationOfBenefit.item.serviced
@@ -1714,26 +1774,43 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory:
+    - service-date
+    :must_support_or_mandatory: false
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - Resource.id
+      :comparators: {}
       :values: []
+      :type: token
       :contains_multiple: false
     :patient:
       :paths:
@@ -1745,9 +1822,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - Resource.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: date
       :contains_multiple: false
     :type:
       :paths:
@@ -1770,8 +1860,8 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - billablePeriod
-      - item.serviced
+      - 'billablePeriod '
+      - " item.serviced"
       :full_paths:
       - ExplanationOfBenefit.billablePeriod
       - ExplanationOfBenefit.item.serviced
@@ -2649,26 +2739,43 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory:
+    - service-date
+    :must_support_or_mandatory: false
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - Resource.id
+      :comparators: {}
       :values: []
+      :type: token
       :contains_multiple: false
     :patient:
       :paths:
@@ -2680,9 +2787,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - Resource.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: date
       :contains_multiple: false
     :type:
       :paths:
@@ -2705,8 +2825,8 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - billablePeriod
-      - item.serviced
+      - 'billablePeriod '
+      - " item.serviced"
       :full_paths:
       - ExplanationOfBenefit.billablePeriod
       - ExplanationOfBenefit.item.serviced
@@ -3498,26 +3618,43 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory:
+    - service-date
+    :must_support_or_mandatory: false
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - Resource.id
+      :comparators: {}
       :values: []
+      :type: token
       :contains_multiple: false
     :patient:
       :paths:
@@ -3529,9 +3666,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - Resource.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: date
       :contains_multiple: false
     :type:
       :paths:
@@ -3554,8 +3704,8 @@
       :contains_multiple: true
     :service-date:
       :paths:
-      - billablePeriod
-      - item.serviced
+      - 'billablePeriod '
+      - " item.serviced"
       :full_paths:
       - ExplanationOfBenefit.billablePeriod
       - ExplanationOfBenefit.item.serviced

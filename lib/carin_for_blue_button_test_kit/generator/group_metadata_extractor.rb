@@ -47,7 +47,7 @@ module CarinForBlueButtonTestKit
             references: references
           }
 
-        #mark_mandatory_and_must_support_searches
+        mark_mandatory_and_must_support_searches
 
         @group_metadata_hash
       end
@@ -55,9 +55,9 @@ module CarinForBlueButtonTestKit
       def mark_mandatory_and_must_support_searches
         searches.each do |search|
           search[:names_not_must_support_or_mandatory] = search[:names].reject do |name|
-            full_paths = search_definitions[name.to_sym][:full_paths]
+            full_paths = search_definitions[name.to_sym][:full_paths] + search_definitions[name.to_sym][:paths]
             any_must_support_elements = (must_supports[:elements]).any? do |element|
-              full_must_support_paths = ["#{resource}.#{element[:original_path]}", "#{resource}.#{element[:path]}"]
+              full_must_support_paths = ["#{resource}.#{element[:original_path]}", "#{resource}.#{element[:path]}", element[:path]]
 
               full_paths.any? do |path|
                 # allow for non-choice, choice types, and _id

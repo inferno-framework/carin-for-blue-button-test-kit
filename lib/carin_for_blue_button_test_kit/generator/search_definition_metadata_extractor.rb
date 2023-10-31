@@ -52,7 +52,7 @@ module CarinForBlueButtonTestKit
       end
 
       def paths
-        @paths ||= full_paths.map { |a_path| a_path.gsub("#{resource}.", '') }
+        @paths ||= full_paths.map { |a_path| a_path.gsub(/\A(#{resource}\.|Resource\.)/, '') }
       end
 
       def profile_element
