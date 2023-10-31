@@ -26,6 +26,7 @@ none are returned, the test is skipped.
         type: 'text',
         description: 'Coverage search parameter: _lastUpdated
 '
+        optional: true
 
       def self.properties
         @properties ||= SearchTestProperties.new(
