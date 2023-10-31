@@ -11,7 +11,9 @@ module CarinForBlueButtonTestKit
 <%= description %>
       )
 
-      id :<%= test_id %>
+      id :<%= test_id %><% if optional? %>
+      optional
+      <% end %>
 
       input :<%=test_id%>_param,
         title: '<%=input_title%>',
