@@ -18,7 +18,7 @@ module CarinForBlueButtonTestKit
       input :<%=test_id%>_param,
         title: '<%=input_title%>',
         type: 'text',
-        description: '<%=input_description%>'<% if optional? %>
+        description: '<%=input_description%>'<%if optional?%>,
         optional: true<% end %>
 
       def self.properties
