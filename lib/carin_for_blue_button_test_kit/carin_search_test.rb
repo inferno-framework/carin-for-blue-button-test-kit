@@ -34,6 +34,8 @@ module CarinForBlueButtonTestKit
         return
       end
 
+      skip_if resource_type != 'ExplanationOfBenefit' && search_param_names[0] == '_lastUpdated' && param_value.blank?, "No _lastUpdated parameter passed in to optional test."
+
       search_params[search_param_names[0]] = param_value
 
       fhir_search(resource_type, params: search_params)
