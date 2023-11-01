@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'group_metadata'
 require_relative 'ig_metadata'
 require_relative 'must_support_metadata_extractor'
@@ -24,28 +26,28 @@ module CarinForBlueButtonTestKit
       def group_metadata_hash
         @group_metadata_hash ||=
           {
-            name: name,
-            class_name: class_name,
-            version: version,
-            reformatted_version: reformatted_version,
-            resource: resource,
-            conformance_expectation: conformance_expectation,
-            profile_url: profile_url,
-            profile_name: profile_name,
-            profile_version: profile_version,
-            title: title,
-            short_description: short_description,
-            interactions: interactions,
-            operations: operations,
-            searches: searches,
-            search_definitions: search_definitions,
-            include_params: include_params,
-            revincludes: revincludes,
-            required_concepts: required_concepts,
-            must_supports: must_supports,
-            mandatory_elements: mandatory_elements,
-            bindings: bindings,
-            references: references
+            name:,
+            class_name:,
+            version:,
+            reformatted_version:,
+            resource:,
+            conformance_expectation:,
+            profile_url:,
+            profile_name:,
+            profile_version:,
+            title:,
+            short_description:,
+            interactions:,
+            operations:,
+            searches:,
+            search_definitions:,
+            include_params:,
+            revincludes:,
+            required_concepts:,
+            must_supports:,
+            mandatory_elements:,
+            bindings:,
+            references:
           }
 
         mark_mandatory_and_must_support_searches
@@ -57,7 +59,7 @@ module CarinForBlueButtonTestKit
         searches.each do |search|
           search[:names_not_must_support_or_mandatory] = search[:names].reject do |name|
             full_paths = search_definitions[name.to_sym][:full_paths]
-            any_must_support_elements = (must_supports[:elements]).any? do |element|
+            any_must_support_elements = must_supports[:elements].any? do |element|
               full_must_support_paths = ["#{resource}.#{element[:original_path]}", "#{resource}.#{element[:path]}"]
 
               full_paths.any? do |path|
@@ -74,7 +76,7 @@ module CarinForBlueButtonTestKit
                 full_must_support_path = "#{resource}.#{slice[:path].sub('[x]', slice[:discriminator][:code])}"
                 base_must_support_path = "#{resource}.#{slice[:path].sub('[x]', '')}"
 
-                full_paths.intersection([full_must_support_path,base_must_support_path]).present?
+                full_paths.intersection([full_must_support_path, base_must_support_path]).present?
               else
                 false
               end
@@ -142,9 +144,7 @@ module CarinForBlueButtonTestKit
 
       def title
         puts profile.title
-        title = profile.title.gsub(/C4BB\s*/, '').gsub(/\s*Profile/, '').strip
-
-        title
+        profile.title.gsub(/C4BB\s*/, '').gsub(/\s*Profile/, '').strip
       end
 
       def short_description
@@ -224,21 +224,21 @@ module CarinForBlueButtonTestKit
       def mandatory_elements
         @mandatory_elements ||=
           profile_elements
-            .select { |element| element.min.positive? }
-            .map { |element| element.path }
-            .uniq
+          .select { |element| element.min.positive? }
+          .map(&:path)
+          .uniq
       end
 
       def references
         @references ||=
           profile_elements
-            .select { |element| element.type&.first&.code == 'Reference' }
-            .map do |reference_definition|
-              {
-                path: reference_definition.path,
-                profiles: reference_definition.type.first.targetProfile
-              }
-            end
+          .select { |element| element.type&.first&.code == 'Reference' }
+          .map do |reference_definition|
+            {
+              path: reference_definition.path,
+              profiles: reference_definition.type.first.targetProfile
+            }
+          end
       end
     end
   end
