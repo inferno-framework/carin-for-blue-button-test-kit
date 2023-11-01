@@ -37,7 +37,7 @@ module CarinForBlueButtonTestKit
 
       run do
         <% if optional? %>
-          skip_if <%=test_id%>_param.blank?, '<%="#{input_title.chop!} not provided" %>'
+        skip_if <%=test_id%>_param.blank?, '<%="#{input_title.chop!} not provided" %>'
         <% end %>
         run_search_test(<%=test_id%>_param)
       end

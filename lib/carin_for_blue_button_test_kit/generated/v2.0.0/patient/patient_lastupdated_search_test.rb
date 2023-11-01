@@ -45,7 +45,7 @@ none are returned, the test is skipped.
 
       run do
         
-          skip_if c4bb_v200_patient__lastUpdated_search_test_param.blank?, 'Patient search parameter for _lastUpdated not provided'
+        skip_if c4bb_v200_patient__lastUpdated_search_test_param.blank?, 'Patient search parameter for _lastUpdated not provided'
         
         run_search_test(c4bb_v200_patient__lastUpdated_search_test_param)
       end
