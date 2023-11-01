@@ -434,7 +434,9 @@ end
     let(:search_params_patient) {'_id=EOBProfessionalTransportation1&_include=ExplanationOfBenefit:patient'}
     let(:explanation_of_benefit_id) { 'EOBProfessionalTransportation1' }
     let(:patient_id) { '123' }
+    let(:patient_id_2) { '456' }
     let(:patient) { FHIR::Patient.new(id: patient_id) }
+    let(:patient2) { FHIR::Patient.new(id: patient_id_2) }
     let (:organization) { FHIR::Organization.new(id: patient_id) }
     let(:explanation_of_benefit) do
       FHIR::ExplanationOfBenefit.new(
@@ -465,46 +467,49 @@ end
 
     it 'fails performing an _include search for ExplanationOfBenefit:patient when there is patient resource with incorrect id' do
       # Expect that test fails when patient resource with correct id is not present in bundle
-      bundle.entry[-1].resource.id = '456'
+      bundle.entry[-1].resource.id = patient_id_2
 
       request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_patient}")
         .to_return(status: 200, body: bundle.to_json)
 
       result = run(explanation_of_benefit_include_test_patient, c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id,  url:)
       expect(result.result).to eq('fail')
-      expect(result.result_message).to eq('Returned resource did not include the _include resource parameter')
+      expect(result.result_message).to eq('No ExplanationOfBenefit references Patient/456 in the search result.')
       expect(request).to have_been_made.once
     end
 
-    it 'fails performing an _include search for ExplanationOfBenefit:patient when reference id is formatted incorrectly' do
-      # Expect that test fails when Explanation of Benefit patient reference id is in incorrect format
-      bundle.entry[0].resource.patient.reference = '#Patient1'
-
-      request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_patient}")
-        .to_return(status: 200, body: bundle.to_json)
-
-      result = run(explanation_of_benefit_include_test_patient, c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id,  url:)
-      expect(result.result).to eq('fail')
-      expect(result.result_message).to eq('Reference id is not in the correct format of [ResourceType]/[ResourceID]')
-      expect(request).to have_been_made.once
-    end
-
-    it 'fails performing an _include search for ExplanationOfBenefit:patient when there is the wrong resource with correct id' do
+    it 'passes performing an _include search for ExplanationOfBenefit:patient when there are no patient resources in the bundle' do
       
-      # Expect that test fails when only organization resource with correct patient id is present in bundle
+      # Expect that test passes when organization resource instead of patient resource is included in the bundle
       bundle.entry[-1] = {resource: organization}
 
       request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_patient}")
         .to_return(status: 200, body: bundle.to_json)
 
       result = run(explanation_of_benefit_include_test_patient, c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id,  url:)
+      expect(result.result).to eq('pass')
+      expect(request).to have_been_made.once
+    end
+
+    it 'fails performing an _include search for ExplanationOfBenefit:patient when there is an unreferenced patient resource in the bundle' do
+        
+      # Expect that test fails when a patient resource is included in the bundle but no base resource references it
+      bundle.entry.push({resource: patient2})
+
+      request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_patient}")
+        .to_return(status: 200, body: bundle.to_json)
+
+      result = run(explanation_of_benefit_include_test_patient, c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id,  url:)
       expect(result.result).to eq('fail')
-      expect(result.result_message).to eq('No Patient resources were included in the search results')
+      expect(result.result_message).to eq('No ExplanationOfBenefit references Patient/456 in the search result.')
       expect(request).to have_been_made.once
     end
   end
 
   describe 'search ExplanationofBenefit with _include * param' do
+    let(:patient_id_2) { '456' }
+    let(:patient2) { FHIR::Patient.new(id: patient_id_2) }
+
     let(:explanation_of_benefit_include_test_all) do
       Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitExplanationOfBenefit_AllSearchTest) do
         fhir_client { url :url }
@@ -530,6 +535,20 @@ end
       # Test include with * parameter to ensure all resources are included
       result = run(explanation_of_benefit_include_test_all, c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id,  url:)
       expect(result.result).to eq('pass')
+      expect(request).to have_been_made.once
+    end
+
+    it 'fails performing an _include search for ExplanationOfBenefit:* when there is an unreferenced patient resource in the bundle' do
+      # Expect that test fails when a patient resource is included in the bundle but no base resource references it
+      bundle_all.entry.push({resource: patient2})
+
+      request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_all}")
+        .to_return(status: 200, body: bundle_all.to_json)
+      
+      # Test include with * parameter to ensure all resources are included
+      result = run(explanation_of_benefit_include_test_all, c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id,  url:)
+      expect(result.result).to eq('fail')
+      expect(result.result_message).to eq('No ExplanationOfBenefit references Patient/456 in the search result.')
       expect(request).to have_been_made.once
     end
   end

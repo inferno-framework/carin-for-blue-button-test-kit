@@ -191,6 +191,7 @@ module CarinForBlueButtonTestKit
 
       skip_if returned_resources_resource_type.blank?, self.no_resources_message
 
+      values_found = []
       returned_resources_resource_type.each do |resource|
         match_found = false
         reference_bool = true
@@ -198,47 +199,39 @@ module CarinForBlueButtonTestKit
 
         if param_value != 'ExplanationOfBenefit:*'
           paths.each do |path|
-              values_found = resolve_path(resource, path)
-
-              reference_bool = values_found.all? { |reference| find_included_resource(reference, returned_resources_all) }
-
+              values_found = resolve_path(resource.source_hash, path)
               match_found = (values_found.length > 0)
 
               break if match_found
           end
           assert match_found, "Returned resource did not match the search parameter"
-          assert reference_bool, "Returned resource did not include the _include resource parameter"
         else
-          values_found = []
-
           paths.each do |path|
               values_found += resolve_path(resource, path)
           end
-
-          reference_bool = values_found.all? { |reference| find_included_resource(reference, returned_resources_all) }
-
           match_found = (values_found.length >= 5)
+          assert match_found, "Returned resource did not match the search parameter"  
+        end  
+      end  
 
-          assert match_found, "Returned resource did not match the search parameter"
-          assert reference_bool, "Returned resource did not include the _include resource parameter"
+      referenced_resource_types = values_found.map{ |reference| reference['reference'].split('/')[-2]}.uniq
+      included_resources = returned_resources_all.select{|item| referenced_resource_types.include?(item.resourceType)}
+
+      matched_base_resources = values_found.select do |base_resource_references|
+        included_resources.any? do |referenced_resource|
+          is_reference_match?(base_resource_references['reference'], referenced_resource.id)
         end
       end
-    end
 
+      not_matched_included_resources = included_resources.select do |resource_reference|
+        values_found.none? do |base_resource_references|
+          is_reference_match?(base_resource_references['reference'], resource_reference.id)
+        end
+      end
 
-    def find_included_resource(reference, returned_resources_all)
-      referenced_resource_id = reference.reference
-
-      assert !referenced_resource_id.start_with?('#'), "Reference id is not in the correct format of [ResourceType]/[ResourceID]"
-
-      referenced_resource_type = referenced_resource_id.split('/')[-2]
-
-      referenced_resources = returned_resources_all.select{|item| item.resourceType == referenced_resource_type}
-
-      assert referenced_resources.present?, "No #{referenced_resource_type} resources were included in the search results"
-      
-      referenced_resources.any? { |referenced_resource| is_reference_match?(referenced_resource_id, referenced_resource.id) }
-
+      not_matched_included_resources_string = not_matched_included_resources.map{ |resource| "#{resource.resourceType}/#{resource.id}" }.join(',')
+      assert not_matched_included_resources.empty?, "No #{resource_type} references #{not_matched_included_resources_string} in the search result."
+  
     end
 
     def is_reference_match? (reference, local_reference)
