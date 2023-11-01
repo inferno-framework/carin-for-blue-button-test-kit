@@ -24,19 +24,40 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - Coverage.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - Coverage.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
   :include_params:
   - Coverage:payor
@@ -181,32 +202,52 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-start-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - billable-period-start
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - ExplanationOfBenefit.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -218,9 +259,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - ExplanationOfBenefit.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -821,32 +875,52 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-start-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - billable-period-start
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - ExplanationOfBenefit.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -858,9 +932,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - ExplanationOfBenefit.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -1866,32 +1953,52 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-start-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - billable-period-start
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - ExplanationOfBenefit.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -1903,9 +2010,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - ExplanationOfBenefit.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -2815,32 +2935,52 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-start-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - billable-period-start
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - ExplanationOfBenefit.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -2852,9 +2992,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - ExplanationOfBenefit.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -3813,32 +3966,52 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-start-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - billable-period-start
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - ExplanationOfBenefit.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -3850,9 +4023,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - ExplanationOfBenefit.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -4714,32 +4900,52 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-start-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - billable-period-start
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - ExplanationOfBenefit.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -4751,9 +4957,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - ExplanationOfBenefit.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -5733,32 +5952,52 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-start-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - billable-period-start
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - ExplanationOfBenefit.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -5770,9 +6009,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - ExplanationOfBenefit.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -6689,32 +6941,52 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-start-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - billable-period-start
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - ExplanationOfBenefit.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -6726,9 +6998,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - ExplanationOfBenefit.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -7638,32 +7923,52 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-start-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - billable-period-start
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - ExplanationOfBenefit.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -7675,9 +7980,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - ExplanationOfBenefit.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -8522,32 +8840,52 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-start-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - billable-period-start
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - ExplanationOfBenefit.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -8559,9 +8897,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - ExplanationOfBenefit.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -9575,32 +9926,52 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - type
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - identifier
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - service-start-date
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - billable-period-start
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - ExplanationOfBenefit.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :patient:
       :paths:
@@ -9612,9 +9983,22 @@
       :type: Reference
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - ExplanationOfBenefit.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
     :type:
       :paths:
@@ -10565,19 +10949,40 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - Organization.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - Organization.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
   :include_params: []
   :revincludes: []
@@ -10691,19 +11096,40 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - Patient.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - Patient.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
   :include_params: []
   :revincludes: []
@@ -10905,19 +11331,40 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - Practitioner.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - Practitioner.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
   :include_params: []
   :revincludes: []
@@ -11007,19 +11454,40 @@
   - :names:
     - _id
     :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - _lastUpdated
     :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - id
+      :full_paths:
+      - RelatedPerson.id
+      :comparators: {}
       :values: []
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
     :_lastUpdated:
-      :paths: []
-      :full_paths: []
+      :paths:
+      - meta.lastUpdated
+      :full_paths:
+      - RelatedPerson.meta.lastUpdated
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
       :values: []
+      :type: instant
       :contains_multiple: false
   :include_params: []
   :revincludes: []

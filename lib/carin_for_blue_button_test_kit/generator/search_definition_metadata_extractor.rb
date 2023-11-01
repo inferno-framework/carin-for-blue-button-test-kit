@@ -45,7 +45,7 @@ module CarinForBlueButtonTestKit
                           path.scan(/[. ]as[( ]([^)]*)[)]?/).flatten.map do |as_type|
                             path.gsub!(/[. ]as[( ](#{as_type}[^)]*)[)]?/, as_type.upcase_first) if as_type.present?
                           end
-                          path.split('|').map(&:strip)
+                          path.split('|').map{ |element| element.strip.gsub('Resource.', "#{resource}.") }
                         else
                           []
                         end

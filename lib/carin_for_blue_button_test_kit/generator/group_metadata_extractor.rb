@@ -47,7 +47,7 @@ module CarinForBlueButtonTestKit
             references: references
           }
 
-        #mark_mandatory_and_must_support_searches
+        mark_mandatory_and_must_support_searches
 
         @group_metadata_hash
       end
