@@ -15,7 +15,7 @@ module CarinForBlueButtonTestKit
         Statement. This test will look through the Patient resources
         found previously for the following must support elements:
 
-        * Patient.address
+                * Patient.address
         * Patient.address.city
         * Patient.address.country
         * Patient.address.district

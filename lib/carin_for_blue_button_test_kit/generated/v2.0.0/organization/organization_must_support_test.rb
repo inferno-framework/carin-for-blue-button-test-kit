@@ -15,7 +15,7 @@ module CarinForBlueButtonTestKit
         Statement. This test will look through the Organization resources
         found previously for the following must support elements:
 
-        * Organization.active
+                * Organization.active
         * Organization.address
         * Organization.address.city
         * Organization.address.country

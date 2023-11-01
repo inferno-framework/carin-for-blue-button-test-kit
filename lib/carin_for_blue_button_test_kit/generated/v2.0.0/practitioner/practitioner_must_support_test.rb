@@ -15,7 +15,7 @@ module CarinForBlueButtonTestKit
         Statement. This test will look through the Practitioner resources
         found previously for the following must support elements:
 
-        * Practitioner.identifier
+                * Practitioner.identifier
         * Practitioner.identifier:NPI
         * Practitioner.identifier:tax
         * Practitioner.meta

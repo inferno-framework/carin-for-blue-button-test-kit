@@ -7,11 +7,12 @@ module CarinForBlueButtonTestKit
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for ExplanationOfBenefit search by billable-period-start'
-      description %(
-        A server SHALL support searching by
-        billable-period-start on the ExplanationOfBenefit resource. This test
-        will pass if resources are returned and match the search criteria. If
-        none are returned, the test is skipped.
+      description %(A server SHALL support searching by
+billable-period-start on the ExplanationOfBenefit resource. This test
+will pass if resources are returned and match the search criteria. If
+none are returned, the test is skipped.
+
+
       )
 
       id :c4bb_v200devnonfinancial_explanation_of_benefit_billable_period_start_search_test

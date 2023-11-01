@@ -15,7 +15,7 @@ module CarinForBlueButtonTestKit
         Statement. This test will look through the RelatedPerson resources
         found previously for the following must support elements:
 
-        * RelatedPerson.active
+                * RelatedPerson.active
         * RelatedPerson.address
         * RelatedPerson.meta
         * RelatedPerson.meta.lastUpdated

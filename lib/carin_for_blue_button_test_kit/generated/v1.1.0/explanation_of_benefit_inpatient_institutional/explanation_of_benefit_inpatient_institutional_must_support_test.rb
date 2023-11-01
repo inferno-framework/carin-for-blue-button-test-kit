@@ -15,7 +15,7 @@ module CarinForBlueButtonTestKit
         Statement. This test will look through the ExplanationOfBenefit resources
         found previously for the following must support elements:
 
-        * ExplanationOfBenefit.adjudication
+                * ExplanationOfBenefit.adjudication
         * ExplanationOfBenefit.adjudication.category
         * ExplanationOfBenefit.adjudication.reason
         * ExplanationOfBenefit.adjudication:adjudicationamounttype

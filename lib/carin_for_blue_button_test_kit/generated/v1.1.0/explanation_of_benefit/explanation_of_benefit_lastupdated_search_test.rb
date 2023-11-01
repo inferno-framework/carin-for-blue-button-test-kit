@@ -7,11 +7,12 @@ module CarinForBlueButtonTestKit
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for ExplanationOfBenefit search by _lastUpdated'
-      description %(
-        A server SHALL support searching by
-        _lastUpdated on the ExplanationOfBenefit resource. This test
-        will pass if resources are returned and match the search criteria. If
-        none are returned, the test is skipped.
+      description %(A server SHALL support searching by
+_lastUpdated on the ExplanationOfBenefit resource. This test
+will pass if resources are returned and match the search criteria. If
+none are returned, the test is skipped.
+
+
       )
 
       id :c4bb_v110_explanation_of_benefit__lastUpdated_search_test

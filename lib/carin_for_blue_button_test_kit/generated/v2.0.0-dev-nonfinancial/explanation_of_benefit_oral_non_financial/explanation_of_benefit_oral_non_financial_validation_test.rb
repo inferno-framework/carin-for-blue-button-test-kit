@@ -9,16 +9,15 @@ module CarinForBlueButtonTestKit
 
       id :c4bb_v200devnonfinancial_explanation_of_benefit_oral_non_financial_validation_test
       title 'ExplanationOfBenefit resources returned during previous tests conform to the C4BB ExplanationOfBenefit Oral - Non-Financial'
-      description %(
-        This test verifies resources returned from the first search conform to
-        the [C4BB ExplanationOfBenefit Oral - Non-Financial](http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Oral-NonFinancial).
-        Systems must demonstrate at least one valid example in order to pass this test.
+      description %(This test verifies resources returned from the first search conform to
+the [C4BB ExplanationOfBenefit Oral - Non-Financial](http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Oral-NonFinancial).
+Systems must demonstrate at least one valid example in order to pass this test.
 
-        It verifies the presence of mandatory elements and that elements with
-        required bindings contain appropriate values. CodeableConcept element
-        bindings will fail if none of their codings have a code/system belonging
-        to the bound ValueSet. Quantity, Coding, and code element bindings will
-        fail if their code/system are not found in the valueset.
+It verifies the presence of mandatory elements and that elements with
+required bindings contain appropriate values. CodeableConcept element
+bindings will fail if none of their codings have a code/system belonging
+to the bound ValueSet. Quantity, Coding, and code element bindings will
+fail if their code/system are not found in the valueset.
 
       )
 

@@ -15,7 +15,7 @@ module CarinForBlueButtonTestKit
         Statement. This test will look through the Coverage resources
         found previously for the following must support elements:
 
-        * Coverage.beneficiary
+                * Coverage.beneficiary
         * Coverage.class
         * Coverage.class.name
         * Coverage.class.value
