@@ -44,6 +44,9 @@ none are returned, the test is skipped.
       end
 
       run do
+        
+          skip_if c4bb_v200_organization__lastUpdated_search_test_param.blank?, 'Organization search parameter for _lastUpdated not provided'
+        
         run_search_test(c4bb_v200_organization__lastUpdated_search_test_param)
       end
     end

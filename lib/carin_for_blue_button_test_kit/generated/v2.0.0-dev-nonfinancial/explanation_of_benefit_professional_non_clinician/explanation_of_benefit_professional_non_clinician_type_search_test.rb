@@ -42,6 +42,7 @@ none are returned, the test is skipped.
       end
 
       run do
+        
         run_search_test(c4bb_v200devnonfinancial_explanation_of_benefit_professional_non_clinician_type_search_test_param)
       end
     end

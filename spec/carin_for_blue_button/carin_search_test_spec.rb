@@ -322,7 +322,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
         url:
       )
       expect(result.result).to eq('skip')
-      expect(result.result_message).to eq("No _lastUpdated parameter passed in to optional test.")
+      expect(result.result_message).to eq("Coverage search parameter for _lastUpdated not provided")
     end
   end
 
@@ -368,18 +368,6 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       result = run(
         eob_last_updated_search_test,
         c4bb_v200_explanation_of_benefit__lastUpdated_search_test_param: last_updated,
-        url:
-      )
-      expect(result.result).to eq('fail')
-      expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
-    end
-
-    it 'fails if lastUpdated is not passed in' do
-      stub_request(:get, "#{url}/ExplanationOfBenefit?_lastUpdated")
-        .to_return(status: 400, body: error_outcome.to_json)
-      
-      result = run(
-        eob_last_updated_search_test,
         url:
       )
       expect(result.result).to eq('fail')

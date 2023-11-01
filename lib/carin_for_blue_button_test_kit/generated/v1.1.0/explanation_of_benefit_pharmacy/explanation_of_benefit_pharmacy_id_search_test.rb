@@ -52,6 +52,7 @@ requirement of CARIN IG for Blue Button® v1.1.0.
       end
 
       run do
+        
         run_search_test(c4bb_v110_explanation_of_benefit_pharmacy__id_search_test_param)
       end
     end

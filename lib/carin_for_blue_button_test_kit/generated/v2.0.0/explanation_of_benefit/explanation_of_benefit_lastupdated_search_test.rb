@@ -41,6 +41,7 @@ none are returned, the test is skipped.
       end
 
       run do
+        
         run_search_test(c4bb_v200_explanation_of_benefit__lastUpdated_search_test_param)
       end
     end
