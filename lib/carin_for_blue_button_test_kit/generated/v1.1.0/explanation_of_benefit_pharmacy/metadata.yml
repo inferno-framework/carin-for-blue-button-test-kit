@@ -4,6 +4,7 @@
 :version: v1.1.0
 :reformatted_version: v110
 :resource: ExplanationOfBenefit
+:conformance_expectation: SHALL
 :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Pharmacy
 :profile_name: C4BB ExplanationOfBenefit Pharmacy
 :profile_version: 1.1.0

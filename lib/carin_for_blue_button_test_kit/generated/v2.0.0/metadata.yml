@@ -6,6 +6,7 @@
   :version: v2.0.0
   :reformatted_version: v200
   :resource: Coverage
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage
   :profile_name: C4BB Coverage
   :profile_version: 2.0.0
@@ -184,6 +185,7 @@
   :version: v2.0.0
   :reformatted_version: v200
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit
   :profile_name: C4BB Explanation Of Benefit
   :profile_version: 2.0.0
@@ -859,6 +861,7 @@
   :version: v2.0.0
   :reformatted_version: v200
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Inpatient-Institutional
   :profile_name: C4BB ExplanationOfBenefit Inpatient Institutional
   :profile_version: 2.0.0
@@ -1937,6 +1940,7 @@
   :version: v2.0.0
   :reformatted_version: v200
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Outpatient-Institutional
   :profile_name: C4BB ExplanationOfBenefit Outpatient Institutional
   :profile_version: 2.0.0
@@ -2968,6 +2972,7 @@
   :version: v2.0.0
   :reformatted_version: v200
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Oral
   :profile_name: C4BB ExplanationOfBenefit Oral
   :profile_version: 2.0.0
@@ -4020,6 +4025,7 @@
   :version: v2.0.0
   :reformatted_version: v200
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Pharmacy
   :profile_name: C4BB ExplanationOfBenefit Pharmacy
   :profile_version: 2.0.0
@@ -5002,6 +5008,7 @@
   :version: v2.0.0
   :reformatted_version: v200
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Professional-NonClinician
   :profile_name: C4BB ExplanationOfBenefit Professional NonClinician
   :profile_version: 2.0.0
@@ -6088,6 +6095,7 @@
   :version: v2.0.0
   :reformatted_version: v200
   :resource: Organization
+  :conformance_expectation: SHOULD
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization
   :profile_name: C4BB Organization
   :profile_version: 2.0.0
@@ -6235,6 +6243,7 @@
   :version: v2.0.0
   :reformatted_version: v200
   :resource: Patient
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient
   :profile_name: C4BB Patient
   :profile_version: 2.0.0
@@ -6470,6 +6479,7 @@
   :version: v2.0.0
   :reformatted_version: v200
   :resource: Practitioner
+  :conformance_expectation: SHOULD
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner
   :profile_name: C4BB Practitioner
   :profile_version: 2.0.0
@@ -6593,6 +6603,7 @@
   :version: v2.0.0
   :reformatted_version: v200
   :resource: RelatedPerson
+  :conformance_expectation: SHOULD
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-RelatedPerson
   :profile_name: C4BB RelatedPerson
   :profile_version: 2.0.0

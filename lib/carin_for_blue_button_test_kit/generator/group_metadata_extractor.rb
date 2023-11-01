@@ -29,6 +29,7 @@ module CarinForBlueButtonTestKit
             version: version,
             reformatted_version: reformatted_version,
             resource: resource,
+            conformance_expectation: conformance_expectation,
             profile_url: profile_url,
             profile_name: profile_name,
             profile_version: profile_version,
@@ -125,6 +126,10 @@ module CarinForBlueButtonTestKit
 
       def resource
         resource_capabilities.type
+      end
+
+      def conformance_expectation
+        resource_capabilities.extension.first.valueCode
       end
 
       def profile_name

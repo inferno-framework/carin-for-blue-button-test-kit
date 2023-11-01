@@ -7,6 +7,7 @@ module CarinForBlueButtonTestKit
           :version,
           :reformatted_version,
           :resource,
+          :conformance_expectation,
           :profile_url,
           :profile_name,
           :profile_version,
@@ -28,46 +29,46 @@ module CarinForBlueButtonTestKit
           :file_name,
           :delayed_references
         ].freeze
-  
+
         ATTRIBUTES.each { |name| attr_accessor name }
-  
+
         def initialize(metadata)
           metadata.each do |key, value|
             raise "Unknown attribute #{key}" unless ATTRIBUTES.include? key
-  
+
             instance_variable_set(:"@#{key}", value)
           end
         end
-  
+
         def delayed?
           return false if resource == 'Patient'
-  
+
           true
         end
-  
+
         def no_patient_searches?
           searches.none? { |search| search[:names].include? 'patient' }
         end
-  
+
         def add_test(id:, file_name:)
           self.tests ||= []
-  
+
           test_metadata = {
             id: id,
             file_name: file_name
           }
-  
+
           if delayed? && id.include?('read')
             self.tests.unshift(test_metadata)
           else
             self.tests << test_metadata
           end
         end
-  
+
         def to_hash
           ATTRIBUTES.each_with_object({}) { |key, hash| hash[key] = send(key) unless send(key).nil? }
         end
-  
+
         def add_delayed_references(delayed_profiles, ig_resources)
           self.delayed_references =
             references
@@ -84,4 +85,3 @@ module CarinForBlueButtonTestKit
       end
     end
   end
-  
