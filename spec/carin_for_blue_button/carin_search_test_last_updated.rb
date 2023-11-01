@@ -64,7 +64,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       expect(result.result).to eq('pass')
     end
 
-    it 'skips if _lastUpdated is passed in and 400 is received' do
+    it 'fails if _lastUpdated is passed in and 400 is received' do
       stub_request(:get, "#{url}/Coverage?_lastUpdated=#{last_updated}")
         .to_return(status: 400, body: error_outcome.to_json)
       result = run(
@@ -72,17 +72,17 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
         c4bb_v200_coverage__lastUpdated_search_test_param: last_updated,
         url:
       )
-      expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('_lastUpdated search query was unsuccessful and did not respond with a 200 status')
+      expect(result.result).to eq('fail')
     end
 
-    it 'skips if _lastUpdated is not passed in' do
+    it 'fails if _lastUpdated is not passed in' do
+      stub_request(:get, "#{url}/Coverage?_lastUpdated")
+        .to_return(status: 400, body: error_outcome.to_json)
       result = run(
         coverage_last_updated_search_test,
         url:
       )
-      expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('_lastUpdated optional and not provided')
+      expect(result.result).to eq('fail')
     end
   end
 
@@ -182,7 +182,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       expect(result.result).to eq('pass')
     end
 
-    it 'skips if _lastUpdated is passed in and 400 is received' do
+    it 'fails if _lastUpdated is passed in and 400 is received' do
       stub_request(:get, "#{url}/Patient?_lastUpdated=#{last_updated}")
         .to_return(status: 400, body: error_outcome.to_json)
       result = run(
@@ -190,17 +190,17 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
         c4bb_v200_patient__lastUpdated_search_test_param: last_updated,
         url:
       )
-      expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('_lastUpdated search query was unsuccessful and did not respond with a 200 status')
+      expect(result.result).to eq('fail')
     end
 
-    it 'skips if _lastUpdated is not passed in' do
+    it 'fails if _lastUpdated is not passed in' do
+      stub_request(:get, "#{url}/Patient?_lastUpdated")
+        .to_return(status: 400, body: error_outcome.to_json)
       result = run(
         patient_last_updated_search_test,
         url:
       )
-      expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('_lastUpdated optional and not provided')
+      expect(result.result).to eq('fail')
     end
   end
 
@@ -239,7 +239,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       expect(result.result).to eq('pass')
     end
 
-    it 'skips if _lastUpdated is passed in and 400 is received' do
+    it 'fails if _lastUpdated is passed in and 400 is received' do
       stub_request(:get, "#{url}/Organization?_lastUpdated=#{last_updated}")
         .to_return(status: 400, body: error_outcome.to_json)
       result = run(
@@ -247,17 +247,17 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
         c4bb_v200_organization__lastUpdated_search_test_param: last_updated,
         url:
       )
-      expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('_lastUpdated search query was unsuccessful and did not respond with a 200 status')
+      expect(result.result).to eq('fail')
     end
 
-    it 'skips if _lastUpdated is not passed in' do
+    it 'fails if _lastUpdated is not passed in' do
+      stub_request(:get, "#{url}/Organization?_lastUpdated")
+        .to_return(status: 400, body: error_outcome.to_json)
       result = run(
         organization_last_updated_search_test,
         url:
       )
-      expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('_lastUpdated optional and not provided')
+      expect(result.result).to eq('fail')
     end
   end
 
@@ -296,7 +296,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       expect(result.result).to eq('pass')
     end
 
-    it 'skips if _lastUpdated is passed in and 400 is received' do
+    it 'fails if _lastUpdated is passed in and 400 is received' do
       stub_request(:get, "#{url}/Practitioner?_lastUpdated=#{last_updated}")
         .to_return(status: 400, body: error_outcome.to_json)
       result = run(
@@ -304,17 +304,17 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
         c4bb_v200_practitioner__lastUpdated_search_test_param: last_updated,
         url:
       )
-      expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('_lastUpdated search query was unsuccessful and did not respond with a 200 status')
+      expect(result.result).to eq('fail')
     end
 
-    it 'skips if _lastUpdated is not passed in' do
+    it 'fails if _lastUpdated is not passed in' do
+      stub_request(:get, "#{url}/Practitioner?_lastUpdated")
+        .to_return(status: 400, body: error_outcome.to_json)
       result = run(
         practitioner_last_updated_search_test,
         url:
       )
-      expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('_lastUpdated optional and not provided')
+      expect(result.result).to eq('fail')
     end
   end
 
@@ -353,7 +353,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       expect(result.result).to eq('pass')
     end
 
-    it 'skips if _lastUpdated is passed in and 400 is received' do
+    it 'fails if _lastUpdated is passed in and 400 is received' do
       stub_request(:get, "#{url}/RelatedPerson?_lastUpdated=#{last_updated}")
         .to_return(status: 400, body: error_outcome.to_json)
       result = run(
@@ -361,17 +361,17 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
         c4bb_v200_related_person__lastUpdated_search_test_param: last_updated,
         url:
       )
-      expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('_lastUpdated search query was unsuccessful and did not respond with a 200 status')
+      expect(result.result).to eq('fail')
     end
 
-    it 'skips if _lastUpdated is not passed in' do
+    it 'fails if _lastUpdated is not passed in' do
+      stub_request(:get, "#{url}/RelatedPerson?_lastUpdated")
+        .to_return(status: 400, body: error_outcome.to_json)
       result = run(
         related_person_last_updated_search_test,
         url:
       )
-      expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('_lastUpdated optional and not provided')
+      expect(result.result).to eq('fail')
     end
   end
 end
