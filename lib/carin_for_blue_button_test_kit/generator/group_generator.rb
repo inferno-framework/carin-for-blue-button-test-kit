@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'naming'
 
 module CarinForBlueButtonTestKit
@@ -6,7 +8,7 @@ module CarinForBlueButtonTestKit
       class << self
         def generate(ig_metadata, base_output_dir)
           ig_metadata.ordered_groups
-            .each { |group| new(group, base_output_dir).generate }
+                     .each { |group| new(group, base_output_dir).generate }
         end
       end
 
@@ -30,7 +32,7 @@ module CarinForBlueButtonTestKit
       end
 
       def base_metadata_file_name
-        "metadata.yml"
+        'metadata.yml'
       end
 
       def class_name
@@ -70,8 +72,7 @@ module CarinForBlueButtonTestKit
       end
 
       def search_validation_resource_type
-        text = "#{resource_type} resources"
-        text
+        "#{resource_type} resources"
       end
 
       def profile_name
@@ -82,9 +83,8 @@ module CarinForBlueButtonTestKit
         group_metadata.profile_url
       end
 
-
       def optional?
-        resource_type == 'QuestionnaireResponse'
+        group_metadata.conformance_expectation != 'SHALL'
       end
 
       def generate
@@ -97,11 +97,9 @@ module CarinForBlueButtonTestKit
       def test_id_list
         @test_id_list ||=
           group_metadata.tests.map { |test| test[:id] }
-        
+
         # Remove calls to search tests for EOB subgroups (all subgroup search tests handled in EOB root tests)
-        if is_eob_subgroup?
-          @test_id_list = @test_id_list.select { |test_name| !test_name.include?("search_test") }
-        end
+        @test_id_list = @test_id_list.reject { |test_name| test_name.include?('search_test') } if is_eob_subgroup?
 
         @test_id_list
       end
@@ -112,20 +110,18 @@ module CarinForBlueButtonTestKit
             name_without_suffix = test[:file_name].delete_suffix('.rb')
             name_without_suffix.start_with?('..') ? name_without_suffix : "#{profile_identifier}/#{name_without_suffix}"
           end
-        
+
         # Remove calls to search tests for EOB subgroups (all subgroup search tests handled in EOB root tests)
-        if is_eob_subgroup?
-          @test_file_list = @test_file_list.select { |test_name| !test_name.include?("search_test") }
-        end
+        @test_file_list = @test_file_list.reject { |test_name| test_name.include?('search_test') } if is_eob_subgroup?
 
         @test_file_list
       end
 
       def required_searches
         if !group_metadata.searches.nil? && !is_eob_subgroup?
-            group_metadata.searches.select { |search| search[:expectation] == 'SHALL' }
+          group_metadata.searches.select { |search| search[:expectation] == 'SHALL' }
         else
-            []
+          []
         end
       end
 
@@ -140,65 +136,65 @@ module CarinForBlueButtonTestKit
         return '' if required_searches.blank?
 
         <<~SEARCH_DESCRIPTION
-        ## Searching
-        This test sequence will first perform each required search associated
-        with this resource. This sequence will perform searches with the
-        following parameters:
+          ## Searching
+          This test sequence will first perform each required search associated
+          with this resource. This sequence will perform searches with the
+          following parameters:
 
-        #{search_param_name_string}
+          #{search_param_name_string}
 
-        ### Search Parameters
-        The first search uses the selected patient(s) from the prior launch
-        sequence. Any subsequent searches will look for its parameter values
-        from the results of the first search. For example, the `identifier`
-        search in the patient sequence is performed by looking for an existing
-        `Patient.identifier` from any of the resources returned in the `_id`
-        search. If a value cannot be found this way, the search is skipped.
+          ### Search Parameters
+          The first search uses the selected patient(s) from the prior launch
+          sequence. Any subsequent searches will look for its parameter values
+          from the results of the first search. For example, the `identifier`
+          search in the patient sequence is performed by looking for an existing
+          `Patient.identifier` from any of the resources returned in the `_id`
+          search. If a value cannot be found this way, the search is skipped.
 
-        ### Search Validation
-        Inferno will retrieve up to the first 20 bundle pages of the reply for
-        #{search_validation_resource_type} and save them for subsequent tests.
-        Each resource is then checked to see if it matches the searched
-        parameters in accordance with [FHIR search
-        guidelines](https://www.hl7.org/fhir/search.html). The test will fail,
-        for example, if a Patient search for `gender=male` returns a `female`
-        patient.
+          ### Search Validation
+          Inferno will retrieve up to the first 20 bundle pages of the reply for
+          #{search_validation_resource_type} and save them for subsequent tests.
+          Each resource is then checked to see if it matches the searched
+          parameters in accordance with [FHIR search
+          guidelines](https://www.hl7.org/fhir/search.html). The test will fail,
+          for example, if a Patient search for `gender=male` returns a `female`
+          patient.
         SEARCH_DESCRIPTION
       end
 
       def description
         <<~DESCRIPTION
-        # Background
+          # Background
 
-        The CARIN for Blue Button #{title} sequence verifies that the system under test is
-        able to provide correct responses for #{resource_type} queries. These queries
-        must contain resources conforming to the #{profile_name} as
-        specified in the CARIN for Blue Button #{group_metadata.version} Implementation Guide.
+          The CARIN for Blue Button #{title} sequence verifies that the system under test is
+          able to provide correct responses for #{resource_type} queries. These queries
+          must contain resources conforming to the #{profile_name} as
+          specified in the CARIN for Blue Button #{group_metadata.version} Implementation Guide.
 
-        # Testing Methodology
-        #{search_description}
+          # Testing Methodology
+          #{search_description}
 
-        ## Must Support
-        Each profile contains elements marked as "must support". This test
-        sequence expects to see each of these elements at least once. If at
-        least one cannot be found, the test will fail. The test will look
-        through the #{resource_type} resources found in the first test for these
-        elements.
+          ## Must Support
+          Each profile contains elements marked as "must support". This test
+          sequence expects to see each of these elements at least once. If at
+          least one cannot be found, the test will fail. The test will look
+          through the #{resource_type} resources found in the first test for these
+          elements.
 
-        ## Profile Validation
-        Each resource returned from the first search is expected to conform to
-        the [#{profile_name}](#{profile_url}). Each element is checked against
-        terminology binding and cardinality requirements.
+          ## Profile Validation
+          Each resource returned from the first search is expected to conform to
+          the [#{profile_name}](#{profile_url}). Each element is checked against
+          terminology binding and cardinality requirements.
 
-        Elements with a required binding are validated against their bound
-        ValueSet. If the code/system in the element is not part of the ValueSet,
-        then the test will fail.
+          Elements with a required binding are validated against their bound
+          ValueSet. If the code/system in the element is not part of the ValueSet,
+          then the test will fail.
 
-        ## Reference Validation
-        At least one instance of each external reference in elements marked as
-        "must support" within the resources provided by the system must resolve.
-        The test will attempt to read each reference found and will fail if no
-        read succeeds.
+          ## Reference Validation
+          At least one instance of each external reference in elements marked as
+          "must support" within the resources provided by the system must resolve.
+          The test will attempt to read each reference found and will fail if no
+          read succeeds.
         DESCRIPTION
       end
 

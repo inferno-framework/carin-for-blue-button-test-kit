@@ -69,6 +69,8 @@ read succeeds.
     
           id :c4bb_v200_related_person
           run_as_group
+          optional
+          
     
           def self.metadata
             @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'related_person', 'metadata.yml'), aliases: true))

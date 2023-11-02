@@ -6,6 +6,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: Coverage
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage
   :profile_name: C4BB Coverage
   :profile_version: 2.0.0
@@ -184,6 +185,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit
   :profile_name: C4BB Explanation Of Benefit
   :profile_version: 2.0.0
@@ -857,6 +859,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Inpatient-Institutional
   :profile_name: C4BB ExplanationOfBenefit Inpatient Institutional
   :profile_version: 2.0.0
@@ -1935,6 +1938,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Inpatient-Institutional-NonFinancial
   :profile_name: C4BB ExplanationOfBenefit Inpatient Institutional - Non-Financial
   :profile_version: 2.0.0
@@ -2917,6 +2921,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Outpatient-Institutional
   :profile_name: C4BB ExplanationOfBenefit Outpatient Institutional
   :profile_version: 2.0.0
@@ -3948,6 +3953,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Outpatient-Institutional-NonFinancial
   :profile_name: C4BB ExplanationOfBenefit Outpatient Institutional - Non-Financial
   :profile_version: 2.0.0
@@ -4882,6 +4888,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Oral
   :profile_name: C4BB ExplanationOfBenefit Oral
   :profile_version: 2.0.0
@@ -5934,6 +5941,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Oral-NonFinancial
   :profile_name: C4BB ExplanationOfBenefit Oral - Non-Financial
   :profile_version: 2.0.0
@@ -6923,6 +6931,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Pharmacy
   :profile_name: C4BB ExplanationOfBenefit Pharmacy
   :profile_version: 2.0.0
@@ -7905,6 +7914,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Pharmacy-NonFinancial
   :profile_name: C4BB ExplanationOfBenefit Pharmacy - Non-Financial
   :profile_version: 2.0.0
@@ -8822,6 +8832,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Professional-NonClinician
   :profile_name: C4BB ExplanationOfBenefit Professional NonClinician
   :profile_version: 2.0.0
@@ -9908,6 +9919,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: ExplanationOfBenefit
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Professional-NonClinician-NonFinancial
   :profile_name: C4BB ExplanationOfBenefit Professional NonClinician - Non-Financial
   :profile_version: 2.0.0
@@ -10931,6 +10943,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: Organization
+  :conformance_expectation: SHOULD
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization
   :profile_name: C4BB Organization
   :profile_version: 2.0.0
@@ -11078,6 +11091,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: Patient
+  :conformance_expectation: SHALL
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient
   :profile_name: C4BB Patient
   :profile_version: 2.0.0
@@ -11313,6 +11327,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: Practitioner
+  :conformance_expectation: SHOULD
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner
   :profile_name: C4BB Practitioner
   :profile_version: 2.0.0
@@ -11436,6 +11451,7 @@
   :version: v2.0.0-dev-nonfinancial
   :reformatted_version: v200devnonfinancial
   :resource: RelatedPerson
+  :conformance_expectation: SHOULD
   :profile_url: http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-RelatedPerson
   :profile_name: C4BB RelatedPerson
   :profile_version: 2.0.0
