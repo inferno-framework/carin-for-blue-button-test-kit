@@ -11,12 +11,15 @@ module CarinForBlueButtonTestKit
 <%= description %>
       )
 
-      id :<%= test_id %>
+      id :<%= test_id %><% if optional? %>
+      optional
+      <% end %>
 
       input :<%=test_id%>_param,
         title: '<%=input_title%>',
         type: 'text',
-        description: '<%=input_description%>'
+        description: '<%=input_description%>'<%if optional?%>,
+        optional: true<% end %>
 
       def self.properties
         @properties ||= SearchTestProperties.new(
@@ -33,6 +36,9 @@ module CarinForBlueButtonTestKit
       end
 
       run do
+        <% if optional? %>
+        skip_if <%=test_id%>_param.blank?, '<%="#{input_title.chop!} not provided" %>'
+        <% end %>
         run_search_test(<%=test_id%>_param)
       end
     end

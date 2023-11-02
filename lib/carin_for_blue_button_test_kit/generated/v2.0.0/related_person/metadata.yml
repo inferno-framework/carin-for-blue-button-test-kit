@@ -117,6 +117,10 @@
   :file_name: related_person_validation_test.rb
 - :id: c4bb_v200_related_person_must_support_test
   :file_name: related_person_must_support_test.rb
+- :id: c4bb_v200_related_person__id_search_test
+  :file_name: related_person_id_search_test.rb
+- :id: c4bb_v200_related_person__lastUpdated_search_test
+  :file_name: related_person_lastupdated_search_test.rb
 :id: c4bb_v200_related_person
 :file_name: related_person_group.rb
 :delayed_references: []

@@ -52,6 +52,7 @@ requirement of CARIN IG for Blue Button® v2.0.0-dev-nonfinancial.
       end
 
       run do
+        
         run_search_test(c4bb_v200devnonfinancial_explanation_of_benefit_oral_non_financial__id_search_test_param)
       end
     end

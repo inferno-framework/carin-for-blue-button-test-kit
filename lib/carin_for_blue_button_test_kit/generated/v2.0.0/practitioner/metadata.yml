@@ -128,6 +128,10 @@
   :file_name: practitioner_validation_test.rb
 - :id: c4bb_v200_practitioner_must_support_test
   :file_name: practitioner_must_support_test.rb
+- :id: c4bb_v200_practitioner__id_search_test
+  :file_name: practitioner_id_search_test.rb
+- :id: c4bb_v200_practitioner__lastUpdated_search_test
+  :file_name: practitioner_lastupdated_search_test.rb
 :id: c4bb_v200_practitioner
 :file_name: practitioner_group.rb
 :delayed_references: []

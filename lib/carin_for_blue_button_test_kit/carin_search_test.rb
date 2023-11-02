@@ -37,6 +37,7 @@ module CarinForBlueButtonTestKit
       search_params[search_param_names[0]] = param_value
 
       fhir_search(resource_type, params: search_params)
+      
       assert_response_status(200)
       assert_resource_type(:bundle)
 
