@@ -2,16 +2,16 @@
 
 require_relative 'patient/patient_id_search_test'
 require_relative 'patient/patient_read_test'
-    require_relative 'patient/patient_validation_test'
-    require_relative 'patient/patient_must_support_test'
+require_relative 'patient/patient_validation_test'
+require_relative 'patient/patient_must_support_test'
 
-    module CarinForBlueButtonTestKit
-      module CARIN4BBV200DEVNONFINANCIAL
-        class PatientGroup < Inferno::TestGroup
-          title 'Patient Tests'
-          short_description 'Verify support for the server capabilities required by the C4BB Patient.'
-          description %(
-      # Background
+module CarinForBlueButtonTestKit
+  module CARIN4BBV200DEVNONFINANCIAL
+    class PatientGroup < Inferno::TestGroup
+      title 'Patient Tests'
+      short_description 'Verify support for the server capabilities required by the C4BB Patient.'
+      description %(
+        # Background
 
         The CARIN for Blue Button Patient sequence verifies that the system under test is
         able to provide correct responses for Patient queries. These queries
@@ -66,18 +66,20 @@ require_relative 'patient/patient_read_test'
         The test will attempt to read each reference found and will fail if no
         read succeeds.
 
-          )
+      )
 
-          id :c4bb_v200devnonfinancial_patient
-          run_as_group
+      id :c4bb_v200devnonfinancial_patient
+      run_as_group
 
-          def self.metadata
-            @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'patient', 'metadata.yml'), aliases: true))
-          end
-
-          test from: :c4bb_v200devnonfinancial_patient_read_test
-          test from: :c4bb_v200devnonfinancial_patient_validation_test
-          test from: :c4bb_v200devnonfinancial_patient_must_support_test
-        end
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'patient', 'metadata.yml'),
+                                                                  aliases: true))
       end
+
+      test from: :c4bb_v200devnonfinancial_patient_id_search_test
+      test from: :c4bb_v200devnonfinancial_patient_read_test
+      test from: :c4bb_v200devnonfinancial_patient_validation_test
+      test from: :c4bb_v200devnonfinancial_patient_must_support_test
     end
+  end
+end
