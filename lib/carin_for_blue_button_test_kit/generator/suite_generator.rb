@@ -89,6 +89,13 @@ module CarinForBlueButtonTestKit
         "c4bb_#{ig_metadata.reformatted_version}_capability_statement"
       end
 
+      def smart_launch_file_name
+        "../../custom_groups/#{ig_metadata.ig_version}/c4bb_smart_launch_group"
+      end
+
+      def smart_launch_group_id
+        "c4bb_#{ig_metadata.reformatted_version}_smart_launch"
+      end
     end
   end
 end
