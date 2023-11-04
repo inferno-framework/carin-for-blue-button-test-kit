@@ -14,7 +14,7 @@ module CarinForBlueButtonTestKit
       input :explanation_of_benefit_pharmacy_ids,
         title: "explanation_of_benefit_pharmacy IDs",
         type: 'text',
-        description: "explanation_of_benefit_pharmacy Resource ID"
+        description: "Comma separated list of explanation_of_benefit_pharmacy IDs that in sum contain all MUST SUPPORT elements"
 
       input_order :url, :smart_credentials, :explanation_of_benefit_pharmacy_ids
 

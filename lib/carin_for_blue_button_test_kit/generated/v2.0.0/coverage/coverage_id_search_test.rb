@@ -26,12 +26,11 @@ requirement of CARIN IG for Blue Button® v2.0.0.
 
       id :c4bb_v200_coverage__id_search_test
 
-      input :c4bb_v200_coverage__id_search_test_param,
-        title: 'Coverage search parameter for _id
-',
+      input :coverage_ids,
+        title: 'coverage IDs',
         type: 'text',
-        description: 'Coverage search parameter: _id
-'
+        description: 'Comma separated list of coverage IDs that in sum
+                          contain all MUST SUPPORT elements'
 
       def self.properties
         @properties ||= SearchTestProperties.new(
@@ -50,10 +49,15 @@ requirement of CARIN IG for Blue Button® v2.0.0.
       def scratch_resources
         scratch[:coverage_resources] ||= {}
       end
-
+      
+      def coverage_ids_string_formatter
+        return [nil] unless respond_to? :coverage_ids
+        coverage_ids.split(',').map(&:strip).join(',')
+      end
+      
       run do
         
-        run_search_test(c4bb_v200_coverage__id_search_test_param)
+        run_search_test(coverage_ids_string_formatter)
       end
     end
   end

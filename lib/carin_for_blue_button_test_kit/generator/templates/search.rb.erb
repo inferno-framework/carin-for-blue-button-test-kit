@@ -15,10 +15,10 @@ module CarinForBlueButtonTestKit
       optional
       <% end %>
 
-      input :<%=test_id%>_param,
-        title: '<%=input_title%>',
+      input :<%=input_id%>,
+        title: '<%=input_title.strip%>',
         type: 'text',
-        description: '<%=input_description%>'<%if optional?%>,
+        description: '<%=input_description.strip%>'<%if optional?%>,
         optional: true<% end %>
 
       def self.properties
@@ -34,12 +34,16 @@ module CarinForBlueButtonTestKit
       def scratch_resources
         scratch[:<%= profile_identifier %>_resources] ||= {}
       end
-
+      <% if id_param? %>
+      def <%=input_id %>_string_formatter
+        return [nil] unless respond_to? :<%= input_id %>
+        <%= input_id %>.split(',').map(&:strip).join(',')
+      end
+      <% end %>
       run do
-        <% if optional? %>
-        skip_if <%=test_id%>_param.blank?, '<%="#{input_title.chop!} not provided" %>'
+        <% if optional? %>skip_if <%=input_id%>.blank?, '<%="#{input_title.chop!} not provided" %>'
         <% end %>
-        run_search_test(<%=test_id%>_param)
+        run_search_test(<%= id_param? ? "#{input_id}_string_formatter" : input_id%>)
       end
     end
   end

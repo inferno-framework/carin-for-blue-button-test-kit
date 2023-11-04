@@ -14,7 +14,7 @@ module CarinForBlueButtonTestKit
       input :related_person_ids,
         title: "related_person IDs",
         type: 'text',
-        description: "related_person Resource ID"
+        description: "Comma separated list of related_person IDs that in sum contain all MUST SUPPORT elements"
 
       input_order :url, :smart_credentials, :related_person_ids
 

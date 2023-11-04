@@ -11,7 +11,9 @@ module CarinForBlueButtonTestKit
             .select { |group| group.searches.present? }
             .each do |group|
               group.searches.each { |search| new(group, search, base_output_dir).generate }
-              group.include_params.each{ |param| IncludeSearchTestGenerator.new(group, param, base_output_dir).generate }
+              group.include_params.each do |param|
+ IncludeSearchTestGenerator.new(group, param, base_output_dir).generate
+              end
             end
         end
       end
@@ -208,7 +210,10 @@ module CarinForBlueButtonTestKit
           properties[:token_search_params] = token_search_params_string if token_search_params.present?
           properties[:test_reference_variants] = 'true' if test_reference_variants?
           properties[:params_with_comparators] = required_comparators_string if required_comparators.present?
-          properties[:multiple_or_search_params] = required_multiple_or_search_params_string if required_multiple_or_search_params.present?
+          if required_multiple_or_search_params.present?
+            properties[:multiple_or_search_params] =
+              required_multiple_or_search_params_string
+          end
           properties[:test_post_search] = 'true' if first_search?
         end
       end
@@ -230,7 +235,7 @@ module CarinForBlueButtonTestKit
 
       def generate
         FileUtils.mkdir_p(output_file_directory)
-        File.open(output_file_name, 'w') { |f| f.write(output) }
+        File.write(output_file_name, output)
 
         group_metadata.add_test(
           id: test_id,
@@ -282,15 +287,38 @@ module CarinForBlueButtonTestKit
         DESCRIPTION
       end
 
+      def id_param?
+        search_param_name_string == '_id'
+      end
+
+      def input_id
+        id_param? ? "#{profile_identifier}_ids" : "#{test_id}_param"
+      end
+
       def input_title
+        title_content = if id_param?
+                          "#{profile_identifier} IDs"
+                        else
+                          "#{resource_type} search parameter for #{search_param_name_string}"
+                        end
+
         <<~INPUT_TITLE
-        #{resource_type} search parameter for #{search_param_name_string}
+        #{title_content.strip}
         INPUT_TITLE
       end
 
+
       def input_description
+        desc_content =  if id_param?
+                          "
+                          Comma separated list of #{profile_identifier} IDs that in sum
+                          contain all MUST SUPPORT elements
+                          "
+                        else
+                          "#{resource_type} search parameter: #{search_param_name_string}"
+                        end
         <<~INPUT_DESCRIPTION
-        #{resource_type} search parameter: #{search_param_name_string}
+        #{desc_content}
         INPUT_DESCRIPTION
       end
     end

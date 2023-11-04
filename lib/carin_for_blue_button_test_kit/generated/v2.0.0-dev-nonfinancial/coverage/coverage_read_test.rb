@@ -14,7 +14,7 @@ module CarinForBlueButtonTestKit
       input :coverage_ids,
         title: "coverage IDs",
         type: 'text',
-        description: "coverage Resource ID"
+        description: "Comma separated list of coverage IDs that in sum contain all MUST SUPPORT elements"
 
       input_order :url, :smart_credentials, :coverage_ids
 

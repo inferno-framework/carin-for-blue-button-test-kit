@@ -8,7 +8,7 @@ module CarinForBlueButtonTestKit
 
       title 'Server returns valid results for ExplanationOfBenefit search by id + _include=ExplanationOfBenefit:payee'
       description %(
-Tests that the server responds correctly when using _include="ExplanationOfBenefit:payee" as a search parameter 
+Tests that the server responds correctly when using _include="ExplanationOfBenefit:payee" as a search parameter
 
       )
 
@@ -21,17 +21,22 @@ Tests that the server responds correctly when using _include="ExplanationOfBenef
 
       id :c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_non_financial_include_ExplanationOfBenefit_payee_search_test
 
-      input :c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_non_financial__id_search_test_param,
-        title: 'ExplanationOfBenefit search parameter for _id',
+      input :explanation_of_benefit_outpatient_institutional_non_financial_ids,
+        title: 'explanation_of_benefit_outpatient_institutional_non_financial IDs',
         type: 'text',
-        description: 'ExplanationOfBenefit search parameter: _id'
+        description: 'Comma separated list of explanation_of_benefit_outpatient_institutional_non_financial IDs that in sum contain all MUST SUPPORT elements'
 
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
       end
 
+      def explanation_of_benefit_outpatient_institutional_non_financial_ids_string_formatter
+        return [nil] unless respond_to? :explanation_of_benefit_outpatient_institutional_non_financial_ids
+        explanation_of_benefit_outpatient_institutional_non_financial_ids.split(',').map(&:strip).join(',')
+      end
+
       run do
-        run_search_test('ExplanationOfBenefit:payee', include_search: true, resource_id: c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_non_financial__id_search_test_param)
+        run_search_test('ExplanationOfBenefit:payee', include_search: true, resource_id: explanation_of_benefit_outpatient_institutional_non_financial_ids_string_formatter)
       end
     end
   end

@@ -19,11 +19,9 @@ none are returned, the test is skipped.
       id :c4bb_v200_explanation_of_benefit_pharmacy_identifier_search_test
 
       input :c4bb_v200_explanation_of_benefit_pharmacy_identifier_search_test_param,
-        title: 'ExplanationOfBenefit search parameter for identifier
-',
+        title: 'ExplanationOfBenefit search parameter for identifier',
         type: 'text',
-        description: 'ExplanationOfBenefit search parameter: identifier
-'
+        description: 'ExplanationOfBenefit search parameter: identifier'
 
       def self.properties
         @properties ||= SearchTestProperties.new(
@@ -40,7 +38,7 @@ none are returned, the test is skipped.
       def scratch_resources
         scratch[:explanation_of_benefit_pharmacy_resources] ||= {}
       end
-
+      
       run do
         
         run_search_test(c4bb_v200_explanation_of_benefit_pharmacy_identifier_search_test_param)

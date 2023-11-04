@@ -26,12 +26,11 @@ requirement of CARIN IG for Blue Button® v2.0.0.
 
       id :c4bb_v200_practitioner__id_search_test
 
-      input :c4bb_v200_practitioner__id_search_test_param,
-        title: 'Practitioner search parameter for _id
-',
+      input :practitioner_ids,
+        title: 'practitioner IDs',
         type: 'text',
-        description: 'Practitioner search parameter: _id
-'
+        description: 'Comma separated list of practitioner IDs that in sum
+                          contain all MUST SUPPORT elements'
 
       def self.properties
         @properties ||= SearchTestProperties.new(
@@ -49,10 +48,15 @@ requirement of CARIN IG for Blue Button® v2.0.0.
       def scratch_resources
         scratch[:practitioner_resources] ||= {}
       end
-
+      
+      def practitioner_ids_string_formatter
+        return [nil] unless respond_to? :practitioner_ids
+        practitioner_ids.split(',').map(&:strip).join(',')
+      end
+      
       run do
         
-        run_search_test(c4bb_v200_practitioner__id_search_test_param)
+        run_search_test(practitioner_ids_string_formatter)
       end
     end
   end

@@ -26,12 +26,11 @@ requirement of CARIN IG for Blue Button® v2.0.0-dev-nonfinancial.
 
       id :c4bb_v200devnonfinancial_related_person__id_search_test
 
-      input :c4bb_v200devnonfinancial_related_person__id_search_test_param,
-        title: 'RelatedPerson search parameter for _id
-',
+      input :related_person_ids,
+        title: 'related_person IDs',
         type: 'text',
-        description: 'RelatedPerson search parameter: _id
-'
+        description: 'Comma separated list of related_person IDs that in sum
+                          contain all MUST SUPPORT elements'
 
       def self.properties
         @properties ||= SearchTestProperties.new(
@@ -49,10 +48,15 @@ requirement of CARIN IG for Blue Button® v2.0.0-dev-nonfinancial.
       def scratch_resources
         scratch[:related_person_resources] ||= {}
       end
-
+      
+      def related_person_ids_string_formatter
+        return [nil] unless respond_to? :related_person_ids
+        related_person_ids.split(',').map(&:strip).join(',')
+      end
+      
       run do
         
-        run_search_test(c4bb_v200devnonfinancial_related_person__id_search_test_param)
+        run_search_test(related_person_ids_string_formatter)
       end
     end
   end

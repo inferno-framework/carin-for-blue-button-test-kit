@@ -41,7 +41,7 @@ module CarinForBlueButtonTestKit
       search_params[search_param_names[0]] = param_value
 
       fhir_search(resource_type, params: search_params)
-      
+
       assert_response_status(200)
       assert_resource_type(:bundle)
 
@@ -119,7 +119,7 @@ module CarinForBlueButtonTestKit
 
           values_found =
             resolve_path(resource.source_hash, path)
-            .map do |value|
+              .map do |value|
               value[:reference.to_s] || value
             end
 
@@ -153,8 +153,7 @@ module CarinForBlueButtonTestKit
                         when 'Period', 'date', 'instant', 'dateTime'
                           values_found.any? { |date| validate_date_search(param_value, date) }
                         when 'http://hl7.org/fhirpath/System.String'
-                          param_value = param_value.split(',').map(&:strip)
-                          values_found.any? { |str| param_value.include?(str) }
+                          values_found.any? { |str| param_value.split(',').include?(str) }
                         else
                           false
                         end
@@ -182,7 +181,16 @@ module CarinForBlueButtonTestKit
         match_found = false
         paths = include_param_paths(param_value)
 
-        if param_value != 'ExplanationOfBenefit:*'
+        if param_value == 'ExplanationOfBenefit:*'
+          values_found = []
+          paths.each do |path|
+            values_found += resolve_path(resource.source_hash, path)
+          end
+
+          match_found = (values_found.length >= 5)
+
+          assert match_found, 'Returned resource did not match the search parameter'
+        else
           paths.each do |path|
             values_found = resolve_path(resource.source_hash, path)
 
@@ -192,15 +200,6 @@ module CarinForBlueButtonTestKit
           end
           assert match_found, 'Returned resource did not match the search parameter'
           return
-        else
-          values_found = []
-          paths.each do |path|
-            values_found += resolve_path(resource.source_hash, path)
-          end
-
-          match_found = (values_found.length >= 5)
-
-          assert match_found, 'Returned resource did not match the search parameter'
         end
       end
     end

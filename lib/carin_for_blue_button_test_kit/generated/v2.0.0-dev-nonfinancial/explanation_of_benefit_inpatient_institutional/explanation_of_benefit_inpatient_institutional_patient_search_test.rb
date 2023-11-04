@@ -19,11 +19,9 @@ none are returned, the test is skipped.
       id :c4bb_v200devnonfinancial_explanation_of_benefit_inpatient_institutional_patient_search_test
 
       input :c4bb_v200devnonfinancial_explanation_of_benefit_inpatient_institutional_patient_search_test_param,
-        title: 'ExplanationOfBenefit search parameter for patient
-',
+        title: 'ExplanationOfBenefit search parameter for patient',
         type: 'text',
-        description: 'ExplanationOfBenefit search parameter: patient
-'
+        description: 'ExplanationOfBenefit search parameter: patient'
 
       def self.properties
         @properties ||= SearchTestProperties.new(
@@ -39,7 +37,7 @@ none are returned, the test is skipped.
       def scratch_resources
         scratch[:explanation_of_benefit_inpatient_institutional_resources] ||= {}
       end
-
+      
       run do
         
         run_search_test(c4bb_v200devnonfinancial_explanation_of_benefit_inpatient_institutional_patient_search_test_param)

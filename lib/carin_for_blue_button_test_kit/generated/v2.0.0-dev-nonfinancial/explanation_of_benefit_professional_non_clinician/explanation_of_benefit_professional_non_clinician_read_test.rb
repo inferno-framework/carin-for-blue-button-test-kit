@@ -14,7 +14,7 @@ module CarinForBlueButtonTestKit
       input :explanation_of_benefit_professional_non_clinician_ids,
         title: "explanation_of_benefit_professional_non_clinician IDs",
         type: 'text',
-        description: "explanation_of_benefit_professional_non_clinician Resource ID"
+        description: "Comma separated list of explanation_of_benefit_professional_non_clinician IDs that in sum contain all MUST SUPPORT elements"
 
       input_order :url, :smart_credentials, :explanation_of_benefit_professional_non_clinician_ids
 

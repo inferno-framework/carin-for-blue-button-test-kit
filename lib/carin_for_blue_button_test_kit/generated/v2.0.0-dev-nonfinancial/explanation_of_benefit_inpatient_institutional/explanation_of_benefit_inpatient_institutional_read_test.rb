@@ -14,7 +14,7 @@ module CarinForBlueButtonTestKit
       input :explanation_of_benefit_inpatient_institutional_ids,
         title: "explanation_of_benefit_inpatient_institutional IDs",
         type: 'text',
-        description: "explanation_of_benefit_inpatient_institutional Resource ID"
+        description: "Comma separated list of explanation_of_benefit_inpatient_institutional IDs that in sum contain all MUST SUPPORT elements"
 
       input_order :url, :smart_credentials, :explanation_of_benefit_inpatient_institutional_ids
 

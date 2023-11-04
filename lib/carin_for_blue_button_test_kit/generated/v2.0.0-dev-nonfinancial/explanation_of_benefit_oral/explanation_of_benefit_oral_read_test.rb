@@ -14,7 +14,7 @@ module CarinForBlueButtonTestKit
       input :explanation_of_benefit_oral_ids,
         title: "explanation_of_benefit_oral IDs",
         type: 'text',
-        description: "explanation_of_benefit_oral Resource ID"
+        description: "Comma separated list of explanation_of_benefit_oral IDs that in sum contain all MUST SUPPORT elements"
 
       input_order :url, :smart_credentials, :explanation_of_benefit_oral_ids
 

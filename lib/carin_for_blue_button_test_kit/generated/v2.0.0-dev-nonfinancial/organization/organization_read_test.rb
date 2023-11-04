@@ -14,7 +14,7 @@ module CarinForBlueButtonTestKit
       input :organization_ids,
         title: "organization IDs",
         type: 'text',
-        description: "organization Resource ID"
+        description: "Comma separated list of organization IDs that in sum contain all MUST SUPPORT elements"
 
       input_order :url, :smart_credentials, :organization_ids
 

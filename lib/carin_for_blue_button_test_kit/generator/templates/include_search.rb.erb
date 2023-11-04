@@ -29,8 +29,13 @@ module CarinForBlueButtonTestKit
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
       end
 
+      def <%=input_id %>_string_formatter
+        return [nil] unless respond_to? :<%= input_id %>
+        <%= input_id %>.split(',').map(&:strip).join(',')
+      end
+
       run do
-        run_search_test('<%=include_search_param%>', include_search: <%=include_search%>, resource_id: <%= input_id %>)
+        run_search_test('<%=include_search_param%>', include_search: <%=include_search%>, resource_id: <%= input_id %>_string_formatter)
       end
     end
   end

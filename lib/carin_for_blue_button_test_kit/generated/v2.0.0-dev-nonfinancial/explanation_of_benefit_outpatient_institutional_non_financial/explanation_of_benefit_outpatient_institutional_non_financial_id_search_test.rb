@@ -26,12 +26,11 @@ requirement of CARIN IG for Blue Button® v2.0.0-dev-nonfinancial.
 
       id :c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_non_financial__id_search_test
 
-      input :c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_non_financial__id_search_test_param,
-        title: 'ExplanationOfBenefit search parameter for _id
-',
+      input :explanation_of_benefit_outpatient_institutional_non_financial_ids,
+        title: 'explanation_of_benefit_outpatient_institutional_non_financial IDs',
         type: 'text',
-        description: 'ExplanationOfBenefit search parameter: _id
-'
+        description: 'Comma separated list of explanation_of_benefit_outpatient_institutional_non_financial IDs that in sum
+                          contain all MUST SUPPORT elements'
 
       def self.properties
         @properties ||= SearchTestProperties.new(
@@ -50,10 +49,15 @@ requirement of CARIN IG for Blue Button® v2.0.0-dev-nonfinancial.
       def scratch_resources
         scratch[:explanation_of_benefit_outpatient_institutional_non_financial_resources] ||= {}
       end
-
+      
+      def explanation_of_benefit_outpatient_institutional_non_financial_ids_string_formatter
+        return [nil] unless respond_to? :explanation_of_benefit_outpatient_institutional_non_financial_ids
+        explanation_of_benefit_outpatient_institutional_non_financial_ids.split(',').map(&:strip).join(',')
+      end
+      
       run do
         
-        run_search_test(c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_non_financial__id_search_test_param)
+        run_search_test(explanation_of_benefit_outpatient_institutional_non_financial_ids_string_formatter)
       end
     end
   end

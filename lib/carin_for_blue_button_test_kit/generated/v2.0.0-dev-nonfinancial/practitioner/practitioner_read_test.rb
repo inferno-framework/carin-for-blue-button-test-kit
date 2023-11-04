@@ -14,7 +14,7 @@ module CarinForBlueButtonTestKit
       input :practitioner_ids,
         title: "practitioner IDs",
         type: 'text',
-        description: "practitioner Resource ID"
+        description: "Comma separated list of practitioner IDs that in sum contain all MUST SUPPORT elements"
 
       input_order :url, :smart_credentials, :practitioner_ids
 

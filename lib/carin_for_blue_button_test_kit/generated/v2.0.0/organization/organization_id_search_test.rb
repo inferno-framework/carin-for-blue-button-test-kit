@@ -26,12 +26,11 @@ requirement of CARIN IG for Blue Button® v2.0.0.
 
       id :c4bb_v200_organization__id_search_test
 
-      input :c4bb_v200_organization__id_search_test_param,
-        title: 'Organization search parameter for _id
-',
+      input :organization_ids,
+        title: 'organization IDs',
         type: 'text',
-        description: 'Organization search parameter: _id
-'
+        description: 'Comma separated list of organization IDs that in sum
+                          contain all MUST SUPPORT elements'
 
       def self.properties
         @properties ||= SearchTestProperties.new(
@@ -49,10 +48,15 @@ requirement of CARIN IG for Blue Button® v2.0.0.
       def scratch_resources
         scratch[:organization_resources] ||= {}
       end
-
+      
+      def organization_ids_string_formatter
+        return [nil] unless respond_to? :organization_ids
+        organization_ids.split(',').map(&:strip).join(',')
+      end
+      
       run do
         
-        run_search_test(c4bb_v200_organization__id_search_test_param)
+        run_search_test(organization_ids_string_formatter)
       end
     end
   end
