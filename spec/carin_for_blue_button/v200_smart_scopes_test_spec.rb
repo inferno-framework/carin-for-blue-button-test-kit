@@ -41,28 +41,36 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::SmartScopesTest do
     allow_any_instance_of(test).to receive(:required_scopes).and_return(required_scopes)
   end
 
-  context 'with received scopes' do
-    let(:requested_scopes) { required_scopes.join(' ') }
+  context 'All required scopes are not requested' do
+    it 'fails if a required scope was not requested' do
+      result = run(test, requested_scopes: 'online_access launch',
+                         received_scopes: 'launch')
 
-    it 'passes if the received scopes grant access to all required resource types' do
-      result = run(test, requested_scopes:, received_scopes: required_scopes.join(' '))
+      expect(result.result).to eq('fail')
+      expect(result.result_message).to include('Required scopes were not requested: ')
+    end
+  end
+
+  context 'All required scopes requested' do
+    it 'fails if all the required scopes were not granted' do
+      result = run(test, requested_scopes: required_scopes.join(' '),
+                         received_scopes: 'patient/*.*')
+
+      expect(result.result).to eq('fail')
+    end
+
+    it 'passes if the granted scopes are the super set of the required requested scopes' do
+      result = run(test, requested_scopes: required_scopes.join(' '),
+                         received_scopes: 'patient/*.* user/*.* openid fhirUser launch/patient')
 
       expect(result.result).to eq('pass')
     end
 
-    it 'fails if the received scopes do not grant access to all required resource types' do
-      result = run(test, requested_scopes:, received_scopes: 'patient/Patient.read')
+    it 'passes if the granted scopes are the exact required requested scopes' do
+      result = run(test, requested_scopes: required_scopes.join(' '),
+                         received_scopes: required_scopes.join(' '))
 
-      expect(result.result).to eq('fail')
-    end
-  end
-
-  context 'with requested scopes' do
-    it 'fails if a required scope was not requested' do
-      result = run(test, requested_scopes: 'online_access launch')
-
-      expect(result.result).to eq('fail')
-      expect(result.result_message).to include('Required scopes were not requested: ')
+      expect(result.result).to eq('pass')
     end
   end
 end
