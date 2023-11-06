@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'c4bb_smart_launch/well_known_capabilities_test'
-require_relative 'c4bb_smart_launch/well_known_supported_scopes_test'
 require_relative 'c4bb_smart_launch/smart_scopes_test'
 
 module CarinForBlueButtonTestKit
@@ -23,6 +22,15 @@ module CarinForBlueButtonTestKit
         They then perform a standalone launch to obtain an access token which
         can be used by the remaining tests to access patient data.
       )
+      input_order :url,
+                  :standalone_client_id,
+                  :standalone_client_secret,
+                  :standalone_requested_scopes,
+                  :use_pkce,
+                  :pkce_code_challenge_method,
+                  :standalone_authorization_method,
+                  :client_auth_type,
+                  :client_auth_encryption_method
 
       group from: :smart_discovery do
         run_as_group
@@ -39,28 +47,6 @@ module CarinForBlueButtonTestKit
                 permission-offline
                 permission-patient
                 permission-user
-              ]
-            }
-          )
-        end
-
-        test from: :c4bb_v200devnonfinancial_wellknown_supported_scopes do
-          config(
-            options: {
-              required_scopes: %w[
-                openid
-                fhirUser
-                launch/patient
-                patient/ExplanationOfBenefit.read
-                patient/Coverage.read
-                patient/Patient.read
-                patient/Organization.read
-                patient/Practitioner.read
-                user/ExplanationOfBenefit.read
-                user/Coverage.read
-                user/Patient.read
-                user/Organization.read
-                user/Practitioner.read
               ]
             }
           )

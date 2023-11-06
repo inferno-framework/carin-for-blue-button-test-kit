@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'c4bb_smart_launch/well_known_capabilities_test'
-require_relative 'c4bb_smart_launch/well_known_supported_scopes_test'
 require_relative 'c4bb_smart_launch/smart_scopes_test'
 
 module CarinForBlueButtonTestKit
@@ -48,28 +47,6 @@ module CarinForBlueButtonTestKit
                 permission-offline
                 permission-patient
                 permission-user
-              ]
-            }
-          )
-        end
-
-        test from: :c4bb_v200_wellknown_supported_scopes do
-          config(
-            options: {
-              required_scopes: %w[
-                openid
-                fhirUser
-                launch/patient
-                patient/ExplanationOfBenefit.read
-                patient/Coverage.read
-                patient/Patient.read
-                patient/Organization.read
-                patient/Practitioner.read
-                user/ExplanationOfBenefit.read
-                user/Coverage.read
-                user/Patient.read
-                user/Organization.read
-                user/Practitioner.read
               ]
             }
           )
