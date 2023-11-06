@@ -44,7 +44,9 @@ module CarinForBlueButtonTestKit
           end
 
           def base_output_file_name
-            "#{class_name.underscore}.rb"
+            file_name = class_name.underscore
+            file_name.gsub!("#{profile_identifier}_", '')
+            "#{file_name}.rb"
           end
 
           def test_id
@@ -92,8 +94,12 @@ module CarinForBlueButtonTestKit
             search_param.sub("#{resource_type}:", "")
           end
 
+          def remove_resource_name
+            search_param.gsub(resource_type, '')
+          end
+
           def removed_hyphen
-            search_param.gsub('-', '')
+            remove_resource_name.gsub('-', '')
           end
 
           def remove_colon
