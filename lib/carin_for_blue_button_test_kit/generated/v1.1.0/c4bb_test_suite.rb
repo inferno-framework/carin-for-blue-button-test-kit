@@ -3,6 +3,7 @@ require 'smart_app_launch_test_kit'
 require_relative '../../version'
 
 require_relative '../../capability_statement/capability_statement_group'
+require_relative '../../custom_groups/v1.1.0/c4bb_smart_launch_group'
 
 require_relative 'patient_group'
 require_relative 'coverage_group'
@@ -55,45 +56,12 @@ module CarinForBlueButtonTestKit
         type: :oauth_credentials,
         optional: true
 
-      # SMART Test Suite requirement
-      group from: :smart_discovery,
-        run_as_group: true
-      group from: :smart_standalone_launch,
-        run_as_group: true,
-        config: {
-          outputs: {
-            patient_id: { name: :patient_ids },
-            smart_credentials: { name: :smart_credentials }
-          }
-        },
-        description: %(
-          # Background
-
-          The [Standalone
-          Launch Sequence](https://www.hl7.org/fhir/smart-app-launch/1.0.0/index.html#standalone-launch-sequence)
-          allows an app, like Inferno, to be launched independent of an
-          existing EHR session. It is one of the two launch methods described in
-          the SMART App Launch Framework alongside EHR Launch. The app will
-          request authorization for the provided scope from the authorization
-          endpoint, ultimately receiving an authorization token which can be used
-          to gain access to resources on the FHIR server.
-
-          # Test Methodology
-
-          Inferno will redirect the user to the authorization endpoint so that
-          they can provide any required credentials and authorize the application.
-          Upon successful authorization, Inferno will exchange the authorization
-          code provided for an access token.
-
-          For more information on the #{title}:
-
-          * [Standalone Launch Sequence](https://www.hl7.org/fhir/smart-app-launch/1.0.0/index.html#standalone-launch-sequence)
-        )
-
       fhir_client do
         url :url
         oauth_credentials :smart_credentials
       end
+
+      group from: :c4bb_v110_smart_launch
 
       group from: :capability_statement_group
   
