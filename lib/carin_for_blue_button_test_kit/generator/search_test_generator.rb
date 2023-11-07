@@ -94,7 +94,8 @@ module CarinForBlueButtonTestKit
 
       def fixed_value_search?
         first_search? && search_metadata[:names] != ['patient'] &&
-          !group_metadata.delayed? && resource_type != 'Patient'
+        search_metadata[:names] != ['_id'] && !group_metadata.delayed? &&
+        resource_type != 'Patient'
       end
 
       def fixed_value_search_param_name
