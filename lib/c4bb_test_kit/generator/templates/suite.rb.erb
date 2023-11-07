@@ -1,0 +1,70 @@
+require 'inferno/dsl/oauth_credentials'
+require 'smart_app_launch_test_kit'
+require_relative '../../version'
+
+require_relative '../../capability_statement/capability_statement_group'
+require_relative '<%= smart_launch_file_name %>'
+
+<% group_file_list.each do |file_name| %>require_relative '<%= file_name %>'
+<% end %>
+module CarinForBlueButtonTestKit
+  module <%= module_name %>
+    class <%= class_name %> < Inferno::TestSuite
+      title '<%= title %>'
+      description %(
+        The CARIN for Blue Button test suite validates system conformance to the HL7® FHIR® [CARIN for Blue Button® Implementation Guide](<%= ig_link %>).
+
+        <% if module_name.include? ("FINANCIAL") %>
+        Development build for the [non-financial branch](https://build.fhir.org/ig/HL7/carin-bb/branches/non-financial/).
+        <% end %>
+      )
+      version VERSION
+      links [
+        {
+          label: 'Open Source',
+          url: 'https://github.com/inferno-framework/cc4bb-test-kit'
+        },
+        {
+          label: 'Implementation Guide',
+          url: '<%= ig_link %>'
+        }
+      ]
+
+      def self.metadata
+        @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true)[:groups].map do |raw_metadata|
+            Generator::GroupMetadata.new(raw_metadata)
+          end
+      end
+
+      validator do
+        url ENV.fetch('<%= validator_env_name %>', 'http://validator_service:4567')
+      end
+
+      id :<%= suite_id %>
+
+      input :url,
+        title: 'FHIR Endpoint',
+        description: 'URL of the FHIR endpoint'
+
+      fhir_client do
+        url :url
+        oauth_credentials :smart_credentials
+      end
+
+      group from: :<%= smart_launch_group_id %>
+
+      group do
+        title 'C4BB FHIR API Tests'
+        description %(
+          The CARIN for Blue Button FHIR API Tests evaluate the ability of a system (C4BB FHIR Server)
+          to support required and optional FHIR operations and search parameters to return
+          conformant C4BB resources.
+        )
+
+        group from: :capability_statement_group
+    <% group_id_list.each do |id| %>
+        group from: :<%= id %><% end %>
+      end
+    end
+  end
+end
