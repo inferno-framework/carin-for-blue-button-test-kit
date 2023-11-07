@@ -44,8 +44,7 @@ module CarinForBlueButtonTestKit
 
       def delayed?
         return false if resource == 'Patient'
-        # no_patient_searches?
-        true
+        no_patient_searches?
       end
 
       def no_patient_searches?
@@ -60,7 +59,7 @@ module CarinForBlueButtonTestKit
           file_name:
         }
 
-        if !no_patient_searches? && !id.include?('include') && id.include?('patient_search')
+        if !delayed? && !id.include?('include') && id.include?('patient_search')
           self.tests.unshift(test_metadata)
 
         else

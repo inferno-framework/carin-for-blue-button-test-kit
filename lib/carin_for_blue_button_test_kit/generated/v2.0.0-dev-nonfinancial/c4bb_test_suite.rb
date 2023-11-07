@@ -6,7 +6,6 @@ require_relative '../../capability_statement/capability_statement_group'
 require_relative '../../custom_groups/v2.0.0-dev-nonfinancial/c4bb_smart_launch_group'
 
 require_relative 'patient_group'
-require_relative 'coverage_group'
 require_relative 'explanation_of_benefit_group'
 require_relative 'explanation_of_benefit_inpatient_institutional_group'
 require_relative 'explanation_of_benefit_inpatient_institutional_non_financial_group'
@@ -18,6 +17,7 @@ require_relative 'explanation_of_benefit_pharmacy_group'
 require_relative 'explanation_of_benefit_pharmacy_non_financial_group'
 require_relative 'explanation_of_benefit_professional_non_clinician_group'
 require_relative 'explanation_of_benefit_professional_non_clinician_non_financial_group'
+require_relative 'coverage_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
 require_relative 'related_person_group'
@@ -75,7 +75,6 @@ module CarinForBlueButtonTestKit
       group from: :capability_statement_group
   
       group from: :c4bb_v200devnonfinancial_patient
-      group from: :c4bb_v200devnonfinancial_coverage
       group from: :c4bb_v200devnonfinancial_explanation_of_benefit
       group from: :c4bb_v200devnonfinancial_explanation_of_benefit_inpatient_institutional
       group from: :c4bb_v200devnonfinancial_explanation_of_benefit_inpatient_institutional_non_financial
@@ -87,6 +86,7 @@ module CarinForBlueButtonTestKit
       group from: :c4bb_v200devnonfinancial_explanation_of_benefit_pharmacy_non_financial
       group from: :c4bb_v200devnonfinancial_explanation_of_benefit_professional_non_clinician
       group from: :c4bb_v200devnonfinancial_explanation_of_benefit_professional_non_clinician_non_financial
+      group from: :c4bb_v200devnonfinancial_coverage
       group from: :c4bb_v200devnonfinancial_organization
       group from: :c4bb_v200devnonfinancial_practitioner
       group from: :c4bb_v200devnonfinancial_related_person

@@ -47,9 +47,9 @@ requirement of CARIN IG for Blue Button® v2.0.0.
       def scratch_resources
         scratch[:explanation_of_benefit_oral_resources] ||= {}
       end
-      
+
       run do
-        
+
         run_search_test(c4bb_v200_explanation_of_benefit_oral__id_search_test_param)
       end
     end
