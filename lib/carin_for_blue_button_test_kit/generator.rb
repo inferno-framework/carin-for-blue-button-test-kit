@@ -14,7 +14,7 @@ module CarinForBlueButtonTestKit
     class Generator
         def self.generate
             ig_packages = Dir.glob(File.join(Dir.pwd, 'lib', 'carin_for_blue_button_test_kit', 'igs', '*.tgz'))
-      
+
             ig_packages.each do |ig_package|
               new(ig_package).generate
             end
@@ -31,10 +31,10 @@ module CarinForBlueButtonTestKit
             load_ig_package
             extract_metadata
             generate_resource_list
+            generate_search_tests
             generate_read_tests
             generate_validation_tests
             generate_must_support_tests
-            generate_search_tests
 
             generate_groups
             generate_suites
@@ -47,11 +47,9 @@ module CarinForBlueButtonTestKit
 
         def extract_metadata
             self.ig_metadata = IGMetadataExtractor.new(ig_resources).extract
-      
+
             FileUtils.mkdir_p(base_output_dir)
-            File.open(File.join(base_output_dir, 'metadata.yml'), 'w') do |file|
-              file.write(YAML.dump(ig_metadata.to_hash))
-            end
+            File.write(File.join(base_output_dir, 'metadata.yml'), YAML.dump(ig_metadata.to_hash))
         end
 
         def base_output_dir
@@ -61,7 +59,7 @@ module CarinForBlueButtonTestKit
         def generate_resource_list
             ResourceListGenerator.generate(ig_metadata, base_output_dir)
         end
-        
+
         def generate_validation_tests
             ValidationTestGenerator.generate(ig_metadata, base_output_dir)
         end
@@ -85,6 +83,5 @@ module CarinForBlueButtonTestKit
         def generate_search_tests
             SearchTestGenerator.generate(ig_metadata, base_output_dir)
         end
-      
     end
 end

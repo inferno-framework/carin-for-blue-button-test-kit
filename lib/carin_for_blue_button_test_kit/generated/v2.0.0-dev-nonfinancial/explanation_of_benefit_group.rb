@@ -1,8 +1,5 @@
-require_relative 'explanation_of_benefit/explanation_of_benefit_read_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_validation_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_must_support_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_patient_search_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_id_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_patient_search_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_lastupdated_search_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_type_search_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_identifier_search_test'
@@ -16,6 +13,9 @@ require_relative 'explanation_of_benefit/explanation_of_benefit_read_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_insurer_search_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_payee_search_test'
     require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_all_search_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_read_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_validation_test'
+    require_relative 'explanation_of_benefit/explanation_of_benefit_must_support_test'
     
     module CarinForBlueButtonTestKit
       module CARIN4BBV200DEVNONFINANCIAL
@@ -93,11 +93,8 @@ read succeeds.
             @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'explanation_of_benefit', 'metadata.yml'), aliases: true))
           end
       
-          test from: :c4bb_v200devnonfinancial_explanation_of_benefit_read_test
-          test from: :c4bb_v200devnonfinancial_explanation_of_benefit_validation_test
-          test from: :c4bb_v200devnonfinancial_explanation_of_benefit_must_support_test
-          test from: :c4bb_v200devnonfinancial_explanation_of_benefit__id_search_test
           test from: :c4bb_v200devnonfinancial_explanation_of_benefit_patient_search_test
+          test from: :c4bb_v200devnonfinancial_explanation_of_benefit__id_search_test
           test from: :c4bb_v200devnonfinancial_explanation_of_benefit__lastUpdated_search_test
           test from: :c4bb_v200devnonfinancial_explanation_of_benefit_type_search_test
           test from: :c4bb_v200devnonfinancial_explanation_of_benefit_identifier_search_test
@@ -111,6 +108,9 @@ read succeeds.
           test from: :c4bb_v200devnonfinancial_explanation_of_benefit_include_ExplanationOfBenefit_insurer_search_test
           test from: :c4bb_v200devnonfinancial_explanation_of_benefit_include_ExplanationOfBenefit_payee_search_test
           test from: :c4bb_v200devnonfinancial_explanation_of_benefit_include_ExplanationOfBenefit_All_search_test
+          test from: :c4bb_v200devnonfinancial_explanation_of_benefit_read_test
+          test from: :c4bb_v200devnonfinancial_explanation_of_benefit_validation_test
+          test from: :c4bb_v200devnonfinancial_explanation_of_benefit_must_support_test
         end
       end
     end

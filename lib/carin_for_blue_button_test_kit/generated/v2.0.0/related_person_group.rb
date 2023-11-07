@@ -1,8 +1,8 @@
-require_relative 'related_person/related_person_read_test'
+require_relative 'related_person/related_person_id_search_test'
+    require_relative 'related_person/related_person_lastupdated_search_test'
+    require_relative 'related_person/related_person_read_test'
     require_relative 'related_person/related_person_validation_test'
     require_relative 'related_person/related_person_must_support_test'
-    require_relative 'related_person/related_person_id_search_test'
-    require_relative 'related_person/related_person_lastupdated_search_test'
     
     module CarinForBlueButtonTestKit
       module CARIN4BBV200
@@ -75,11 +75,11 @@ read succeeds.
             @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'related_person', 'metadata.yml'), aliases: true))
           end
       
+          test from: :c4bb_v200_related_person__id_search_test
+          test from: :c4bb_v200_related_person__lastUpdated_search_test
           test from: :c4bb_v200_related_person_read_test
           test from: :c4bb_v200_related_person_validation_test
           test from: :c4bb_v200_related_person_must_support_test
-          test from: :c4bb_v200_related_person__id_search_test
-          test from: :c4bb_v200_related_person__lastUpdated_search_test
         end
       end
     end

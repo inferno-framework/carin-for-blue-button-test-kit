@@ -1,8 +1,8 @@
-require_relative 'practitioner/practitioner_read_test'
+require_relative 'practitioner/practitioner_id_search_test'
+    require_relative 'practitioner/practitioner_lastupdated_search_test'
+    require_relative 'practitioner/practitioner_read_test'
     require_relative 'practitioner/practitioner_validation_test'
     require_relative 'practitioner/practitioner_must_support_test'
-    require_relative 'practitioner/practitioner_id_search_test'
-    require_relative 'practitioner/practitioner_lastupdated_search_test'
     
     module CarinForBlueButtonTestKit
       module CARIN4BBV200DEVNONFINANCIAL
@@ -75,11 +75,11 @@ read succeeds.
             @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'practitioner', 'metadata.yml'), aliases: true))
           end
       
+          test from: :c4bb_v200devnonfinancial_practitioner__id_search_test
+          test from: :c4bb_v200devnonfinancial_practitioner__lastUpdated_search_test
           test from: :c4bb_v200devnonfinancial_practitioner_read_test
           test from: :c4bb_v200devnonfinancial_practitioner_validation_test
           test from: :c4bb_v200devnonfinancial_practitioner_must_support_test
-          test from: :c4bb_v200devnonfinancial_practitioner__id_search_test
-          test from: :c4bb_v200devnonfinancial_practitioner__lastUpdated_search_test
         end
       end
     end

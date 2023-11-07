@@ -1,9 +1,9 @@
-require_relative 'coverage/coverage_read_test'
-    require_relative 'coverage/coverage_validation_test'
-    require_relative 'coverage/coverage_must_support_test'
-    require_relative 'coverage/coverage_id_search_test'
+require_relative 'coverage/coverage_id_search_test'
     require_relative 'coverage/coverage_lastupdated_search_test'
     require_relative 'coverage/coverage_coverage_payor_search_test'
+    require_relative 'coverage/coverage_read_test'
+    require_relative 'coverage/coverage_validation_test'
+    require_relative 'coverage/coverage_must_support_test'
     
     module CarinForBlueButtonTestKit
       module CARIN4BBV200DEVNONFINANCIAL
@@ -74,12 +74,12 @@ read succeeds.
             @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'coverage', 'metadata.yml'), aliases: true))
           end
       
-          test from: :c4bb_v200devnonfinancial_coverage_read_test
-          test from: :c4bb_v200devnonfinancial_coverage_validation_test
-          test from: :c4bb_v200devnonfinancial_coverage_must_support_test
           test from: :c4bb_v200devnonfinancial_coverage__id_search_test
           test from: :c4bb_v200devnonfinancial_coverage__lastUpdated_search_test
           test from: :c4bb_v200devnonfinancial_coverage_include_Coverage_payor_search_test
+          test from: :c4bb_v200devnonfinancial_coverage_read_test
+          test from: :c4bb_v200devnonfinancial_coverage_validation_test
+          test from: :c4bb_v200devnonfinancial_coverage_must_support_test
         end
       end
     end

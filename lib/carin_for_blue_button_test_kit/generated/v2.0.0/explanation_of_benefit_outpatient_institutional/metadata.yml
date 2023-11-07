@@ -1020,16 +1020,10 @@
   - http://hl7.org/fhir/StructureDefinition/PractitionerRole
   - http://hl7.org/fhir/StructureDefinition/Organization
 :tests:
-- :id: c4bb_v200_explanation_of_benefit_outpatient_institutional_read_test
-  :file_name: explanation_of_benefit_outpatient_institutional_read_test.rb
-- :id: c4bb_v200_explanation_of_benefit_outpatient_institutional_validation_test
-  :file_name: explanation_of_benefit_outpatient_institutional_validation_test.rb
-- :id: c4bb_v200_explanation_of_benefit_outpatient_institutional_must_support_test
-  :file_name: explanation_of_benefit_outpatient_institutional_must_support_test.rb
-- :id: c4bb_v200_explanation_of_benefit_outpatient_institutional__id_search_test
-  :file_name: explanation_of_benefit_outpatient_institutional_id_search_test.rb
 - :id: c4bb_v200_explanation_of_benefit_outpatient_institutional_patient_search_test
   :file_name: explanation_of_benefit_outpatient_institutional_patient_search_test.rb
+- :id: c4bb_v200_explanation_of_benefit_outpatient_institutional__id_search_test
+  :file_name: explanation_of_benefit_outpatient_institutional_id_search_test.rb
 - :id: c4bb_v200_explanation_of_benefit_outpatient_institutional__lastUpdated_search_test
   :file_name: explanation_of_benefit_outpatient_institutional_lastupdated_search_test.rb
 - :id: c4bb_v200_explanation_of_benefit_outpatient_institutional_type_search_test
@@ -1056,6 +1050,12 @@
   :file_name: explanation_of_benefit_outpatient_institutional_explanation_of_benefit_payee_search_test.rb
 - :id: c4bb_v200_explanation_of_benefit_outpatient_institutional_include_ExplanationOfBenefit_All_search_test
   :file_name: explanation_of_benefit_outpatient_institutional_explanation_of_benefit_all_search_test.rb
+- :id: c4bb_v200_explanation_of_benefit_outpatient_institutional_read_test
+  :file_name: explanation_of_benefit_outpatient_institutional_read_test.rb
+- :id: c4bb_v200_explanation_of_benefit_outpatient_institutional_validation_test
+  :file_name: explanation_of_benefit_outpatient_institutional_validation_test.rb
+- :id: c4bb_v200_explanation_of_benefit_outpatient_institutional_must_support_test
+  :file_name: explanation_of_benefit_outpatient_institutional_must_support_test.rb
 :id: c4bb_v200_explanation_of_benefit_outpatient_institutional
 :file_name: explanation_of_benefit_outpatient_institutional_group.rb
 :delayed_references:
