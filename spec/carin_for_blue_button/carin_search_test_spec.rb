@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe C4BBTestKit::CarinSearchTest do
+RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
   let(:eob_json_string) do
     File.read(File.join(__dir__, '..', 'fixtures', 'c4bb_eob_inpatient_example.json'))
   end
@@ -35,7 +35,7 @@ RSpec.describe C4BBTestKit::CarinSearchTest do
 
   describe 'carin search requiring service-date' do
     let(:service_date_search_test) do
-      Class.new(C4BBTestKit::CARIN4BBV200::ExplanationOfBenefitServiceDateSearchTest) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitServiceDateSearchTest) do
         fhir_client { url :url }
         input :url
       end
@@ -81,7 +81,7 @@ RSpec.describe C4BBTestKit::CarinSearchTest do
 
   describe 'carin search requiring service-start-date' do
     let(:service_start_date_search_test) do
-      Class.new(C4BBTestKit::CARIN4BBV200::ExplanationOfBenefitServiceStartDateSearchTest) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitServiceStartDateSearchTest) do
         fhir_client { url :url }
         input :url
       end
@@ -127,7 +127,7 @@ RSpec.describe C4BBTestKit::CarinSearchTest do
 
   describe 'carin search requiring billable-period-start' do
     let(:billable_period_start_search_test) do
-      Class.new(C4BBTestKit::CARIN4BBV200::ExplanationOfBenefitBillablePeriodStartSearchTest) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitBillablePeriodStartSearchTest) do
         fhir_client { url :url }
         input :url
       end
@@ -173,7 +173,7 @@ RSpec.describe C4BBTestKit::CarinSearchTest do
 
   describe 'carin search requiring type' do
     let(:type_search_test) do
-      Class.new(C4BBTestKit::CARIN4BBV200::ExplanationOfBenefitTypeSearchTest) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitTypeSearchTest) do
         fhir_client { url :url }
         input :url
       end
@@ -219,7 +219,7 @@ RSpec.describe C4BBTestKit::CarinSearchTest do
 
   describe 'carin Patient _id search test' do
     let(:id_search_test) do
-      Class.new(C4BBTestKit::CARIN4BBV200::PatientIdSearchTest) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::PatientIdSearchTest) do
         fhir_client { url :url }
         input :url
       end
@@ -302,7 +302,7 @@ RSpec.describe C4BBTestKit::CarinSearchTest do
 
   describe 'carin Coverage search optional _lastUpdated' do
     let(:coverage_last_updated_search_test) do
-      Class.new(C4BBTestKit::CARIN4BBV200::CoverageLastupdatedSearchTest) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::CoverageLastupdatedSearchTest) do
         fhir_client { url :url }
         input :url
       end
@@ -361,7 +361,7 @@ RSpec.describe C4BBTestKit::CarinSearchTest do
 
   describe 'carin ExplanationOfBenefit search required _lastUpdated' do
     let(:eob_last_updated_search_test) do
-      Class.new(C4BBTestKit::CARIN4BBV200::ExplanationOfBenefitLastupdatedSearchTest) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitLastupdatedSearchTest) do
         fhir_client { url :url }
         input :url
       end

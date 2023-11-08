@@ -1,0 +1,38 @@
+require_relative '../../../carin_search_test'
+require_relative '../../../generator/group_metadata'
+
+module CarinForBlueButtonTestKit
+  module <%= module_name %>
+    class <%= class_name %> < Inferno::Test
+      include CarinForBlueButtonTestKit::CarinSearchTest
+
+      title 'Server returns valid results for <%= resource_type %> search by id + _include=<%= search_param %>'
+      description %(<%=
+        description %>
+      )
+
+      def self.properties
+        @properties ||= SearchTestProperties.new(
+          resource_type: '<%=resource_type%>',
+        search_param_names: ['_include'],
+        include_parameters: <%= include_parameters %>
+        )
+      end
+
+      id :<%= test_id %>
+
+      input :<%= input_id %>,
+        title: '<%= input_title %>',
+        type: 'text',
+        description: '<%= input_description %>'
+
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
+      end
+
+      run do
+        run_include_search('<%=include_search_param%>', resource_id: <%= input_id %>)
+      end
+    end
+  end
+end

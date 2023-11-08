@@ -25,7 +25,7 @@ suites for IG versions 1.1.0 and 2.0.0.
 
 To generate a test suite for a different CARIN for Blue Button IG version:
 - Navigate to
-  `CARIN-for-Blue-Button-Test-Kit/lib/c4bb_test_kit/igs/`
+  `CARIN-for-Blue-Button-Test-Kit/lib/carin_for_blue_button_test_kit/igs/`
 - Drop your package.tgz file for the IG version into this folder. You may want
   to rename it before hand.
 - Run the command `bundle exec rake carin4bb:generate` to run the generator.
