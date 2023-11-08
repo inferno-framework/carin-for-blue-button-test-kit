@@ -1,7 +1,7 @@
 require_relative 'lib/c4bb_test_kit/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'c4bb_test_kit'
+  spec.name          = 'carin_for_blue_button_test_kit'
   spec.version       = CarinForBlueButtonTestKit::VERSION
   spec.authors       = ['John Morrison']
   spec.email         = ['jmorrison@leaporbit.com']

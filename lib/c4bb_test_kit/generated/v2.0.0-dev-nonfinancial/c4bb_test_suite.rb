@@ -24,7 +24,7 @@ require_relative 'related_person_group'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV200DEVNONFINANCIAL
-    class C4BBTestKit < Inferno::TestSuite
+    class C4BBTestSuite < Inferno::TestSuite
       title 'CARIN IG for Blue Button® v2.0.0-dev-nonfinancial'
       description %(
         The CARIN for Blue Button test suite validates system conformance to the HL7® FHIR® [CARIN for Blue Button® Implementation Guide](http://hl7.org/fhir/us/carin-bb/history.html).
