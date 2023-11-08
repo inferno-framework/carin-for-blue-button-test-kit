@@ -88,8 +88,18 @@ module CarinForBlueButtonTestKit
           end
       end
 
+      def all_search_params
+        group_metadata.searches.map { |param| param[:names]}
+                               .flatten
+      end
+
       def first_search?
-        group_metadata.searches.first == search_metadata
+        # Mark patient the first search for EOB
+        if all_search_params.include?('patient')
+          search_param_name_string == 'patient'
+        else
+          group_metadata.searches.first == search_metadata
+        end
       end
 
       def fixed_value_search?
