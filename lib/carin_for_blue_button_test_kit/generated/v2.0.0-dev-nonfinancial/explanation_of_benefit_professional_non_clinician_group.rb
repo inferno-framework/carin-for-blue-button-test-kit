@@ -40,10 +40,14 @@ The test will attempt to read each reference found and will fail if no
 read succeeds.
 
           )
-    
+
           id :c4bb_v200devnonfinancial_explanation_of_benefit_professional_non_clinician
           run_as_group
-    
+          input :smart_credentials,
+                title: 'OAuth Credentials',
+                type: :oauth_credentials,
+                optional: true
+
           def self.metadata
             @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'explanation_of_benefit_professional_non_clinician', 'metadata.yml'), aliases: true))
           end
@@ -54,4 +58,3 @@ read succeeds.
         end
       end
     end
-    

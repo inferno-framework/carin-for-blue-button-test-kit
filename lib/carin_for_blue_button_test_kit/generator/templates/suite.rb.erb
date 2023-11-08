@@ -45,10 +45,6 @@ module CarinForBlueButtonTestKit
       input :url,
         title: 'FHIR Endpoint',
         description: 'URL of the FHIR endpoint'
-      input :smart_credentials,
-        title: 'OAuth Credentials',
-        type: :oauth_credentials,
-        optional: true
 
       fhir_client do
         url :url
@@ -57,9 +53,18 @@ module CarinForBlueButtonTestKit
 
       group from: :<%= smart_launch_group_id %>
 
-      group from: :capability_statement_group
-  <% group_id_list.each do |id| %>
-      group from: :<%= id %><% end %>
+      group do
+        title 'CARIN for Blue Button Tests'
+        description %(
+          The CARIN for Blue Button Tests evaluate the ability of a system (C4BB FHIR Server)
+          to support required and optional FHIR operations and search parameters to return
+          conformant C4BB resources.
+        )
+
+        group from: :capability_statement_group
+    <% group_id_list.each do |id| %>
+        group from: :<%= id %><% end %>
+      end
     end
   end
 end

@@ -53,10 +53,6 @@ module CarinForBlueButtonTestKit
       input :url,
         title: 'FHIR Endpoint',
         description: 'URL of the FHIR endpoint'
-      input :smart_credentials,
-        title: 'OAuth Credentials',
-        type: :oauth_credentials,
-        optional: true
 
       fhir_client do
         url :url
@@ -65,19 +61,28 @@ module CarinForBlueButtonTestKit
 
       group from: :c4bb_v200_smart_launch
 
-      group from: :capability_statement_group
-  
-      group from: :c4bb_v200_patient
-      group from: :c4bb_v200_explanation_of_benefit
-      group from: :c4bb_v200_explanation_of_benefit_inpatient_institutional
-      group from: :c4bb_v200_explanation_of_benefit_outpatient_institutional
-      group from: :c4bb_v200_explanation_of_benefit_oral
-      group from: :c4bb_v200_explanation_of_benefit_pharmacy
-      group from: :c4bb_v200_explanation_of_benefit_professional_non_clinician
-      group from: :c4bb_v200_coverage
-      group from: :c4bb_v200_organization
-      group from: :c4bb_v200_practitioner
-      group from: :c4bb_v200_related_person
+      group do
+        title 'CARIN for Blue Button Tests'
+        description %(
+          The CARIN for Blue Button Tests evaluate the ability of a system (C4BB FHIR Server)
+          to support required and optional FHIR operations and search parameters to return
+          conformant C4BB resources.
+        )
+
+        group from: :capability_statement_group
+    
+        group from: :c4bb_v200_patient
+        group from: :c4bb_v200_explanation_of_benefit
+        group from: :c4bb_v200_explanation_of_benefit_inpatient_institutional
+        group from: :c4bb_v200_explanation_of_benefit_outpatient_institutional
+        group from: :c4bb_v200_explanation_of_benefit_oral
+        group from: :c4bb_v200_explanation_of_benefit_pharmacy
+        group from: :c4bb_v200_explanation_of_benefit_professional_non_clinician
+        group from: :c4bb_v200_coverage
+        group from: :c4bb_v200_organization
+        group from: :c4bb_v200_practitioner
+        group from: :c4bb_v200_related_person
+      end
     end
   end
 end
