@@ -7,7 +7,7 @@ require_relative '<%= smart_launch_file_name %>'
 
 <% group_file_list.each do |file_name| %>require_relative '<%= file_name %>'
 <% end %>
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   module <%= module_name %>
     class <%= class_name %> < Inferno::TestSuite
       title '<%= title %>'

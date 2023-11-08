@@ -1,4 +1,4 @@
-module CarinForBlueButtonTestKit
+module C4BBTestKit
     class Generator
       class IGMetadata
         attr_accessor :ig_version, :groups

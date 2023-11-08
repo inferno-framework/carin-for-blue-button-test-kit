@@ -1,4 +1,4 @@
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   class ConformanceSupportTest < Inferno::Test
     id :carin_bb_conformance_support
     title 'FHIR Server supports the conformance interaction'

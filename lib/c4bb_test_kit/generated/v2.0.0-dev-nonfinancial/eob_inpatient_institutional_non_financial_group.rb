@@ -17,7 +17,7 @@ require_relative 'eob_inpatient_institutional_non_financial/read_test'
     require_relative 'eob_inpatient_institutional_non_financial/incl_payee_search_test'
     require_relative 'eob_inpatient_institutional_non_financial/incl_all_search_test'
     
-    module CarinForBlueButtonTestKit
+    module C4BBTestKit
       module CARIN4BBV200DEVNONFINANCIAL
         class EobInpatientInstitutionalNonFinancialGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Inpatient Institutional - Non-Financial Tests'

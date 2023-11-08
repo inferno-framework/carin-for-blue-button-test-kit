@@ -1,10 +1,10 @@
 require_relative '../../../read_test'
 require 'json'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   module CARIN4BBV110
     class PatientReadTest < Inferno::Test
-      include CarinForBlueButtonTestKit::ReadTest
+      include C4BBTestKit::ReadTest
 
       title 'Server returns correct Patient resource from Patient read interaction'
       description 'A server SHALL support the Patient read interaction.'

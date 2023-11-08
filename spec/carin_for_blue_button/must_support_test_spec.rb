@@ -1,4 +1,4 @@
-RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
+RSpec.describe C4BBTestKit::MustSupportTest do
 
   let(:json_string_stub) do
     File.read(File.join(__dir__, '..', 'fixtures', 'c4bb_patient_stub.json'))

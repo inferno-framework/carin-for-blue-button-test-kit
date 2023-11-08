@@ -1,11 +1,11 @@
 require_relative '../../../validation_test'
 require_relative './read_test'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   module <%= module_name %>
     class <%= class_name %> < Inferno::Test
-      include CarinForBlueButtonTestKit::ValidationTest
-      include CarinForBlueButtonTestKit::<%= module_name %>
+      include C4BBTestKit::ValidationTest
+      include C4BBTestKit::<%= module_name %>
 
       id :<%= test_id %>
       title '<%= resource_type %> resources returned during previous tests conform to the <%= profile_name %>'

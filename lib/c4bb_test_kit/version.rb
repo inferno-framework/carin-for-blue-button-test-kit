@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
     VERSION = '0.9.2'
 end

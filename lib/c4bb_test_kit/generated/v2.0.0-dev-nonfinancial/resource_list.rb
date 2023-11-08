@@ -1,4 +1,4 @@
-module CarinForBlueButtonTestKit
+module C4BBTestKit
     module CARIN4BBV200DEVNONFINANCIAL
       module ResourceList
         RESOURCE_LIST = [

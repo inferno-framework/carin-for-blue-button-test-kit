@@ -2,7 +2,7 @@ require_relative 'date_search_validator'
 require_relative 'fhir_resource_navigation'
 require_relative 'search_test_properties'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   module CarinSearchTest
     extend Forwardable
     include DateSearchValidation

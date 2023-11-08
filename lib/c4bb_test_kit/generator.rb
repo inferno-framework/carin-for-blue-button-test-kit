@@ -10,7 +10,7 @@ require_relative 'generator/read_test_generator'
 require_relative 'generator/must_support_test_generator'
 require_relative 'generator/search_test_generator'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
     class Generator
         def self.generate
             ig_packages = Dir.glob(File.join(Dir.pwd, 'lib', 'c4bb_test_kit', 'igs', '*.tgz'))

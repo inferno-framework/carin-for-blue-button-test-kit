@@ -1,4 +1,4 @@
-module CarinForBlueButtonTestKit
+module C4BBTestKit
     class Generator
       class TerminologyBindingMetadataExtractor
         attr_accessor :profile_elements, :ig_resources, :resource

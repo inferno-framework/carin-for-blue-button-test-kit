@@ -17,7 +17,7 @@ require_relative 'eob_oral/read_test'
     require_relative 'eob_oral/incl_payee_search_test'
     require_relative 'eob_oral/incl_all_search_test'
     
-    module CarinForBlueButtonTestKit
+    module C4BBTestKit
       module CARIN4BBV200
         class EobOralGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Oral Tests'

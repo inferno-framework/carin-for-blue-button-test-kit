@@ -1,4 +1,4 @@
-module CarinForBlueButtonTestKit
+module C4BBTestKit
     class Generator
       module Naming
         COVERAGE = 'http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage'

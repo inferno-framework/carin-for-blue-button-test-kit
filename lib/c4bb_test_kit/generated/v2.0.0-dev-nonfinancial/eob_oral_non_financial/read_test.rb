@@ -1,10 +1,10 @@
 require_relative '../../../read_test'
 require 'json'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   module CARIN4BBV200DEVNONFINANCIAL
     class EobOralNonFinancialReadTest < Inferno::Test
-      include CarinForBlueButtonTestKit::ReadTest
+      include C4BBTestKit::ReadTest
 
       title 'Server returns correct ExplanationOfBenefit resource from ExplanationOfBenefit read interaction'
       description 'A server SHALL support the ExplanationOfBenefit read interaction.'

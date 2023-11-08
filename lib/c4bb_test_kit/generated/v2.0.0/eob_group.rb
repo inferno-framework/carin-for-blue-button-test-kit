@@ -17,7 +17,7 @@ require_relative 'eob/read_test'
     require_relative 'eob/incl_payee_search_test'
     require_relative 'eob/incl_all_search_test'
     
-    module CarinForBlueButtonTestKit
+    module C4BBTestKit
       module CARIN4BBV200
         class EobGroup < Inferno::TestGroup
           title 'Explanation Of Benefit Tests'

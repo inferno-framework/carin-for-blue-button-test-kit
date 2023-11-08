@@ -17,7 +17,7 @@ require_relative 'eob_pharmacy/read_test'
     require_relative 'eob_pharmacy/incl_payee_search_test'
     require_relative 'eob_pharmacy/incl_all_search_test'
     
-    module CarinForBlueButtonTestKit
+    module C4BBTestKit
       module CARIN4BBV200
         class EobPharmacyGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Pharmacy Tests'

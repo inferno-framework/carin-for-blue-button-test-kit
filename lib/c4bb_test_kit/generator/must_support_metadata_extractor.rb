@@ -1,6 +1,6 @@
 require_relative 'value_extractor'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   class Generator
     class MustSupportMetadataExtractor
       attr_accessor :profile_elements, :profile, :resource, :ig_resources

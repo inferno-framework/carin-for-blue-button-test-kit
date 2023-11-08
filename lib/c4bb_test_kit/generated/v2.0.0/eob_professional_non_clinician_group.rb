@@ -17,7 +17,7 @@ require_relative 'eob_professional_non_clinician/read_test'
     require_relative 'eob_professional_non_clinician/incl_payee_search_test'
     require_relative 'eob_professional_non_clinician/incl_all_search_test'
     
-    module CarinForBlueButtonTestKit
+    module C4BBTestKit
       module CARIN4BBV200
         class EobProfessionalNonClinicianGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Professional NonClinician Tests'

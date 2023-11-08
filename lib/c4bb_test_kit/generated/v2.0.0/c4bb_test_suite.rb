@@ -17,7 +17,7 @@ require_relative 'organization_group'
 require_relative 'practitioner_group'
 require_relative 'related_person_group'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   module CARIN4BBV200
     class C4BBTestSuite < Inferno::TestSuite
       title 'CARIN IG for Blue Button® v2.0.0'

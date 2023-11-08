@@ -1,11 +1,11 @@
 require_relative '../../../validation_test'
 require_relative './read_test'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   module CARIN4BBV200DEVNONFINANCIAL
     class RelatedPersonValidationTest < Inferno::Test
-      include CarinForBlueButtonTestKit::ValidationTest
-      include CarinForBlueButtonTestKit::CARIN4BBV200DEVNONFINANCIAL
+      include C4BBTestKit::ValidationTest
+      include C4BBTestKit::CARIN4BBV200DEVNONFINANCIAL
 
       id :c4bb_v200devnonfinancial_related_person_validation_test
       title 'RelatedPerson resources returned during previous tests conform to the C4BB RelatedPerson'

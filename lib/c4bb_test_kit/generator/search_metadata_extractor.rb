@@ -1,6 +1,6 @@
 require_relative 'search_definition_metadata_extractor'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   class Generator
     class SearchMetadataExtractor
       COMBO_EXTENSION_URL =

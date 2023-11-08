@@ -2,7 +2,7 @@
 
 require 'json'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   module FHIRResourceNavigation
     DAR_EXTENSION_URL = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason'
 

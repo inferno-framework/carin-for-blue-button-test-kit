@@ -1,4 +1,4 @@
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   class JSONSupportTest < Inferno::Test
     id :carin_bb_json_support
     title 'FHIR server capability states JSON support'

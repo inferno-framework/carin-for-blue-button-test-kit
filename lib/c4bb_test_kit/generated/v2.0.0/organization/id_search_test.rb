@@ -1,10 +1,10 @@
 require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   module CARIN4BBV200
     class OrganizationIdSearchTest < Inferno::Test
-      include CarinForBlueButtonTestKit::CarinSearchTest
+      include C4BBTestKit::CarinSearchTest
 
       title 'Server returns valid results for Organization search by _id'
       description %(A server SHALL support searching by

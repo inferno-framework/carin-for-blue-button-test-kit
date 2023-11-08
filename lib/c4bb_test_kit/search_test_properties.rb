@@ -1,4 +1,4 @@
-module CarinForBlueButtonTestKit
+module C4BBTestKit
     class SearchTestProperties
       ATTRIBUTES = [
         :resource_type,

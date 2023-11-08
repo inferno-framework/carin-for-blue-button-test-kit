@@ -1,4 +1,4 @@
-module CarinForBlueButtonTestKit
+module C4BBTestKit
     class Generator
       class ValueExactor
         attr_accessor :ig_resources, :resource

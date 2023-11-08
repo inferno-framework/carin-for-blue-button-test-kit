@@ -6,7 +6,7 @@ require_relative 'must_support_metadata_extractor'
 require_relative 'search_metadata_extractor'
 require_relative 'terminology_binding_metadata_extractor'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   class Generator
     class GroupMetadataExtractor
       attr_accessor :resource_capabilities, :profile_url, :ig_metadata, :ig_resources

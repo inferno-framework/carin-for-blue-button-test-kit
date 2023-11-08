@@ -2,7 +2,7 @@ require_relative 'naming'
 require_relative 'special_cases'
 require_relative 'include_search_test_generator'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   class Generator
     class SearchTestGenerator
       class << self

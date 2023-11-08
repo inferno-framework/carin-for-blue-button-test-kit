@@ -1,7 +1,7 @@
 require_relative 'naming'
 require_relative 'special_cases'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   class Generator
         class IncludeSearchTestGenerator
 

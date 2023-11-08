@@ -4,7 +4,7 @@ require_relative './tests/json_support_test'
 require_relative './tests/profile_support_test'
 require_relative './tests/instantiates_test'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
     class CapabilityStatmentGroup < Inferno::TestGroup
       title 'Capability Statement Tests'
       id :capability_statement_group

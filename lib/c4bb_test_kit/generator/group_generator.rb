@@ -2,7 +2,7 @@
 
 require_relative 'naming'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   class Generator
     class GroupGenerator
       class << self

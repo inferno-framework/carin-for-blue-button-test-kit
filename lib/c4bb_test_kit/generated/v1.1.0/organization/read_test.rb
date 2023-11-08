@@ -1,10 +1,10 @@
 require_relative '../../../read_test'
 require 'json'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   module CARIN4BBV110
     class OrganizationReadTest < Inferno::Test
-      include CarinForBlueButtonTestKit::ReadTest
+      include C4BBTestKit::ReadTest
 
       title 'Server returns correct Organization resource from Organization read interaction'
       description 'A server SHALL support the Organization read interaction.'

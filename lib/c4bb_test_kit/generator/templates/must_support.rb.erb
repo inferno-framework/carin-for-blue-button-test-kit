@@ -2,11 +2,11 @@ require_relative '../../../must_support_test'
 require_relative './read_test'
 require_relative '../../../generator/group_metadata'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   module <%= module_name %>
     class <%= class_name %> < Inferno::Test
-      include CarinForBlueButtonTestKit::MustSupportTest
-      include CarinForBlueButtonTestKit::<%= module_name %>
+      include C4BBTestKit::MustSupportTest
+      include C4BBTestKit::<%= module_name %>
 
       title 'All must support elements are provided in the <%= resource_type %> resources returned'
       description %(

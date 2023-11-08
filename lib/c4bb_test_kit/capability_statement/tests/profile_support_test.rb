@@ -1,4 +1,4 @@
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   class ProfileSupportTest < Inferno::Test
     id :carin_bb_profile_support
     title 'Capability Statement lists support for required CARIN BlueButton Profiles'

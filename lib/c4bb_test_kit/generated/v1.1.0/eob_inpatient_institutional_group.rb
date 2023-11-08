@@ -14,7 +14,7 @@ require_relative 'eob_inpatient_institutional/read_test'
     require_relative 'eob_inpatient_institutional/incl_insurer_search_test'
     require_relative 'eob_inpatient_institutional/incl_all_search_test'
     
-    module CarinForBlueButtonTestKit
+    module C4BBTestKit
       module CARIN4BBV110
         class EobInpatientInstitutionalGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Inpatient Institutional Tests'

@@ -1,10 +1,10 @@
 require_relative '../../../read_test'
 require 'json'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   module <%= module_name %>
     class <%= class_name %> < Inferno::Test
-      include CarinForBlueButtonTestKit::ReadTest
+      include C4BBTestKit::ReadTest
 
       title 'Server returns correct <%= resource_type %> resource from <%= resource_type %> read interaction'
       description 'A server <%= conformance_expectation %> support the <%= resource_type %> read interaction.'

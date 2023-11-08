@@ -1,10 +1,10 @@
 require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
-module CarinForBlueButtonTestKit
+module C4BBTestKit
   module CARIN4BBV200DEVNONFINANCIAL
     class CoverageCoverage_payorSearchTest < Inferno::Test
-      include CarinForBlueButtonTestKit::CarinSearchTest
+      include C4BBTestKit::CarinSearchTest
 
       title 'Server returns valid results for Coverage search by id + _include=Coverage:payor'
       description %(Tests that the server responds correctly when using _include="Coverage:payor" as a search parameter 
