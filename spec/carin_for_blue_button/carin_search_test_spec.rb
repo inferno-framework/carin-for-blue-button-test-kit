@@ -234,22 +234,55 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     let(:bundle) do
       FHIR::Bundle.new(entry: [{ resource: patient }])
     end
+    let(:empty_bundle) do
+      FHIR::Bundle.new(entry: [])
+    end
 
     before do
       Inferno::Repositories::Tests.new.insert(id_search_test)
       setup_mock_test(id_search_test, patient)
     end
 
-    it 'passes if a 200 is received' do
-      stub_request(:get, "#{url}/Patient?_id=#{patient_id}")
-        .to_return(status: 200, body: bundle.to_json)
+    context 'when single patient search' do
+      it 'passes if a 200 is received' do
+        stub_request(:get, "#{url}/Patient?_id=#{patient_id}")
+          .to_return(status: 200, body: bundle.to_json)
 
-      result = run(
-        id_search_test,
-        c4bb_v200_patient__id_search_test_param: patient_id,
-        url:
-      )
-      expect(result.result).to eq('pass')
+        result = run(
+          id_search_test,
+          patient_ids: patient_id,
+          url:
+        )
+        expect(result.result).to eq('pass')
+      end
+    end
+
+    context 'when multiple patients search' do
+      it 'passes if a 200 is received and all responses are not empty bundles' do
+        stub_request(:get, "#{url}/Patient?_id=#{patient_id}")
+          .to_return(status: 200, body: bundle.to_json)
+        stub_request(:get, "#{url}/Patient?_id=Patient1")
+          .to_return(status: 200, body: bundle.to_json)
+        result = run(
+          id_search_test,
+          patient_ids: 'Patient1, Patient1',
+          url:
+        )
+        expect(result.result).to eq('pass')
+      end
+
+      it 'passes if a 200 is received and some responses are empty bundles' do
+        stub_request(:get, "#{url}/Patient?_id=#{patient_id}")
+          .to_return(status: 200, body: bundle.to_json)
+        stub_request(:get, "#{url}/Patient?_id=Patient2")
+          .to_return(status: 200, body: empty_bundle.to_json)
+        result = run(
+          id_search_test,
+          patient_ids: 'Patient2, Patient1',
+          url:
+        )
+        expect(result.result).to eq('pass')
+      end
     end
 
     it 'fails if a 400 is received' do
@@ -258,7 +291,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
       result = run(
         id_search_test,
-        c4bb_v200_patient__id_search_test_param: patient_id,
+        patient_ids: patient_id,
         url:
       )
 
