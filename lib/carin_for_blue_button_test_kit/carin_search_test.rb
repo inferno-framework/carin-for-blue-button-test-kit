@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative 'date_search_validator'
 require_relative 'fhir_resource_navigation'
 require_relative 'search_test_properties'
@@ -25,6 +23,10 @@ module CarinForBlueButtonTestKit
                    :params_with_comparators,
                    :multiple_or_search_params
 
+    def all_scratch_resources
+      scratch_resources[:all] ||= []
+    end
+
     def run_search_test(param_value, include_search: false, resource_id: nil)
       search_params = {}
 
@@ -34,17 +36,36 @@ module CarinForBlueButtonTestKit
         return
       end
 
-      search_params[search_param_names[0]] = param_value
+      param_name = search_param_names[0]
+      if patient_id_param?(param_name)
+        returned_resources = []
+        param_value.each do |id|
+          search_params[param_name] = id
+          returned_resources.concat(perform_search(search_params))
+        end
+        search_params[param_name] = param_value.join(',')
+      else
+        search_params[param_name] = param_value
+        returned_resources = perform_search(search_params)
+      end
 
+      all_scratch_resources.concat(returned_resources).uniq! if first_search?
+
+      perform_response_validation(returned_resources, search_params)
+    end
+
+    def perform_search(search_params)
       fhir_search(resource_type, params: search_params)
-      
+
       assert_response_status(200)
       assert_resource_type(:bundle)
 
-      returned_resources = extract_resources_from_bundle(bundle: resource, response:).select do |item|
+      extract_resources_from_bundle(bundle: resource, response:).select do |item|
         item.resourceType == resource_type
       end
+    end
 
+    def perform_response_validation(returned_resources, search_params)
       skip_if returned_resources.blank?, no_resources_message
 
       returned_resources.each do |resource|
@@ -110,11 +131,11 @@ module CarinForBlueButtonTestKit
                  else
                    metadata.search_definitions[name.to_sym][:type]
                  end
-          
+
           values_found =
             resolve_path(resource, path)
             .map do |value|
-              value || value.reference
+              value&.reference || value
             end
 
           match_found = case type
@@ -147,7 +168,7 @@ module CarinForBlueButtonTestKit
                         when 'Period', 'date', 'instant', 'dateTime'
                           values_found.any? { |date| validate_date_search(param_value, date) }
                         when 'http://hl7.org/fhirpath/System.String'
-                          values_found.any? { |str| param_value == str }
+                          values_found.any? { |str| param_value.split(',').include?(str) }
                         else
                           false
                         end
@@ -174,7 +195,7 @@ module CarinForBlueButtonTestKit
         match_found = false
         reference_bool = true
         paths = include_param_paths(param_value)
-        
+
         if param_value != 'ExplanationOfBenefit:*'
           paths.each do |path|
               values_found = resolve_path(resource, path)
@@ -205,7 +226,7 @@ module CarinForBlueButtonTestKit
 
           values_found.each do |reference|
             reference_found = find_included_resource(reference, returned_resources_all)
-              
+
             # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
             if !reference_found
                 reference_bool = false
@@ -214,10 +235,10 @@ module CarinForBlueButtonTestKit
 
           match_found = (values_found.length >= 5)
 
-          assert match_found, "Returned resource did not match the search parameter"  
+          assert match_found, "Returned resource did not match the search parameter"
           assert reference_bool, "Returned resource did not include the _include resource parameter"
-        end  
-      end          
+        end
+      end
     end
 
 
@@ -225,13 +246,13 @@ module CarinForBlueButtonTestKit
       referenced_resource_id = reference.reference
 
       assert !referenced_resource_id.start_with?('#'), "Reference id is not in the correct format of [ResourceType]/[ResourceID]"
-  
+
       referenced_resource_type = referenced_resource_id.split('/')[-2]
 
       referenced_resources = returned_resources_all.select{|item| item.resourceType == referenced_resource_type}
 
       assert referenced_resources.present?, "No " + referenced_resource_type + " resources were included in the search results"
-      
+
       reference_found = false
       referenced_resources.each do |referenced_resource|
         reference_found = is_reference_match?(referenced_resource_id, referenced_resource.id)
@@ -267,6 +288,10 @@ module CarinForBlueButtonTestKit
       else
           []
       end
+    end
+
+    def patient_id_param?(name)
+      name == '_id' && resource_type == 'Patient'
     end
   end
 end

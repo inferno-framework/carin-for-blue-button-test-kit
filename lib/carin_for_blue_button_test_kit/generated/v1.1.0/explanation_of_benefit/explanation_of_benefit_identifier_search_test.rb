@@ -18,17 +18,15 @@ none are returned, the test is skipped.
       id :c4bb_v110_explanation_of_benefit_identifier_search_test
 
       input :c4bb_v110_explanation_of_benefit_identifier_search_test_param,
-        title: 'ExplanationOfBenefit search parameter for identifier
-',
+        title: 'ExplanationOfBenefit search parameter for identifier',
         type: 'text',
-        description: 'ExplanationOfBenefit search parameter: identifier
-'
+        description: 'ExplanationOfBenefit search parameter: identifier'
 
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'ExplanationOfBenefit',
-        search_param_names: ['identifier'],
-        token_search_params: ['identifier']
+          search_param_names: ['identifier'],
+          token_search_params: ['identifier']
         )
       end
 
@@ -39,7 +37,7 @@ none are returned, the test is skipped.
       def scratch_resources
         scratch[:explanation_of_benefit_resources] ||= {}
       end
-
+      
       run do
         
         run_search_test(c4bb_v110_explanation_of_benefit_identifier_search_test_param)
