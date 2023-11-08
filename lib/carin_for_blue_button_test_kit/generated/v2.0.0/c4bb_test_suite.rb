@@ -62,9 +62,9 @@ module CarinForBlueButtonTestKit
       group from: :c4bb_v200_smart_launch
 
       group do
-        title 'CARIN for Blue Button Tests'
+        title 'C4BB FHIR API Tests'
         description %(
-          The CARIN for Blue Button Tests evaluate the ability of a system (C4BB FHIR Server)
+          The CARIN for Blue Button FHIR API Tests evaluate the ability of a system (C4BB FHIR Server)
           to support required and optional FHIR operations and search parameters to return
           conformant C4BB resources.
         )
