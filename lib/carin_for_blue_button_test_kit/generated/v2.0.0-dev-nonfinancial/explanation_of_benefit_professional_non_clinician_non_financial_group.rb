@@ -7,8 +7,7 @@ require_relative 'explanation_of_benefit_professional_non_clinician_non_financia
         class ExplanationOfBenefitProfessionalNonClinicianNonFinancialGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Professional NonClinician - Non-Financial Tests'
           short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Professional NonClinician - Non-Financial.'
-          description %(
-      # Background
+          description %(# Background
 
 The CARIN for Blue Button ExplanationOfBenefit Professional NonClinician - Non-Financial sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries

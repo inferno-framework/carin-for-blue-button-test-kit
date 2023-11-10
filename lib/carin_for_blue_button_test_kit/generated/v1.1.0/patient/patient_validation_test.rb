@@ -9,8 +9,7 @@ module CarinForBlueButtonTestKit
 
       id :c4bb_v110_patient_validation_test
       title 'Patient resources returned during previous tests conform to the C4BB Patient'
-      description %(
-This test verifies resources returned from the first search conform to
+      description %(This test verifies resources returned from the first search conform to
 the [C4BB Patient](http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient).
 Systems must demonstrate at least one valid example in order to pass this test.
 

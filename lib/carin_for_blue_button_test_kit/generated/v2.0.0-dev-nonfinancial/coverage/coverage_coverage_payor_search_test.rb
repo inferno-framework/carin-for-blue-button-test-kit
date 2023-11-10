@@ -7,8 +7,7 @@ module CarinForBlueButtonTestKit
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for Coverage search by id + _include=Coverage:payor'
-      description %(
-Tests that the server responds correctly when using _include="Coverage:payor" as a search parameter 
+      description %(Tests that the server responds correctly when using _include="Coverage:payor" as a search parameter 
 
       )
 

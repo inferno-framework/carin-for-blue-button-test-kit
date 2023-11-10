@@ -7,8 +7,7 @@ module CarinForBlueButtonTestKit
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for ExplanationOfBenefit search by id + _include=ExplanationOfBenefit:insurer'
-      description %(
-Tests that the server responds correctly when using _include="ExplanationOfBenefit:insurer" as a search parameter 
+      description %(Tests that the server responds correctly when using _include="ExplanationOfBenefit:insurer" as a search parameter 
 
       )
 

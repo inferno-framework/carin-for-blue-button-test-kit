@@ -7,8 +7,7 @@ require_relative 'explanation_of_benefit_oral/explanation_of_benefit_oral_read_t
         class ExplanationOfBenefitOralGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Oral Tests'
           short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Oral.'
-          description %(
-      # Background
+          description %(# Background
 
 The CARIN for Blue Button ExplanationOfBenefit Oral sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries

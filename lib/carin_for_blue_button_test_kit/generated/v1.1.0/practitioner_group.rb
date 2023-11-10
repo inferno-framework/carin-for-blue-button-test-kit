@@ -7,8 +7,7 @@ require_relative 'practitioner/practitioner_read_test'
         class PractitionerGroup < Inferno::TestGroup
           title 'Practitioner Tests'
           short_description 'Verify support for the server capabilities required by the C4BB Practitioner.'
-          description %(
-      # Background
+          description %(# Background
 
 The CARIN for Blue Button Practitioner sequence verifies that the system under test is
 able to provide correct responses for Practitioner queries. These queries

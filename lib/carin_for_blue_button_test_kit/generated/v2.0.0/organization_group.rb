@@ -9,8 +9,7 @@ require_relative 'organization/organization_read_test'
         class OrganizationGroup < Inferno::TestGroup
           title 'Organization Tests'
           short_description 'Verify support for the server capabilities required by the C4BB Organization.'
-          description %(
-      # Background
+          description %(# Background
 
 The CARIN for Blue Button Organization sequence verifies that the system under test is
 able to provide correct responses for Organization queries. These queries

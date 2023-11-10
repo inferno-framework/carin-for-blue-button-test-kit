@@ -9,8 +9,7 @@ module CarinForBlueButtonTestKit
 
       id :c4bb_v200devnonfinancial_explanation_of_benefit_oral_validation_test
       title 'ExplanationOfBenefit resources returned during previous tests conform to the C4BB ExplanationOfBenefit Oral'
-      description %(
-This test verifies resources returned from the first search conform to
+      description %(This test verifies resources returned from the first search conform to
 the [C4BB ExplanationOfBenefit Oral](http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Oral).
 Systems must demonstrate at least one valid example in order to pass this test.
 

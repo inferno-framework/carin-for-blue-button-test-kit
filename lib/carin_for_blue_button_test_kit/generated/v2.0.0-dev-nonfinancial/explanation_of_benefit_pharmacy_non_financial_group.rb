@@ -7,8 +7,7 @@ require_relative 'explanation_of_benefit_pharmacy_non_financial/explanation_of_b
         class ExplanationOfBenefitPharmacyNonFinancialGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Pharmacy - Non-Financial Tests'
           short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Pharmacy - Non-Financial.'
-          description %(
-      # Background
+          description %(# Background
 
 The CARIN for Blue Button ExplanationOfBenefit Pharmacy - Non-Financial sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries

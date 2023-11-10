@@ -7,8 +7,7 @@ require_relative 'explanation_of_benefit_pharmacy/explanation_of_benefit_pharmac
         class ExplanationOfBenefitPharmacyGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Pharmacy Tests'
           short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Pharmacy.'
-          description %(
-      # Background
+          description %(# Background
 
 The CARIN for Blue Button ExplanationOfBenefit Pharmacy sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries

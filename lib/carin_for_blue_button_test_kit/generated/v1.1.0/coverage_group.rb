@@ -7,8 +7,7 @@ require_relative 'coverage/coverage_read_test'
         class CoverageGroup < Inferno::TestGroup
           title 'Coverage Tests'
           short_description 'Verify support for the server capabilities required by the C4BB Coverage.'
-          description %(
-      # Background
+          description %(# Background
 
 The CARIN for Blue Button Coverage sequence verifies that the system under test is
 able to provide correct responses for Coverage queries. These queries

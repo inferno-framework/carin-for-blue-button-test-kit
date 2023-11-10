@@ -9,8 +9,7 @@ require_relative 'related_person/related_person_read_test'
         class RelatedPersonGroup < Inferno::TestGroup
           title 'RelatedPerson Tests'
           short_description 'Verify support for the server capabilities required by the C4BB RelatedPerson.'
-          description %(
-      # Background
+          description %(# Background
 
 The CARIN for Blue Button RelatedPerson sequence verifies that the system under test is
 able to provide correct responses for RelatedPerson queries. These queries

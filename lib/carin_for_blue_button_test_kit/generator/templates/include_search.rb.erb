@@ -7,8 +7,8 @@ module CarinForBlueButtonTestKit
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for <%= resource_type %> search by id + _include=<%= search_param %>'
-      description %(
-<%= description %>
+      description %(<%=
+        description %>
       )
 
       def self.properties

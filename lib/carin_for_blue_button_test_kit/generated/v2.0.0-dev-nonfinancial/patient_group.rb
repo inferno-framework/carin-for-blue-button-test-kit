@@ -9,8 +9,7 @@ require_relative 'patient/patient_read_test'
         class PatientGroup < Inferno::TestGroup
           title 'Patient Tests'
           short_description 'Verify support for the server capabilities required by the C4BB Patient.'
-          description %(
-      # Background
+          description %(# Background
 
 The CARIN for Blue Button Patient sequence verifies that the system under test is
 able to provide correct responses for Patient queries. These queries

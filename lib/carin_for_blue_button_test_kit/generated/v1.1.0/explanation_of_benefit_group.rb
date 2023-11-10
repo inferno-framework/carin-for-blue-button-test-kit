@@ -19,8 +19,7 @@ require_relative 'explanation_of_benefit/explanation_of_benefit_read_test'
         class ExplanationOfBenefitGroup < Inferno::TestGroup
           title 'Explanation Of Benefit Tests'
           short_description 'Verify support for the server capabilities required by the C4BB Explanation Of Benefit.'
-          description %(
-      # Background
+          description %(# Background
 
 The CARIN for Blue Button Explanation Of Benefit sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries

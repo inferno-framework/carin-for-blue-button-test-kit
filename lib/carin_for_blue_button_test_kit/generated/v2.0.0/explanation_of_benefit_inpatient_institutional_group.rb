@@ -7,8 +7,7 @@ require_relative 'explanation_of_benefit_inpatient_institutional/explanation_of_
         class ExplanationOfBenefitInpatientInstitutionalGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Inpatient Institutional Tests'
           short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Inpatient Institutional.'
-          description %(
-      # Background
+          description %(# Background
 
 The CARIN for Blue Button ExplanationOfBenefit Inpatient Institutional sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries

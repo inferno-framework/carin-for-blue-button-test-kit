@@ -7,8 +7,7 @@ require_relative 'explanation_of_benefit_oral_non_financial/explanation_of_benef
         class ExplanationOfBenefitOralNonFinancialGroup < Inferno::TestGroup
           title 'ExplanationOfBenefit Oral - Non-Financial Tests'
           short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Oral - Non-Financial.'
-          description %(
-      # Background
+          description %(# Background
 
 The CARIN for Blue Button ExplanationOfBenefit Oral - Non-Financial sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries

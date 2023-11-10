@@ -15,7 +15,7 @@ module CarinForBlueButtonTestKit
         Statement. This test will look through the ExplanationOfBenefit resources
         found previously for the following must support elements:
 
-        * ExplanationOfBenefit.billablePeriod
+                * ExplanationOfBenefit.billablePeriod
         * ExplanationOfBenefit.careTeam
         * ExplanationOfBenefit.careTeam.provider
         * ExplanationOfBenefit.careTeam.qualification

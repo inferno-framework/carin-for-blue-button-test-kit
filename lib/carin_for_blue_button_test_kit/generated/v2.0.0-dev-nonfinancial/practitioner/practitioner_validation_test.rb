@@ -9,8 +9,7 @@ module CarinForBlueButtonTestKit
 
       id :c4bb_v200devnonfinancial_practitioner_validation_test
       title 'Practitioner resources returned during previous tests conform to the C4BB Practitioner'
-      description %(
-This test verifies resources returned from the first search conform to
+      description %(This test verifies resources returned from the first search conform to
 the [C4BB Practitioner](http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner).
 Systems must demonstrate at least one valid example in order to pass this test.
 
