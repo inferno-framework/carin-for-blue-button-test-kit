@@ -199,7 +199,7 @@ module CarinForBlueButtonTestKit
 
         if param_value != 'ExplanationOfBenefit:*'
           paths.each do |path|
-              values_found = resolve_path(resource.source_hash, path)
+              values_found = resolve_path(resource, path)
               match_found = (values_found.length > 0)
 
               break if match_found
@@ -214,18 +214,18 @@ module CarinForBlueButtonTestKit
         end  
       end  
 
-      referenced_resource_types = values_found.map{ |reference| reference['reference'].split('/')[-2]}.uniq
+      referenced_resource_types = values_found.map{ |reference| reference.reference.split('/')[-2]}.uniq
       included_resources = returned_resources_all.select{|item| referenced_resource_types.include?(item.resourceType)}
 
       matched_base_resources = values_found.select do |base_resource_references|
         included_resources.any? do |referenced_resource|
-          is_reference_match?(base_resource_references['reference'], referenced_resource.id)
+          is_reference_match?(base_resource_references.reference, referenced_resource.id)
         end
       end
 
       not_matched_included_resources = included_resources.select do |resource_reference|
         values_found.none? do |base_resource_references|
-          is_reference_match?(base_resource_references['reference'], resource_reference.id)
+          is_reference_match?(base_resource_references.reference, resource_reference.id)
         end
       end
 

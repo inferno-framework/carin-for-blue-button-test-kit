@@ -407,22 +407,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
     end
   end
-end
-  describe 'search ExplanationofBenefit with _include param for patient' do
-    context 'when the patient resources are contained' do
-      let(:search_params_patient) {'_id=EOBProfessionalTransportation1&_include=ExplanationOfBenefit:patient'}
-      let(:search_params_all) {'_id=EOBProfessionalTransportation1&_include=ExplanationOfBenefit:*'}
-      let(:explanation_of_benefit_id) { 'EOBProfessionalTransportation1' }
-      let(:patient_id) { '123' }
-      let(:patient) { FHIR::Patient.new(id: patient_id) }
-      let (:organization) { FHIR::Organization.new(id: patient_id) }
-      let(:explanation_of_benefit) do
-        FHIR::ExplanationOfBenefit.new(
-          id: explanation_of_benefit_id,
-          patient: {
-            reference: "Patient/#{patient_id}"
-          }
-        )
+
   describe 'search ExplanationofBenefit with _include patient param' do
     let(:explanation_of_benefit_include_test_patient) do
       Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitExplanationOfBenefit_patientSearchTest) do
