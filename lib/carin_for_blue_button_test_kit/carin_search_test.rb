@@ -110,11 +110,11 @@ module CarinForBlueButtonTestKit
                  else
                    metadata.search_definitions[name.to_sym][:type]
                  end
-
+          
           values_found =
-            resolve_path(resource.source_hash, path)
+            resolve_path(resource, path)
             .map do |value|
-              value[:reference.to_s] || value
+              value || value.reference
             end
 
           match_found = case type
@@ -124,25 +124,25 @@ module CarinForBlueButtonTestKit
                           end
                         when 'CodeableConcept'
                           codings = values_found.flat_map do |val|
-                            val[:coding.to_s] || nil
+                            val.coding || nil
                           end.compact
                           if param_value.include? '|'
                             system = param_value.split('|').first
                             code = param_value.split('|').last
                             codings&.any? do |coding|
-                              coding[:system.to_s] == system && coding[:code.to_s]&.casecmp?(code)
+                              coding.system == system && coding.code&.casecmp?(code)
                             end
                           else
-                            codings&.any? { |coding| coding[:code.to_s]&.casecmp?(param_value) }
+                            codings&.any? { |coding| coding.code&.casecmp?(param_value) }
                           end
                         when 'Identifier'
                           if param_value.include? '|'
                             values_found.any? do |identifier|
-                              puts "#{identifier[:system.to_s]}|#{identifier[:value.to_s]}"
-                              "#{identifier[:system.to_s]}|#{identifier[:value.to_s]}" == param_value
+                              puts "#{identifier.system}|#{identifier.value}"
+                              "#{identifier.system}|#{identifier.value}" == param_value
                             end
                           else
-                            values_found.any? { |identifier| identifier[:value] == param_value }
+                            values_found.any? { |identifier| identifier.value == param_value }
                           end
                         when 'Period', 'date', 'instant', 'dateTime'
                           values_found.any? { |date| validate_date_search(param_value, date) }
@@ -165,57 +165,107 @@ module CarinForBlueButtonTestKit
       assert_response_status(200)
       assert_resource_type(:bundle)
 
-      returned_resources = extract_resources_from_bundle(bundle: resource, response:).select do |item|
-        item.resourceType == resource_type
-      end
+      returned_resources_all = extract_resources_from_bundle(bundle: resource, response: response)
+      returned_resources_resource_type = returned_resources_all.select{|item| item.resourceType == resource_type}
 
-      skip_if returned_resources.blank?, no_resources_message
+      skip_if returned_resources_resource_type.blank?, self.no_resources_message
 
-      returned_resources.each do |resource|
+      returned_resources_resource_type.each do |resource|
         match_found = false
+        reference_bool = true
         paths = include_param_paths(param_value)
-
+        
         if param_value != 'ExplanationOfBenefit:*'
           paths.each do |path|
-            values_found = resolve_path(resource.source_hash, path)
+              values_found = resolve_path(resource, path)
 
-            match_found = values_found.length.positive?
+              values_found.each do |reference|
+                reference_found = find_included_resource(reference, returned_resources_all)
 
-            break if match_found
+                # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
+                if !reference_found
+                    reference_bool = false
+                end
+              end
+
+              match_found = (values_found.length > 0)
+
+              break if match_found
           end
-          assert match_found, 'Returned resource did not match the search parameter'
+          assert match_found, "Returned resource did not match the search parameter"
+          assert reference_bool, "Returned resource did not include the _include resource parameter"
           return
         else
           values_found = []
+          reference_bool = true
+
           paths.each do |path|
-            values_found += resolve_path(resource.source_hash, path)
+              values_found += resolve_path(resource, path)
+          end
+
+          values_found.each do |reference|
+            reference_found = find_included_resource(reference, returned_resources_all)
+              
+            # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
+            if !reference_found
+                reference_bool = false
+            end
           end
 
           match_found = (values_found.length >= 5)
 
-          assert match_found, 'Returned resource did not match the search parameter'
-        end
+          assert match_found, "Returned resource did not match the search parameter"  
+          assert reference_bool, "Returned resource did not include the _include resource parameter"
+        end  
+      end          
+    end
+
+
+    def find_included_resource(reference, returned_resources_all)
+      referenced_resource_id = reference.reference
+
+      assert !referenced_resource_id.start_with?('#'), "Reference id is not in the correct format of [ResourceType]/[ResourceID]"
+  
+      referenced_resource_type = referenced_resource_id.split('/')[-2]
+
+      referenced_resources = returned_resources_all.select{|item| item.resourceType == referenced_resource_type}
+
+      assert referenced_resources.present?, "No " + referenced_resource_type + " resources were included in the search results"
+      
+      reference_found = false
+      referenced_resources.each do |referenced_resource|
+        reference_found = is_reference_match?(referenced_resource_id, referenced_resource.id)
+        break if reference_found
       end
+
+      return reference_found
+    end
+
+    def is_reference_match? (reference, local_reference)
+      regex_pattern = /^(#{Regexp.escape(local_reference)}|\S+\/#{Regexp.escape(local_reference)}(?:[\/|]\S+)*)$/
+      reference.match?(regex_pattern)
     end
 
     def include_param_paths(param)
       case param
       when 'ExplanationOfBenefit:patient'
-        ['patient']
+          ['patient']
       when 'ExplanationOfBenefit:provider'
-        ['provider']
+          ['provider']
       when 'ExplanationOfBenefit:care-team'
-        ['careTeam']
+          ['careTeam.provider']
       when 'ExplanationOfBenefit:coverage'
-        ['insurance.coverage']
+          ['insurance.coverage']
       when 'ExplanationOfBenefit:insurer'
-        ['insurer']
+          ['insurer']
+      when 'ExplanationOfBenefit:payee'
+          ['payee.party']
       when 'Coverage:payor'
-        ['payor']
+          ['payor']
       when 'ExplanationOfBenefit:*'
-        ['patient', 'provider', 'careTeam', 'insurance.coverage', 'insurer']
+          ['patient', 'provider', 'careTeam.provider', 'insurance.coverage', 'insurer']
       else
-        []
+          []
       end
     end
   end

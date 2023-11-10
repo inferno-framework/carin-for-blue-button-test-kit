@@ -374,5 +374,4 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
     end
   end
-
 end

@@ -102,12 +102,12 @@ module CarinForBlueButtonTestKit
         must_support_elements.select do |element_definition|
           resources.none? do |resource|
             path = element_definition[:path] #.delete_suffix('[x]')
-            value_found = find_a_value_at(resource.source_hash, path) do |value|
+            value_found = find_a_value_at(resource, path) do |value|
               value_without_extensions =
                 value.respond_to?(:to_hash) ? value.to_hash.reject { |key, _| key == 'extension' } : value
 
               (value_without_extensions.present? || value_without_extensions == false) &&
-                (element_definition[:fixed_value].blank? || value == element_definition[:fixed_value])
+                (element_definition[:fixed_value].blank? || value.source_hash == element_definition[:fixed_value])
 
             end
 
@@ -132,7 +132,7 @@ module CarinForBlueButtonTestKit
         must_support_slices.select do |slice|
           resources.none? do |resource|
             path = slice[:path] # .delete_suffix('[x]')
-            find_slice(resource.source_hash, path, slice[:discriminator]).present?
+            find_slice(resource, path, slice[:discriminator]).present?
           end
         end
     end
@@ -143,15 +143,15 @@ module CarinForBlueButtonTestKit
         when 'patternCodeableConcept'
           coding_path = discriminator[:path].present? ? "#{discriminator[:path]}.coding" : 'coding'
           find_a_value_at(element, coding_path) do |coding|
-            coding[:code.to_s] == discriminator[:code] && coding[:system.to_s] == discriminator[:system]
+            coding.code == discriminator[:code] && coding.system == discriminator[:system]
           end
         when 'patternCoding'
           coding_path = discriminator[:path].present? ? discriminator[:path] : ''
           find_a_value_at(element, coding_path) do |coding|
-            coding[:code.to_s] == discriminator[:code] && coding[:system.to_s] == discriminator[:system]
+            coding.code == discriminator[:code] && coding.system == discriminator[:system]
           end
         when 'patternIdentifier'
-          find_a_value_at(element, discriminator[:path]) { |identifier| identifier[:system.to_s] == discriminator[:system] }
+          find_a_value_at(element, discriminator[:path]) { |identifier| identifier.system == discriminator[:system] }
         when 'value'
           values = discriminator[:values].map { |value| value.merge(path: value[:path].split('.')) }
           find_slice_by_values(element, values)
@@ -176,7 +176,7 @@ module CarinForBlueButtonTestKit
           end
         when 'requiredBinding'
           coding_path = discriminator[:path].present? ? "#{discriminator[:path]}.coding" : 'coding'
-          find_a_value_at(element, coding_path) {|coding| discriminator[:values].include?(coding[:code.to_s]) }
+          find_a_value_at(element, coding_path) {|coding| discriminator[:values].include?(coding.code) }
         end
       end
     end

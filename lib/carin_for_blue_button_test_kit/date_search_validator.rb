@@ -19,12 +19,11 @@ module CarinForBlueButtonTestKit
 
     def get_fhir_period_range(period)
       range = { start: nil, end: nil }
-      period = period.transform_keys(&:to_sym) # Standarize hashes to have symbol keys
-      range[:start] = DateTime.xmlschema(period[:start]) unless period[:start].nil?
-      return range if period[:end].nil?
+      range[:start] = DateTime.xmlschema(period.start) unless period.start.nil?
+      return range if period.end.nil?
 
-      period_end_beginning = DateTime.xmlschema(period[:end])
-      range[:end] = case period[:end]
+      period_end_beginning = DateTime.xmlschema(period.end)
+      range[:end] = case period.end
                     when /^\d{4}$/ # YYYY
                       period_end_beginning.next_year - 1.seconds
                     when /^\d{4}-\d{2}$/ # YYYY-MM
@@ -70,7 +69,7 @@ module CarinForBlueButtonTestKit
     end
 
     def validate_date_search(search_value, target_value)
-      if target_value.instance_of?(Hash)
+      if target_value.kind_of?(FHIR::Model)
         validate_period_search(search_value, target_value)
       else
         validate_datetime_search(search_value, target_value)
