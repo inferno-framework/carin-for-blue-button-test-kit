@@ -15,15 +15,15 @@ module CarinForBlueButtonTestKit
       optional
       <% end %>
 
-      input :<%=test_id%>_param,
-        title: '<%=input_title%>',
+      input :<%=input_id%>,
+        title: '<%=input_title.strip%>',
         type: 'text',
-        description: '<%=input_description%>'<%if optional?%>,
+        description: '<%=input_description.strip%>'<%if optional?%>,
         optional: true<% end %>
 
       def self.properties
         @properties ||= SearchTestProperties.new(
-  <%= search_test_properties_string %>
+  <%= search_test_properties_string.gsub("\n", "\n" + " "*2) %>
         )
       end
 
@@ -34,12 +34,16 @@ module CarinForBlueButtonTestKit
       def scratch_resources
         scratch[:<%= profile_identifier %>_resources] ||= {}
       end
-
+      <% if patient_id_param? %>
+      def patient_id_list
+        return [nil] unless respond_to? :patient_ids
+        patient_ids.split(',').map(&:strip)
+      end
+      <% end %>
       run do
-        <% if optional? %>
-        skip_if <%=test_id%>_param.blank?, '<%="#{input_title.chop!} not provided" %>'
+        <% if optional? %>skip_if <%=input_id%>.blank?, '<%="#{input_title.chop!} not provided" %>'
         <% end %>
-        run_search_test(<%=test_id%>_param)
+        run_search_test(<%= patient_id_param? ? "patient_id_list" : input_id%>)
       end
     end
   end

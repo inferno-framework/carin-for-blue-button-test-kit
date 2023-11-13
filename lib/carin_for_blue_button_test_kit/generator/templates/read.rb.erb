@@ -14,7 +14,7 @@ module CarinForBlueButtonTestKit
       input :<%= profile_identifier %>_ids,
         title: "<%= profile_identifier %> IDs",
         type: 'text',
-        description: "<%= profile_identifier %> Resource ID"
+        description: "<%= input_description.strip %>"
 
       input_order :url, :smart_credentials, :<%= profile_identifier %>_ids
 

@@ -114,6 +114,20 @@ module CarinForBlueButtonTestKit
           file_name: base_output_file_name
         )
       end
+
+      def input_description
+        desc_content =  if profile_identifier == 'patient'
+                          "
+                          Comma separated list of patient IDs that in sum
+                          contain all MUST SUPPORT elements
+                          "
+                        else
+                          "#{profile_identifier} Resource ID"
+                        end
+        <<~INPUT_DESCRIPTION
+        #{desc_content}
+        INPUT_DESCRIPTION
+      end
     end
   end
 end

@@ -27,18 +27,16 @@ requirement of CARIN IG for Blue Button® v2.0.0.
       id :c4bb_v200_practitioner__id_search_test
 
       input :c4bb_v200_practitioner__id_search_test_param,
-        title: 'Practitioner search parameter for _id
-',
+        title: 'Practitioner search parameter for _id',
         type: 'text',
-        description: 'Practitioner search parameter: _id
-'
+        description: 'Practitioner search parameter: _id'
 
       def self.properties
         @properties ||= SearchTestProperties.new(
           first_search: true,
-        resource_type: 'Practitioner',
-        search_param_names: ['_id'],
-        test_post_search: true
+          resource_type: 'Practitioner',
+          search_param_names: ['_id'],
+          test_post_search: true
         )
       end
 
@@ -49,7 +47,7 @@ requirement of CARIN IG for Blue Button® v2.0.0.
       def scratch_resources
         scratch[:practitioner_resources] ||= {}
       end
-
+      
       run do
         
         run_search_test(c4bb_v200_practitioner__id_search_test_param)

@@ -21,17 +21,15 @@ none are returned, the test is skipped.
       
 
       input :c4bb_v200_related_person__lastUpdated_search_test_param,
-        title: 'RelatedPerson search parameter for _lastUpdated
-',
+        title: 'RelatedPerson search parameter for _lastUpdated',
         type: 'text',
-        description: 'RelatedPerson search parameter: _lastUpdated
-',
+        description: 'RelatedPerson search parameter: _lastUpdated',
         optional: true
 
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'RelatedPerson',
-        search_param_names: ['_lastUpdated']
+          search_param_names: ['_lastUpdated']
         )
       end
 
@@ -42,9 +40,8 @@ none are returned, the test is skipped.
       def scratch_resources
         scratch[:related_person_resources] ||= {}
       end
-
+      
       run do
-        
         skip_if c4bb_v200_related_person__lastUpdated_search_test_param.blank?, 'RelatedPerson search parameter for _lastUpdated not provided'
         
         run_search_test(c4bb_v200_related_person__lastUpdated_search_test_param)

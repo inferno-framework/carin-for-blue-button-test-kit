@@ -26,19 +26,17 @@ requirement of CARIN IG for Blue Button® v2.0.0.
       id :c4bb_v200_coverage__id_search_test
 
       input :c4bb_v200_coverage__id_search_test_param,
-        title: 'Coverage search parameter for _id
-',
+        title: 'Coverage search parameter for _id',
         type: 'text',
-        description: 'Coverage search parameter: _id
-'
+        description: 'Coverage search parameter: _id'
 
       def self.properties
         @properties ||= SearchTestProperties.new(
           first_search: true,
-        resource_type: 'Coverage',
-        search_param_names: ['_id'],
-        saves_delayed_references: true,
-        test_post_search: true
+          resource_type: 'Coverage',
+          search_param_names: ['_id'],
+          saves_delayed_references: true,
+          test_post_search: true
         )
       end
 
@@ -49,7 +47,7 @@ requirement of CARIN IG for Blue Button® v2.0.0.
       def scratch_resources
         scratch[:coverage_resources] ||= {}
       end
-
+      
       run do
         
         run_search_test(c4bb_v200_coverage__id_search_test_param)

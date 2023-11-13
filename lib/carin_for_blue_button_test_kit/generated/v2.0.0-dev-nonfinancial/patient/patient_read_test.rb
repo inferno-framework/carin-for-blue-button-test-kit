@@ -14,7 +14,8 @@ module CarinForBlueButtonTestKit
       input :patient_ids,
         title: "patient IDs",
         type: 'text',
-        description: "patient Resource ID"
+        description: "Comma separated list of patient IDs that in sum
+                          contain all MUST SUPPORT elements"
 
       input_order :url, :smart_credentials, :patient_ids
 
