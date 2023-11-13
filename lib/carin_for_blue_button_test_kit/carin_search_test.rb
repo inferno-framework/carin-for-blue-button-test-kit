@@ -215,21 +215,21 @@ module CarinForBlueButtonTestKit
       end  
 
       referenced_resource_types = values_found.map{ |reference| reference.reference.split('/')[-2]}.uniq
-      included_resources = returned_resources_all.select{|item| referenced_resource_types.include?(item.resourceType)}
+      included_resources = returned_resources_all.select{|item| referenced_resource_types.include?(item.resourceType)}.map { |resource| "#{resource.resourceType}/#{resource.id}" }
 
       matched_base_resources = values_found.select do |base_resource_references|
         included_resources.any? do |referenced_resource|
-          is_reference_match?(base_resource_references.reference, referenced_resource.id)
+          is_reference_match?(base_resource_references.reference, referenced_resource)
         end
       end
 
       not_matched_included_resources = included_resources.select do |resource_reference|
         values_found.none? do |base_resource_references|
-          is_reference_match?(base_resource_references.reference, resource_reference.id)
+          is_reference_match?(base_resource_references.reference, resource_reference)
         end
       end
 
-      not_matched_included_resources_string = not_matched_included_resources.map{ |resource| "#{resource.resourceType}/#{resource.id}" }.join(',')
+      not_matched_included_resources_string = not_matched_included_resources.join(',')
       assert not_matched_included_resources.empty?, "No #{resource_type} references #{not_matched_included_resources_string} in the search result."
   
     end
