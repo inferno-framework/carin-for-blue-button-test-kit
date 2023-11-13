@@ -1,13 +1,14 @@
 require_relative 'patient/patient_read_test'
-    require_relative 'patient/patient_validation_test'
-    require_relative 'patient/patient_must_support_test'
-    
-    module CarinForBlueButtonTestKit
-      module CARIN4BBV110
-        class PatientGroup < Inferno::TestGroup
-          title 'Patient Tests'
-          short_description 'Verify support for the server capabilities required by the C4BB Patient.'
-          description %(# Background
+require_relative 'patient/patient_validation_test'
+require_relative 'patient/patient_must_support_test'
+
+module CarinForBlueButtonTestKit
+  module CARIN4BBV110
+    class PatientGroup < Inferno::TestGroup
+      title 'Patient Tests'
+      short_description 'Verify support for the server capabilities required by the C4BB Patient.'
+      description %(
+# Background
 
 The CARIN for Blue Button Patient sequence verifies that the system under test is
 able to provide correct responses for Patient queries. These queries
@@ -39,22 +40,22 @@ At least one instance of each external reference in elements marked as
 The test will attempt to read each reference found and will fail if no
 read succeeds.
 
-          )
+      )
 
-          id :c4bb_v110_patient
-          run_as_group
-          input :smart_credentials,
-                title: 'OAuth Credentials',
-                type: :oauth_credentials,
-                optional: true
+      id :c4bb_v110_patient
+      run_as_group
+      input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
 
-          def self.metadata
-            @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'patient', 'metadata.yml'), aliases: true))
-          end
-      
-          test from: :c4bb_v110_patient_read_test
-          test from: :c4bb_v110_patient_validation_test
-          test from: :c4bb_v110_patient_must_support_test
-        end
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'patient', 'metadata.yml'), aliases: true))
       end
+  
+      test from: :c4bb_v110_patient_read_test
+      test from: :c4bb_v110_patient_validation_test
+      test from: :c4bb_v110_patient_must_support_test
     end
+  end
+end

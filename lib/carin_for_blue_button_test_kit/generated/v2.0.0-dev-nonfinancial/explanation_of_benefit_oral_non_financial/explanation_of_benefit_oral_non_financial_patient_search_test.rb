@@ -37,11 +37,11 @@ requirement of CARIN IG for Blue Button® v2.0.0-dev-nonfinancial.
       def self.properties
         @properties ||= SearchTestProperties.new(
           first_search: true,
-        resource_type: 'ExplanationOfBenefit',
-        search_param_names: ['patient'],
-        saves_delayed_references: true,
-        test_reference_variants: true,
-        test_post_search: true
+          resource_type: 'ExplanationOfBenefit',
+          search_param_names: ['patient'],
+          saves_delayed_references: true,
+          test_reference_variants: true,
+          test_post_search: true
         )
       end
 
@@ -52,9 +52,9 @@ requirement of CARIN IG for Blue Button® v2.0.0-dev-nonfinancial.
       def scratch_resources
         scratch[:explanation_of_benefit_oral_non_financial_resources] ||= {}
       end
-
+      
       run do
-
+        
         run_search_test(c4bb_v200devnonfinancial_explanation_of_benefit_oral_non_financial_patient_search_test_param)
       end
     end

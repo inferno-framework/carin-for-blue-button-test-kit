@@ -1,28 +1,29 @@
 require_relative 'explanation_of_benefit/explanation_of_benefit_patient_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_id_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_lastupdated_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_type_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_identifier_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_service_date_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_service_start_date_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_billable_period_start_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_patient_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_provider_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_careteam_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_coverage_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_insurer_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_payee_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_all_search_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_read_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_validation_test'
-    require_relative 'explanation_of_benefit/explanation_of_benefit_must_support_test'
-    
-    module CarinForBlueButtonTestKit
-      module CARIN4BBV200
-        class ExplanationOfBenefitGroup < Inferno::TestGroup
-          title 'Explanation Of Benefit Tests'
-          short_description 'Verify support for the server capabilities required by the C4BB Explanation Of Benefit.'
-          description %(# Background
+require_relative 'explanation_of_benefit/explanation_of_benefit_id_search_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_lastupdated_search_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_type_search_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_identifier_search_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_service_date_search_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_service_start_date_search_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_billable_period_start_search_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_patient_search_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_provider_search_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_careteam_search_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_coverage_search_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_insurer_search_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_payee_search_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_benefit_all_search_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_read_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_validation_test'
+require_relative 'explanation_of_benefit/explanation_of_benefit_must_support_test'
+
+module CarinForBlueButtonTestKit
+  module CARIN4BBV200
+    class ExplanationOfBenefitGroup < Inferno::TestGroup
+      title 'Explanation Of Benefit Tests'
+      short_description 'Verify support for the server capabilities required by the C4BB Explanation Of Benefit.'
+      description %(
+# Background
 
 The CARIN for Blue Button Explanation Of Benefit sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries
@@ -84,37 +85,37 @@ At least one instance of each external reference in elements marked as
 The test will attempt to read each reference found and will fail if no
 read succeeds.
 
-          )
+      )
 
-          id :c4bb_v200_explanation_of_benefit
-          run_as_group
-          input :smart_credentials,
-                title: 'OAuth Credentials',
-                type: :oauth_credentials,
-                optional: true
+      id :c4bb_v200_explanation_of_benefit
+      run_as_group
+      input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
 
-          def self.metadata
-            @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'explanation_of_benefit', 'metadata.yml'), aliases: true))
-          end
-      
-          test from: :c4bb_v200_explanation_of_benefit_patient_search_test
-          test from: :c4bb_v200_explanation_of_benefit__id_search_test
-          test from: :c4bb_v200_explanation_of_benefit__lastUpdated_search_test
-          test from: :c4bb_v200_explanation_of_benefit_type_search_test
-          test from: :c4bb_v200_explanation_of_benefit_identifier_search_test
-          test from: :c4bb_v200_explanation_of_benefit_service_date_search_test
-          test from: :c4bb_v200_explanation_of_benefit_service_start_date_search_test
-          test from: :c4bb_v200_explanation_of_benefit_billable_period_start_search_test
-          test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_patient_search_test
-          test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_provider_search_test
-          test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_careteam_search_test
-          test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_coverage_search_test
-          test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_insurer_search_test
-          test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_payee_search_test
-          test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_All_search_test
-          test from: :c4bb_v200_explanation_of_benefit_read_test
-          test from: :c4bb_v200_explanation_of_benefit_validation_test
-          test from: :c4bb_v200_explanation_of_benefit_must_support_test
-        end
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'explanation_of_benefit', 'metadata.yml'), aliases: true))
       end
+  
+      test from: :c4bb_v200_explanation_of_benefit_patient_search_test
+      test from: :c4bb_v200_explanation_of_benefit__id_search_test
+      test from: :c4bb_v200_explanation_of_benefit__lastUpdated_search_test
+      test from: :c4bb_v200_explanation_of_benefit_type_search_test
+      test from: :c4bb_v200_explanation_of_benefit_identifier_search_test
+      test from: :c4bb_v200_explanation_of_benefit_service_date_search_test
+      test from: :c4bb_v200_explanation_of_benefit_service_start_date_search_test
+      test from: :c4bb_v200_explanation_of_benefit_billable_period_start_search_test
+      test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_patient_search_test
+      test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_provider_search_test
+      test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_careteam_search_test
+      test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_coverage_search_test
+      test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_insurer_search_test
+      test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_payee_search_test
+      test from: :c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_All_search_test
+      test from: :c4bb_v200_explanation_of_benefit_read_test
+      test from: :c4bb_v200_explanation_of_benefit_validation_test
+      test from: :c4bb_v200_explanation_of_benefit_must_support_test
     end
+  end
+end

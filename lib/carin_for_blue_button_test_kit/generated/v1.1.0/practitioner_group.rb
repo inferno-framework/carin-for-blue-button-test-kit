@@ -1,13 +1,14 @@
 require_relative 'practitioner/practitioner_read_test'
-    require_relative 'practitioner/practitioner_validation_test'
-    require_relative 'practitioner/practitioner_must_support_test'
-    
-    module CarinForBlueButtonTestKit
-      module CARIN4BBV110
-        class PractitionerGroup < Inferno::TestGroup
-          title 'Practitioner Tests'
-          short_description 'Verify support for the server capabilities required by the C4BB Practitioner.'
-          description %(# Background
+require_relative 'practitioner/practitioner_validation_test'
+require_relative 'practitioner/practitioner_must_support_test'
+
+module CarinForBlueButtonTestKit
+  module CARIN4BBV110
+    class PractitionerGroup < Inferno::TestGroup
+      title 'Practitioner Tests'
+      short_description 'Verify support for the server capabilities required by the C4BB Practitioner.'
+      description %(
+# Background
 
 The CARIN for Blue Button Practitioner sequence verifies that the system under test is
 able to provide correct responses for Practitioner queries. These queries
@@ -39,22 +40,22 @@ At least one instance of each external reference in elements marked as
 The test will attempt to read each reference found and will fail if no
 read succeeds.
 
-          )
+      )
 
-          id :c4bb_v110_practitioner
-          run_as_group
-          input :smart_credentials,
-                title: 'OAuth Credentials',
-                type: :oauth_credentials,
-                optional: true
+      id :c4bb_v110_practitioner
+      run_as_group
+      input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
 
-          def self.metadata
-            @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'practitioner', 'metadata.yml'), aliases: true))
-          end
-      
-          test from: :c4bb_v110_practitioner_read_test
-          test from: :c4bb_v110_practitioner_validation_test
-          test from: :c4bb_v110_practitioner_must_support_test
-        end
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'practitioner', 'metadata.yml'), aliases: true))
       end
+  
+      test from: :c4bb_v110_practitioner_read_test
+      test from: :c4bb_v110_practitioner_validation_test
+      test from: :c4bb_v110_practitioner_must_support_test
     end
+  end
+end

@@ -1,15 +1,16 @@
 require_relative 'related_person/related_person_id_search_test'
-    require_relative 'related_person/related_person_lastupdated_search_test'
-    require_relative 'related_person/related_person_read_test'
-    require_relative 'related_person/related_person_validation_test'
-    require_relative 'related_person/related_person_must_support_test'
-    
-    module CarinForBlueButtonTestKit
-      module CARIN4BBV200
-        class RelatedPersonGroup < Inferno::TestGroup
-          title 'RelatedPerson Tests'
-          short_description 'Verify support for the server capabilities required by the C4BB RelatedPerson.'
-          description %(# Background
+require_relative 'related_person/related_person_lastupdated_search_test'
+require_relative 'related_person/related_person_read_test'
+require_relative 'related_person/related_person_validation_test'
+require_relative 'related_person/related_person_must_support_test'
+
+module CarinForBlueButtonTestKit
+  module CARIN4BBV200
+    class RelatedPersonGroup < Inferno::TestGroup
+      title 'RelatedPerson Tests'
+      short_description 'Verify support for the server capabilities required by the C4BB RelatedPerson.'
+      description %(
+# Background
 
 The CARIN for Blue Button RelatedPerson sequence verifies that the system under test is
 able to provide correct responses for RelatedPerson queries. These queries
@@ -64,26 +65,26 @@ At least one instance of each external reference in elements marked as
 The test will attempt to read each reference found and will fail if no
 read succeeds.
 
-          )
+      )
 
-          id :c4bb_v200_related_person
-          run_as_group
-          optional
-          
-          input :smart_credentials,
-                title: 'OAuth Credentials',
-                type: :oauth_credentials,
-                optional: true
-
-          def self.metadata
-            @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'related_person', 'metadata.yml'), aliases: true))
-          end
+      id :c4bb_v200_related_person
+      run_as_group
+      optional
       
-          test from: :c4bb_v200_related_person__id_search_test
-          test from: :c4bb_v200_related_person__lastUpdated_search_test
-          test from: :c4bb_v200_related_person_read_test
-          test from: :c4bb_v200_related_person_validation_test
-          test from: :c4bb_v200_related_person_must_support_test
-        end
+      input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
+
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'related_person', 'metadata.yml'), aliases: true))
       end
+  
+      test from: :c4bb_v200_related_person__id_search_test
+      test from: :c4bb_v200_related_person__lastUpdated_search_test
+      test from: :c4bb_v200_related_person_read_test
+      test from: :c4bb_v200_related_person_validation_test
+      test from: :c4bb_v200_related_person_must_support_test
     end
+  end
+end

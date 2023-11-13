@@ -25,7 +25,7 @@ none are returned, the test is skipped.
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'ExplanationOfBenefit',
-        search_param_names: ['_id']
+          search_param_names: ['_id']
         )
       end
 
@@ -36,9 +36,9 @@ none are returned, the test is skipped.
       def scratch_resources
         scratch[:explanation_of_benefit_inpatient_institutional_resources] ||= {}
       end
-
+      
       run do
-
+        
         run_search_test(c4bb_v200devnonfinancial_explanation_of_benefit_inpatient_institutional__id_search_test_param)
       end
     end

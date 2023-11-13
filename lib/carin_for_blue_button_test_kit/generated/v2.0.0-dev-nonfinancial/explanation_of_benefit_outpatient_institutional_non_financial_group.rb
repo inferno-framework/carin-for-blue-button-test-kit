@@ -1,13 +1,14 @@
 require_relative 'explanation_of_benefit_outpatient_institutional_non_financial/explanation_of_benefit_outpatient_institutional_non_financial_read_test'
-    require_relative 'explanation_of_benefit_outpatient_institutional_non_financial/explanation_of_benefit_outpatient_institutional_non_financial_validation_test'
-    require_relative 'explanation_of_benefit_outpatient_institutional_non_financial/explanation_of_benefit_outpatient_institutional_non_financial_must_support_test'
-    
-    module CarinForBlueButtonTestKit
-      module CARIN4BBV200DEVNONFINANCIAL
-        class ExplanationOfBenefitOutpatientInstitutionalNonFinancialGroup < Inferno::TestGroup
-          title 'ExplanationOfBenefit Outpatient Institutional - Non-Financial Tests'
-          short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Outpatient Institutional - Non-Financial.'
-          description %(# Background
+require_relative 'explanation_of_benefit_outpatient_institutional_non_financial/explanation_of_benefit_outpatient_institutional_non_financial_validation_test'
+require_relative 'explanation_of_benefit_outpatient_institutional_non_financial/explanation_of_benefit_outpatient_institutional_non_financial_must_support_test'
+
+module CarinForBlueButtonTestKit
+  module CARIN4BBV200DEVNONFINANCIAL
+    class ExplanationOfBenefitOutpatientInstitutionalNonFinancialGroup < Inferno::TestGroup
+      title 'ExplanationOfBenefit Outpatient Institutional - Non-Financial Tests'
+      short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Outpatient Institutional - Non-Financial.'
+      description %(
+# Background
 
 The CARIN for Blue Button ExplanationOfBenefit Outpatient Institutional - Non-Financial sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries
@@ -39,22 +40,22 @@ At least one instance of each external reference in elements marked as
 The test will attempt to read each reference found and will fail if no
 read succeeds.
 
-          )
+      )
 
-          id :c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_non_financial
-          run_as_group
-          input :smart_credentials,
-                title: 'OAuth Credentials',
-                type: :oauth_credentials,
-                optional: true
+      id :c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_non_financial
+      run_as_group
+      input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
 
-          def self.metadata
-            @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'explanation_of_benefit_outpatient_institutional_non_financial', 'metadata.yml'), aliases: true))
-          end
-      
-          test from: :c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_non_financial_read_test
-          test from: :c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_non_financial_validation_test
-          test from: :c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_non_financial_must_support_test
-        end
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'explanation_of_benefit_outpatient_institutional_non_financial', 'metadata.yml'), aliases: true))
       end
+  
+      test from: :c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_non_financial_read_test
+      test from: :c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_non_financial_validation_test
+      test from: :c4bb_v200devnonfinancial_explanation_of_benefit_outpatient_institutional_non_financial_must_support_test
     end
+  end
+end

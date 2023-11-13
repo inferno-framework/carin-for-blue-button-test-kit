@@ -1,15 +1,16 @@
 require_relative 'organization/organization_id_search_test'
-    require_relative 'organization/organization_lastupdated_search_test'
-    require_relative 'organization/organization_read_test'
-    require_relative 'organization/organization_validation_test'
-    require_relative 'organization/organization_must_support_test'
-    
-    module CarinForBlueButtonTestKit
-      module CARIN4BBV200
-        class OrganizationGroup < Inferno::TestGroup
-          title 'Organization Tests'
-          short_description 'Verify support for the server capabilities required by the C4BB Organization.'
-          description %(# Background
+require_relative 'organization/organization_lastupdated_search_test'
+require_relative 'organization/organization_read_test'
+require_relative 'organization/organization_validation_test'
+require_relative 'organization/organization_must_support_test'
+
+module CarinForBlueButtonTestKit
+  module CARIN4BBV200
+    class OrganizationGroup < Inferno::TestGroup
+      title 'Organization Tests'
+      short_description 'Verify support for the server capabilities required by the C4BB Organization.'
+      description %(
+# Background
 
 The CARIN for Blue Button Organization sequence verifies that the system under test is
 able to provide correct responses for Organization queries. These queries
@@ -64,26 +65,26 @@ At least one instance of each external reference in elements marked as
 The test will attempt to read each reference found and will fail if no
 read succeeds.
 
-          )
+      )
 
-          id :c4bb_v200_organization
-          run_as_group
-          optional
-          
-          input :smart_credentials,
-                title: 'OAuth Credentials',
-                type: :oauth_credentials,
-                optional: true
-
-          def self.metadata
-            @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'organization', 'metadata.yml'), aliases: true))
-          end
+      id :c4bb_v200_organization
+      run_as_group
+      optional
       
-          test from: :c4bb_v200_organization__id_search_test
-          test from: :c4bb_v200_organization__lastUpdated_search_test
-          test from: :c4bb_v200_organization_read_test
-          test from: :c4bb_v200_organization_validation_test
-          test from: :c4bb_v200_organization_must_support_test
-        end
+      input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
+
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'organization', 'metadata.yml'), aliases: true))
       end
+  
+      test from: :c4bb_v200_organization__id_search_test
+      test from: :c4bb_v200_organization__lastUpdated_search_test
+      test from: :c4bb_v200_organization_read_test
+      test from: :c4bb_v200_organization_validation_test
+      test from: :c4bb_v200_organization_must_support_test
     end
+  end
+end

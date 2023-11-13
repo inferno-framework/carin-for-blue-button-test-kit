@@ -1,13 +1,14 @@
 require_relative 'explanation_of_benefit_outpatient_institutional/explanation_of_benefit_outpatient_institutional_read_test'
-    require_relative 'explanation_of_benefit_outpatient_institutional/explanation_of_benefit_outpatient_institutional_validation_test'
-    require_relative 'explanation_of_benefit_outpatient_institutional/explanation_of_benefit_outpatient_institutional_must_support_test'
-    
-    module CarinForBlueButtonTestKit
-      module CARIN4BBV200
-        class ExplanationOfBenefitOutpatientInstitutionalGroup < Inferno::TestGroup
-          title 'ExplanationOfBenefit Outpatient Institutional Tests'
-          short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Outpatient Institutional.'
-          description %(# Background
+require_relative 'explanation_of_benefit_outpatient_institutional/explanation_of_benefit_outpatient_institutional_validation_test'
+require_relative 'explanation_of_benefit_outpatient_institutional/explanation_of_benefit_outpatient_institutional_must_support_test'
+
+module CarinForBlueButtonTestKit
+  module CARIN4BBV200
+    class ExplanationOfBenefitOutpatientInstitutionalGroup < Inferno::TestGroup
+      title 'ExplanationOfBenefit Outpatient Institutional Tests'
+      short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Outpatient Institutional.'
+      description %(
+# Background
 
 The CARIN for Blue Button ExplanationOfBenefit Outpatient Institutional sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries
@@ -39,22 +40,22 @@ At least one instance of each external reference in elements marked as
 The test will attempt to read each reference found and will fail if no
 read succeeds.
 
-          )
+      )
 
-          id :c4bb_v200_explanation_of_benefit_outpatient_institutional
-          run_as_group
-          input :smart_credentials,
-                title: 'OAuth Credentials',
-                type: :oauth_credentials,
-                optional: true
+      id :c4bb_v200_explanation_of_benefit_outpatient_institutional
+      run_as_group
+      input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
 
-          def self.metadata
-            @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'explanation_of_benefit_outpatient_institutional', 'metadata.yml'), aliases: true))
-          end
-      
-          test from: :c4bb_v200_explanation_of_benefit_outpatient_institutional_read_test
-          test from: :c4bb_v200_explanation_of_benefit_outpatient_institutional_validation_test
-          test from: :c4bb_v200_explanation_of_benefit_outpatient_institutional_must_support_test
-        end
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'explanation_of_benefit_outpatient_institutional', 'metadata.yml'), aliases: true))
       end
+  
+      test from: :c4bb_v200_explanation_of_benefit_outpatient_institutional_read_test
+      test from: :c4bb_v200_explanation_of_benefit_outpatient_institutional_validation_test
+      test from: :c4bb_v200_explanation_of_benefit_outpatient_institutional_must_support_test
     end
+  end
+end
