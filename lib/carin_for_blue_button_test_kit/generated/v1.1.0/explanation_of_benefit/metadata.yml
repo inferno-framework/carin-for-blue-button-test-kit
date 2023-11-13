@@ -581,16 +581,10 @@
   - http://hl7.org/fhir/StructureDefinition/PractitionerRole
   - http://hl7.org/fhir/StructureDefinition/Organization
 :tests:
-- :id: c4bb_v110_explanation_of_benefit_read_test
-  :file_name: explanation_of_benefit_read_test.rb
-- :id: c4bb_v110_explanation_of_benefit_validation_test
-  :file_name: explanation_of_benefit_validation_test.rb
-- :id: c4bb_v110_explanation_of_benefit_must_support_test
-  :file_name: explanation_of_benefit_must_support_test.rb
-- :id: c4bb_v110_explanation_of_benefit__id_search_test
-  :file_name: explanation_of_benefit_id_search_test.rb
 - :id: c4bb_v110_explanation_of_benefit_patient_search_test
   :file_name: explanation_of_benefit_patient_search_test.rb
+- :id: c4bb_v110_explanation_of_benefit__id_search_test
+  :file_name: explanation_of_benefit_id_search_test.rb
 - :id: c4bb_v110_explanation_of_benefit__lastUpdated_search_test
   :file_name: explanation_of_benefit_lastupdated_search_test.rb
 - :id: c4bb_v110_explanation_of_benefit_type_search_test
@@ -611,6 +605,12 @@
   :file_name: explanation_of_benefit_explanation_of_benefit_insurer_search_test.rb
 - :id: c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_All_search_test
   :file_name: explanation_of_benefit_explanation_of_benefit_all_search_test.rb
+- :id: c4bb_v110_explanation_of_benefit_read_test
+  :file_name: explanation_of_benefit_read_test.rb
+- :id: c4bb_v110_explanation_of_benefit_validation_test
+  :file_name: explanation_of_benefit_validation_test.rb
+- :id: c4bb_v110_explanation_of_benefit_must_support_test
+  :file_name: explanation_of_benefit_must_support_test.rb
 :id: c4bb_v110_explanation_of_benefit
 :file_name: explanation_of_benefit_group.rb
 :delayed_references:

@@ -27,10 +27,7 @@ module CarinForBlueButtonTestKit
                   :standalone_client_secret,
                   :standalone_requested_scopes,
                   :use_pkce,
-                  :pkce_code_challenge_method,
-                  :standalone_authorization_method,
-                  :client_auth_type,
-                  :client_auth_encryption_method
+                  :pkce_code_challenge_method
 
       group from: :smart_discovery do
         run_as_group

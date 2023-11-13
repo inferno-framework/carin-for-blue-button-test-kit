@@ -7,8 +7,7 @@ module CarinForBlueButtonTestKit
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for RelatedPerson search by _lastUpdated'
-      description %(
-A server SHOULD support searching by
+      description %(A server SHOULD support searching by
 _lastUpdated on the RelatedPerson resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
