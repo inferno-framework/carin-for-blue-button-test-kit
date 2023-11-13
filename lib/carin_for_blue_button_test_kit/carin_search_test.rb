@@ -135,7 +135,7 @@ module CarinForBlueButtonTestKit
           values_found =
             resolve_path(resource, path)
             .map do |value|
-              value&.reference || value
+              value.try(:reference) || value
             end
 
           match_found = case type
