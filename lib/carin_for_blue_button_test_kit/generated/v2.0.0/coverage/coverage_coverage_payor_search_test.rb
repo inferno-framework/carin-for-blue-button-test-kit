@@ -30,7 +30,7 @@ module CarinForBlueButtonTestKit
       end
 
       run do
-        run_search_test('Coverage:payor', include_search: true, resource_id: c4bb_v200_coverage__id_search_test_param)
+        run_include_search('Coverage:payor', resource_id: c4bb_v200_coverage__id_search_test_param)
       end
     end
   end

@@ -30,7 +30,7 @@ module CarinForBlueButtonTestKit
       end
 
       run do
-        run_search_test('<%=include_search_param%>', include_search: <%=include_search%>, resource_id: <%= input_id %>)
+        run_include_search('<%=include_search_param%>', resource_id: <%= input_id %>)
       end
     end
   end

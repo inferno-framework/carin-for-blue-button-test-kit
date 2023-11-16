@@ -30,7 +30,7 @@ module CarinForBlueButtonTestKit
       end
 
       run do
-        run_search_test('ExplanationOfBenefit:coverage', include_search: true, resource_id: c4bb_v110_explanation_of_benefit_inpatient_institutional__id_search_test_param)
+        run_include_search('ExplanationOfBenefit:coverage', resource_id: c4bb_v110_explanation_of_benefit_inpatient_institutional__id_search_test_param)
       end
     end
   end

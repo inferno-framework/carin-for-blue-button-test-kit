@@ -27,14 +27,8 @@ module CarinForBlueButtonTestKit
       scratch_resources[:all] ||= []
     end
 
-    def run_search_test(param_value, include_search: false, resource_id: nil)
+    def run_search_test(param_value, resource_id: nil)
       search_params = {}
-
-      if include_search
-        search_params = { _id: resource_id }
-        run_include_search(search_params, param_value)
-        return
-      end
 
       param_name = search_param_names[0]
       if patient_id_param?(param_name)
@@ -179,7 +173,8 @@ module CarinForBlueButtonTestKit
       end
     end
 
-    def run_include_search(search_params, param_value)
+    def run_include_search(param_value, resource_id: nil)
+      search_params = { _id: resource_id }
       search_params['_include'] = param_value
 
       fhir_search(resource_type, params: search_params)
@@ -187,12 +182,12 @@ module CarinForBlueButtonTestKit
       assert_resource_type(:bundle)
 
       returned_resources_all = extract_resources_from_bundle(bundle: resource, response: response)
-      returned_resources_resource_type = returned_resources_all.select{|item| item.resourceType == resource_type}
+      base_resources = returned_resources_all.select{|item| item.resourceType == resource_type}
 
-      skip_if returned_resources_resource_type.blank?, self.no_resources_message
+      skip_if base_resources.blank?, self.no_resources_message
 
       values_found = []
-      returned_resources_resource_type.each do |resource|
+      base_resources.each do |resource|
         match_found = false
         reference_bool = true
         paths = include_param_paths(param_value)
