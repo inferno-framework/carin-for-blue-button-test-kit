@@ -2,7 +2,7 @@ require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
 module CarinForBlueButtonTestKit
-  module CARIN4BBV200
+  module CARIN4BBV110
     class CoverageCoverage_payorSearchTest < Inferno::Test
       include CarinForBlueButtonTestKit::CarinSearchTest
 
@@ -20,9 +20,9 @@ module CarinForBlueButtonTestKit
         )
       end
 
-      id :c4bb_v200_coverage_include_Coverage_payor_search_test
+      id :c4bb_v110_coverage_include_Coverage_payor_search_test
 
-      input :c4bb_v200_coverage__id_search_test_param,
+      input :c4bb_v110_coverage__id_search_test_param,
         title: 'Coverage search parameter for _id',
         type: 'text',
         description: 'Coverage search parameter: _id'
@@ -32,7 +32,7 @@ module CarinForBlueButtonTestKit
       end
 
       run do
-        run_include_search('Coverage:payor', resource_id: c4bb_v200_coverage__id_search_test_param)
+        run_include_search('Coverage:payor', resource_id: c4bb_v110_coverage__id_search_test_param)
       end
     end
   end

@@ -22,6 +22,7 @@ module CarinForBlueButtonTestKit
             comparators:,
             values:,
             type:,
+            targets:,
             contains_multiple: contains_multiple?,
             multiple_or: multiple_or_expectation,
             chain:
@@ -94,6 +95,12 @@ module CarinForBlueButtonTestKit
           # in profile def is Condition.onset[x]
           param.type
         end
+      end
+
+      def targets
+        return [] if param.nil?
+
+        param.target || []
       end
 
       def contains_multiple?

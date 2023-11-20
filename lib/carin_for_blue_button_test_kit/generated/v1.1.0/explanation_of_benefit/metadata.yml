@@ -57,6 +57,7 @@
     :comparators: {}
     :values: []
     :type: http://hl7.org/fhirpath/System.String
+    :targets: []
     :contains_multiple: false
   :patient:
     :paths:
@@ -66,6 +67,8 @@
     :comparators: {}
     :values: []
     :type: Reference
+    :targets:
+    - Patient
     :contains_multiple: false
   :_lastUpdated:
     :paths:
@@ -84,6 +87,7 @@
       :ap: MAY
     :values: []
     :type: instant
+    :targets: []
     :contains_multiple: false
   :type:
     :paths:
@@ -98,6 +102,7 @@
     - professional
     - vision
     :type: CodeableConcept
+    :targets: []
     :contains_multiple: false
   :identifier:
     :paths:
@@ -107,6 +112,7 @@
     :comparators: {}
     :values: []
     :type: Identifier
+    :targets: []
     :contains_multiple: true
   :service-date:
     :paths:
@@ -127,6 +133,61 @@
       :ap: MAY
     :values: []
     :type: Period
+    :targets: []
+    :contains_multiple: false
+  :provider:
+    :paths:
+    - provider
+    :full_paths:
+    - ExplanationOfBenefit.provider
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :targets:
+    - Practitioner
+    - Organization
+    - PractitionerRole
+    :contains_multiple: false
+  :care-team:
+    :paths:
+    - careTeam.provider
+    :full_paths:
+    - ExplanationOfBenefit.careTeam.provider
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :targets:
+    - Practitioner
+    - Organization
+    - PractitionerRole
+    :contains_multiple: false
+  :coverage:
+    :paths:
+    - insurance.coverage
+    :full_paths:
+    - ExplanationOfBenefit.insurance.coverage
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :targets:
+    - Coverage
+    :contains_multiple: false
+  :insurer:
+    :paths:
+    - insurer
+    :full_paths:
+    - ExplanationOfBenefit.insurer
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :targets:
+    - Organization
+    :contains_multiple: false
+  :*:
+    :paths: []
+    :full_paths: []
+    :values: []
+    :targets: []
     :contains_multiple: false
 :include_params:
 - ExplanationOfBenefit:patient

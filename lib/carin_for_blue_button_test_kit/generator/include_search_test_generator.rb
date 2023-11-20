@@ -70,6 +70,32 @@ module CarinForBlueButtonTestKit
           def input_description
             "#{resource_type} search parameter: _id"
           end
+          
+          def include_paths
+            case search_param
+            when 'ExplanationOfBenefit:payee'
+                ['payee.party']
+            when 'ExplanationOfBenefit:*'
+                ['patient', 'provider', 'careTeam.provider', 'insurance.coverage', 'insurer']
+            else
+              group_metadata.search_definitions[include_search_type.to_sym][:paths]
+            end
+          end
+
+          def include_targets
+            case search_param
+            when 'ExplanationOfBenefit:payee'
+                ['Organization']
+            when 'ExplanationOfBenefit:*'
+                ['Patient', 'Organization', 'Practitioner','PractitionerRole', 'Coverage']
+            else
+              group_metadata.search_definitions[include_search_type.to_sym][:targets]
+            end
+          end
+
+          def include_search_type
+            search_param.sub("#{resource_type}:", "")
+          end
 
           def removed_hyphen
             search_param.gsub('-', '')

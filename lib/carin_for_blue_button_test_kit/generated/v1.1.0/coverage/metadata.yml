@@ -16,7 +16,20 @@
   :expectation: SHALL
 :operations: []
 :searches: []
-:search_definitions: {}
+:search_definitions:
+  :payor:
+    :paths:
+    - payor
+    :full_paths:
+    - Coverage.payor
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :targets:
+    - Organization
+    - Patient
+    - RelatedPerson
+    :contains_multiple: false
 :include_params:
 - Coverage:payor
 :revincludes: []

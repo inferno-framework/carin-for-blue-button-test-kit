@@ -21,7 +21,9 @@ module CarinForBlueButtonTestKit
                    :token_search_params,
                    :test_reference_variants?,
                    :params_with_comparators,
-                   :multiple_or_search_params
+                   :multiple_or_search_params,
+                   :include_paths,
+                   :include_targets
 
     def all_scratch_resources
       scratch_resources[:all] ||= []
@@ -190,7 +192,7 @@ module CarinForBlueButtonTestKit
       base_resources.each do |resource|
         match_found = false
         reference_bool = true
-        paths = include_param_paths(param_value)
+        paths = include_paths
 
         if param_value != 'ExplanationOfBenefit:*'
           paths.each do |path|
@@ -209,7 +211,7 @@ module CarinForBlueButtonTestKit
         end  
       end  
 
-      referenced_resource_types = values_found.map{ |reference| reference.reference.split('/')[-2]}.uniq
+      referenced_resource_types = include_targets
       included_resources = returned_resources_all.select{|item| referenced_resource_types.include?(item.resourceType)}.map { |resource| "#{resource.resourceType}/#{resource.id}" }
 
       matched_base_resources = values_found.select do |base_resource_references|
@@ -232,29 +234,6 @@ module CarinForBlueButtonTestKit
     def is_reference_match? (reference, local_reference)
       regex_pattern = /^(#{Regexp.escape(local_reference)}|\S+\/#{Regexp.escape(local_reference)}(?:[\/|]\S+)*)$/
       reference.match?(regex_pattern)
-    end
-
-    def include_param_paths(param)
-      case param
-      when 'ExplanationOfBenefit:patient'
-          ['patient']
-      when 'ExplanationOfBenefit:provider'
-          ['provider']
-      when 'ExplanationOfBenefit:care-team'
-          ['careTeam.provider']
-      when 'ExplanationOfBenefit:coverage'
-          ['insurance.coverage']
-      when 'ExplanationOfBenefit:insurer'
-          ['insurer']
-      when 'ExplanationOfBenefit:payee'
-          ['payee.party']
-      when 'Coverage:payor'
-          ['payor']
-      when 'ExplanationOfBenefit:*'
-          ['patient', 'provider', 'careTeam.provider', 'insurance.coverage', 'insurer']
-      else
-          []
-      end
     end
 
     def patient_id_param?(name)
