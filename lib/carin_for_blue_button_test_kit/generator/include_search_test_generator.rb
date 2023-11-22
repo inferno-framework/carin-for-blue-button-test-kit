@@ -71,25 +71,20 @@ module CarinForBlueButtonTestKit
             "#{resource_type} search parameter: _id"
           end
           
-          def include_paths
+          def include_parameters
             case search_param
             when 'ExplanationOfBenefit:payee'
-                ['payee.party']
+                [{path: 'payee.party', target: 'Organization'}]
             when 'ExplanationOfBenefit:*'
-                ['patient', 'provider', 'careTeam.provider', 'insurance.coverage', 'insurer']
+                search_definitions = ['patient', 'provider', 'care-team', 'coverage', 'insurer']
+                include_params = []
+                search_definitions.each do |search_def|
+                  target_paths = group_metadata.search_definitions[search_def.to_sym][:target_paths]
+                  include_params = include_params + target_paths
+                end
+                include_params
             else
-              group_metadata.search_definitions[include_search_type.to_sym][:paths]
-            end
-          end
-
-          def include_targets
-            case search_param
-            when 'ExplanationOfBenefit:payee'
-                ['Organization']
-            when 'ExplanationOfBenefit:*'
-                ['Patient', 'Organization', 'Practitioner','PractitionerRole', 'Coverage']
-            else
-              group_metadata.search_definitions[include_search_type.to_sym][:targets]
+              group_metadata.search_definitions[include_search_type.to_sym][:target_paths]
             end
           end
 

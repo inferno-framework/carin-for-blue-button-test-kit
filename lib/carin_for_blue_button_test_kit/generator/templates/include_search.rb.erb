@@ -15,8 +15,7 @@ module CarinForBlueButtonTestKit
         @properties ||= SearchTestProperties.new(
           resource_type: '<%=resource_type%>',
         search_param_names: ['_include'],
-        include_paths: <%= include_paths %>,
-        include_targets: <%= include_targets %>
+        include_parameters: <%= include_parameters %>
         )
       end
 

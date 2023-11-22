@@ -25,10 +25,12 @@
     :comparators: {}
     :values: []
     :type: Reference
-    :targets:
-    - Organization
-    - Patient
-    - RelatedPerson
+    :target_paths:
+    - :path: payor
+      :target:
+      - Organization
+      - Patient
+      - RelatedPerson
     :contains_multiple: false
 :include_params:
 - Coverage:payor

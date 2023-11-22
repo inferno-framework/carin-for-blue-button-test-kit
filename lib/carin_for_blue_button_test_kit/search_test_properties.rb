@@ -13,8 +13,7 @@ module CarinForBlueButtonTestKit
         :params_with_comparators,
         :multiple_or_search_params,
         :test_post_search,
-        :include_paths,
-        :include_targets
+        :include_parameters
       ].freeze
   
       ATTRIBUTES.each { |name| attr_reader name }

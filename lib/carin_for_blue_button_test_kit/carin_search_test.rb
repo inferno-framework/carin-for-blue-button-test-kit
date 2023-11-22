@@ -22,8 +22,7 @@ module CarinForBlueButtonTestKit
                    :test_reference_variants?,
                    :params_with_comparators,
                    :multiple_or_search_params,
-                   :include_paths,
-                   :include_targets
+                   :include_parameters
 
     def all_scratch_resources
       scratch_resources[:all] ||= []
@@ -189,46 +188,51 @@ module CarinForBlueButtonTestKit
       skip_if base_resources.blank?, self.no_resources_message
 
       values_found = []
+      base_resource_matches = []
+      
       base_resources.each do |resource|
         match_found = false
         reference_bool = true
-        paths = include_paths
 
         if param_value != 'ExplanationOfBenefit:*'
-          paths.each do |path|
-              values_found = resolve_path(resource, path)
+          include_parameters.each do |include_param|
+              values_found = resolve_path(resource, include_param[:path])
               match_found = (values_found.length > 0)
+              base_resource_matches = matched_base_resources(resource, include_param[:target], returned_resources_all, values_found)
 
               break if match_found
           end
           assert match_found, "Returned resource did not match the search parameter"
         else
-          paths.each do |path|
-              values_found += resolve_path(resource, path)
+          include_parameters.each do |include_param|
+              paths_found = resolve_path(resource, include_param[:path])
+              values_found += paths_found
+              base_resource_matches += matched_base_resources(resource, include_param[:target], returned_resources_all, values_found)
           end
           match_found = (values_found.length >= 5)
           assert match_found, "Returned resource did not match the search parameter"  
-        end  
+        end
+  
+        all_included_resource_types = include_parameters.map {|param| param[:target]}.flatten.uniq
+        included_resources = returned_resources_all.select{|item| all_included_resource_types.include?(item.resourceType)}.map { |resource| "#{resource.resourceType}/#{resource.id}" }
+        not_matched_included_resources = included_resources.select do |resource_reference|
+          base_resource_matches.none? do |base_resource_references|
+            is_reference_match?(base_resource_references.reference, resource_reference)
+          end
+        end
+        not_matched_included_resources_string = not_matched_included_resources.join(',')
+        assert not_matched_included_resources.empty?, "No #{resource_type} references #{not_matched_included_resources_string} in the search result."
       end  
+    end
 
-      referenced_resource_types = include_targets
+    def matched_base_resources(resource, referenced_resource_types, returned_resources_all, values_found)
       included_resources = returned_resources_all.select{|item| referenced_resource_types.include?(item.resourceType)}.map { |resource| "#{resource.resourceType}/#{resource.id}" }
-
+  
       matched_base_resources = values_found.select do |base_resource_references|
         included_resources.any? do |referenced_resource|
           is_reference_match?(base_resource_references.reference, referenced_resource)
         end
       end
-
-      not_matched_included_resources = included_resources.select do |resource_reference|
-        values_found.none? do |base_resource_references|
-          is_reference_match?(base_resource_references.reference, resource_reference)
-        end
-      end
-
-      not_matched_included_resources_string = not_matched_included_resources.join(',')
-      assert not_matched_included_resources.empty?, "No #{resource_type} references #{not_matched_included_resources_string} in the search result."
-  
     end
 
     def is_reference_match? (reference, local_reference)

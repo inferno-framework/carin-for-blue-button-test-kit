@@ -15,8 +15,7 @@ module CarinForBlueButtonTestKit
         @properties ||= SearchTestProperties.new(
           resource_type: 'ExplanationOfBenefit',
         search_param_names: ['_include'],
-        include_paths: ["insurer"],
-        include_targets: ["Organization"]
+        include_parameters: [{:path=>"insurer", :target=>["Organization"]}]
         )
       end
 
