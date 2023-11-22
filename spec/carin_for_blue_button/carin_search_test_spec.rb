@@ -536,5 +536,21 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       expect(result.result_message).to eq('No ExplanationOfBenefit references Patient/456 in the search result.')
       expect(request).to have_been_made.once
     end
+
+    it 'fails performing an _include search for ExplanationOfBenefit:* when there is an unreferenced patient resource in the bundle with same id as another resouce' do
+      # Expect that test fails when a patient resource is included in the bundle but no base resource references it
+      patient2.id = 'Payer2'
+      bundle_all.entry.push({resource: patient2})
+
+      request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_all}")
+        .to_return(status: 200, body: bundle_all.to_json)
+      
+      # Test include with * parameter to ensure all resources are included
+      result = run(explanation_of_benefit_include_test_all, c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id,  url:)
+      expect(result.result).to eq('fail')
+      expect(result.result_message).to eq('No ExplanationOfBenefit references Patient/Payer2 in the search result.')
+      expect(request).to have_been_made.once
+    end
+
   end
 end
