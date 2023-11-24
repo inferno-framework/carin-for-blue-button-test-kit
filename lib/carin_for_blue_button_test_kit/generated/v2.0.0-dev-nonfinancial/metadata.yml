@@ -41,6 +41,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: &1 []
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -59,6 +62,24 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: &2 []
+      :contains_multiple: false
+    :payor:
+      :paths:
+      - payor
+      :full_paths:
+      - Coverage.payor
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: payor
+        :target:
+        - Organization
+        - Patient
+        - RelatedPerson
       :contains_multiple: false
   :include_params:
   - Coverage:payor
@@ -250,6 +271,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :patient:
       :paths:
@@ -259,6 +283,10 @@
       :comparators: {}
       :values: []
       :type: Reference
+      :target_paths:
+      - :path: patient
+        :target: &5
+        - Patient
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -277,6 +305,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
     :type:
       :paths:
@@ -291,6 +322,9 @@
       - professional
       - vision
       :type: CodeableConcept
+      :target_paths:
+      - :path: type
+        :target: &6 []
       :contains_multiple: false
     :identifier:
       :paths:
@@ -300,6 +334,9 @@
       :comparators: {}
       :values: []
       :type: Identifier
+      :target_paths:
+      - :path: identifier
+        :target: &7 []
       :contains_multiple: true
     :service-date:
       :paths:
@@ -320,6 +357,11 @@
         :ap: MAY
       :values: []
       :type: Period
+      :target_paths:
+      - :path: billablePeriod
+        :target: &3 []
+      - :path: item.serviced
+        :target: *3
       :contains_multiple: false
     :service-start-date:
       :paths:
@@ -342,6 +384,13 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: &4 []
+      - :path: item.servicedDate
+        :target: *4
+      - :path: item.servicedPeriod.start
+        :target: *4
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -360,8 +409,79 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: &8 []
       :contains_multiple: false
-  :include_params: &1
+    :provider:
+      :paths:
+      - provider
+      :full_paths:
+      - ExplanationOfBenefit.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: provider
+        :target: &9
+        - Practitioner
+        - Organization
+        - PractitionerRole
+      :contains_multiple: false
+    :care-team:
+      :paths:
+      - careTeam.provider
+      :full_paths:
+      - ExplanationOfBenefit.careTeam.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: careTeam.provider
+        :target: &10
+        - Practitioner
+        - Organization
+        - PractitionerRole
+      :contains_multiple: false
+    :coverage:
+      :paths:
+      - insurance.coverage
+      :full_paths:
+      - ExplanationOfBenefit.insurance.coverage
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurance.coverage
+        :target: &11
+        - Coverage
+      :contains_multiple: false
+    :insurer:
+      :paths:
+      - insurer
+      :full_paths:
+      - ExplanationOfBenefit.insurer
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurer
+        :target: &12
+        - Organization
+      :contains_multiple: false
+    :payee:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+    :*:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+  :include_params: &13
   - ExplanationOfBenefit:patient
   - ExplanationOfBenefit:provider
   - ExplanationOfBenefit:care-team
@@ -369,7 +489,7 @@
   - ExplanationOfBenefit:insurer
   - ExplanationOfBenefit:payee
   - ExplanationOfBenefit:*
-  :revincludes: &2 []
+  :revincludes: &14 []
   :required_concepts:
   - type
   - priority
@@ -924,6 +1044,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :patient:
       :paths:
@@ -933,6 +1056,9 @@
       :comparators: {}
       :values: []
       :type: Reference
+      :target_paths:
+      - :path: patient
+        :target: *5
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -951,6 +1077,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
     :type:
       :paths:
@@ -961,6 +1090,9 @@
       :values:
       - institutional
       :type: CodeableConcept
+      :target_paths:
+      - :path: type
+        :target: *6
       :contains_multiple: false
     :identifier:
       :paths:
@@ -970,6 +1102,9 @@
       :comparators: {}
       :values: []
       :type: Identifier
+      :target_paths:
+      - :path: identifier
+        :target: *7
       :contains_multiple: true
     :service-date:
       :paths:
@@ -990,6 +1125,11 @@
         :ap: MAY
       :values: []
       :type: Period
+      :target_paths:
+      - :path: billablePeriod
+        :target: *3
+      - :path: item.serviced
+        :target: *3
       :contains_multiple: false
     :service-start-date:
       :paths:
@@ -1012,6 +1152,13 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *4
+      - :path: item.servicedDate
+        :target: *4
+      - :path: item.servicedPeriod.start
+        :target: *4
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -1030,9 +1177,72 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *8
       :contains_multiple: false
-  :include_params: *1
-  :revincludes: *2
+    :provider:
+      :paths:
+      - provider
+      :full_paths:
+      - ExplanationOfBenefit.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: provider
+        :target: *9
+      :contains_multiple: false
+    :care-team:
+      :paths:
+      - careTeam.provider
+      :full_paths:
+      - ExplanationOfBenefit.careTeam.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: careTeam.provider
+        :target: *10
+      :contains_multiple: false
+    :coverage:
+      :paths:
+      - insurance.coverage
+      :full_paths:
+      - ExplanationOfBenefit.insurance.coverage
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurance.coverage
+        :target: *11
+      :contains_multiple: false
+    :insurer:
+      :paths:
+      - insurer
+      :full_paths:
+      - ExplanationOfBenefit.insurer
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurer
+        :target: *12
+      :contains_multiple: false
+    :payee:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+    :*:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+  :include_params: *13
+  :revincludes: *14
   :required_concepts:
   - type
   - subType
@@ -2003,6 +2213,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :patient:
       :paths:
@@ -2012,6 +2225,9 @@
       :comparators: {}
       :values: []
       :type: Reference
+      :target_paths:
+      - :path: patient
+        :target: *5
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -2030,6 +2246,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
     :type:
       :paths:
@@ -2040,6 +2259,9 @@
       :values:
       - institutional
       :type: CodeableConcept
+      :target_paths:
+      - :path: type
+        :target: *6
       :contains_multiple: false
     :identifier:
       :paths:
@@ -2049,6 +2271,9 @@
       :comparators: {}
       :values: []
       :type: Identifier
+      :target_paths:
+      - :path: identifier
+        :target: *7
       :contains_multiple: true
     :service-date:
       :paths:
@@ -2069,6 +2294,11 @@
         :ap: MAY
       :values: []
       :type: Period
+      :target_paths:
+      - :path: billablePeriod
+        :target: *3
+      - :path: item.serviced
+        :target: *3
       :contains_multiple: false
     :service-start-date:
       :paths:
@@ -2091,6 +2321,13 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *4
+      - :path: item.servicedDate
+        :target: *4
+      - :path: item.servicedPeriod.start
+        :target: *4
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -2109,9 +2346,72 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *8
       :contains_multiple: false
-  :include_params: *1
-  :revincludes: *2
+    :provider:
+      :paths:
+      - provider
+      :full_paths:
+      - ExplanationOfBenefit.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: provider
+        :target: *9
+      :contains_multiple: false
+    :care-team:
+      :paths:
+      - careTeam.provider
+      :full_paths:
+      - ExplanationOfBenefit.careTeam.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: careTeam.provider
+        :target: *10
+      :contains_multiple: false
+    :coverage:
+      :paths:
+      - insurance.coverage
+      :full_paths:
+      - ExplanationOfBenefit.insurance.coverage
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurance.coverage
+        :target: *11
+      :contains_multiple: false
+    :insurer:
+      :paths:
+      - insurer
+      :full_paths:
+      - ExplanationOfBenefit.insurer
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurer
+        :target: *12
+      :contains_multiple: false
+    :payee:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+    :*:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+  :include_params: *13
+  :revincludes: *14
   :required_concepts:
   - type
   - subType
@@ -2986,6 +3286,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :patient:
       :paths:
@@ -2995,6 +3298,9 @@
       :comparators: {}
       :values: []
       :type: Reference
+      :target_paths:
+      - :path: patient
+        :target: *5
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -3013,6 +3319,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
     :type:
       :paths:
@@ -3023,6 +3332,9 @@
       :values:
       - institutional
       :type: CodeableConcept
+      :target_paths:
+      - :path: type
+        :target: *6
       :contains_multiple: false
     :identifier:
       :paths:
@@ -3032,6 +3344,9 @@
       :comparators: {}
       :values: []
       :type: Identifier
+      :target_paths:
+      - :path: identifier
+        :target: *7
       :contains_multiple: true
     :service-date:
       :paths:
@@ -3052,6 +3367,11 @@
         :ap: MAY
       :values: []
       :type: Period
+      :target_paths:
+      - :path: billablePeriod
+        :target: *3
+      - :path: item.serviced
+        :target: *3
       :contains_multiple: false
     :service-start-date:
       :paths:
@@ -3074,6 +3394,13 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *4
+      - :path: item.servicedDate
+        :target: *4
+      - :path: item.servicedPeriod.start
+        :target: *4
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -3092,9 +3419,72 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *8
       :contains_multiple: false
-  :include_params: *1
-  :revincludes: *2
+    :provider:
+      :paths:
+      - provider
+      :full_paths:
+      - ExplanationOfBenefit.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: provider
+        :target: *9
+      :contains_multiple: false
+    :care-team:
+      :paths:
+      - careTeam.provider
+      :full_paths:
+      - ExplanationOfBenefit.careTeam.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: careTeam.provider
+        :target: *10
+      :contains_multiple: false
+    :coverage:
+      :paths:
+      - insurance.coverage
+      :full_paths:
+      - ExplanationOfBenefit.insurance.coverage
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurance.coverage
+        :target: *11
+      :contains_multiple: false
+    :insurer:
+      :paths:
+      - insurer
+      :full_paths:
+      - ExplanationOfBenefit.insurer
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurer
+        :target: *12
+      :contains_multiple: false
+    :payee:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+    :*:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+  :include_params: *13
+  :revincludes: *14
   :required_concepts:
   - type
   - subType
@@ -4018,6 +4408,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :patient:
       :paths:
@@ -4027,6 +4420,9 @@
       :comparators: {}
       :values: []
       :type: Reference
+      :target_paths:
+      - :path: patient
+        :target: *5
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -4045,6 +4441,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
     :type:
       :paths:
@@ -4055,6 +4454,9 @@
       :values:
       - institutional
       :type: CodeableConcept
+      :target_paths:
+      - :path: type
+        :target: *6
       :contains_multiple: false
     :identifier:
       :paths:
@@ -4064,6 +4466,9 @@
       :comparators: {}
       :values: []
       :type: Identifier
+      :target_paths:
+      - :path: identifier
+        :target: *7
       :contains_multiple: true
     :service-date:
       :paths:
@@ -4084,6 +4489,11 @@
         :ap: MAY
       :values: []
       :type: Period
+      :target_paths:
+      - :path: billablePeriod
+        :target: *3
+      - :path: item.serviced
+        :target: *3
       :contains_multiple: false
     :service-start-date:
       :paths:
@@ -4106,6 +4516,13 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *4
+      - :path: item.servicedDate
+        :target: *4
+      - :path: item.servicedPeriod.start
+        :target: *4
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -4124,9 +4541,72 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *8
       :contains_multiple: false
-  :include_params: *1
-  :revincludes: *2
+    :provider:
+      :paths:
+      - provider
+      :full_paths:
+      - ExplanationOfBenefit.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: provider
+        :target: *9
+      :contains_multiple: false
+    :care-team:
+      :paths:
+      - careTeam.provider
+      :full_paths:
+      - ExplanationOfBenefit.careTeam.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: careTeam.provider
+        :target: *10
+      :contains_multiple: false
+    :coverage:
+      :paths:
+      - insurance.coverage
+      :full_paths:
+      - ExplanationOfBenefit.insurance.coverage
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurance.coverage
+        :target: *11
+      :contains_multiple: false
+    :insurer:
+      :paths:
+      - insurer
+      :full_paths:
+      - ExplanationOfBenefit.insurer
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurer
+        :target: *12
+      :contains_multiple: false
+    :payee:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+    :*:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+  :include_params: *13
+  :revincludes: *14
   :required_concepts:
   - type
   - subType
@@ -4953,6 +5433,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :patient:
       :paths:
@@ -4962,6 +5445,9 @@
       :comparators: {}
       :values: []
       :type: Reference
+      :target_paths:
+      - :path: patient
+        :target: *5
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -4980,6 +5466,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
     :type:
       :paths:
@@ -4990,6 +5479,9 @@
       :values:
       - oral
       :type: CodeableConcept
+      :target_paths:
+      - :path: type
+        :target: *6
       :contains_multiple: false
     :identifier:
       :paths:
@@ -4999,6 +5491,9 @@
       :comparators: {}
       :values: []
       :type: Identifier
+      :target_paths:
+      - :path: identifier
+        :target: *7
       :contains_multiple: true
     :service-date:
       :paths:
@@ -5019,6 +5514,11 @@
         :ap: MAY
       :values: []
       :type: Period
+      :target_paths:
+      - :path: billablePeriod
+        :target: *3
+      - :path: item.serviced
+        :target: *3
       :contains_multiple: false
     :service-start-date:
       :paths:
@@ -5041,6 +5541,13 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *4
+      - :path: item.servicedDate
+        :target: *4
+      - :path: item.servicedPeriod.start
+        :target: *4
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -5059,9 +5566,72 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *8
       :contains_multiple: false
-  :include_params: *1
-  :revincludes: *2
+    :provider:
+      :paths:
+      - provider
+      :full_paths:
+      - ExplanationOfBenefit.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: provider
+        :target: *9
+      :contains_multiple: false
+    :care-team:
+      :paths:
+      - careTeam.provider
+      :full_paths:
+      - ExplanationOfBenefit.careTeam.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: careTeam.provider
+        :target: *10
+      :contains_multiple: false
+    :coverage:
+      :paths:
+      - insurance.coverage
+      :full_paths:
+      - ExplanationOfBenefit.insurance.coverage
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurance.coverage
+        :target: *11
+      :contains_multiple: false
+    :insurer:
+      :paths:
+      - insurer
+      :full_paths:
+      - ExplanationOfBenefit.insurer
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurer
+        :target: *12
+      :contains_multiple: false
+    :payee:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+    :*:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+  :include_params: *13
+  :revincludes: *14
   :required_concepts:
   - type
   - priority
@@ -6006,6 +6576,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :patient:
       :paths:
@@ -6015,6 +6588,9 @@
       :comparators: {}
       :values: []
       :type: Reference
+      :target_paths:
+      - :path: patient
+        :target: *5
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -6033,6 +6609,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
     :type:
       :paths:
@@ -6043,6 +6622,9 @@
       :values:
       - oral
       :type: CodeableConcept
+      :target_paths:
+      - :path: type
+        :target: *6
       :contains_multiple: false
     :identifier:
       :paths:
@@ -6052,6 +6634,9 @@
       :comparators: {}
       :values: []
       :type: Identifier
+      :target_paths:
+      - :path: identifier
+        :target: *7
       :contains_multiple: true
     :service-date:
       :paths:
@@ -6072,6 +6657,11 @@
         :ap: MAY
       :values: []
       :type: Period
+      :target_paths:
+      - :path: billablePeriod
+        :target: *3
+      - :path: item.serviced
+        :target: *3
       :contains_multiple: false
     :service-start-date:
       :paths:
@@ -6094,6 +6684,13 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *4
+      - :path: item.servicedDate
+        :target: *4
+      - :path: item.servicedPeriod.start
+        :target: *4
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -6112,9 +6709,72 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *8
       :contains_multiple: false
-  :include_params: *1
-  :revincludes: *2
+    :provider:
+      :paths:
+      - provider
+      :full_paths:
+      - ExplanationOfBenefit.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: provider
+        :target: *9
+      :contains_multiple: false
+    :care-team:
+      :paths:
+      - careTeam.provider
+      :full_paths:
+      - ExplanationOfBenefit.careTeam.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: careTeam.provider
+        :target: *10
+      :contains_multiple: false
+    :coverage:
+      :paths:
+      - insurance.coverage
+      :full_paths:
+      - ExplanationOfBenefit.insurance.coverage
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurance.coverage
+        :target: *11
+      :contains_multiple: false
+    :insurer:
+      :paths:
+      - insurer
+      :full_paths:
+      - ExplanationOfBenefit.insurer
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurer
+        :target: *12
+      :contains_multiple: false
+    :payee:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+    :*:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+  :include_params: *13
+  :revincludes: *14
   :required_concepts:
   - type
   - priority
@@ -6996,6 +7656,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :patient:
       :paths:
@@ -7005,6 +7668,9 @@
       :comparators: {}
       :values: []
       :type: Reference
+      :target_paths:
+      - :path: patient
+        :target: *5
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -7023,6 +7689,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
     :type:
       :paths:
@@ -7033,6 +7702,9 @@
       :values:
       - pharmacy
       :type: CodeableConcept
+      :target_paths:
+      - :path: type
+        :target: *6
       :contains_multiple: false
     :identifier:
       :paths:
@@ -7042,6 +7714,9 @@
       :comparators: {}
       :values: []
       :type: Identifier
+      :target_paths:
+      - :path: identifier
+        :target: *7
       :contains_multiple: true
     :service-date:
       :paths:
@@ -7062,6 +7737,11 @@
         :ap: MAY
       :values: []
       :type: Period
+      :target_paths:
+      - :path: billablePeriod
+        :target: *3
+      - :path: item.serviced
+        :target: *3
       :contains_multiple: false
     :service-start-date:
       :paths:
@@ -7084,6 +7764,13 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *4
+      - :path: item.servicedDate
+        :target: *4
+      - :path: item.servicedPeriod.start
+        :target: *4
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -7102,9 +7789,72 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *8
       :contains_multiple: false
-  :include_params: *1
-  :revincludes: *2
+    :provider:
+      :paths:
+      - provider
+      :full_paths:
+      - ExplanationOfBenefit.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: provider
+        :target: *9
+      :contains_multiple: false
+    :care-team:
+      :paths:
+      - careTeam.provider
+      :full_paths:
+      - ExplanationOfBenefit.careTeam.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: careTeam.provider
+        :target: *10
+      :contains_multiple: false
+    :coverage:
+      :paths:
+      - insurance.coverage
+      :full_paths:
+      - ExplanationOfBenefit.insurance.coverage
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurance.coverage
+        :target: *11
+      :contains_multiple: false
+    :insurer:
+      :paths:
+      - insurer
+      :full_paths:
+      - ExplanationOfBenefit.insurer
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurer
+        :target: *12
+      :contains_multiple: false
+    :payee:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+    :*:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+  :include_params: *13
+  :revincludes: *14
   :required_concepts:
   - type
   - priority
@@ -7979,6 +8729,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :patient:
       :paths:
@@ -7988,6 +8741,9 @@
       :comparators: {}
       :values: []
       :type: Reference
+      :target_paths:
+      - :path: patient
+        :target: *5
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -8006,6 +8762,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
     :type:
       :paths:
@@ -8016,6 +8775,9 @@
       :values:
       - pharmacy
       :type: CodeableConcept
+      :target_paths:
+      - :path: type
+        :target: *6
       :contains_multiple: false
     :identifier:
       :paths:
@@ -8025,6 +8787,9 @@
       :comparators: {}
       :values: []
       :type: Identifier
+      :target_paths:
+      - :path: identifier
+        :target: *7
       :contains_multiple: true
     :service-date:
       :paths:
@@ -8045,6 +8810,11 @@
         :ap: MAY
       :values: []
       :type: Period
+      :target_paths:
+      - :path: billablePeriod
+        :target: *3
+      - :path: item.serviced
+        :target: *3
       :contains_multiple: false
     :service-start-date:
       :paths:
@@ -8067,6 +8837,13 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *4
+      - :path: item.servicedDate
+        :target: *4
+      - :path: item.servicedPeriod.start
+        :target: *4
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -8085,9 +8862,72 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *8
       :contains_multiple: false
-  :include_params: *1
-  :revincludes: *2
+    :provider:
+      :paths:
+      - provider
+      :full_paths:
+      - ExplanationOfBenefit.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: provider
+        :target: *9
+      :contains_multiple: false
+    :care-team:
+      :paths:
+      - careTeam.provider
+      :full_paths:
+      - ExplanationOfBenefit.careTeam.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: careTeam.provider
+        :target: *10
+      :contains_multiple: false
+    :coverage:
+      :paths:
+      - insurance.coverage
+      :full_paths:
+      - ExplanationOfBenefit.insurance.coverage
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurance.coverage
+        :target: *11
+      :contains_multiple: false
+    :insurer:
+      :paths:
+      - insurer
+      :full_paths:
+      - ExplanationOfBenefit.insurer
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurer
+        :target: *12
+      :contains_multiple: false
+    :payee:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+    :*:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+  :include_params: *13
+  :revincludes: *14
   :required_concepts:
   - type
   - priority
@@ -8897,6 +9737,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :patient:
       :paths:
@@ -8906,6 +9749,9 @@
       :comparators: {}
       :values: []
       :type: Reference
+      :target_paths:
+      - :path: patient
+        :target: *5
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -8924,6 +9770,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
     :type:
       :paths:
@@ -8935,6 +9784,9 @@
       - professional
       - vision
       :type: CodeableConcept
+      :target_paths:
+      - :path: type
+        :target: *6
       :contains_multiple: false
     :identifier:
       :paths:
@@ -8944,6 +9796,9 @@
       :comparators: {}
       :values: []
       :type: Identifier
+      :target_paths:
+      - :path: identifier
+        :target: *7
       :contains_multiple: true
     :service-date:
       :paths:
@@ -8964,6 +9819,11 @@
         :ap: MAY
       :values: []
       :type: Period
+      :target_paths:
+      - :path: billablePeriod
+        :target: *3
+      - :path: item.serviced
+        :target: *3
       :contains_multiple: false
     :service-start-date:
       :paths:
@@ -8986,6 +9846,13 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *4
+      - :path: item.servicedDate
+        :target: *4
+      - :path: item.servicedPeriod.start
+        :target: *4
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -9004,9 +9871,72 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *8
       :contains_multiple: false
-  :include_params: *1
-  :revincludes: *2
+    :provider:
+      :paths:
+      - provider
+      :full_paths:
+      - ExplanationOfBenefit.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: provider
+        :target: *9
+      :contains_multiple: false
+    :care-team:
+      :paths:
+      - careTeam.provider
+      :full_paths:
+      - ExplanationOfBenefit.careTeam.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: careTeam.provider
+        :target: *10
+      :contains_multiple: false
+    :coverage:
+      :paths:
+      - insurance.coverage
+      :full_paths:
+      - ExplanationOfBenefit.insurance.coverage
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurance.coverage
+        :target: *11
+      :contains_multiple: false
+    :insurer:
+      :paths:
+      - insurer
+      :full_paths:
+      - ExplanationOfBenefit.insurer
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurer
+        :target: *12
+      :contains_multiple: false
+    :payee:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+    :*:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+  :include_params: *13
+  :revincludes: *14
   :required_concepts:
   - type
   - priority
@@ -9984,6 +10914,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :patient:
       :paths:
@@ -9993,6 +10926,9 @@
       :comparators: {}
       :values: []
       :type: Reference
+      :target_paths:
+      - :path: patient
+        :target: *5
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -10011,6 +10947,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
     :type:
       :paths:
@@ -10022,6 +10961,9 @@
       - professional
       - vision
       :type: CodeableConcept
+      :target_paths:
+      - :path: type
+        :target: *6
       :contains_multiple: false
     :identifier:
       :paths:
@@ -10031,6 +10973,9 @@
       :comparators: {}
       :values: []
       :type: Identifier
+      :target_paths:
+      - :path: identifier
+        :target: *7
       :contains_multiple: true
     :service-date:
       :paths:
@@ -10051,6 +10996,11 @@
         :ap: MAY
       :values: []
       :type: Period
+      :target_paths:
+      - :path: billablePeriod
+        :target: *3
+      - :path: item.serviced
+        :target: *3
       :contains_multiple: false
     :service-start-date:
       :paths:
@@ -10073,6 +11023,13 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *4
+      - :path: item.servicedDate
+        :target: *4
+      - :path: item.servicedPeriod.start
+        :target: *4
       :contains_multiple: false
     :billable-period-start:
       :paths:
@@ -10091,9 +11048,72 @@
         :ap: MAY
       :values: []
       :type: dateTime
+      :target_paths:
+      - :path: billablePeriod.start
+        :target: *8
       :contains_multiple: false
-  :include_params: *1
-  :revincludes: *2
+    :provider:
+      :paths:
+      - provider
+      :full_paths:
+      - ExplanationOfBenefit.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: provider
+        :target: *9
+      :contains_multiple: false
+    :care-team:
+      :paths:
+      - careTeam.provider
+      :full_paths:
+      - ExplanationOfBenefit.careTeam.provider
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: careTeam.provider
+        :target: *10
+      :contains_multiple: false
+    :coverage:
+      :paths:
+      - insurance.coverage
+      :full_paths:
+      - ExplanationOfBenefit.insurance.coverage
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurance.coverage
+        :target: *11
+      :contains_multiple: false
+    :insurer:
+      :paths:
+      - insurer
+      :full_paths:
+      - ExplanationOfBenefit.insurer
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :target_paths:
+      - :path: insurer
+        :target: *12
+      :contains_multiple: false
+    :payee:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+    :*:
+      :paths: []
+      :full_paths: []
+      :values: []
+      :target_paths: []
+      :contains_multiple: false
+  :include_params: *13
+  :revincludes: *14
   :required_concepts:
   - type
   - priority
@@ -10978,6 +11998,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -10996,6 +12019,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
   :include_params: []
   :revincludes: []
@@ -11126,6 +12152,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -11144,6 +12173,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
   :include_params: []
   :revincludes: []
@@ -11362,6 +12394,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -11380,6 +12415,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
   :include_params: []
   :revincludes: []
@@ -11486,6 +12524,9 @@
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
+      :target_paths:
+      - :path: id
+        :target: *1
       :contains_multiple: false
     :_lastUpdated:
       :paths:
@@ -11504,6 +12545,9 @@
         :ap: MAY
       :values: []
       :type: instant
+      :target_paths:
+      - :path: meta.lastUpdated
+        :target: *2
       :contains_multiple: false
   :include_params: []
   :revincludes: []

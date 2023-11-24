@@ -39,6 +39,9 @@
     :comparators: {}
     :values: []
     :type: http://hl7.org/fhirpath/System.String
+    :target_paths:
+    - :path: id
+      :target: []
     :contains_multiple: false
   :_lastUpdated:
     :paths:
@@ -57,6 +60,9 @@
       :ap: MAY
     :values: []
     :type: instant
+    :target_paths:
+    - :path: meta.lastUpdated
+      :target: []
     :contains_multiple: false
 :include_params: []
 :revincludes: []

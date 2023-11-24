@@ -88,11 +88,11 @@
     :contains_multiple: true
   :service-date:
     :paths:
-    - 'billablePeriod '
-    - " item.serviced"
+    - billablePeriod
+    - item.serviced
     :full_paths:
-    - 'ExplanationOfBenefit.billablePeriod '
-    - " ExplanationOfBenefit.item.serviced"
+    - ExplanationOfBenefit.billablePeriod
+    - ExplanationOfBenefit.item.serviced
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -104,17 +104,17 @@
       :eb: MAY
       :ap: MAY
     :values: []
-    :type: date
+    :type: Period
     :contains_multiple: false
   :service-start-date:
     :paths:
-    - 'billablePeriod.start '
-    - " item.servicedDate "
-    - " item.servicedPeriod.start"
+    - billablePeriod.start
+    - item.servicedDate
+    - item.servicedPeriod.start
     :full_paths:
-    - 'ExplanationOfBenefit.billablePeriod.start '
-    - " ExplanationOfBenefit.item.servicedDate "
-    - " ExplanationOfBenefit.item.servicedPeriod.start"
+    - ExplanationOfBenefit.billablePeriod.start
+    - ExplanationOfBenefit.item.servicedDate
+    - ExplanationOfBenefit.item.servicedPeriod.start
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -126,7 +126,7 @@
       :eb: MAY
       :ap: MAY
     :values: []
-    :type: date
+    :type: dateTime
     :contains_multiple: false
   :billable-period-start:
     :paths:
@@ -621,45 +621,6 @@
   - http://hl7.org/fhir/StructureDefinition/Practitioner
   - http://hl7.org/fhir/StructureDefinition/PractitionerRole
   - http://hl7.org/fhir/StructureDefinition/Organization
-:tests:
-- :id: c4bb_v200_explanation_of_benefit_read_test
-  :file_name: explanation_of_benefit_read_test.rb
-- :id: c4bb_v200_explanation_of_benefit_validation_test
-  :file_name: explanation_of_benefit_validation_test.rb
-- :id: c4bb_v200_explanation_of_benefit_must_support_test
-  :file_name: explanation_of_benefit_must_support_test.rb
-- :id: c4bb_v200_explanation_of_benefit__id_search_test
-  :file_name: explanation_of_benefit_id_search_test.rb
-- :id: c4bb_v200_explanation_of_benefit_patient_search_test
-  :file_name: explanation_of_benefit_patient_search_test.rb
-- :id: c4bb_v200_explanation_of_benefit__lastUpdated_search_test
-  :file_name: explanation_of_benefit_lastupdated_search_test.rb
-- :id: c4bb_v200_explanation_of_benefit_type_search_test
-  :file_name: explanation_of_benefit_type_search_test.rb
-- :id: c4bb_v200_explanation_of_benefit_identifier_search_test
-  :file_name: explanation_of_benefit_identifier_search_test.rb
-- :id: c4bb_v200_explanation_of_benefit_service_date_search_test
-  :file_name: explanation_of_benefit_service_date_search_test.rb
-- :id: c4bb_v200_explanation_of_benefit_service_start_date_search_test
-  :file_name: explanation_of_benefit_service_start_date_search_test.rb
-- :id: c4bb_v200_explanation_of_benefit_billable_period_start_search_test
-  :file_name: explanation_of_benefit_billable_period_start_search_test.rb
-- :id: c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_patient_search_test
-  :file_name: explanation_of_benefit_explanation_of_benefit_patient_search_test.rb
-- :id: c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_provider_search_test
-  :file_name: explanation_of_benefit_explanation_of_benefit_provider_search_test.rb
-- :id: c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_careteam_search_test
-  :file_name: explanation_of_benefit_explanation_of_benefit_careteam_search_test.rb
-- :id: c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_coverage_search_test
-  :file_name: explanation_of_benefit_explanation_of_benefit_coverage_search_test.rb
-- :id: c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_insurer_search_test
-  :file_name: explanation_of_benefit_explanation_of_benefit_insurer_search_test.rb
-- :id: c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_payee_search_test
-  :file_name: explanation_of_benefit_explanation_of_benefit_payee_search_test.rb
-- :id: c4bb_v200_explanation_of_benefit_include_ExplanationOfBenefit_All_search_test
-  :file_name: explanation_of_benefit_explanation_of_benefit_all_search_test.rb
-:id: c4bb_v200_explanation_of_benefit
-:file_name: explanation_of_benefit_group.rb
 :delayed_references:
 - :path: insurer
   :resources:

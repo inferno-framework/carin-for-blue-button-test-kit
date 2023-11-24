@@ -14,7 +14,8 @@ module CarinForBlueButtonTestKit
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'ExplanationOfBenefit',
-        search_param_names: ['_include']
+        search_param_names: ['_include'],
+        include_parameters: [{:path=>"patient", :target=>["Patient"]}]
         )
       end
 
@@ -30,7 +31,7 @@ module CarinForBlueButtonTestKit
       end
 
       run do
-        run_search_test('ExplanationOfBenefit:patient', include_search: true, resource_id: c4bb_v200devnonfinancial_explanation_of_benefit__id_search_test_param)
+        run_include_search('ExplanationOfBenefit:patient', resource_id: c4bb_v200devnonfinancial_explanation_of_benefit__id_search_test_param)
       end
     end
   end

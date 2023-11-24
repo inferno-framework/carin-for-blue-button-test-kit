@@ -13,10 +13,6 @@ module CarinForBlueButtonTestKit
             self.base_output_dir = base_output_dir
           end
 
-          def include_search
-            true
-          end
-
           def generate
             FileUtils.mkdir_p(output_file_directory)
             File.open(output_file_name, 'w') { |f| f.write(output) }
@@ -73,6 +69,27 @@ module CarinForBlueButtonTestKit
 
           def input_description
             "#{resource_type} search parameter: _id"
+          end
+          
+          def include_parameters
+            case search_param
+            when 'ExplanationOfBenefit:payee'
+                [{path: 'payee.party', target: 'Organization'}]
+            when 'ExplanationOfBenefit:*'
+                search_definitions = ['patient', 'provider', 'care-team', 'coverage', 'insurer']
+                include_params = []
+                search_definitions.each do |search_def|
+                  target_paths = group_metadata.search_definitions[search_def.to_sym][:target_paths]
+                  include_params = include_params + target_paths
+                end
+                include_params
+            else
+              group_metadata.search_definitions[include_search_type.to_sym][:target_paths]
+            end
+          end
+
+          def include_search_type
+            search_param.sub("#{resource_type}:", "")
           end
 
           def removed_hyphen

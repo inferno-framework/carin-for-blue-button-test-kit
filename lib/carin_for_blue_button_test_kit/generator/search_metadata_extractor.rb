@@ -59,8 +59,21 @@ module CarinForBlueButtonTestKit
           end
       end
 
+      def include_searches
+        resource_capabilities.searchInclude.map do |param|
+          begin
+            {
+              names: [param.sub("#{resource}:", "")],
+              expectation: 'SHALL',
+              include_search: true
+            }
+          end
+        end
+      end
+
       def search_param_names
-        searches.flat_map { |search| search[:names] }.uniq
+        searches_arr = searches + include_searches
+        searches_arr.flat_map { |search| search[:names] }.uniq
       end
 
       def search_definitions

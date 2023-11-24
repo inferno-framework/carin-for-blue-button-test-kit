@@ -21,20 +21,15 @@ module CarinForBlueButtonTestKit
                    :token_search_params,
                    :test_reference_variants?,
                    :params_with_comparators,
-                   :multiple_or_search_params
+                   :multiple_or_search_params,
+                   :include_parameters
 
     def all_scratch_resources
       scratch_resources[:all] ||= []
     end
 
-    def run_search_test(param_value, include_search: false, resource_id: nil)
+    def run_search_test(param_value, resource_id: nil)
       search_params = {}
-
-      if include_search
-        search_params = { _id: resource_id }
-        run_include_search(search_params, param_value)
-        return
-      end
 
       param_name = search_param_names[0]
       if patient_id_param?(param_name)
@@ -179,7 +174,8 @@ module CarinForBlueButtonTestKit
       end
     end
 
-    def run_include_search(search_params, param_value)
+    def run_include_search(param_value, resource_id: nil)
+      search_params = { _id: resource_id }
       search_params['_include'] = param_value
 
       fhir_search(resource_type, params: search_params)
@@ -187,107 +183,61 @@ module CarinForBlueButtonTestKit
       assert_resource_type(:bundle)
 
       returned_resources_all = extract_resources_from_bundle(bundle: resource, response: response)
-      returned_resources_resource_type = returned_resources_all.select{|item| item.resourceType == resource_type}
+      base_resources = returned_resources_all.select{|item| item.resourceType == resource_type}
 
-      skip_if returned_resources_resource_type.blank?, self.no_resources_message
+      skip_if base_resources.blank?, self.no_resources_message
 
-      returned_resources_resource_type.each do |resource|
+      values_found = []
+      base_resource_matches = []
+      
+      base_resources.each do |resource|
         match_found = false
         reference_bool = true
-        paths = include_param_paths(param_value)
 
         if param_value != 'ExplanationOfBenefit:*'
-          paths.each do |path|
-              values_found = resolve_path(resource, path)
-
-              values_found.each do |reference|
-                reference_found = find_included_resource(reference, returned_resources_all)
-
-                # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
-                if !reference_found
-                    reference_bool = false
-                end
-              end
-
+          include_parameters.each do |include_param|
+              values_found = resolve_path(resource, include_param[:path])
               match_found = (values_found.length > 0)
+              base_resource_matches = matched_base_resources(resource, include_param[:target], returned_resources_all, values_found)
 
               break if match_found
           end
           assert match_found, "Returned resource did not match the search parameter"
-          assert reference_bool, "Returned resource did not include the _include resource parameter"
-          return
         else
-          values_found = []
-          reference_bool = true
-
-          paths.each do |path|
-              values_found += resolve_path(resource, path)
+          include_parameters.each do |include_param|
+              paths_found = resolve_path(resource, include_param[:path])
+              values_found += paths_found
+              base_resource_matches += matched_base_resources(resource, include_param[:target], returned_resources_all, values_found)
           end
-
-          values_found.each do |reference|
-            reference_found = find_included_resource(reference, returned_resources_all)
-
-            # If at least one reference is not found, set reference_bool to false and do not change back to true for any other found references
-            if !reference_found
-                reference_bool = false
-            end
-          end
-
           match_found = (values_found.length >= 5)
-
-          assert match_found, "Returned resource did not match the search parameter"
-          assert reference_bool, "Returned resource did not include the _include resource parameter"
+          assert match_found, "Returned resource did not match the search parameter"  
         end
-      end
+  
+        all_included_resource_types = include_parameters.map {|param| param[:target]}.flatten.uniq
+        included_resources = returned_resources_all.select{|item| all_included_resource_types.include?(item.resourceType)}.map { |resource| "#{resource.resourceType}/#{resource.id}" }
+        not_matched_included_resources = included_resources.select do |resource_reference|
+          base_resource_matches.none? do |base_resource_references|
+            is_reference_match?(base_resource_references.reference, resource_reference)
+          end
+        end
+        not_matched_included_resources_string = not_matched_included_resources.join(',')
+        assert not_matched_included_resources.empty?, "No #{resource_type} references #{not_matched_included_resources_string} in the search result."
+      end  
     end
 
-
-    def find_included_resource(reference, returned_resources_all)
-      referenced_resource_id = reference.reference
-
-      assert !referenced_resource_id.start_with?('#'), "Reference id is not in the correct format of [ResourceType]/[ResourceID]"
-
-      referenced_resource_type = referenced_resource_id.split('/')[-2]
-
-      referenced_resources = returned_resources_all.select{|item| item.resourceType == referenced_resource_type}
-
-      assert referenced_resources.present?, "No " + referenced_resource_type + " resources were included in the search results"
-
-      reference_found = false
-      referenced_resources.each do |referenced_resource|
-        reference_found = is_reference_match?(referenced_resource_id, referenced_resource.id)
-        break if reference_found
+    def matched_base_resources(resource, referenced_resource_types, returned_resources_all, values_found)
+      included_resources = returned_resources_all.select{|item| referenced_resource_types.include?(item.resourceType)}.map { |resource| "#{resource.resourceType}/#{resource.id}" }
+  
+      matched_base_resources = values_found.select do |base_resource_references|
+        included_resources.any? do |referenced_resource|
+          is_reference_match?(base_resource_references.reference, referenced_resource)
+        end
       end
-
-      return reference_found
     end
 
     def is_reference_match? (reference, local_reference)
       regex_pattern = /^(#{Regexp.escape(local_reference)}|\S+\/#{Regexp.escape(local_reference)}(?:[\/|]\S+)*)$/
       reference.match?(regex_pattern)
-    end
-
-    def include_param_paths(param)
-      case param
-      when 'ExplanationOfBenefit:patient'
-          ['patient']
-      when 'ExplanationOfBenefit:provider'
-          ['provider']
-      when 'ExplanationOfBenefit:care-team'
-          ['careTeam.provider']
-      when 'ExplanationOfBenefit:coverage'
-          ['insurance.coverage']
-      when 'ExplanationOfBenefit:insurer'
-          ['insurer']
-      when 'ExplanationOfBenefit:payee'
-          ['payee.party']
-      when 'Coverage:payor'
-          ['payor']
-      when 'ExplanationOfBenefit:*'
-          ['patient', 'provider', 'careTeam.provider', 'insurance.coverage', 'insurer']
-      else
-          []
-      end
     end
 
     def patient_id_param?(name)
