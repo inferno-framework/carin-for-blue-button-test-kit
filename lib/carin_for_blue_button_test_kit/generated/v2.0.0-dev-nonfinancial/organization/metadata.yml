@@ -154,15 +154,15 @@
   - http://hl7.org/fhir/StructureDefinition/Endpoint
 :tests:
 - :id: c4bb_v200devnonfinancial_organization__id_search_test
-  :file_name: organization_id_search_test.rb
+  :file_name: id_search_test.rb
 - :id: c4bb_v200devnonfinancial_organization__lastUpdated_search_test
-  :file_name: organization_lastupdated_search_test.rb
+  :file_name: lastupdated_search_test.rb
 - :id: c4bb_v200devnonfinancial_organization_read_test
-  :file_name: organization_read_test.rb
+  :file_name: read_test.rb
 - :id: c4bb_v200devnonfinancial_organization_validation_test
-  :file_name: organization_validation_test.rb
+  :file_name: validation_test.rb
 - :id: c4bb_v200devnonfinancial_organization_must_support_test
-  :file_name: organization_must_support_test.rb
+  :file_name: must_support_test.rb
 :id: c4bb_v200devnonfinancial_organization
 :file_name: organization_group.rb
 :delayed_references: []

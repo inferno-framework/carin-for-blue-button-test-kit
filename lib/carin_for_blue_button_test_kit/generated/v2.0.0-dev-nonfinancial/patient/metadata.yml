@@ -242,15 +242,15 @@
   - http://hl7.org/fhir/StructureDefinition/RelatedPerson
 :tests:
 - :id: c4bb_v200devnonfinancial_patient__id_search_test
-  :file_name: patient_id_search_test.rb
+  :file_name: id_search_test.rb
 - :id: c4bb_v200devnonfinancial_patient__lastUpdated_search_test
-  :file_name: patient_lastupdated_search_test.rb
+  :file_name: lastupdated_search_test.rb
 - :id: c4bb_v200devnonfinancial_patient_read_test
-  :file_name: patient_read_test.rb
+  :file_name: read_test.rb
 - :id: c4bb_v200devnonfinancial_patient_validation_test
-  :file_name: patient_validation_test.rb
+  :file_name: validation_test.rb
 - :id: c4bb_v200devnonfinancial_patient_must_support_test
-  :file_name: patient_must_support_test.rb
+  :file_name: must_support_test.rb
 :id: c4bb_v200devnonfinancial_patient
 :file_name: patient_group.rb
 :delayed_references: []

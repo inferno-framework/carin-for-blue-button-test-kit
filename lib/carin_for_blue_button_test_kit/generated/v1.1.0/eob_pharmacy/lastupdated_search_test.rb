@@ -7,8 +7,7 @@ module CarinForBlueButtonTestKit
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for ExplanationOfBenefit search by _lastUpdated'
-      description %(
-A server SHALL support searching by
+      description %(A server SHALL support searching by
 _lastUpdated on the ExplanationOfBenefit resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
@@ -19,16 +18,14 @@ none are returned, the test is skipped.
       id :c4bb_v110_eob_pharmacy__lastUpdated_search_test
 
       input :c4bb_v110_eob_pharmacy__lastUpdated_search_test_param,
-        title: 'ExplanationOfBenefit search parameter for _lastUpdated
-',
+        title: 'ExplanationOfBenefit search parameter for _lastUpdated',
         type: 'text',
-        description: 'ExplanationOfBenefit search parameter: _lastUpdated
-'
+        description: 'ExplanationOfBenefit search parameter: _lastUpdated'
 
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'ExplanationOfBenefit',
-        search_param_names: ['_lastUpdated']
+          search_param_names: ['_lastUpdated']
         )
       end
 
@@ -39,7 +36,7 @@ none are returned, the test is skipped.
       def scratch_resources
         scratch[:eob_pharmacy_resources] ||= {}
       end
-
+      
       run do
         
         run_search_test(c4bb_v110_eob_pharmacy__lastUpdated_search_test_param)

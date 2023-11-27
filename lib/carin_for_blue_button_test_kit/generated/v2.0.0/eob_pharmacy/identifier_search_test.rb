@@ -3,7 +3,7 @@ require_relative '../../../generator/group_metadata'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV200
-    class ExplanationOfBenefitPharmacyIdentifierSearchTest < Inferno::Test
+    class EobPharmacyIdentifierSearchTest < Inferno::Test
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for ExplanationOfBenefit search by identifier'
@@ -15,9 +15,9 @@ none are returned, the test is skipped.
 
       )
 
-      id :c4bb_v200_explanation_of_benefit_pharmacy_identifier_search_test
+      id :c4bb_v200_eob_pharmacy_identifier_search_test
 
-      input :c4bb_v200_explanation_of_benefit_pharmacy_identifier_search_test_param,
+      input :c4bb_v200_eob_pharmacy_identifier_search_test_param,
         title: 'ExplanationOfBenefit search parameter for identifier',
         type: 'text',
         description: 'ExplanationOfBenefit search parameter: identifier'
@@ -35,12 +35,12 @@ none are returned, the test is skipped.
       end
 
       def scratch_resources
-        scratch[:explanation_of_benefit_pharmacy_resources] ||= {}
+        scratch[:eob_pharmacy_resources] ||= {}
       end
       
       run do
         
-        run_search_test(c4bb_v200_explanation_of_benefit_pharmacy_identifier_search_test_param)
+        run_search_test(c4bb_v200_eob_pharmacy_identifier_search_test_param)
       end
     end
   end

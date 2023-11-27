@@ -1,29 +1,29 @@
+require_relative 'eob/patient_search_test'
+require_relative 'eob/id_search_test'
+require_relative 'eob/lastupdated_search_test'
+require_relative 'eob/type_search_test'
+require_relative 'eob/identifier_search_test'
+require_relative 'eob/service_date_search_test'
+require_relative 'eob/service_start_date_search_test'
+require_relative 'eob/billable_period_start_search_test'
+require_relative 'eob/incl_patient_search_test'
+require_relative 'eob/incl_provider_search_test'
+require_relative 'eob/incl_careteam_search_test'
+require_relative 'eob/incl_coverage_search_test'
+require_relative 'eob/incl_insurer_search_test'
+require_relative 'eob/incl_payee_search_test'
+require_relative 'eob/incl_all_search_test'
 require_relative 'eob/read_test'
-    require_relative 'eob/validation_test'
-    require_relative 'eob/must_support_test'
-    require_relative 'eob/id_search_test'
-    require_relative 'eob/patient_search_test'
-    require_relative 'eob/lastupdated_search_test'
-    require_relative 'eob/type_search_test'
-    require_relative 'eob/identifier_search_test'
-    require_relative 'eob/service_date_search_test'
-    require_relative 'eob/service_start_date_search_test'
-    require_relative 'eob/billable_period_start_search_test'
-    require_relative 'eob/incl_patient_search_test'
-    require_relative 'eob/incl_provider_search_test'
-    require_relative 'eob/incl_careteam_search_test'
-    require_relative 'eob/incl_coverage_search_test'
-    require_relative 'eob/incl_insurer_search_test'
-    require_relative 'eob/incl_payee_search_test'
-    require_relative 'eob/incl_all_search_test'
-    
-    module CarinForBlueButtonTestKit
-      module CARIN4BBV200DEVNONFINANCIAL
-        class EobGroup < Inferno::TestGroup
-          title 'Explanation Of Benefit Tests'
-          short_description 'Verify support for the server capabilities required by the C4BB Explanation Of Benefit.'
-          description %(
-      # Background
+require_relative 'eob/validation_test'
+require_relative 'eob/must_support_test'
+
+module CarinForBlueButtonTestKit
+  module CARIN4BBV200DEVNONFINANCIAL
+    class EobGroup < Inferno::TestGroup
+      title 'Explanation Of Benefit Tests'
+      short_description 'Verify support for the server capabilities required by the C4BB Explanation Of Benefit.'
+      description %(
+# Background
 
 The CARIN for Blue Button Explanation Of Benefit sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries
@@ -85,34 +85,37 @@ At least one instance of each external reference in elements marked as
 The test will attempt to read each reference found and will fail if no
 read succeeds.
 
-          )
-    
-          id :c4bb_v200devnonfinancial_eob
-          run_as_group
-    
-          def self.metadata
-            @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'eob', 'metadata.yml'), aliases: true))
-          end
-      
-          test from: :c4bb_v200devnonfinancial_eob_read_test
-          test from: :c4bb_v200devnonfinancial_eob_validation_test
-          test from: :c4bb_v200devnonfinancial_eob_must_support_test
-          test from: :c4bb_v200devnonfinancial_eob__id_search_test
-          test from: :c4bb_v200devnonfinancial_eob_patient_search_test
-          test from: :c4bb_v200devnonfinancial_eob__lastUpdated_search_test
-          test from: :c4bb_v200devnonfinancial_eob_type_search_test
-          test from: :c4bb_v200devnonfinancial_eob_identifier_search_test
-          test from: :c4bb_v200devnonfinancial_eob_service_date_search_test
-          test from: :c4bb_v200devnonfinancial_eob_service_start_date_search_test
-          test from: :c4bb_v200devnonfinancial_eob_billable_period_start_search_test
-          test from: :c4bb_v200devnonfinancial_eob_include_ExplanationOfBenefit_patient_search_test
-          test from: :c4bb_v200devnonfinancial_eob_include_ExplanationOfBenefit_provider_search_test
-          test from: :c4bb_v200devnonfinancial_eob_include_ExplanationOfBenefit_careteam_search_test
-          test from: :c4bb_v200devnonfinancial_eob_include_ExplanationOfBenefit_coverage_search_test
-          test from: :c4bb_v200devnonfinancial_eob_include_ExplanationOfBenefit_insurer_search_test
-          test from: :c4bb_v200devnonfinancial_eob_include_ExplanationOfBenefit_payee_search_test
-          test from: :c4bb_v200devnonfinancial_eob_include_ExplanationOfBenefit_All_search_test
-        end
+      )
+
+      id :c4bb_v200devnonfinancial_eob
+      run_as_group
+      input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
+
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'eob', 'metadata.yml'), aliases: true))
       end
+  
+      test from: :c4bb_v200devnonfinancial_eob_patient_search_test
+      test from: :c4bb_v200devnonfinancial_eob__id_search_test
+      test from: :c4bb_v200devnonfinancial_eob__lastUpdated_search_test
+      test from: :c4bb_v200devnonfinancial_eob_type_search_test
+      test from: :c4bb_v200devnonfinancial_eob_identifier_search_test
+      test from: :c4bb_v200devnonfinancial_eob_service_date_search_test
+      test from: :c4bb_v200devnonfinancial_eob_service_start_date_search_test
+      test from: :c4bb_v200devnonfinancial_eob_billable_period_start_search_test
+      test from: :c4bb_v200devnonfinancial_eob_include_ExplanationOfBenefit_patient_search_test
+      test from: :c4bb_v200devnonfinancial_eob_include_ExplanationOfBenefit_provider_search_test
+      test from: :c4bb_v200devnonfinancial_eob_include_ExplanationOfBenefit_careteam_search_test
+      test from: :c4bb_v200devnonfinancial_eob_include_ExplanationOfBenefit_coverage_search_test
+      test from: :c4bb_v200devnonfinancial_eob_include_ExplanationOfBenefit_insurer_search_test
+      test from: :c4bb_v200devnonfinancial_eob_include_ExplanationOfBenefit_payee_search_test
+      test from: :c4bb_v200devnonfinancial_eob_include_ExplanationOfBenefit_All_search_test
+      test from: :c4bb_v200devnonfinancial_eob_read_test
+      test from: :c4bb_v200devnonfinancial_eob_validation_test
+      test from: :c4bb_v200devnonfinancial_eob_must_support_test
     end
-    
+  end
+end

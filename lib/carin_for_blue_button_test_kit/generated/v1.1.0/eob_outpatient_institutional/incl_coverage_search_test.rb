@@ -3,7 +3,7 @@ require_relative '../../../generator/group_metadata'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV110
-    class ExplanationOfBenefitExplanationOfBenefit_coverageSearchTest < Inferno::Test
+    class EobOutpatientInstitutionalExplanationOfBenefit_coverageSearchTest < Inferno::Test
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for ExplanationOfBenefit search by id + _include=ExplanationOfBenefit:coverage'
@@ -19,9 +19,9 @@ module CarinForBlueButtonTestKit
         )
       end
 
-      id :c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_coverage_search_test
+      id :c4bb_v110_eob_outpatient_institutional_include_ExplanationOfBenefit_coverage_search_test
 
-      input :c4bb_v110_explanation_of_benefit__id_search_test_param,
+      input :c4bb_v110_eob_outpatient_institutional__id_search_test_param,
         title: 'ExplanationOfBenefit search parameter for _id',
         type: 'text',
         description: 'ExplanationOfBenefit search parameter: _id'
@@ -31,7 +31,7 @@ module CarinForBlueButtonTestKit
       end
 
       run do
-        run_include_search('ExplanationOfBenefit:coverage', resource_id: c4bb_v110_explanation_of_benefit__id_search_test_param)
+        run_include_search('ExplanationOfBenefit:coverage', resource_id: c4bb_v110_eob_outpatient_institutional__id_search_test_param)
       end
     end
   end

@@ -7,15 +7,15 @@ module CarinForBlueButtonTestKit
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for ExplanationOfBenefit search by id + _include=ExplanationOfBenefit:*'
-      description %(
-Tests that the server responds correctly when using _include="ExplanationOfBenefit:*" as a search parameter 
+      description %(Tests that the server responds correctly when using _include="ExplanationOfBenefit:*" as a search parameter 
 
       )
 
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'ExplanationOfBenefit',
-        search_param_names: ['_include']
+        search_param_names: ['_include'],
+        include_parameters: [{:path=>"patient", :target=>["Patient"]}, {:path=>"provider", :target=>["Practitioner", "Organization", "PractitionerRole"]}, {:path=>"careTeam.provider", :target=>["Practitioner", "Organization", "PractitionerRole"]}, {:path=>"insurance.coverage", :target=>["Coverage"]}, {:path=>"insurer", :target=>["Organization"]}]
         )
       end
 
@@ -31,7 +31,7 @@ Tests that the server responds correctly when using _include="ExplanationOfBenef
       end
 
       run do
-        run_search_test('ExplanationOfBenefit:*', include_search: true, resource_id: c4bb_v200devnonfinancial_eob_oral__id_search_test_param)
+        run_include_search('ExplanationOfBenefit:*', resource_id: c4bb_v200devnonfinancial_eob_oral__id_search_test_param)
       end
     end
   end

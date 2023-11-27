@@ -1,29 +1,29 @@
+require_relative 'eob_professional_non_clinician/patient_search_test'
+require_relative 'eob_professional_non_clinician/id_search_test'
+require_relative 'eob_professional_non_clinician/lastupdated_search_test'
+require_relative 'eob_professional_non_clinician/type_search_test'
+require_relative 'eob_professional_non_clinician/identifier_search_test'
+require_relative 'eob_professional_non_clinician/service_date_search_test'
+require_relative 'eob_professional_non_clinician/service_start_date_search_test'
+require_relative 'eob_professional_non_clinician/billable_period_start_search_test'
+require_relative 'eob_professional_non_clinician/incl_patient_search_test'
+require_relative 'eob_professional_non_clinician/incl_provider_search_test'
+require_relative 'eob_professional_non_clinician/incl_careteam_search_test'
+require_relative 'eob_professional_non_clinician/incl_coverage_search_test'
+require_relative 'eob_professional_non_clinician/incl_insurer_search_test'
+require_relative 'eob_professional_non_clinician/incl_payee_search_test'
+require_relative 'eob_professional_non_clinician/incl_all_search_test'
 require_relative 'eob_professional_non_clinician/read_test'
-    require_relative 'eob_professional_non_clinician/validation_test'
-    require_relative 'eob_professional_non_clinician/must_support_test'
-    require_relative 'eob_professional_non_clinician/id_search_test'
-    require_relative 'eob_professional_non_clinician/patient_search_test'
-    require_relative 'eob_professional_non_clinician/lastupdated_search_test'
-    require_relative 'eob_professional_non_clinician/type_search_test'
-    require_relative 'eob_professional_non_clinician/identifier_search_test'
-    require_relative 'eob_professional_non_clinician/service_date_search_test'
-    require_relative 'eob_professional_non_clinician/service_start_date_search_test'
-    require_relative 'eob_professional_non_clinician/billable_period_start_search_test'
-    require_relative 'eob_professional_non_clinician/incl_patient_search_test'
-    require_relative 'eob_professional_non_clinician/incl_provider_search_test'
-    require_relative 'eob_professional_non_clinician/incl_careteam_search_test'
-    require_relative 'eob_professional_non_clinician/incl_coverage_search_test'
-    require_relative 'eob_professional_non_clinician/incl_insurer_search_test'
-    require_relative 'eob_professional_non_clinician/incl_payee_search_test'
-    require_relative 'eob_professional_non_clinician/incl_all_search_test'
-    
-    module CarinForBlueButtonTestKit
-      module CARIN4BBV200DEVNONFINANCIAL
-        class EobProfessionalNonClinicianGroup < Inferno::TestGroup
-          title 'ExplanationOfBenefit Professional NonClinician Tests'
-          short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Professional NonClinician.'
-          description %(
-      # Background
+require_relative 'eob_professional_non_clinician/validation_test'
+require_relative 'eob_professional_non_clinician/must_support_test'
+
+module CarinForBlueButtonTestKit
+  module CARIN4BBV200DEVNONFINANCIAL
+    class EobProfessionalNonClinicianGroup < Inferno::TestGroup
+      title 'ExplanationOfBenefit Professional NonClinician Tests'
+      short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Professional NonClinician.'
+      description %(
+# Background
 
 The CARIN for Blue Button ExplanationOfBenefit Professional NonClinician sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries
@@ -85,34 +85,37 @@ At least one instance of each external reference in elements marked as
 The test will attempt to read each reference found and will fail if no
 read succeeds.
 
-          )
-    
-          id :c4bb_v200devnonfinancial_eob_professional_non_clinician
-          run_as_group
-    
-          def self.metadata
-            @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'eob_professional_non_clinician', 'metadata.yml'), aliases: true))
-          end
-      
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_read_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_validation_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_must_support_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician__id_search_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_patient_search_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician__lastUpdated_search_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_type_search_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_identifier_search_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_service_date_search_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_service_start_date_search_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_billable_period_start_search_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_include_ExplanationOfBenefit_patient_search_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_include_ExplanationOfBenefit_provider_search_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_include_ExplanationOfBenefit_careteam_search_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_include_ExplanationOfBenefit_coverage_search_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_include_ExplanationOfBenefit_insurer_search_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_include_ExplanationOfBenefit_payee_search_test
-          test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_include_ExplanationOfBenefit_All_search_test
-        end
+      )
+
+      id :c4bb_v200devnonfinancial_eob_professional_non_clinician
+      run_as_group
+      input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
+
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'eob_professional_non_clinician', 'metadata.yml'), aliases: true))
       end
+  
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_patient_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician__id_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician__lastUpdated_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_type_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_identifier_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_service_date_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_service_start_date_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_billable_period_start_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_include_ExplanationOfBenefit_patient_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_include_ExplanationOfBenefit_provider_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_include_ExplanationOfBenefit_careteam_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_include_ExplanationOfBenefit_coverage_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_include_ExplanationOfBenefit_insurer_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_include_ExplanationOfBenefit_payee_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_include_ExplanationOfBenefit_All_search_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_read_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_validation_test
+      test from: :c4bb_v200devnonfinancial_eob_professional_non_clinician_must_support_test
     end
-    
+  end
+end

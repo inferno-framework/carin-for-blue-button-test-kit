@@ -1,5 +1,5 @@
 ---
-:name: C4BB_ExplanationOfBenefit
+:name: C4BB_EOB
 :class_name: C4bbExplanationofbenefitSequence
 :version: v1.1.0
 :reformatted_version: v110
@@ -664,38 +664,38 @@
   - http://hl7.org/fhir/StructureDefinition/PractitionerRole
   - http://hl7.org/fhir/StructureDefinition/Organization
 :tests:
-- :id: c4bb_v110_explanation_of_benefit_patient_search_test
-  :file_name: explanation_of_benefit_patient_search_test.rb
-- :id: c4bb_v110_explanation_of_benefit__id_search_test
-  :file_name: explanation_of_benefit_id_search_test.rb
-- :id: c4bb_v110_explanation_of_benefit__lastUpdated_search_test
-  :file_name: explanation_of_benefit_lastupdated_search_test.rb
-- :id: c4bb_v110_explanation_of_benefit_type_search_test
-  :file_name: explanation_of_benefit_type_search_test.rb
-- :id: c4bb_v110_explanation_of_benefit_identifier_search_test
-  :file_name: explanation_of_benefit_identifier_search_test.rb
-- :id: c4bb_v110_explanation_of_benefit_service_date_search_test
-  :file_name: explanation_of_benefit_service_date_search_test.rb
-- :id: c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_patient_search_test
-  :file_name: explanation_of_benefit_explanation_of_benefit_patient_search_test.rb
-- :id: c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_provider_search_test
-  :file_name: explanation_of_benefit_explanation_of_benefit_provider_search_test.rb
-- :id: c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_careteam_search_test
-  :file_name: explanation_of_benefit_explanation_of_benefit_careteam_search_test.rb
-- :id: c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_coverage_search_test
-  :file_name: explanation_of_benefit_explanation_of_benefit_coverage_search_test.rb
-- :id: c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_insurer_search_test
-  :file_name: explanation_of_benefit_explanation_of_benefit_insurer_search_test.rb
-- :id: c4bb_v110_explanation_of_benefit_include_ExplanationOfBenefit_All_search_test
-  :file_name: explanation_of_benefit_explanation_of_benefit_all_search_test.rb
-- :id: c4bb_v110_explanation_of_benefit_read_test
-  :file_name: explanation_of_benefit_read_test.rb
-- :id: c4bb_v110_explanation_of_benefit_validation_test
-  :file_name: explanation_of_benefit_validation_test.rb
-- :id: c4bb_v110_explanation_of_benefit_must_support_test
-  :file_name: explanation_of_benefit_must_support_test.rb
-:id: c4bb_v110_explanation_of_benefit
-:file_name: explanation_of_benefit_group.rb
+- :id: c4bb_v110_eob_patient_search_test
+  :file_name: patient_search_test.rb
+- :id: c4bb_v110_eob__id_search_test
+  :file_name: id_search_test.rb
+- :id: c4bb_v110_eob__lastUpdated_search_test
+  :file_name: lastupdated_search_test.rb
+- :id: c4bb_v110_eob_type_search_test
+  :file_name: type_search_test.rb
+- :id: c4bb_v110_eob_identifier_search_test
+  :file_name: identifier_search_test.rb
+- :id: c4bb_v110_eob_service_date_search_test
+  :file_name: service_date_search_test.rb
+- :id: c4bb_v110_eob_include_ExplanationOfBenefit_patient_search_test
+  :file_name: incl_patient_search_test.rb
+- :id: c4bb_v110_eob_include_ExplanationOfBenefit_provider_search_test
+  :file_name: incl_provider_search_test.rb
+- :id: c4bb_v110_eob_include_ExplanationOfBenefit_careteam_search_test
+  :file_name: incl_careteam_search_test.rb
+- :id: c4bb_v110_eob_include_ExplanationOfBenefit_coverage_search_test
+  :file_name: incl_coverage_search_test.rb
+- :id: c4bb_v110_eob_include_ExplanationOfBenefit_insurer_search_test
+  :file_name: incl_insurer_search_test.rb
+- :id: c4bb_v110_eob_include_ExplanationOfBenefit_All_search_test
+  :file_name: incl_all_search_test.rb
+- :id: c4bb_v110_eob_read_test
+  :file_name: read_test.rb
+- :id: c4bb_v110_eob_validation_test
+  :file_name: validation_test.rb
+- :id: c4bb_v110_eob_must_support_test
+  :file_name: must_support_test.rb
+:id: c4bb_v110_eob
+:file_name: eob_group.rb
 :delayed_references:
 - :path: insurer
   :resources:

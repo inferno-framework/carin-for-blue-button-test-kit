@@ -1,29 +1,29 @@
+require_relative 'eob_inpatient_institutional_non_financial/patient_search_test'
+require_relative 'eob_inpatient_institutional_non_financial/id_search_test'
+require_relative 'eob_inpatient_institutional_non_financial/lastupdated_search_test'
+require_relative 'eob_inpatient_institutional_non_financial/type_search_test'
+require_relative 'eob_inpatient_institutional_non_financial/identifier_search_test'
+require_relative 'eob_inpatient_institutional_non_financial/service_date_search_test'
+require_relative 'eob_inpatient_institutional_non_financial/service_start_date_search_test'
+require_relative 'eob_inpatient_institutional_non_financial/billable_period_start_search_test'
+require_relative 'eob_inpatient_institutional_non_financial/incl_patient_search_test'
+require_relative 'eob_inpatient_institutional_non_financial/incl_provider_search_test'
+require_relative 'eob_inpatient_institutional_non_financial/incl_careteam_search_test'
+require_relative 'eob_inpatient_institutional_non_financial/incl_coverage_search_test'
+require_relative 'eob_inpatient_institutional_non_financial/incl_insurer_search_test'
+require_relative 'eob_inpatient_institutional_non_financial/incl_payee_search_test'
+require_relative 'eob_inpatient_institutional_non_financial/incl_all_search_test'
 require_relative 'eob_inpatient_institutional_non_financial/read_test'
-    require_relative 'eob_inpatient_institutional_non_financial/validation_test'
-    require_relative 'eob_inpatient_institutional_non_financial/must_support_test'
-    require_relative 'eob_inpatient_institutional_non_financial/id_search_test'
-    require_relative 'eob_inpatient_institutional_non_financial/patient_search_test'
-    require_relative 'eob_inpatient_institutional_non_financial/lastupdated_search_test'
-    require_relative 'eob_inpatient_institutional_non_financial/type_search_test'
-    require_relative 'eob_inpatient_institutional_non_financial/identifier_search_test'
-    require_relative 'eob_inpatient_institutional_non_financial/service_date_search_test'
-    require_relative 'eob_inpatient_institutional_non_financial/service_start_date_search_test'
-    require_relative 'eob_inpatient_institutional_non_financial/billable_period_start_search_test'
-    require_relative 'eob_inpatient_institutional_non_financial/incl_patient_search_test'
-    require_relative 'eob_inpatient_institutional_non_financial/incl_provider_search_test'
-    require_relative 'eob_inpatient_institutional_non_financial/incl_careteam_search_test'
-    require_relative 'eob_inpatient_institutional_non_financial/incl_coverage_search_test'
-    require_relative 'eob_inpatient_institutional_non_financial/incl_insurer_search_test'
-    require_relative 'eob_inpatient_institutional_non_financial/incl_payee_search_test'
-    require_relative 'eob_inpatient_institutional_non_financial/incl_all_search_test'
-    
-    module CarinForBlueButtonTestKit
-      module CARIN4BBV200DEVNONFINANCIAL
-        class EobInpatientInstitutionalNonFinancialGroup < Inferno::TestGroup
-          title 'ExplanationOfBenefit Inpatient Institutional - Non-Financial Tests'
-          short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Inpatient Institutional - Non-Financial.'
-          description %(
-      # Background
+require_relative 'eob_inpatient_institutional_non_financial/validation_test'
+require_relative 'eob_inpatient_institutional_non_financial/must_support_test'
+
+module CarinForBlueButtonTestKit
+  module CARIN4BBV200DEVNONFINANCIAL
+    class EobInpatientInstitutionalNonFinancialGroup < Inferno::TestGroup
+      title 'ExplanationOfBenefit Inpatient Institutional - Non-Financial Tests'
+      short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Inpatient Institutional - Non-Financial.'
+      description %(
+# Background
 
 The CARIN for Blue Button ExplanationOfBenefit Inpatient Institutional - Non-Financial sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries
@@ -85,34 +85,37 @@ At least one instance of each external reference in elements marked as
 The test will attempt to read each reference found and will fail if no
 read succeeds.
 
-          )
-    
-          id :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial
-          run_as_group
-    
-          def self.metadata
-            @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'eob_inpatient_institutional_non_financial', 'metadata.yml'), aliases: true))
-          end
-      
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_read_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_validation_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_must_support_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial__id_search_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_patient_search_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial__lastUpdated_search_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_type_search_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_identifier_search_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_service_date_search_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_service_start_date_search_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_billable_period_start_search_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_patient_search_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_provider_search_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_careteam_search_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_coverage_search_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_insurer_search_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_payee_search_test
-          test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_All_search_test
-        end
+      )
+
+      id :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial
+      run_as_group
+      input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
+
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'eob_inpatient_institutional_non_financial', 'metadata.yml'), aliases: true))
       end
+  
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_patient_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial__id_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial__lastUpdated_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_type_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_identifier_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_service_date_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_service_start_date_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_billable_period_start_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_patient_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_provider_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_careteam_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_coverage_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_insurer_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_payee_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_All_search_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_read_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_validation_test
+      test from: :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_must_support_test
     end
-    
+  end
+end

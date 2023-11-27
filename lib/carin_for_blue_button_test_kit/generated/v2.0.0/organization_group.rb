@@ -1,8 +1,8 @@
-require_relative 'organization/organization_id_search_test'
-require_relative 'organization/organization_lastupdated_search_test'
-require_relative 'organization/organization_read_test'
-require_relative 'organization/organization_validation_test'
-require_relative 'organization/organization_must_support_test'
+require_relative 'organization/id_search_test'
+require_relative 'organization/lastupdated_search_test'
+require_relative 'organization/read_test'
+require_relative 'organization/validation_test'
+require_relative 'organization/must_support_test'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV200

@@ -3,7 +3,7 @@ require_relative '../../../generator/group_metadata'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV200DEVNONFINANCIAL
-    class ExplanationOfBenefitOralServiceDateSearchTest < Inferno::Test
+    class EobInpatientInstitutionalServiceDateSearchTest < Inferno::Test
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for ExplanationOfBenefit search by service-date'
@@ -15,9 +15,9 @@ none are returned, the test is skipped.
 
       )
 
-      id :c4bb_v200devnonfinancial_explanation_of_benefit_oral_service_date_search_test
+      id :c4bb_v200devnonfinancial_eob_inpatient_institutional_service_date_search_test
 
-      input :c4bb_v200devnonfinancial_explanation_of_benefit_oral_service_date_search_test_param,
+      input :c4bb_v200devnonfinancial_eob_inpatient_institutional_service_date_search_test_param,
         title: 'ExplanationOfBenefit search parameter for service-date',
         type: 'text',
         description: 'ExplanationOfBenefit search parameter: service-date'
@@ -34,12 +34,12 @@ none are returned, the test is skipped.
       end
 
       def scratch_resources
-        scratch[:explanation_of_benefit_oral_resources] ||= {}
+        scratch[:eob_inpatient_institutional_resources] ||= {}
       end
       
       run do
         
-        run_search_test(c4bb_v200devnonfinancial_explanation_of_benefit_oral_service_date_search_test_param)
+        run_search_test(c4bb_v200devnonfinancial_eob_inpatient_institutional_service_date_search_test_param)
       end
     end
   end

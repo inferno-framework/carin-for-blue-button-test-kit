@@ -197,17 +197,17 @@
   - http://hl7.org/fhir/StructureDefinition/Contract
 :tests:
 - :id: c4bb_v200_coverage__id_search_test
-  :file_name: coverage_id_search_test.rb
+  :file_name: id_search_test.rb
 - :id: c4bb_v200_coverage__lastUpdated_search_test
-  :file_name: coverage_lastupdated_search_test.rb
+  :file_name: lastupdated_search_test.rb
 - :id: c4bb_v200_coverage_include_Coverage_payor_search_test
-  :file_name: coverage_coverage_payor_search_test.rb
+  :file_name: incl_payor_search_test.rb
 - :id: c4bb_v200_coverage_read_test
-  :file_name: coverage_read_test.rb
+  :file_name: read_test.rb
 - :id: c4bb_v200_coverage_validation_test
-  :file_name: coverage_validation_test.rb
+  :file_name: validation_test.rb
 - :id: c4bb_v200_coverage_must_support_test
-  :file_name: coverage_must_support_test.rb
+  :file_name: must_support_test.rb
 :id: c4bb_v200_coverage
 :file_name: coverage_group.rb
 :delayed_references:

@@ -1,8 +1,8 @@
-require_relative 'patient/patient_id_search_test'
-require_relative 'patient/patient_lastupdated_search_test'
-require_relative 'patient/patient_read_test'
-require_relative 'patient/patient_validation_test'
-require_relative 'patient/patient_must_support_test'
+require_relative 'patient/id_search_test'
+require_relative 'patient/lastupdated_search_test'
+require_relative 'patient/read_test'
+require_relative 'patient/validation_test'
+require_relative 'patient/must_support_test'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV200

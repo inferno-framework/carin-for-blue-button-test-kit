@@ -1,29 +1,29 @@
+require_relative 'eob_oral/patient_search_test'
+require_relative 'eob_oral/id_search_test'
+require_relative 'eob_oral/lastupdated_search_test'
+require_relative 'eob_oral/type_search_test'
+require_relative 'eob_oral/identifier_search_test'
+require_relative 'eob_oral/service_date_search_test'
+require_relative 'eob_oral/service_start_date_search_test'
+require_relative 'eob_oral/billable_period_start_search_test'
+require_relative 'eob_oral/incl_patient_search_test'
+require_relative 'eob_oral/incl_provider_search_test'
+require_relative 'eob_oral/incl_careteam_search_test'
+require_relative 'eob_oral/incl_coverage_search_test'
+require_relative 'eob_oral/incl_insurer_search_test'
+require_relative 'eob_oral/incl_payee_search_test'
+require_relative 'eob_oral/incl_all_search_test'
 require_relative 'eob_oral/read_test'
-    require_relative 'eob_oral/validation_test'
-    require_relative 'eob_oral/must_support_test'
-    require_relative 'eob_oral/id_search_test'
-    require_relative 'eob_oral/patient_search_test'
-    require_relative 'eob_oral/lastupdated_search_test'
-    require_relative 'eob_oral/type_search_test'
-    require_relative 'eob_oral/identifier_search_test'
-    require_relative 'eob_oral/service_date_search_test'
-    require_relative 'eob_oral/service_start_date_search_test'
-    require_relative 'eob_oral/billable_period_start_search_test'
-    require_relative 'eob_oral/incl_patient_search_test'
-    require_relative 'eob_oral/incl_provider_search_test'
-    require_relative 'eob_oral/incl_careteam_search_test'
-    require_relative 'eob_oral/incl_coverage_search_test'
-    require_relative 'eob_oral/incl_insurer_search_test'
-    require_relative 'eob_oral/incl_payee_search_test'
-    require_relative 'eob_oral/incl_all_search_test'
-    
-    module CarinForBlueButtonTestKit
-      module CARIN4BBV200DEVNONFINANCIAL
-        class EobOralGroup < Inferno::TestGroup
-          title 'ExplanationOfBenefit Oral Tests'
-          short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Oral.'
-          description %(
-      # Background
+require_relative 'eob_oral/validation_test'
+require_relative 'eob_oral/must_support_test'
+
+module CarinForBlueButtonTestKit
+  module CARIN4BBV200DEVNONFINANCIAL
+    class EobOralGroup < Inferno::TestGroup
+      title 'ExplanationOfBenefit Oral Tests'
+      short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Oral.'
+      description %(
+# Background
 
 The CARIN for Blue Button ExplanationOfBenefit Oral sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries
@@ -85,34 +85,37 @@ At least one instance of each external reference in elements marked as
 The test will attempt to read each reference found and will fail if no
 read succeeds.
 
-          )
-    
-          id :c4bb_v200devnonfinancial_eob_oral
-          run_as_group
-    
-          def self.metadata
-            @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'eob_oral', 'metadata.yml'), aliases: true))
-          end
-      
-          test from: :c4bb_v200devnonfinancial_eob_oral_read_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_validation_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_must_support_test
-          test from: :c4bb_v200devnonfinancial_eob_oral__id_search_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_patient_search_test
-          test from: :c4bb_v200devnonfinancial_eob_oral__lastUpdated_search_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_type_search_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_identifier_search_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_service_date_search_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_service_start_date_search_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_billable_period_start_search_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_include_ExplanationOfBenefit_patient_search_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_include_ExplanationOfBenefit_provider_search_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_include_ExplanationOfBenefit_careteam_search_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_include_ExplanationOfBenefit_coverage_search_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_include_ExplanationOfBenefit_insurer_search_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_include_ExplanationOfBenefit_payee_search_test
-          test from: :c4bb_v200devnonfinancial_eob_oral_include_ExplanationOfBenefit_All_search_test
-        end
+      )
+
+      id :c4bb_v200devnonfinancial_eob_oral
+      run_as_group
+      input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
+
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'eob_oral', 'metadata.yml'), aliases: true))
       end
+  
+      test from: :c4bb_v200devnonfinancial_eob_oral_patient_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral__id_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral__lastUpdated_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_type_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_identifier_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_service_date_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_service_start_date_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_billable_period_start_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_include_ExplanationOfBenefit_patient_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_include_ExplanationOfBenefit_provider_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_include_ExplanationOfBenefit_careteam_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_include_ExplanationOfBenefit_coverage_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_include_ExplanationOfBenefit_insurer_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_include_ExplanationOfBenefit_payee_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_include_ExplanationOfBenefit_All_search_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_read_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_validation_test
+      test from: :c4bb_v200devnonfinancial_eob_oral_must_support_test
     end
-    
+  end
+end

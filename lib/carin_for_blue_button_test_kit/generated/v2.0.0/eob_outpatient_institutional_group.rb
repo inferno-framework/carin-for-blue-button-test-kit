@@ -1,29 +1,29 @@
+require_relative 'eob_outpatient_institutional/patient_search_test'
+require_relative 'eob_outpatient_institutional/id_search_test'
+require_relative 'eob_outpatient_institutional/lastupdated_search_test'
+require_relative 'eob_outpatient_institutional/type_search_test'
+require_relative 'eob_outpatient_institutional/identifier_search_test'
+require_relative 'eob_outpatient_institutional/service_date_search_test'
+require_relative 'eob_outpatient_institutional/service_start_date_search_test'
+require_relative 'eob_outpatient_institutional/billable_period_start_search_test'
+require_relative 'eob_outpatient_institutional/incl_patient_search_test'
+require_relative 'eob_outpatient_institutional/incl_provider_search_test'
+require_relative 'eob_outpatient_institutional/incl_careteam_search_test'
+require_relative 'eob_outpatient_institutional/incl_coverage_search_test'
+require_relative 'eob_outpatient_institutional/incl_insurer_search_test'
+require_relative 'eob_outpatient_institutional/incl_payee_search_test'
+require_relative 'eob_outpatient_institutional/incl_all_search_test'
 require_relative 'eob_outpatient_institutional/read_test'
-    require_relative 'eob_outpatient_institutional/validation_test'
-    require_relative 'eob_outpatient_institutional/must_support_test'
-    require_relative 'eob_outpatient_institutional/id_search_test'
-    require_relative 'eob_outpatient_institutional/patient_search_test'
-    require_relative 'eob_outpatient_institutional/lastupdated_search_test'
-    require_relative 'eob_outpatient_institutional/type_search_test'
-    require_relative 'eob_outpatient_institutional/identifier_search_test'
-    require_relative 'eob_outpatient_institutional/service_date_search_test'
-    require_relative 'eob_outpatient_institutional/service_start_date_search_test'
-    require_relative 'eob_outpatient_institutional/billable_period_start_search_test'
-    require_relative 'eob_outpatient_institutional/incl_patient_search_test'
-    require_relative 'eob_outpatient_institutional/incl_provider_search_test'
-    require_relative 'eob_outpatient_institutional/incl_careteam_search_test'
-    require_relative 'eob_outpatient_institutional/incl_coverage_search_test'
-    require_relative 'eob_outpatient_institutional/incl_insurer_search_test'
-    require_relative 'eob_outpatient_institutional/incl_payee_search_test'
-    require_relative 'eob_outpatient_institutional/incl_all_search_test'
-    
-    module CarinForBlueButtonTestKit
-      module CARIN4BBV200
-        class EobOutpatientInstitutionalGroup < Inferno::TestGroup
-          title 'ExplanationOfBenefit Outpatient Institutional Tests'
-          short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Outpatient Institutional.'
-          description %(
-      # Background
+require_relative 'eob_outpatient_institutional/validation_test'
+require_relative 'eob_outpatient_institutional/must_support_test'
+
+module CarinForBlueButtonTestKit
+  module CARIN4BBV200
+    class EobOutpatientInstitutionalGroup < Inferno::TestGroup
+      title 'ExplanationOfBenefit Outpatient Institutional Tests'
+      short_description 'Verify support for the server capabilities required by the C4BB ExplanationOfBenefit Outpatient Institutional.'
+      description %(
+# Background
 
 The CARIN for Blue Button ExplanationOfBenefit Outpatient Institutional sequence verifies that the system under test is
 able to provide correct responses for ExplanationOfBenefit queries. These queries
@@ -85,34 +85,37 @@ At least one instance of each external reference in elements marked as
 The test will attempt to read each reference found and will fail if no
 read succeeds.
 
-          )
-    
-          id :c4bb_v200_eob_outpatient_institutional
-          run_as_group
-    
-          def self.metadata
-            @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'eob_outpatient_institutional', 'metadata.yml'), aliases: true))
-          end
-      
-          test from: :c4bb_v200_eob_outpatient_institutional_read_test
-          test from: :c4bb_v200_eob_outpatient_institutional_validation_test
-          test from: :c4bb_v200_eob_outpatient_institutional_must_support_test
-          test from: :c4bb_v200_eob_outpatient_institutional__id_search_test
-          test from: :c4bb_v200_eob_outpatient_institutional_patient_search_test
-          test from: :c4bb_v200_eob_outpatient_institutional__lastUpdated_search_test
-          test from: :c4bb_v200_eob_outpatient_institutional_type_search_test
-          test from: :c4bb_v200_eob_outpatient_institutional_identifier_search_test
-          test from: :c4bb_v200_eob_outpatient_institutional_service_date_search_test
-          test from: :c4bb_v200_eob_outpatient_institutional_service_start_date_search_test
-          test from: :c4bb_v200_eob_outpatient_institutional_billable_period_start_search_test
-          test from: :c4bb_v200_eob_outpatient_institutional_include_ExplanationOfBenefit_patient_search_test
-          test from: :c4bb_v200_eob_outpatient_institutional_include_ExplanationOfBenefit_provider_search_test
-          test from: :c4bb_v200_eob_outpatient_institutional_include_ExplanationOfBenefit_careteam_search_test
-          test from: :c4bb_v200_eob_outpatient_institutional_include_ExplanationOfBenefit_coverage_search_test
-          test from: :c4bb_v200_eob_outpatient_institutional_include_ExplanationOfBenefit_insurer_search_test
-          test from: :c4bb_v200_eob_outpatient_institutional_include_ExplanationOfBenefit_payee_search_test
-          test from: :c4bb_v200_eob_outpatient_institutional_include_ExplanationOfBenefit_All_search_test
-        end
+      )
+
+      id :c4bb_v200_eob_outpatient_institutional
+      run_as_group
+      input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
+
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'eob_outpatient_institutional', 'metadata.yml'), aliases: true))
       end
+  
+      test from: :c4bb_v200_eob_outpatient_institutional_patient_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional__id_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional__lastUpdated_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional_type_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional_identifier_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional_service_date_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional_service_start_date_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional_billable_period_start_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional_include_ExplanationOfBenefit_patient_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional_include_ExplanationOfBenefit_provider_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional_include_ExplanationOfBenefit_careteam_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional_include_ExplanationOfBenefit_coverage_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional_include_ExplanationOfBenefit_insurer_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional_include_ExplanationOfBenefit_payee_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional_include_ExplanationOfBenefit_All_search_test
+      test from: :c4bb_v200_eob_outpatient_institutional_read_test
+      test from: :c4bb_v200_eob_outpatient_institutional_validation_test
+      test from: :c4bb_v200_eob_outpatient_institutional_must_support_test
     end
-    
+  end
+end
