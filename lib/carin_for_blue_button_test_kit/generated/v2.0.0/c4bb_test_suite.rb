@@ -7,11 +7,6 @@ require_relative '../../custom_groups/v2.0.0/c4bb_smart_launch_group'
 
 require_relative 'patient_group'
 require_relative 'explanation_of_benefit_group'
-require_relative 'explanation_of_benefit_inpatient_institutional_group'
-require_relative 'explanation_of_benefit_outpatient_institutional_group'
-require_relative 'explanation_of_benefit_oral_group'
-require_relative 'explanation_of_benefit_pharmacy_group'
-require_relative 'explanation_of_benefit_professional_non_clinician_group'
 require_relative 'coverage_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
@@ -73,11 +68,6 @@ module CarinForBlueButtonTestKit
     
         group from: :c4bb_v200_patient
         group from: :c4bb_v200_explanation_of_benefit
-        group from: :c4bb_v200_explanation_of_benefit_inpatient_institutional
-        group from: :c4bb_v200_explanation_of_benefit_outpatient_institutional
-        group from: :c4bb_v200_explanation_of_benefit_oral
-        group from: :c4bb_v200_explanation_of_benefit_pharmacy
-        group from: :c4bb_v200_explanation_of_benefit_professional_non_clinician
         group from: :c4bb_v200_coverage
         group from: :c4bb_v200_organization
         group from: :c4bb_v200_practitioner

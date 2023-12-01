@@ -222,7 +222,7 @@ module CarinForBlueButtonTestKit
           properties[:test_reference_variants] = 'true' if test_reference_variants?
           properties[:params_with_comparators] = required_comparators_string if required_comparators.present?
           if required_multiple_or_search_params.present?
-            properties[:multiple_or_search_params] = 
+            properties[:multiple_or_search_params] =
               required_multiple_or_search_params_string
           end
           properties[:test_post_search] = 'true' if first_search?

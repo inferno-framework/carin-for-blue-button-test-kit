@@ -13,6 +13,14 @@ require_relative 'explanation_of_benefit/explanation_of_benefit_explanation_of_b
 require_relative 'explanation_of_benefit/explanation_of_benefit_read_test'
 require_relative 'explanation_of_benefit/explanation_of_benefit_validation_test'
 require_relative 'explanation_of_benefit/explanation_of_benefit_must_support_test'
+require_relative 'explanation_of_benefit_inpatient_institutional/explanation_of_benefit_inpatient_institutional_validation_test'
+require_relative 'explanation_of_benefit_inpatient_institutional/explanation_of_benefit_inpatient_institutional_must_support_test'
+require_relative 'explanation_of_benefit_outpatient_institutional/explanation_of_benefit_outpatient_institutional_validation_test'
+require_relative 'explanation_of_benefit_outpatient_institutional/explanation_of_benefit_outpatient_institutional_must_support_test'
+require_relative 'explanation_of_benefit_pharmacy/explanation_of_benefit_pharmacy_validation_test'
+require_relative 'explanation_of_benefit_pharmacy/explanation_of_benefit_pharmacy_must_support_test'
+require_relative 'explanation_of_benefit_professional_non_clinician/explanation_of_benefit_professional_non_clinician_validation_test'
+require_relative 'explanation_of_benefit_professional_non_clinician/explanation_of_benefit_professional_non_clinician_must_support_test'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV110
@@ -108,6 +116,14 @@ read succeeds.
       test from: :c4bb_v110_explanation_of_benefit_read_test
       test from: :c4bb_v110_explanation_of_benefit_validation_test
       test from: :c4bb_v110_explanation_of_benefit_must_support_test
+      test from: :c4bb_v110_explanation_of_benefit_inpatient_institutional_validation_test
+      test from: :c4bb_v110_explanation_of_benefit_inpatient_institutional_must_support_test
+      test from: :c4bb_v110_explanation_of_benefit_outpatient_institutional_validation_test
+      test from: :c4bb_v110_explanation_of_benefit_outpatient_institutional_must_support_test
+      test from: :c4bb_v110_explanation_of_benefit_pharmacy_validation_test
+      test from: :c4bb_v110_explanation_of_benefit_pharmacy_must_support_test
+      test from: :c4bb_v110_explanation_of_benefit_professional_non_clinician_validation_test
+      test from: :c4bb_v110_explanation_of_benefit_professional_non_clinician_must_support_test
     end
   end
 end

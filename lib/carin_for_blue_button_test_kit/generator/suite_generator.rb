@@ -68,7 +68,7 @@ module CarinForBlueButtonTestKit
       end
 
       def groups
-        ig_metadata.ordered_groups
+        ig_metadata.ordered_groups.select { |group| group.id.present? }
       end
 
       def group_id_list
