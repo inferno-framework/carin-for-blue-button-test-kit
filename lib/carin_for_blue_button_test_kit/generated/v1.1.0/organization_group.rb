@@ -1,6 +1,6 @@
-require_relative 'organization/organization_read_test'
-require_relative 'organization/organization_validation_test'
-require_relative 'organization/organization_must_support_test'
+require_relative 'organization/read_test'
+require_relative 'organization/validation_test'
+require_relative 'organization/must_support_test'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV110

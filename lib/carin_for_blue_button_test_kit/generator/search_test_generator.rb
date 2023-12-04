@@ -35,7 +35,9 @@ module CarinForBlueButtonTestKit
       end
 
       def base_output_file_name
-        "#{class_name.underscore}.rb"
+        file_name = class_name.underscore
+        file_name.sub!("#{profile_identifier}_", '')
+        "#{file_name}.rb"
       end
 
       def output_file_directory

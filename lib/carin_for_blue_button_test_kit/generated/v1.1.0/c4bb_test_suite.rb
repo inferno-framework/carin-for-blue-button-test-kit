@@ -6,18 +6,18 @@ require_relative '../../capability_statement/capability_statement_group'
 require_relative '../../custom_groups/v1.1.0/c4bb_smart_launch_group'
 
 require_relative 'patient_group'
-require_relative 'explanation_of_benefit_group'
-require_relative 'explanation_of_benefit_inpatient_institutional_group'
-require_relative 'explanation_of_benefit_outpatient_institutional_group'
-require_relative 'explanation_of_benefit_pharmacy_group'
-require_relative 'explanation_of_benefit_professional_non_clinician_group'
+require_relative 'eob_group'
+require_relative 'eob_inpatient_institutional_group'
+require_relative 'eob_outpatient_institutional_group'
+require_relative 'eob_pharmacy_group'
+require_relative 'eob_professional_non_clinician_group'
 require_relative 'coverage_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV110
-    class C4BBTestKit < Inferno::TestSuite
+    class C4BBTestSuite < Inferno::TestSuite
       title 'CARIN IG for Blue Button® v1.1.0'
       description %(
         The CARIN for Blue Button test suite validates system conformance to the HL7® FHIR® [CARIN for Blue Button® Implementation Guide](http://hl7.org/fhir/us/carin-bb/STU1.1).
@@ -70,11 +70,11 @@ module CarinForBlueButtonTestKit
         group from: :capability_statement_group
     
         group from: :c4bb_v110_patient
-        group from: :c4bb_v110_explanation_of_benefit
-        group from: :c4bb_v110_explanation_of_benefit_inpatient_institutional
-        group from: :c4bb_v110_explanation_of_benefit_outpatient_institutional
-        group from: :c4bb_v110_explanation_of_benefit_pharmacy
-        group from: :c4bb_v110_explanation_of_benefit_professional_non_clinician
+        group from: :c4bb_v110_eob
+        group from: :c4bb_v110_eob_inpatient_institutional
+        group from: :c4bb_v110_eob_outpatient_institutional
+        group from: :c4bb_v110_eob_pharmacy
+        group from: :c4bb_v110_eob_professional_non_clinician
         group from: :c4bb_v110_coverage
         group from: :c4bb_v110_organization
         group from: :c4bb_v110_practitioner

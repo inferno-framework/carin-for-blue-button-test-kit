@@ -29,7 +29,7 @@ module CarinForBlueButtonTestKit
       end
 
       def class_name
-        "C4BBTestKit"
+        "C4BBTestSuite"
       end
 
       def module_name

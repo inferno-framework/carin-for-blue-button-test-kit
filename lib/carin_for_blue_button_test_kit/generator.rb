@@ -14,7 +14,7 @@ module CarinForBlueButtonTestKit
     class Generator
         def self.generate
             ig_packages = Dir.glob(File.join(Dir.pwd, 'lib', 'carin_for_blue_button_test_kit', 'igs', '*.tgz'))
-
+      
             ig_packages.each do |ig_package|
               new(ig_package).generate
             end

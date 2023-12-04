@@ -1,6 +1,6 @@
-require_relative 'practitioner/practitioner_read_test'
-require_relative 'practitioner/practitioner_validation_test'
-require_relative 'practitioner/practitioner_must_support_test'
+require_relative 'practitioner/read_test'
+require_relative 'practitioner/validation_test'
+require_relative 'practitioner/must_support_test'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV110

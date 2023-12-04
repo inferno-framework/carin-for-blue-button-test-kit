@@ -44,7 +44,11 @@ module CarinForBlueButtonTestKit
           end
 
           def base_output_file_name
-            "#{class_name.underscore}.rb"
+            file_name = class_name
+            file_name.sub!(resource_type, '')
+            file_name = file_name.underscore
+            file_name.sub!("#{profile_identifier}", 'incl')
+            "#{file_name}.rb"
           end
 
           def test_id

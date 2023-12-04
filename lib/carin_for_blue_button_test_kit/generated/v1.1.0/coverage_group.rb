@@ -1,6 +1,6 @@
-require_relative 'coverage/coverage_read_test'
-require_relative 'coverage/coverage_validation_test'
-require_relative 'coverage/coverage_must_support_test'
+require_relative 'coverage/read_test'
+require_relative 'coverage/validation_test'
+require_relative 'coverage/must_support_test'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV110

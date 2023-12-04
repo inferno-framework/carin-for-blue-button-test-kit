@@ -35,7 +35,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
   describe 'carin search requiring service-date' do
     let(:service_date_search_test) do
-      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitServiceDateSearchTest) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::EobServiceDateSearchTest) do
         fhir_client { url :url }
         input :url
       end
@@ -58,7 +58,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
       result = run(
         service_date_search_test,
-        c4bb_v200_explanation_of_benefit_service_date_search_test_param: service_date,
+        c4bb_v200_eob_service_date_search_test_param: service_date,
         url:
       )
       expect(result.result).to eq('pass')
@@ -70,7 +70,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
       result = run(
         service_date_search_test,
-        c4bb_v200_explanation_of_benefit_service_date_search_test_param: service_date,
+        c4bb_v200_eob_service_date_search_test_param: service_date,
         url:
       )
 
@@ -81,7 +81,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
   describe 'carin search requiring service-start-date' do
     let(:service_start_date_search_test) do
-      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitServiceStartDateSearchTest) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::EobServiceStartDateSearchTest) do
         fhir_client { url :url }
         input :url
       end
@@ -104,7 +104,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
       result = run(
         service_start_date_search_test,
-        c4bb_v200_explanation_of_benefit_service_start_date_search_test_param: service_start_date,
+        c4bb_v200_eob_service_start_date_search_test_param: service_start_date,
         url:
       )
       expect(result.result).to eq('pass')
@@ -116,7 +116,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
       result = run(
         service_start_date_search_test,
-        c4bb_v200_explanation_of_benefit_service_start_date_search_test_param: service_start_date,
+        c4bb_v200_eob_service_start_date_search_test_param: service_start_date,
         url:
       )
 
@@ -127,7 +127,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
   describe 'carin search requiring billable-period-start' do
     let(:billable_period_start_search_test) do
-      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitBillablePeriodStartSearchTest) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::EobBillablePeriodStartSearchTest) do
         fhir_client { url :url }
         input :url
       end
@@ -150,7 +150,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
       result = run(
         billable_period_start_search_test,
-        c4bb_v200_explanation_of_benefit_billable_period_start_search_test_param: billable_period_start,
+        c4bb_v200_eob_billable_period_start_search_test_param: billable_period_start,
         url:
       )
       expect(result.result).to eq('pass')
@@ -162,7 +162,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
       result = run(
         billable_period_start_search_test,
-        c4bb_v200_explanation_of_benefit_billable_period_start_search_test_param: billable_period_start,
+        c4bb_v200_eob_billable_period_start_search_test_param: billable_period_start,
         url:
       )
 
@@ -173,7 +173,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
   describe 'carin search requiring type' do
     let(:type_search_test) do
-      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitTypeSearchTest) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::EobTypeSearchTest) do
         fhir_client { url :url }
         input :url
       end
@@ -196,7 +196,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
       result = run(
         type_search_test,
-        c4bb_v200_explanation_of_benefit_type_search_test_param: type,
+        c4bb_v200_eob_type_search_test_param: type,
         url:
       )
       expect(result.result).to eq('pass')
@@ -208,7 +208,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
       result = run(
         type_search_test,
-        c4bb_v200_explanation_of_benefit_type_search_test_param: type,
+        c4bb_v200_eob_type_search_test_param: type,
         url:
       )
 
@@ -361,7 +361,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
   describe 'carin ExplanationOfBenefit search required _lastUpdated' do
     let(:eob_last_updated_search_test) do
-      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitLastupdatedSearchTest) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::EobLastupdatedSearchTest) do
         fhir_client { url :url }
         input :url
       end
@@ -388,7 +388,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
       result = run(
         eob_last_updated_search_test,
-        c4bb_v200_explanation_of_benefit__lastUpdated_search_test_param: last_updated,
+        c4bb_v200_eob__lastUpdated_search_test_param: last_updated,
         url:
       )
       expect(result.result).to eq('pass')
@@ -400,7 +400,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
       result = run(
         eob_last_updated_search_test,
-        c4bb_v200_explanation_of_benefit__lastUpdated_search_test_param: last_updated,
+        c4bb_v200_eob__lastUpdated_search_test_param: last_updated,
         url:
       )
       expect(result.result).to eq('fail')
@@ -410,7 +410,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
 
   describe 'search ExplanationofBenefit with _include patient param' do
     let(:explanation_of_benefit_include_test_patient) do
-      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitExplanationOfBenefit_patientSearchTest) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::EobExplanationOfBenefit_patientSearchTest) do
         fhir_client { url :url }
         input :url
       end
@@ -444,7 +444,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_patient}")
         .to_return(status: 200, body: bundle.to_json)
 
-      result = run(explanation_of_benefit_include_test_patient, c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id,  url:)
+      result = run(explanation_of_benefit_include_test_patient, c4bb_v200_eob__id_search_test_param: explanation_of_benefit_id,  url:)
       expect(result.result).to eq('pass')
       expect(request).to have_been_made.once
     end
@@ -457,7 +457,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_patient}")
         .to_return(status: 200, body: bundle.to_json)
 
-      result = run(explanation_of_benefit_include_test_patient, c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id,  url:)
+      result = run(explanation_of_benefit_include_test_patient, c4bb_v200_eob__id_search_test_param: explanation_of_benefit_id,  url:)
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('No ExplanationOfBenefit references Patient/456 in the search result.')
       expect(request).to have_been_made.once
@@ -471,7 +471,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_patient}")
         .to_return(status: 200, body: bundle.to_json)
 
-      result = run(explanation_of_benefit_include_test_patient, c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id,  url:)
+      result = run(explanation_of_benefit_include_test_patient, c4bb_v200_eob__id_search_test_param: explanation_of_benefit_id,  url:)
       expect(result.result).to eq('pass')
       expect(request).to have_been_made.once
     end
@@ -484,7 +484,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_patient}")
         .to_return(status: 200, body: bundle.to_json)
 
-      result = run(explanation_of_benefit_include_test_patient, c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id,  url:)
+      result = run(explanation_of_benefit_include_test_patient, c4bb_v200_eob__id_search_test_param: explanation_of_benefit_id,  url:)
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('No ExplanationOfBenefit references Patient/456 in the search result.')
       expect(request).to have_been_made.once
@@ -496,7 +496,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     let(:patient2) { FHIR::Patient.new(id: patient_id_2) }
 
     let(:explanation_of_benefit_include_test_all) do
-      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::ExplanationOfBenefitExplanationOfBenefit_AllSearchTest) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::EobExplanationOfBenefit_AllSearchTest) do
         fhir_client { url :url }
         input :url
       end
@@ -518,7 +518,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
         .to_return(status: 200, body: bundle_all.to_json)
       
       # Test include with * parameter to ensure all resources are included
-      result = run(explanation_of_benefit_include_test_all, c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id,  url:)
+      result = run(explanation_of_benefit_include_test_all, c4bb_v200_eob__id_search_test_param: explanation_of_benefit_id,  url:)
       expect(result.result).to eq('pass')
       expect(request).to have_been_made.once
     end
@@ -531,7 +531,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
         .to_return(status: 200, body: bundle_all.to_json)
       
       # Test include with * parameter to ensure all resources are included
-      result = run(explanation_of_benefit_include_test_all, c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id,  url:)
+      result = run(explanation_of_benefit_include_test_all, c4bb_v200_eob__id_search_test_param: explanation_of_benefit_id,  url:)
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('No ExplanationOfBenefit references Patient/456 in the search result.')
       expect(request).to have_been_made.once
@@ -546,7 +546,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
         .to_return(status: 200, body: bundle_all.to_json)
       
       # Test include with * parameter to ensure all resources are included
-      result = run(explanation_of_benefit_include_test_all, c4bb_v200_explanation_of_benefit__id_search_test_param: explanation_of_benefit_id,  url:)
+      result = run(explanation_of_benefit_include_test_all, c4bb_v200_eob__id_search_test_param: explanation_of_benefit_id,  url:)
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('No ExplanationOfBenefit references Patient/Payer2 in the search result.')
       expect(request).to have_been_made.once

@@ -1,8 +1,8 @@
-require_relative 'related_person/related_person_id_search_test'
-require_relative 'related_person/related_person_lastupdated_search_test'
-require_relative 'related_person/related_person_read_test'
-require_relative 'related_person/related_person_validation_test'
-require_relative 'related_person/related_person_must_support_test'
+require_relative 'related_person/id_search_test'
+require_relative 'related_person/lastupdated_search_test'
+require_relative 'related_person/read_test'
+require_relative 'related_person/validation_test'
+require_relative 'related_person/must_support_test'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV200DEVNONFINANCIAL

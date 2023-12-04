@@ -199,7 +199,7 @@ module CarinForBlueButtonTestKit
       end
 
       def is_eob_subgroup?
-        base_output_file_name.match(/benefit_.+_group/)
+        base_output_file_name.match(/eob_.+_group/)
       end
     end
   end
