@@ -64,16 +64,17 @@ module CarinForBlueButtonTestKit
       end
 
       def specific_resource_type
+
         case profile_identifier
-        when 'explanation_of_benefit_inpatient_institutional'
+        when 'eob_inpatient_institutional'
           return "ExplanationOfBenefitInpatientInstitutional"
-        when 'explanation_of_benefit_oral'
+        when 'eob_oral'
           return "ExplanationOfBenefitOral"
-        when 'explanation_of_benefit_outpatient_institutional'
+        when 'eob_outpatient_institutional'
           return "ExplanationOfBenefitOutpatientInstitutional"
-        when 'explanation_of_benefit_pharmacy'
+        when 'eob_pharmacy'
           return "ExplanationOfBenefitPharmacy"
-        when 'explanation_of_benefit_professional_non_clinician'
+        when 'eob_professional_non_clinician'
           return "ExplanationOfBenefitProfessionalNonClinician"
         else
           return self.resource_type
