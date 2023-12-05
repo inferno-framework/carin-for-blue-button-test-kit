@@ -107,7 +107,7 @@ module CarinForBlueButtonTestKit
                 value.respond_to?(:to_hash) ? value.to_hash.reject { |key, _| key == 'extension' } : value
 
               (value_without_extensions.present? || value_without_extensions == false) &&
-                (element_definition[:fixed_value].blank? || value.source_hash == element_definition[:fixed_value])
+                (element_definition[:fixed_value].blank? || value.try(:source_hash) == element_definition[:fixed_value] || value == element_definition[:fixed_value])
 
             end
 
