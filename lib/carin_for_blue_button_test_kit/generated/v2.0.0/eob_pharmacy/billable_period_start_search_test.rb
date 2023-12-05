@@ -34,7 +34,7 @@ none are returned, the test is skipped.
       end
 
       def scratch_resources
-        scratch[:eob_pharmacy_resources] ||= {}
+        scratch[:explanationofbenefit_resources] ||= {}
       end
       
       run do

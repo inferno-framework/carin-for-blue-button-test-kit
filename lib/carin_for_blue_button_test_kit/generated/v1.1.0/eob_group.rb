@@ -13,6 +13,14 @@ require_relative 'eob/incl_all_search_test'
 require_relative 'eob/read_test'
 require_relative 'eob/validation_test'
 require_relative 'eob/must_support_test'
+require_relative 'eob_inpatient_institutional/validation_test'
+require_relative 'eob_inpatient_institutional/must_support_test'
+require_relative 'eob_outpatient_institutional/validation_test'
+require_relative 'eob_outpatient_institutional/must_support_test'
+require_relative 'eob_pharmacy/validation_test'
+require_relative 'eob_pharmacy/must_support_test'
+require_relative 'eob_professional_non_clinician/validation_test'
+require_relative 'eob_professional_non_clinician/must_support_test'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV110
@@ -108,6 +116,14 @@ read succeeds.
       test from: :c4bb_v110_eob_read_test
       test from: :c4bb_v110_eob_validation_test
       test from: :c4bb_v110_eob_must_support_test
+      test from: :c4bb_v110_eob_inpatient_institutional_validation_test
+      test from: :c4bb_v110_eob_inpatient_institutional_must_support_test
+      test from: :c4bb_v110_eob_outpatient_institutional_validation_test
+      test from: :c4bb_v110_eob_outpatient_institutional_must_support_test
+      test from: :c4bb_v110_eob_pharmacy_validation_test
+      test from: :c4bb_v110_eob_pharmacy_must_support_test
+      test from: :c4bb_v110_eob_professional_non_clinician_validation_test
+      test from: :c4bb_v110_eob_professional_non_clinician_must_support_test
     end
   end
 end

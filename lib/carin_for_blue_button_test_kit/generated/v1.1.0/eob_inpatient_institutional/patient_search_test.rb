@@ -50,7 +50,7 @@ requirement of CARIN IG for Blue Button® v1.1.0.
       end
 
       def scratch_resources
-        scratch[:eob_inpatient_institutional_resources] ||= {}
+        scratch[:explanationofbenefit_resources] ||= {}
       end
       
       run do

@@ -32,7 +32,7 @@ module CarinForBlueButtonTestKit
       end
 
       def scratch_resources
-        scratch[:<%= profile_identifier %>_resources] ||= {}
+        scratch[:<%= resource_type.downcase %>_resources] ||= {}
       end
       <% if patient_id_param? %>
       def patient_id_list

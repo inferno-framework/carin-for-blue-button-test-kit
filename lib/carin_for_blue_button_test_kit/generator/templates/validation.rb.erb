@@ -14,13 +14,13 @@ module CarinForBlueButtonTestKit
       )
 
       output :dar_code_found, :dar_extension_found
-      
+
       def resource_type
         '<%= resource_type %>'
       end
 
       def scratch_resources
-        scratch[:<%= profile_identifier %>_resources] ||= {}
+        scratch[:<%= resource_type.downcase %>_resources] ||= {}
       end
 
       run do

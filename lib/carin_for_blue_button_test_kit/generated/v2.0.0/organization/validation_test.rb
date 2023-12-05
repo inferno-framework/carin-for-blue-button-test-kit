@@ -22,7 +22,7 @@ fail if their code/system are not found in the valueset.
       )
 
       output :dar_code_found, :dar_extension_found
-      
+
       def resource_type
         'Organization'
       end
