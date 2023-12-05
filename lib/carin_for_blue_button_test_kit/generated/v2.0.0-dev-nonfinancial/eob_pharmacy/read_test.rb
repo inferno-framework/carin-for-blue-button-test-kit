@@ -10,13 +10,8 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the ExplanationOfBenefit read interaction.'
 
       id :c4bb_v200devnonfinancial_eob_pharmacy_read_test
-
-      input :eob_pharmacy_ids,
-        title: "eob_pharmacy IDs",
-        type: 'text',
-        description: "eob_pharmacy Resource ID"
-
-      input_order :url, :smart_credentials, :eob_pharmacy_ids
+      
+      input_order :url, :smart_credentials, :patient_ids
 
       def resource_type
         'ExplanationOfBenefit'
@@ -27,7 +22,7 @@ module CarinForBlueButtonTestKit
       end
 
       def eob_pharmacy_id_list
-        return [nil] unless respond_to? :eob_pharmacy_ids
+        return [] unless respond_to? :eob_pharmacy_ids
         eob_pharmacy_ids.split(',').map(&:strip)
       end
 

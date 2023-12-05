@@ -10,12 +10,12 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the Organization read interaction.'
 
       id :c4bb_v200_organization_read_test
-
+      
       input :organization_ids,
         title: "organization IDs",
         type: 'text',
         description: "organization Resource ID"
-
+      
       input_order :url, :smart_credentials, :organization_ids
 
       def resource_type
@@ -27,7 +27,7 @@ module CarinForBlueButtonTestKit
       end
 
       def organization_id_list
-        return [nil] unless respond_to? :organization_ids
+        return [] unless respond_to? :organization_ids
         organization_ids.split(',').map(&:strip)
       end
 
