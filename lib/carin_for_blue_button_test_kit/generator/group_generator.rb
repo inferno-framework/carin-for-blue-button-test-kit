@@ -7,6 +7,7 @@ module CarinForBlueButtonTestKit
     class GroupGenerator
       class << self
         def generate(ig_metadata, base_output_dir)
+          @@eob_subgroups = ig_metadata.eob_subgroups
           ig_metadata.ordered_groups
                      .each { |group| new(group, base_output_dir).generate }
         end
@@ -88,20 +89,33 @@ module CarinForBlueButtonTestKit
       end
 
       def generate
-        File.open(output_file_name, 'w') { |f| f.write(output) }
-        group_metadata.id = group_id
-        group_metadata.file_name = base_output_file_name
-        File.open(metadata_file_name, 'w') { |f| f.write(YAML.dump(group_metadata.to_hash)) }
+        if !is_eob_subgroup?
+          File.open(output_file_name, 'w') { |f| f.write(output) }
+          group_metadata.id = group_id
+          group_metadata.file_name = base_output_file_name
+          File.open(metadata_file_name, 'w') { |f| f.write(YAML.dump(group_metadata.to_hash)) }
+        end
       end
 
       def test_id_list
         @test_id_list ||=
           group_metadata.tests.map { |test| test[:id] }
 
-        # Remove calls to search tests for EOB subgroups (all subgroup search tests handled in EOB root tests)
+        # Remove calls to search tests for EOB subgroups and merge EOB subgroup tests with the EOB root tests
         @test_id_list = @test_id_list.reject { |test_name| test_name.include?('search_test') } if is_eob_subgroup?
 
+        @test_id_list.concat(eob_subgroups_test_id_list) if is_eob_root_group?
         @test_id_list
+      end
+
+      def eob_subgroups_test_id_list
+        test_id_list = []
+        @@eob_subgroups.each do |group|
+          test_id_list.concat(group.tests.map { |test| test[:id] })
+        end
+
+        test_id_list.reject { |test_name| test_name.include?('search_test') }
+                    .reject { |test_name| test_name.include?('read_test') }
       end
 
       def test_file_list
@@ -114,7 +128,21 @@ module CarinForBlueButtonTestKit
         # Remove calls to search tests for EOB subgroups (all subgroup search tests handled in EOB root tests)
         @test_file_list = @test_file_list.reject { |test_name| test_name.include?('search_test') } if is_eob_subgroup?
 
+        @test_file_list = @test_file_list.concat(eob_subgroups_test_file_list) if is_eob_root_group?
         @test_file_list
+      end
+
+      def eob_subgroups_test_file_list
+        test_file_list = []
+        @@eob_subgroups.each do |group|
+          list = group.tests.map do |test|
+            name_without_suffix = test[:file_name].delete_suffix('.rb')
+            name_without_suffix.start_with?('..') ? name_without_suffix : "#{Naming.snake_case_for_profile(group)}/#{name_without_suffix}"
+          end
+          test_file_list.concat(list)
+        end
+        test_file_list.reject { |test_name| test_name.include?('search_test') }
+                      .reject { |test_name| test_name.include?('read_test') }
       end
 
       def required_searches
@@ -200,6 +228,10 @@ module CarinForBlueButtonTestKit
 
       def is_eob_subgroup?
         base_output_file_name.match(/eob_.+_group/)
+      end
+
+      def is_eob_root_group?
+        resource_type == 'ExplanationOfBenefit' && !is_eob_subgroup?
       end
     end
   end

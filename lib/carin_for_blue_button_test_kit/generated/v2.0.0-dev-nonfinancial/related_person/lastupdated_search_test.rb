@@ -37,7 +37,7 @@ none are returned, the test is skipped.
       end
 
       def scratch_resources
-        scratch[:related_person_resources] ||= {}
+        scratch[:relatedperson_resources] ||= {}
       end
       
       run do

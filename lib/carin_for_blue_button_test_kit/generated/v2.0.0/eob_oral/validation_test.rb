@@ -22,13 +22,13 @@ fail if their code/system are not found in the valueset.
       )
 
       output :dar_code_found, :dar_extension_found
-      
+
       def resource_type
         'ExplanationOfBenefit'
       end
 
       def scratch_resources
-        scratch[:eob_oral_resources] ||= {}
+        scratch[:explanationofbenefit_resources] ||= {}
       end
 
       run do

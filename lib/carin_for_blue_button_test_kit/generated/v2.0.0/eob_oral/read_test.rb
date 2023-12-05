@@ -23,7 +23,7 @@ module CarinForBlueButtonTestKit
       end
 
       def scratch_resources
-        scratch[:eob_oral_resources] ||= {}
+        scratch[:explanationofbenefit_resources] ||= {}
       end
 
       def eob_oral_id_list

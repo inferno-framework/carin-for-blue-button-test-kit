@@ -23,7 +23,7 @@ module CarinForBlueButtonTestKit
       end
 
       def scratch_resources
-        scratch[:eob_inpatient_institutional_resources] ||= {}
+        scratch[:explanationofbenefit_resources] ||= {}
       end
 
       def eob_inpatient_institutional_id_list

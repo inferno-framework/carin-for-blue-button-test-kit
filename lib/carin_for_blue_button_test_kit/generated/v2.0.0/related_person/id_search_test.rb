@@ -44,7 +44,7 @@ requirement of CARIN IG for Blue Button® v2.0.0.
       end
 
       def scratch_resources
-        scratch[:related_person_resources] ||= {}
+        scratch[:relatedperson_resources] ||= {}
       end
       
       run do
