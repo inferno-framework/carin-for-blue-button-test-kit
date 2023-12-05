@@ -10,13 +10,8 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the ExplanationOfBenefit read interaction.'
 
       id :c4bb_v110_eob_inpatient_institutional_read_test
-
-      input :eob_inpatient_institutional_ids,
-        title: "eob_inpatient_institutional IDs",
-        type: 'text',
-        description: "eob_inpatient_institutional Resource ID"
-
-      input_order :url, :smart_credentials, :eob_inpatient_institutional_ids
+      
+      input_order :url, :smart_credentials, :patient_ids
 
       def resource_type
         'ExplanationOfBenefit'
@@ -27,7 +22,7 @@ module CarinForBlueButtonTestKit
       end
 
       def eob_inpatient_institutional_id_list
-        return [nil] unless respond_to? :eob_inpatient_institutional_ids
+        return [] unless respond_to? :eob_inpatient_institutional_ids
         eob_inpatient_institutional_ids.split(',').map(&:strip)
       end
 

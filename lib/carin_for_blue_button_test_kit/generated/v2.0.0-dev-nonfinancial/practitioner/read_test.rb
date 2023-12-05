@@ -10,12 +10,12 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the Practitioner read interaction.'
 
       id :c4bb_v200devnonfinancial_practitioner_read_test
-
+      
       input :practitioner_ids,
         title: "practitioner IDs",
         type: 'text',
         description: "practitioner Resource ID"
-
+      
       input_order :url, :smart_credentials, :practitioner_ids
 
       def resource_type
@@ -27,7 +27,7 @@ module CarinForBlueButtonTestKit
       end
 
       def practitioner_id_list
-        return [nil] unless respond_to? :practitioner_ids
+        return [] unless respond_to? :practitioner_ids
         practitioner_ids.split(',').map(&:strip)
       end
 

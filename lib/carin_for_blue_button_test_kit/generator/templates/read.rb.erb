@@ -10,13 +10,13 @@ module CarinForBlueButtonTestKit
       description 'A server <%= conformance_expectation %> support the <%= resource_type %> read interaction.'
 
       id :<%= test_id %>
-
+      <% if resource_type == 'Patient' || !need_patient_id? %>
       input :<%= profile_identifier %>_ids,
         title: "<%= profile_identifier %> IDs",
         type: 'text',
         description: "<%= input_description.strip %>"
-
-      input_order :url, :smart_credentials, :<%= profile_identifier %>_ids
+      <% end %>
+      input_order :url, :smart_credentials, :<%= need_patient_id? ? 'patient' : profile_identifier %>_ids
 
       def resource_type
         '<%= resource_type %>'
@@ -27,7 +27,7 @@ module CarinForBlueButtonTestKit
       end
 
       def <%= profile_identifier %>_id_list
-        return [nil] unless respond_to? :<%= profile_identifier %>_ids
+        return [] unless respond_to? :<%= profile_identifier %>_ids
         <%= profile_identifier %>_ids.split(',').map(&:strip)
       end
 
