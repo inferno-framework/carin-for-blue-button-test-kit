@@ -10,13 +10,6 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the Practitioner read interaction.'
 
       id :c4bb_v110_practitioner_read_test
-      
-      input :practitioner_ids,
-        title: "practitioner IDs",
-        type: 'text',
-        description: "practitioner Resource ID"
-      
-      input_order :url, :smart_credentials, :practitioner_ids
 
       def resource_type
         'Practitioner'
@@ -26,13 +19,8 @@ module CarinForBlueButtonTestKit
         scratch[:practitioner_resources] ||= {}
       end
 
-      def practitioner_id_list
-        return [] unless respond_to? :practitioner_ids
-        practitioner_ids.split(',').map(&:strip)
-      end
-
       run do
-        perform_read_test(practitioner_id_list)
+        perform_read_test(scratch.dig(:references, 'Practitioner'))
       end
     end
   end

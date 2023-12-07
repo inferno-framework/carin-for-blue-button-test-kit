@@ -96,6 +96,7 @@ read succeeds.
             title: 'OAuth Credentials',
             type: :oauth_credentials,
             optional: true
+      input_order :url, :smart_credentials
 
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'eob', 'metadata.yml'), aliases: true))

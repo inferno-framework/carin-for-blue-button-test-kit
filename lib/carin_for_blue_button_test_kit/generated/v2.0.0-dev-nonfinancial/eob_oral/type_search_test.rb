@@ -16,12 +16,7 @@ none are returned, the test is skipped.
       )
 
       id :c4bb_v200devnonfinancial_eob_oral_type_search_test
-
-      input :c4bb_v200devnonfinancial_eob_oral_type_search_test_param,
-        title: 'ExplanationOfBenefit search parameter for type',
-        type: 'text',
-        description: 'ExplanationOfBenefit search parameter: type'
-
+      
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'ExplanationOfBenefit',
@@ -37,10 +32,9 @@ none are returned, the test is skipped.
       def scratch_resources
         scratch[:explanationofbenefit_resources] ||= {}
       end
-      
+
       run do
-        
-        run_search_test(c4bb_v200devnonfinancial_eob_oral_type_search_test_param)
+        run_search_test
       end
     end
   end
