@@ -8,13 +8,13 @@ module CarinForBlueButtonTestKit
       class << self
         def generate(ig_metadata, base_output_dir)
           ig_metadata.groups
-            .select { |group| group.searches.present? }
-            .each do |group|
-              group.searches.each { |search| new(group, search, base_output_dir).generate }
-              group.include_params.each do |param|
- IncludeSearchTestGenerator.new(group, param, base_output_dir).generate
-              end
+                     .select { |group| group.searches.present? }
+                     .each do |group|
+            group.searches.each { |search| new(group, search, base_output_dir).generate }
+            group.include_params.each do |param|
+              IncludeSearchTestGenerator.new(group, param, base_output_dir).generate
             end
+          end
         end
       end
 
@@ -84,15 +84,15 @@ module CarinForBlueButtonTestKit
         @search_params ||=
           search_metadata[:names].map do |name|
             {
-              name: name,
+              name:,
               path: search_definition(name)[:path]
             }
           end
       end
 
       def all_search_params
-        group_metadata.searches.map { |param| param[:names]}
-                               .flatten
+        group_metadata.searches.map { |param| param[:names] }
+                      .flatten
       end
 
       def first_search?
@@ -106,8 +106,8 @@ module CarinForBlueButtonTestKit
 
       def fixed_value_search?
         first_search? && search_metadata[:names] != ['patient'] &&
-        search_metadata[:names] != ['_id'] && !group_metadata.delayed? &&
-        resource_type != 'Patient'
+          search_metadata[:names] != ['_id'] && !group_metadata.delayed? &&
+          resource_type != 'Patient'
       end
 
       def fixed_value_search_param_name
@@ -136,11 +136,9 @@ module CarinForBlueButtonTestKit
       end
 
       def required_comparators_for_param(name)
-        begin
-            return search_definition(name)[:comparators].select { |_comparator, expectation| expectation == 'SHALL' }
-        rescue NoMethodError
-            return []
-        end
+        search_definition(name)[:comparators].select { |_comparator, expectation| expectation == 'SHALL' }
+      rescue NoMethodError
+        []
       end
 
       def required_comparators
@@ -164,14 +162,14 @@ module CarinForBlueButtonTestKit
       end
 
       def possible_status_search?
-        !search_metadata[:names].any? { |name| name.include? 'status' } &&
+        search_metadata[:names].none? { |name| name.include? 'status' } &&
           group_metadata.search_definitions.keys.any? { |key| key.to_s.include? 'status' }
       end
 
       def token_search_params
         @token_search_params ||=
           search_param_names.select do |name|
-            ['Identifier', 'CodeableConcept', 'Coding'].include? group_metadata.search_definitions[name.to_sym][:type]
+            %w[Identifier CodeableConcept Coding].include? group_metadata.search_definitions[name.to_sym][:type]
           end
       end
 
@@ -180,7 +178,7 @@ module CarinForBlueButtonTestKit
       end
 
       def required_multiple_or_search_params
-        @multiple_or_search_params ||=
+        @required_multiple_or_search_params ||=
           search_param_names.select do |name|
             search_definition(name)[:multiple_or] == 'SHALL'
           end
@@ -224,7 +222,7 @@ module CarinForBlueButtonTestKit
           properties[:test_reference_variants] = 'true' if test_reference_variants?
           properties[:params_with_comparators] = required_comparators_string if required_comparators.present?
           if required_multiple_or_search_params.present?
-            properties[:multiple_or_search_params] = 
+            properties[:multiple_or_search_params] =
               required_multiple_or_search_params_string
           end
           properties[:test_post_search] = 'true' if first_search?
@@ -260,9 +258,9 @@ module CarinForBlueButtonTestKit
         return '' unless test_reference_variants?
 
         <<~REFERENCE_SEARCH_DESCRIPTION
-        This test verifies that the server supports searching by reference using
-        the form `patient=[id]` as well as `patient=Patient/[id]`. The two
-        different forms are expected to return the same number of results. CARIN requires that both forms are supported by CARIN for Blue Button responders.
+          This test verifies that the server supports searching by reference using
+          the form `patient=[id]` as well as `patient=Patient/[id]`. The two
+          different forms are expected to return the same number of results. CARIN requires that both forms are supported by CARIN for Blue Button responders.
         REFERENCE_SEARCH_DESCRIPTION
       end
 
@@ -270,8 +268,8 @@ module CarinForBlueButtonTestKit
         return '' unless first_search?
 
         <<~FIRST_SEARCH_DESCRIPTION
-        Because this is the first search of the sequence, resources in the
-        response will be used for subsequent tests.
+          Because this is the first search of the sequence, resources in the
+          response will be used for subsequent tests.
         FIRST_SEARCH_DESCRIPTION
       end
 
@@ -279,59 +277,63 @@ module CarinForBlueButtonTestKit
         return '' unless test_post_search?
 
         <<~POST_SEARCH_DESCRIPTION
-        Additionally, this test will check that GET and POST search methods
-        return the same number of results. Search by POST is required by the
-        FHIR R4 specification, and these tests interpret search by GET as a
-        requirement of CARIN IG for Blue Button® #{group_metadata.version}.
+          Additionally, this test will check that GET and POST search methods
+          return the same number of results. Search by POST is required by the
+          FHIR R4 specification, and these tests interpret search by GET as a
+          requirement of CARIN IG for Blue Button® #{group_metadata.version}.
         POST_SEARCH_DESCRIPTION
       end
 
       def description
         <<~DESCRIPTION.gsub(/\n{3,}/, "\n\n")
-        A server #{conformance_expectation} support searching by
-        #{search_param_name_string} on the #{resource_type} resource. This test
-        will pass if resources are returned and match the search criteria. If
-        none are returned, the test is skipped.
+          A server #{conformance_expectation} support searching by
+          #{search_param_name_string} on the #{resource_type} resource. This test
+          will pass if resources are returned and match the search criteria. If
+          none are returned, the test is skipped.
 
-        #{reference_search_description}
-        #{first_search_description}
-        #{post_search_description}
+          #{reference_search_description}
+          #{first_search_description}
+          #{post_search_description}
 
         DESCRIPTION
       end
 
-      def patient_id_param?
-        resource_type == 'Patient' && search_param_name_string == '_id'
-      end
-
       def input_id
-        patient_id_param? ? "patient_ids" : "#{test_id}_param"
+        needs_patient_id? ? 'patient_ids' : "#{test_id}_param"
       end
 
       def input_title
-        title_content = if patient_id_param?
-                          "Patient IDs"
+        title_content = if needs_patient_id?
+                          'Patient IDs'
                         else
                           "#{resource_type} search parameter for #{search_param_name_string}"
                         end
 
         <<~INPUT_TITLE
-        #{title_content.strip}
+          #{title_content.strip}
         INPUT_TITLE
       end
 
-
       def input_description
-        desc_content =  if patient_id_param?
-                          "
+        desc_content = if needs_patient_id?
+                         "
                           Comma separated list of patient IDs that in sum
                           contain all MUST SUPPORT elements
                           "
-                        else
-                          "#{resource_type} search parameter: #{search_param_name_string}"
-                        end
+                       else
+                         "
+                          This input is optional. If running all tests, the search will look for
+                          its parameter values from the results returned in the EOB tests. If no
+                          #{resource_type} resource was returned in previous EOB tests and this
+                          input is not provided, the search is skipped.
+
+                          When running just the #{resource_type} Test group, this input is
+                          required to perform the search, otherwise the search is skipped.
+                          "
+                       end
+
         <<~INPUT_DESCRIPTION
-        #{desc_content}
+          #{desc_content}
         INPUT_DESCRIPTION
       end
     end
