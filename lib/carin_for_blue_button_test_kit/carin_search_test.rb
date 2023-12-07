@@ -29,36 +29,24 @@ module CarinForBlueButtonTestKit
     end
 
     def run_search_test(param_value = nil)
-      search_params = {}
-      param_name = search_param_names[0]
-
-      if patient_id_param?(param_name)
-        returned_resources = []
-        patient_id_list.each do |id|
-          search_params[param_name] = id
-          returned_resources.concat(perform_search(search_params))
-        end
-        search_params[param_name] = patient_id_list.join(',')
-      else
-        all_scratch_resources.each do |resource|
-          break if param_value.present?
-
-          param_value = search_param_value(param_name, resource)
-        end
-
-        if param_value.nil? && param_name == '_id' && resource_type != 'ExplanationOfBenefit'
-          resources = readable_resources(scratch.dig(:references, resource_type))
-          param_value = resource_id(resources.first)
-        end
-
-        skip_if param_value.blank?, no_resources_skip_message
-        search_params[param_name] = param_value
-        returned_resources = perform_search(search_params)
-      end
+      search_params = build_search_params(param_value)
+      returned_resources = execute_search(search_params)
 
       all_scratch_resources.concat(returned_resources).uniq! if first_search?
       save_delayed_references(returned_resources) if saves_delayed_references?
       perform_response_validation(returned_resources, search_params)
+    end
+
+    def execute_search(search_params)
+      if patient_id_param?(search_param_names[0])
+        patient_id_list.inject([]) do |resources, id|
+          search = {}
+          search[search_param_names[0]] = id
+          resources.concat(perform_search(search))
+        end
+      else
+        perform_search(search_params)
+      end
     end
 
     def perform_search(search_params)
@@ -72,36 +60,34 @@ module CarinForBlueButtonTestKit
       end
     end
 
-    def perform_response_validation(returned_resources, search_params)
-      skip_if returned_resources.blank?, no_resources_skip_message
+    def build_search_params(param_value = nil)
+      search_params = {}
+      param_name = search_param_names[0]
 
-      returned_resources.each do |resource|
-        check_resource_against_params(resource, search_params)
+      if patient_id_param?(param_name)
+        search_params[param_name] = patient_id_list.join(',')
+      else
+        param_value = find_param_value(param_value, param_name) if param_value.blank?
+        skip_if param_value.blank?, no_resources_skip_message
+        search_params[param_name] = param_value
       end
+
+      search_params
     end
 
-    def extract_resources_from_bundle(
-      bundle: nil,
-      response: nil,
-      reply_handler: nil,
-      max_pages: 20,
-      additional_resource_types: [],
-      resource_type: self.resource_type
-    )
-      page_count = 1
-      resources = []
+    def find_param_value(param_value, param_name)
+      all_scratch_resources.each do |resource|
+        break if param_value.present?
 
-      until bundle.nil? || page_count == max_pages
-        resources += bundle&.entry&.map { |entry| entry&.resource }
-        next_bundle_link = bundle&.link&.find { |link| link.relation == 'next' }&.url
-        reply_handler&.call(response)
-
-        break if next_bundle_link.blank?
-
-        page_count += 1
+        param_value = search_param_value(param_name, resource)
       end
 
-      resources
+      if param_value.nil? && param_name == '_id' && resource_type != 'ExplanationOfBenefit'
+        resources = readable_resources(scratch.dig(:references, resource_type))
+        param_value = resource_id(resources.first)
+      end
+
+      param_value
     end
 
     def search_param_value(name, resource, include_system = false)
@@ -169,6 +155,123 @@ module CarinForBlueButtonTestKit
       search_value&.gsub(',', '\\,')
     end
 
+    def readable_resources(resources)
+      return [] if resources.nil?
+
+      resources
+        .select { |resource| resource.is_a?(resource_class) || resource.is_a?(FHIR::Reference) }
+        .select { |resource| (resource.is_a?(FHIR::Reference) ? resource.reference.split('/').last : resource.id).present? }
+        .compact
+        .uniq { |resource| resource.is_a?(FHIR::Reference) ? resource.reference.split('/').last : resource.id }
+    end
+
+    def resource_id(resource)
+      return if resource.blank?
+
+      resource.is_a?(FHIR::Reference) ? resource.reference.split('/').last : resource.id
+    end
+
+    def perform_response_validation(returned_resources, search_params)
+      skip_if returned_resources.blank?, no_resources_skip_message
+
+      returned_resources.each do |resource|
+        check_resource_against_params(resource, search_params)
+      end
+    end
+
+    def check_resource_against_params(resource, search_params)
+      search_params.each do |name, param_value|
+        paths = if name == '_id'
+                  ['id']
+                elsif name == '_lastUpdated'
+                  ['meta.lastUpdated']
+                else
+                  search_param_paths(name)
+                end
+
+        match_found = false
+        values_found = []
+
+        paths.each do |path|
+          type = if name == '_id'
+                   'http://hl7.org/fhirpath/System.String'
+                 elsif name == '_lastUpdated'
+                   'date'
+                 else
+                   metadata.search_definitions[name.to_sym][:type]
+                 end
+
+          values_found =
+            resolve_path(resource, path)
+            .map do |value|
+              value.try(:reference) || value
+            end
+
+          match_found = case type
+                        when 'Reference'
+                          values_found.any? do |val|
+                            param_value.split(',').any? { |item| val.include?(item) }
+                          end
+                        when 'CodeableConcept'
+                          codings = values_found.flat_map do |val|
+                            val.coding || nil
+                          end.compact
+                          if param_value.include? '|'
+                            system = param_value.split('|').first
+                            code = param_value.split('|').last
+                            codings&.any? do |coding|
+                              coding.system == system && coding.code&.casecmp?(code)
+                            end
+                          else
+                            codings&.any? { |coding| coding.code&.casecmp?(param_value) }
+                          end
+                        when 'Identifier'
+                          if param_value.include? '|'
+                            values_found.any? do |identifier|
+                              puts "#{identifier.system}|#{identifier.value}"
+                              "#{identifier.system}|#{identifier.value}" == param_value
+                            end
+                          else
+                            values_found.any? { |identifier| identifier.value == param_value }
+                          end
+                        when 'Period', 'date', 'instant', 'dateTime'
+                          values_found.any? { |date| validate_date_search(param_value, date) }
+                        when 'http://hl7.org/fhirpath/System.String'
+                          values_found.any? { |str| param_value.split(',').include?(str) }
+                        else
+                          false
+                        end
+
+          break if match_found
+        end
+        assert match_found, 'Returned resource did not match the search parameter'
+      end
+    end
+
+    def extract_resources_from_bundle(
+      bundle: nil,
+      response: nil,
+      reply_handler: nil,
+      max_pages: 20,
+      additional_resource_types: [],
+      resource_type: self.resource_type
+    )
+      page_count = 1
+      resources = []
+
+      until bundle.nil? || page_count == max_pages
+        resources += bundle&.entry&.map { |entry| entry&.resource }
+        next_bundle_link = bundle&.link&.find { |link| link.relation == 'next' }&.url
+        reply_handler&.call(response)
+
+        break if next_bundle_link.blank?
+
+        page_count += 1
+      end
+
+      resources
+    end
+
     def element_has_valid_value?(element, include_system)
       case element
       when FHIR::Reference
@@ -201,24 +304,8 @@ module CarinForBlueButtonTestKit
       paths
     end
 
-    def readable_resources(resources)
-      return [] if resources.nil?
-
-      resources
-        .select { |resource| resource.is_a?(resource_class) || resource.is_a?(FHIR::Reference) }
-        .select { |resource| (resource.is_a?(FHIR::Reference) ? resource.reference.split('/').last : resource.id).present? }
-        .compact
-        .uniq { |resource| resource.is_a?(FHIR::Reference) ? resource.reference.split('/').last : resource.id }
-    end
-
     def resource_class
       FHIR.const_get(resource_type)
-    end
-
-    def resource_id(resource)
-      return if resource.blank?
-
-      resource.is_a?(FHIR::Reference) ? resource.reference.split('/').last : resource.id
     end
 
     def no_resources_skip_message(resource_type = self.resource_type)
@@ -336,77 +423,6 @@ module CarinForBlueButtonTestKit
               save_resource_reference(resource_type, reference)
             end
         end
-      end
-    end
-
-    # VALIDATION
-
-    def check_resource_against_params(resource, search_params)
-      search_params.each do |name, param_value|
-        paths = if name == '_id'
-                  ['id']
-                elsif name == '_lastUpdated'
-                  ['meta.lastUpdated']
-                else
-                  search_param_paths(name)
-                end
-
-        match_found = false
-        values_found = []
-
-        paths.each do |path|
-          type = if name == '_id'
-                   'http://hl7.org/fhirpath/System.String'
-                 elsif name == '_lastUpdated'
-                   'date'
-                 else
-                   metadata.search_definitions[name.to_sym][:type]
-                 end
-
-          values_found =
-            resolve_path(resource, path)
-            .map do |value|
-              value.try(:reference) || value
-            end
-
-          match_found = case type
-                        when 'Reference'
-                          values_found.any? do |val|
-                            param_value.split(',').any? { |item| val.include?(item) }
-                          end
-                        when 'CodeableConcept'
-                          codings = values_found.flat_map do |val|
-                            val.coding || nil
-                          end.compact
-                          if param_value.include? '|'
-                            system = param_value.split('|').first
-                            code = param_value.split('|').last
-                            codings&.any? do |coding|
-                              coding.system == system && coding.code&.casecmp?(code)
-                            end
-                          else
-                            codings&.any? { |coding| coding.code&.casecmp?(param_value) }
-                          end
-                        when 'Identifier'
-                          if param_value.include? '|'
-                            values_found.any? do |identifier|
-                              puts "#{identifier.system}|#{identifier.value}"
-                              "#{identifier.system}|#{identifier.value}" == param_value
-                            end
-                          else
-                            values_found.any? { |identifier| identifier.value == param_value }
-                          end
-                        when 'Period', 'date', 'instant', 'dateTime'
-                          values_found.any? { |date| validate_date_search(param_value, date) }
-                        when 'http://hl7.org/fhirpath/System.String'
-                          values_found.any? { |str| param_value.split(',').include?(str) }
-                        else
-                          false
-                        end
-
-          break if match_found
-        end
-        assert match_found, 'Returned resource did not match the search parameter'
       end
     end
   end
