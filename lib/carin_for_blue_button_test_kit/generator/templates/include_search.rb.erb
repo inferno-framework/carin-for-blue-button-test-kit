@@ -21,17 +21,16 @@ module CarinForBlueButtonTestKit
 
       id :<%= test_id %>
 
-      input :<%= input_id %>,
-        title: '<%= input_title %>',
-        type: 'text',
-        description: '<%= input_description %>'
-
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
       end
 
+      def scratch_resources
+        scratch[:<%= resource_type.downcase %>_resources] ||= {}
+      end
+
       run do
-        run_include_search('<%=include_search_param%>', resource_id: <%= input_id %>)
+        run_include_search('<%=include_search_param%>')
       end
     end
   end
