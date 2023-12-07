@@ -5,31 +5,39 @@ module CarinForBlueButtonTestKit
     end
 
     def perform_read_test(resources, _reply_handler = nil)
-      if resources.blank?
-        target_resource = all_scratch_resources.find { |res| res.resourceType == resource_type }
-        skip_if target_resource.blank?, no_resources_skip_message
-        resources = [target_resource.id]
-      end
+      skip_if resources.blank?, no_resources_skip_message
+
+      resources_to_read = readable_resources(resources)
+
+      assert resources_to_read.present?, "No #{resource_type} id found."
 
       if config.options[:read_all_resources]
-        resources.each do |id|
-          fhir_read(resource_type, id)
+        resources_to_read.each do |resource|
           read_and_validate(resource)
         end
       else
-        fhir_read(resource_type, resources.first)
-        read_and_validate(resource)
+        read_and_validate(resources_to_read.first)
       end
+    end
+
+    def readable_resources(resources)
+      resources
+        .select { |resource| resource.is_a?(resource_class) || resource.is_a?(FHIR::Reference) }
+        .select { |resource| (resource.is_a?(FHIR::Reference) ? resource.reference.split('/').last : resource.id).present? }
+        .compact
+        .uniq { |resource| resource.is_a?(FHIR::Reference) ? resource.reference.split('/').last : resource.id }
     end
 
     def read_and_validate(resource_to_read)
       id = resource_id(resource_to_read)
 
+      fhir_read resource_type, id
+
       assert_response_status(200)
-      assert_resource_type(resource_type, resource: resource_to_read)
+      assert_resource_type(resource_type)
       assert resource.id.present? && resource.id == id, bad_resource_id_message(id)
 
-      return unless resource_to_read.is_a?(FHIR::Model)
+      return unless resource_to_read.is_a? FHIR::Reference
 
       all_scratch_resources << resource
     end

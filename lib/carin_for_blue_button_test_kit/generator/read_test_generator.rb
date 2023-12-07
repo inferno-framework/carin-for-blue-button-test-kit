@@ -112,10 +112,6 @@ module CarinForBlueButtonTestKit
                       .flatten
       end
 
-      def need_patient_id?
-        (resource_type == 'Patient' && search_params.include?('_id')) || search_params.include?('patient')
-      end
-
       def generate
         FileUtils.mkdir_p(output_file_directory)
         File.open(output_file_name, 'w') { |f| f.write(output) }
