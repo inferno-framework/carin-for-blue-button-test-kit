@@ -21,17 +21,16 @@ module CarinForBlueButtonTestKit
 
       id :c4bb_v200_coverage_include_Coverage_payor_search_test
 
-      input :c4bb_v200_coverage__id_search_test_param,
-        title: 'Coverage search parameter for _id',
-        type: 'text',
-        description: 'Coverage search parameter: _id'
-
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
       end
 
+      def scratch_resources
+        scratch[:coverage_resources] ||= {}
+      end
+
       run do
-        run_include_search('Coverage:payor', resource_id: c4bb_v200_coverage__id_search_test_param)
+        run_include_search('Coverage:payor')
       end
     end
   end

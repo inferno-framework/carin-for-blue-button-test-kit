@@ -24,12 +24,19 @@ requirement of CARIN IG for Blue Button® v2.0.0-dev-nonfinancial.
       )
 
       id :c4bb_v200devnonfinancial_related_person__id_search_test
-
+      
       input :c4bb_v200devnonfinancial_related_person__id_search_test_param,
         title: 'RelatedPerson search parameter for _id',
         type: 'text',
-        description: 'RelatedPerson search parameter: _id'
+        description: 'This input is optional. If running all tests, the search will look for
+                          its parameter values from the results returned in the EOB tests. If no
+                          RelatedPerson resource was returned in previous EOB tests and this
+                          input is not provided, the search is skipped.
 
+                          When running just the RelatedPerson Test group, this input is
+                          required to perform the search, otherwise the search is skipped.',
+        optional: true
+      
       def self.properties
         @properties ||= SearchTestProperties.new(
           first_search: true,
@@ -46,9 +53,8 @@ requirement of CARIN IG for Blue Button® v2.0.0-dev-nonfinancial.
       def scratch_resources
         scratch[:relatedperson_resources] ||= {}
       end
-      
+
       run do
-        
         run_search_test(c4bb_v200devnonfinancial_related_person__id_search_test_param)
       end
     end

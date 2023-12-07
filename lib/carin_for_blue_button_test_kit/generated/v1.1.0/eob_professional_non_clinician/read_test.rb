@@ -10,8 +10,6 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the ExplanationOfBenefit read interaction.'
 
       id :c4bb_v110_eob_professional_non_clinician_read_test
-      
-      input_order :url, :smart_credentials, :patient_ids
 
       def resource_type
         'ExplanationOfBenefit'
@@ -21,13 +19,8 @@ module CarinForBlueButtonTestKit
         scratch[:explanationofbenefit_resources] ||= {}
       end
 
-      def eob_professional_non_clinician_id_list
-        return [] unless respond_to? :eob_professional_non_clinician_ids
-        eob_professional_non_clinician_ids.split(',').map(&:strip)
-      end
-
       run do
-        perform_read_test(eob_professional_non_clinician_id_list)
+        perform_read_test(all_scratch_resources)
       end
     end
   end

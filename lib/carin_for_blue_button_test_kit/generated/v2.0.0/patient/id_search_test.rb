@@ -24,13 +24,13 @@ requirement of CARIN IG for Blue Button® v2.0.0.
       )
 
       id :c4bb_v200_patient__id_search_test
-
+      
       input :patient_ids,
         title: 'Patient IDs',
         type: 'text',
         description: 'Comma separated list of patient IDs that in sum
                           contain all MUST SUPPORT elements'
-
+      
       def self.properties
         @properties ||= SearchTestProperties.new(
           first_search: true,
@@ -47,15 +47,9 @@ requirement of CARIN IG for Blue Button® v2.0.0.
       def scratch_resources
         scratch[:patient_resources] ||= {}
       end
-      
-      def patient_id_list
-        return [nil] unless respond_to? :patient_ids
-        patient_ids.split(',').map(&:strip)
-      end
-      
+
       run do
-        
-        run_search_test(patient_id_list)
+        run_search_test
       end
     end
   end
