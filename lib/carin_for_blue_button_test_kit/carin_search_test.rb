@@ -40,21 +40,24 @@ module CarinForBlueButtonTestKit
     def execute_search(search_params)
       if patient_id_param?(search_param_names[0])
         patient_id_list.inject([]) do |resources, id|
-          search = {}
-          search[search_param_names[0]] = id
-          resources.concat(perform_search(search))
+          search = { search_param_names[0] => id }
+          perform_search_and_validate(search)
+          resources.concat(extract_relevant_resources)
         end
       else
-        perform_search(search_params)
+        perform_search_and_validate(search_params)
+        extract_relevant_resources
       end
     end
 
-    def perform_search(search_params)
+    def perform_search_and_validate(search_params)
       fhir_search(resource_type, params: search_params)
 
       assert_response_status(200)
       assert_resource_type(:bundle)
+    end
 
+    def extract_relevant_resources
       extract_resources_from_bundle(bundle: resource, response:).select do |item|
         item.resourceType == resource_type
       end
@@ -324,55 +327,93 @@ module CarinForBlueButtonTestKit
     end
 
     def run_include_search(param_value)
+      search_params = initialize_include_search_params(param_value)
+      perform_search_and_validate(search_params)
+      returned_resources = extract_resources_from_bundle(bundle: resource, response:)
+      process_resources(returned_resources, param_value)
+    end
+
+    # Initializes seach param for include search
+    def initialize_include_search_params(param_value)
       resource_id = all_scratch_resources.first&.id
-      search_params = { _id: resource_id }
-      search_params['_include'] = param_value
+      { _id: resource_id, '_include': param_value }
+    end
 
-      fhir_search(resource_type, params: search_params)
-      assert_response_status(200)
-      assert_resource_type(:bundle)
-
-      returned_resources_all = extract_resources_from_bundle(bundle: resource, response:)
-      base_resources = returned_resources_all.select { |item| item.resourceType == resource_type }
-      all_included_resource_types = include_parameters.map { |param| param[:target] }.flatten.uniq
-      included_refs = included_refs(returned_resources_all, all_included_resource_types)
+    #  Processes the base resources and included resources for include searches
+    def process_resources(returned_resources, param_value)
+      base_resources = filter_base_resources(returned_resources)
+      all_included_resource_types = extract_included_resource_types
+      included_refs = included_refs(returned_resources, all_included_resource_types)
 
       skip_if base_resources.blank?, no_resources_skip_message
+
+      base_resources.each do |resource|
+        process_each_base_resource(resource, param_value, returned_resources, included_refs)
+      end
+    end
+
+    def filter_base_resources(returned_resources)
+      returned_resources.select { |item| item.resourceType == resource_type }
+    end
+
+    def extract_included_resource_types
+      include_parameters.map { |param| param[:target] }.flatten.uniq
+    end
+
+    # Handles the processing for each base resource of an include search
+
+    def process_each_base_resource(resource, param_value, returned_resources, included_refs)
+      match_found, base_resource_matches = check_for_include_match(resource, param_value, returned_resources)
+      assert match_found, 'Returned resource did not match the search parameter'
+      validate_included_resources(base_resource_matches, included_refs)
+    end
+
+    def check_for_include_match(resource, param_value, returned_resources)
+      if param_value != 'ExplanationOfBenefit:*'
+        check_normal_include(resource, param_value, returned_resources)
+      else
+        check_explanation_of_benefit_include(resource, param_value, returned_resources)
+      end
+    end
+
+    # Processes the base resource for the normal include case.
+    def check_normal_include(resource, _param_value, returned_resources)
+      base_resource_matches = []
+      match_found = include_parameters.any? do |include_param|
+        values_found = resolve_path(resource, include_param[:path])
+        base_resource_matches.concat(matched_base_resources(resource, include_param[:target], returned_resources,
+                                                            values_found))
+        values_found.length.positive?
+      end
+      [match_found, base_resource_matches]
+    end
+
+    # Processes the base resource for the 'ExplanationOfBenefit:*' case.
+    def check_explanation_of_benefit_include(resource, _param_value, returned_resources)
       values_found = []
       base_resource_matches = []
 
-      base_resources.each do |resource|
-        match_found = false
-
-        if param_value != 'ExplanationOfBenefit:*'
-          include_parameters.each do |include_param|
-            values_found = resolve_path(resource, include_param[:path])
-            match_found = values_found.length.positive?
-            base_resource_matches = matched_base_resources(resource, include_param[:target], returned_resources_all,
-                                                           values_found)
-
-            break if match_found
-          end
-        else
-          include_parameters.each do |include_param|
-            paths_found = resolve_path(resource, include_param[:path])
-            values_found += paths_found
-            base_resource_matches += matched_base_resources(resource, include_param[:target], returned_resources_all,
-                                                            values_found)
-          end
-          match_found = (values_found.length >= 5)
-        end
-        assert match_found, 'Returned resource did not match the search parameter'
-
-        not_matched_included_resources = included_refs.select do |resource_reference|
-          base_resource_matches.none? do |base_resource_references|
-            is_reference_match?(base_resource_references.reference, resource_reference)
-          end
-        end
-        not_matched_included_resources_string = not_matched_included_resources.join(',')
-        assert not_matched_included_resources.empty?,
-               "No #{resource_type} references #{not_matched_included_resources_string} in the search result."
+      include_parameters.each do |include_param|
+        paths_found = resolve_path(resource, include_param[:path])
+        values_found.concat(paths_found)
+        base_resource_matches.concat(matched_base_resources(resource, include_param[:target], returned_resources,
+                                                            values_found))
       end
+
+      match_found = (values_found.length >= 5)
+      [match_found, base_resource_matches]
+    end
+
+    # Validates that the included resources match the search criteria.
+    def validate_included_resources(base_resource_matches, included_refs)
+      not_matched_included_resources = included_refs.select do |resource_reference|
+        base_resource_matches.none? do |base_resource_reference|
+          is_reference_match?(base_resource_reference.reference, resource_reference)
+        end
+      end
+      not_matched_included_resources_string = not_matched_included_resources.join(',')
+      assert not_matched_included_resources.empty?,
+             "No #{resource_type} references #{not_matched_included_resources_string} in the search result."
     end
 
     def matched_base_resources(_resource, referenced_resource_types, returned_resources_all, values_found)
