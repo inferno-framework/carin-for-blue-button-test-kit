@@ -181,70 +181,79 @@ module CarinForBlueButtonTestKit
 
     def check_resource_against_params(resource, search_params)
       search_params.each do |name, param_value|
-        paths = if name == '_id'
-                  ['id']
-                elsif name == '_lastUpdated'
-                  ['meta.lastUpdated']
-                else
-                  search_param_paths(name)
-                end
+        paths = determine_paths(name)
+        type = determine_type(name)
+        assert check_paths_for_match(resource, paths, type, param_value),
+               'Returned resource did not match the search parameter'
+      end
+    end
 
-        match_found = false
-        values_found = []
+    # Determines the path based on the param name
+    def determine_paths(name)
+      case name
+      when '_id'
+        ['id']
+      when '_lastUpdated'
+        ['meta.lastUpdated']
+      else
+        search_param_paths(name)
+      end
+    end
 
-        paths.each do |path|
-          type = if name == '_id'
-                   'http://hl7.org/fhirpath/System.String'
-                 elsif name == '_lastUpdated'
-                   'date'
-                 else
-                   metadata.search_definitions[name.to_sym][:type]
-                 end
+    # Determines the param type based on the param name
+    def determine_type(name)
+      case name
+      when '_id'
+        'http://hl7.org/fhirpath/System.String'
+      when '_lastUpdated'
+        'date'
+      else
+        metadata.search_definitions[name.to_sym][:type]
+      end
+    end
 
-          values_found =
-            resolve_path(resource, path)
-            .map do |value|
-              value.try(:reference) || value
-            end
+    # Checks if any of the paths have a matching value
+    def check_paths_for_match(resource, paths, type, param_value)
+      paths.any? do |path|
+        values_found = extract_values(resource, path, type)
+        match_found?(values_found, type, param_value)
+      end
+    end
 
-          match_found = case type
-                        when 'Reference'
-                          values_found.any? do |val|
-                            param_value.split(',').any? { |item| val.include?(item) }
-                          end
-                        when 'CodeableConcept'
-                          codings = values_found.flat_map do |val|
-                            val.coding || nil
-                          end.compact
-                          if param_value.include? '|'
-                            system = param_value.split('|').first
-                            code = param_value.split('|').last
-                            codings&.any? do |coding|
-                              coding.system == system && coding.code&.casecmp?(code)
-                            end
-                          else
-                            codings&.any? { |coding| coding.code&.casecmp?(param_value) }
-                          end
-                        when 'Identifier'
-                          if param_value.include? '|'
-                            values_found.any? do |identifier|
-                              puts "#{identifier.system}|#{identifier.value}"
-                              "#{identifier.system}|#{identifier.value}" == param_value
-                            end
-                          else
-                            values_found.any? { |identifier| identifier.value == param_value }
-                          end
-                        when 'Period', 'date', 'instant', 'dateTime'
-                          values_found.any? { |date| validate_date_search(param_value, date) }
-                        when 'http://hl7.org/fhirpath/System.String'
-                          values_found.any? { |str| param_value.split(',').include?(str) }
-                        else
-                          false
-                        end
+    # Extracts values from the resource based on the path and type
+    def extract_values(resource, path, type)
+      resolve_path(resource, path).map do |value|
+        type == 'Reference' ? value.try(:reference) : value
+      end
+    end
 
-          break if match_found
+    # Determines if a match is found based on the type and value
+    def match_found?(values_found, type, param_value)
+      case type
+      when 'Reference'
+        values_found.any? { |val| param_value.split(',').any? { |item| val.include?(item) } }
+      when 'CodeableConcept'
+        codings = values_found.flat_map { |val| val.coding || nil }.compact
+        if param_value.include? '|'
+          system, code = param_value.split('|', 2)
+          codings.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
+        else
+          codings.any? { |coding| coding.code&.casecmp?(param_value) }
         end
-        assert match_found, 'Returned resource did not match the search parameter'
+      when 'Identifier'
+        if param_value.include? '|'
+          values_found.any? do |identifier|
+            "#{identifier.system}|#{identifier.value}" == param_value
+          end
+        else
+          values_found.any? { |identifier| identifier.value == param_value }
+        end
+      when 'Period', 'date', 'instant', 'dateTime'
+        values_found.any? { |date| validate_date_search(param_value, date) }
+      when 'http://hl7.org/fhirpath/System.String'
+        values_found.any? { |str| param_value.split(',').include?(str) }
+      else
+        false
       end
     end
 
