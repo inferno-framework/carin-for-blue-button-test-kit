@@ -94,68 +94,74 @@ module CarinForBlueButtonTestKit
     end
 
     def search_param_value(name, resource, include_system = false)
-      paths = if name == '_id'
-                ['id']
-              elsif name == '_lastUpdated'
-                ['meta.lastUpdated']
-              else
-                search_param_paths(name)
-              end
-
-      search_value = nil
+      paths = determine_paths(name)
       paths.each do |path|
-        element = find_a_value_at(resource, path) { |element| element_has_valid_value?(element, include_system) }
-
-        search_value =
-          case element
-          when FHIR::Period
-            if element.start.present?
-              "gt#{(DateTime.xmlschema(element.start) - 1).xmlschema}"
-            else
-              end_datetime = get_fhir_datetime_range(element.end)[:end]
-              "lt#{(end_datetime + 1).xmlschema}"
-            end
-          when FHIR::Reference
-            element.reference
-          when FHIR::CodeableConcept
-            if include_system
-              coding =
-                find_a_value_at(element, 'coding') { |coding| coding.code.present? && coding.system.present? }
-              "#{coding.system}|#{coding.code}"
-            else
-              find_a_value_at(element, 'coding.code')
-            end
-          when FHIR::Identifier
-            include_system ? "#{element.system}|#{element.value}" : element.value
-          when FHIR::Coding
-            include_system ? "#{element.system}|#{element.code}" : element.code
-          when FHIR::HumanName
-            element.family || element.given&.first || element.text
-          when FHIR::Address
-            element.text || element.city || element.state || element.postalCode || element.country
-          else
-            if metadata.search_definitions[name.to_sym][:type] == 'date' &&
-               params_with_comparators&.include?(name)
-              # convert date search to greath-than comparator search with correct precision
-              # For all date search parameters:
-              #   Patient.birthDate does not mandate comparators so cannot be converted
-              #   Goal.target-date has day precision
-              #   All others have second + time offset precision
-              if /^\d{4}(-\d{2})?$/.match?(element) || # YYYY or YYYY-MM
-                 (/^\d{4}-\d{2}-\d{2}$/.match?(element) && resource_type != 'Goal') # YYY-MM-DD AND Resource is NOT Goal
-                "gt#{(DateTime.xmlschema(element) - 1).xmlschema}"
-              else
-                element
-              end
-            else
-              element
-            end
-          end
-
-        break if search_value.present?
+        element = find_a_value_at(resource, path) { |el| element_has_valid_value?(el, include_system) }
+        search_value = process_element(name, element, include_system, resource)
+        return search_value.gsub(',', '\\,') if search_value.present?
       end
+      nil
+    end
 
-      search_value&.gsub(',', '\\,')
+    # Handles the processing logic for each resource element type.
+    def process_element(name, element, include_system, resource)
+      case element
+      when FHIR::Period
+        process_period_element(element)
+      when FHIR::Reference
+        element.reference
+      when FHIR::CodeableConcept
+        process_codeable_concept_element(element, include_system)
+      when FHIR::Identifier
+        include_system ? "#{element.system}|#{element.value}" : element.value
+      when FHIR::Coding
+        include_system ? "#{element.system}|#{element.code}" : element.code
+      when FHIR::HumanName
+        element.family || element.given&.first || element.text
+      when FHIR::Address
+        element.text || element.city || element.state || element.postalCode || element.country
+      else
+        process_other_element_types(name, element, resource)
+      end
+    end
+
+    # Handles logic for processing FHIR::Period elements.
+    def process_period_element(element)
+      if element.start.present?
+        "gt#{(DateTime.xmlschema(element.start) - 1).xmlschema}"
+      else
+        end_datetime = get_fhir_datetime_range(element.end)[:end]
+        "lt#{(end_datetime + 1).xmlschema}"
+      end
+    end
+
+    # Handles logic for processing FHIR::CodeableConcept elements.
+    def process_codeable_concept_element(element, include_system)
+      if include_system
+        coding = find_a_value_at(element, 'coding') { |c| c.code.present? && c.system.present? }
+        "#{coding.system}|#{coding.code}"
+      else
+        find_a_value_at(element, 'coding.code')
+      end
+    end
+
+    #  Handles the remaining types, including date types
+    def process_other_element_types(name, element, resource)
+      type = metadata.search_definitions[name.to_sym][:type]
+      if type == 'date' && params_with_comparators&.include?(name)
+        process_date_element(name, element, resource)
+      else
+        element
+      end
+    end
+
+    def process_date_element(element)
+      if /^\d{4}(-\d{2})?$/.match?(element) || # YYYY or YYYY-MM
+         (/^\d{4}-\d{2}-\d{2}$/.match?(element) && resource_type != 'Goal') # YYYY-MM-DD AND Resource is NOT Goal
+        "gt#{(DateTime.xmlschema(element) - 1).xmlschema}"
+      else
+        element
+      end
     end
 
     def readable_resources(resources)
@@ -264,9 +270,7 @@ module CarinForBlueButtonTestKit
       bundle: nil,
       response: nil,
       reply_handler: nil,
-      max_pages: 20,
-      additional_resource_types: [],
-      resource_type: self.resource_type
+      max_pages: 20
     )
       page_count = 1
       resources = []
@@ -291,7 +295,7 @@ module CarinForBlueButtonTestKit
       when FHIR::CodeableConcept
         if include_system
           coding =
-            find_a_value_at(element, 'coding') { |coding| coding.code.present? && coding.system.present? }
+            find_a_value_at(element, 'coding') { |koding| koding.code.present? && koding.system.present? }
           coding.present?
         else
           find_a_value_at(element, 'coding.code').present?
@@ -408,7 +412,7 @@ module CarinForBlueButtonTestKit
     def validate_included_resources(base_resource_matches, included_refs)
       not_matched_included_resources = included_refs.select do |resource_reference|
         base_resource_matches.none? do |base_resource_reference|
-          is_reference_match?(base_resource_reference.reference, resource_reference)
+          reference_match?(base_resource_reference.reference, resource_reference)
         end
       end
       not_matched_included_resources_string = not_matched_included_resources.join(',')
@@ -421,7 +425,7 @@ module CarinForBlueButtonTestKit
 
       values_found.select do |base_resource_references|
         included_refs.any? do |referenced_resource|
-          is_reference_match?(base_resource_references.reference, referenced_resource)
+          reference_match?(base_resource_references.reference, referenced_resource)
         end
       end
     end
@@ -435,7 +439,7 @@ module CarinForBlueButtonTestKit
         .map { |resource| "#{resource.resourceType}/#{resource.id}" }
     end
 
-    def is_reference_match?(reference, local_reference)
+    def reference_match?(reference, local_reference)
       regex_pattern = %r{^(#{Regexp.escape(local_reference)}|\S+/#{Regexp.escape(local_reference)}(?:[/|]\S+)*)$}
       reference.match?(regex_pattern)
     end
