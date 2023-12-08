@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
   let(:eob_json_string) do
     File.read(File.join(__dir__, '..', 'fixtures', 'c4bb_eob_inpatient_example.json'))
@@ -41,7 +39,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       end
     end
 
-    let(:service_date) { '2017-05-23' }
+    let(:service_date) { 'gt2017-05-22T00:00:00%2B00:00' }
     let(:eob) { FHIR.from_contents(eob_json_string) }
     let(:bundle) do
       FHIR::Bundle.new(entry: [{ resource: eob }])
@@ -56,11 +54,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?service-date=#{service_date}")
         .to_return(status: 200, body: bundle.to_json)
 
-      result = run(
-        service_date_search_test,
-        c4bb_v200_eob_service_date_search_test_param: service_date,
-        url:
-      )
+      result = run(service_date_search_test, url:)
       expect(result.result).to eq('pass')
     end
 
@@ -69,9 +63,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
         .to_return(status: 400, body: bundle.to_json)
 
       result = run(
-        service_date_search_test,
-        c4bb_v200_eob_service_date_search_test_param: service_date,
-        url:
+        service_date_search_test, url:
       )
 
       expect(result.result).to eq('fail')
@@ -102,11 +94,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?service-start-date=#{service_start_date}")
         .to_return(status: 200, body: bundle.to_json)
 
-      result = run(
-        service_start_date_search_test,
-        c4bb_v200_eob_service_start_date_search_test_param: service_start_date,
-        url:
-      )
+      result = run(service_start_date_search_test, url:)
       expect(result.result).to eq('pass')
     end
 
@@ -114,11 +102,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?service-start-date=#{service_start_date}")
         .to_return(status: 400, body: bundle.to_json)
 
-      result = run(
-        service_start_date_search_test,
-        c4bb_v200_eob_service_start_date_search_test_param: service_start_date,
-        url:
-      )
+      result = run(service_start_date_search_test, url:)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
@@ -148,11 +132,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?billable-period-start=#{billable_period_start}")
         .to_return(status: 200, body: bundle.to_json)
 
-      result = run(
-        billable_period_start_search_test,
-        c4bb_v200_eob_billable_period_start_search_test_param: billable_period_start,
-        url:
-      )
+      result = run(billable_period_start_search_test, url:)
       expect(result.result).to eq('pass')
     end
 
@@ -160,11 +140,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?billable-period-start=#{billable_period_start}")
         .to_return(status: 400, body: bundle.to_json)
 
-      result = run(
-        billable_period_start_search_test,
-        c4bb_v200_eob_billable_period_start_search_test_param: billable_period_start,
-        url:
-      )
+      result = run(billable_period_start_search_test, url:)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
@@ -194,11 +170,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?type=#{type}")
         .to_return(status: 200, body: bundle.to_json)
 
-      result = run(
-        type_search_test,
-        c4bb_v200_eob_type_search_test_param: type,
-        url:
-      )
+      result = run(type_search_test, url:)
       expect(result.result).to eq('pass')
     end
 
@@ -206,11 +178,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?type=#{type}")
         .to_return(status: 400, body: bundle.to_json)
 
-      result = run(
-        type_search_test,
-        c4bb_v200_eob_type_search_test_param: type,
-        url:
-      )
+      result = run(type_search_test, url:)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
@@ -313,7 +281,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     end
 
     let(:coverage) { FHIR.from_contents(coverage_json_string) }
-    let(:last_updated) { '2022-09-17' }
+    let(:last_updated) { '2022-09-17T20:32:39.267%2B00:00' }
     let(:bundle) do
       FHIR::Bundle.new(entry: [{ resource: coverage }])
     end
@@ -327,35 +295,28 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/Coverage?_lastUpdated=#{last_updated}")
         .to_return(status: 200, body: bundle.to_json)
 
-      result = run(
-        coverage_last_updated_search_test,
-        c4bb_v200_coverage__lastUpdated_search_test_param: last_updated,
-        url:
-      )
+      result = run(coverage_last_updated_search_test, url:)
       expect(result.result).to eq('pass')
     end
 
     it 'fails if _lastUpdated is passed in and 400 is received' do
       stub_request(:get, "#{url}/Coverage?_lastUpdated=#{last_updated}")
         .to_return(status: 400, body: error_outcome.to_json)
-      result = run(
-        coverage_last_updated_search_test,
-        c4bb_v200_coverage__lastUpdated_search_test_param: last_updated,
-        url:
-      )
+      result = run(coverage_last_updated_search_test, url:)
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
     end
 
     it 'skips if _lastUpdated is not passed in' do
+      allow_any_instance_of(coverage_last_updated_search_test).to receive(:scratch_resources).and_return(
+        {
+          all: []
+        }
+      )
       stub_request(:get, "#{url}/Coverage?_lastUpdated")
         .to_return(status: 400, body: error_outcome.to_json)
-      result = run(
-        coverage_last_updated_search_test,
-        url:
-      )
+      result = run(coverage_last_updated_search_test, url:)
       expect(result.result).to eq('skip')
-      expect(result.result_message).to eq("Coverage search parameter for _lastUpdated not provided")
     end
   end
 
@@ -372,7 +333,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     end
 
     let(:eob) { FHIR.from_contents(eob_json_string) }
-    let(:last_updated) { '2020-04-28' }
+    let(:last_updated) { '2020-04-28T15:39:36-04:00' }
     let(:bundle) do
       FHIR::Bundle.new(entry: [{ resource: eob }])
     end
@@ -386,11 +347,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?_lastUpdated=#{last_updated}")
         .to_return(status: 200, body: bundle.to_json)
 
-      result = run(
-        eob_last_updated_search_test,
-        c4bb_v200_eob__lastUpdated_search_test_param: last_updated,
-        url:
-      )
+      result = run(eob_last_updated_search_test, url:)
       expect(result.result).to eq('pass')
     end
 
@@ -398,11 +355,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       stub_request(:get, "#{url}/ExplanationOfBenefit?_lastUpdated=#{last_updated}")
         .to_return(status: 400, body: error_outcome.to_json)
 
-      result = run(
-        eob_last_updated_search_test,
-        c4bb_v200_eob__lastUpdated_search_test_param: last_updated,
-        url:
-      )
+      result = run(eob_last_updated_search_test, url:)
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
     end
@@ -416,13 +369,13 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       end
     end
 
-    let(:search_params_patient) {'_id=EOBProfessionalTransportation1&_include=ExplanationOfBenefit:patient'}
+    let(:search_params_patient) { '_id=EOBProfessionalTransportation1&_include=ExplanationOfBenefit:patient' }
     let(:explanation_of_benefit_id) { 'EOBProfessionalTransportation1' }
     let(:patient_id) { '123' }
     let(:patient_id_2) { '456' }
     let(:patient) { FHIR::Patient.new(id: patient_id) }
     let(:patient2) { FHIR::Patient.new(id: patient_id_2) }
-    let (:organization) { FHIR::Organization.new(id: patient_id) }
+    let(:organization) { FHIR::Organization.new(id: patient_id) }
     let(:explanation_of_benefit) do
       FHIR::ExplanationOfBenefit.new(
         id: explanation_of_benefit_id,
@@ -432,59 +385,57 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       )
     end
 
-    let (:bundle) do
-      FHIR::Bundle.new(entry: [{resource: explanation_of_benefit}, {resource: patient}])
+    let(:bundle) do
+      FHIR::Bundle.new(entry: [{ resource: explanation_of_benefit }, { resource: patient }])
     end
 
     before do
       Inferno::Repositories::Tests.new.insert(explanation_of_benefit_include_test_patient)
+      setup_mock_test(explanation_of_benefit_include_test_patient, explanation_of_benefit)
     end
 
     it 'passes performing an _include search for ExplanationOfBenefit:patient' do
       request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_patient}")
-        .to_return(status: 200, body: bundle.to_json)
+                .to_return(status: 200, body: bundle.to_json)
 
-      result = run(explanation_of_benefit_include_test_patient, c4bb_v200_eob__id_search_test_param: explanation_of_benefit_id,  url:)
+      result = run(explanation_of_benefit_include_test_patient, url:)
       expect(result.result).to eq('pass')
       expect(request).to have_been_made.once
     end
-
 
     it 'fails performing an _include search for ExplanationOfBenefit:patient when there is patient resource with incorrect id' do
       # Expect that test fails when patient resource with correct id is not present in bundle
       bundle.entry[-1].resource.id = patient_id_2
 
       request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_patient}")
-        .to_return(status: 200, body: bundle.to_json)
+                .to_return(status: 200, body: bundle.to_json)
 
-      result = run(explanation_of_benefit_include_test_patient, c4bb_v200_eob__id_search_test_param: explanation_of_benefit_id,  url:)
+      result = run(explanation_of_benefit_include_test_patient, url:)
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('No ExplanationOfBenefit references Patient/456 in the search result.')
       expect(request).to have_been_made.once
     end
 
     it 'passes performing an _include search for ExplanationOfBenefit:patient when there are no patient resources in the bundle' do
-      
       # Expect that test passes when organization resource instead of patient resource is included in the bundle
-      bundle.entry[-1] = {resource: organization}
+      bundle.entry[-1] = { resource: organization }
 
       request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_patient}")
-        .to_return(status: 200, body: bundle.to_json)
+                .to_return(status: 200, body: bundle.to_json)
 
-      result = run(explanation_of_benefit_include_test_patient, c4bb_v200_eob__id_search_test_param: explanation_of_benefit_id,  url:)
+      result = run(explanation_of_benefit_include_test_patient, url:)
       expect(result.result).to eq('pass')
       expect(request).to have_been_made.once
     end
 
     it 'fails performing an _include search for ExplanationOfBenefit:patient when there is an unreferenced patient resource in the bundle' do
-        
       # Expect that test fails when a patient resource is included in the bundle but no base resource references it
-      bundle.entry.push({resource: patient2})
+      bundle.entry.push({ resource: patient2 })
 
       request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_patient}")
-        .to_return(status: 200, body: bundle.to_json)
+                .to_return(status: 200, body: bundle.to_json)
 
-      result = run(explanation_of_benefit_include_test_patient, c4bb_v200_eob__id_search_test_param: explanation_of_benefit_id,  url:)
+      result = run(explanation_of_benefit_include_test_patient, url:)
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('No ExplanationOfBenefit references Patient/456 in the search result.')
       expect(request).to have_been_made.once
@@ -494,6 +445,14 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
   describe 'search ExplanationofBenefit with _include * param' do
     let(:patient_id_2) { '456' }
     let(:patient2) { FHIR::Patient.new(id: patient_id_2) }
+    let(:explanation_of_benefit) do
+      FHIR::ExplanationOfBenefit.new(
+        id: explanation_of_benefit_id,
+        patient: {
+          reference: "Patient/#{patient_id_2}"
+        }
+      )
+    end
 
     let(:explanation_of_benefit_include_test_all) do
       Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::EobExplanationOfBenefit_AllSearchTest) do
@@ -502,36 +461,37 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
       end
     end
 
-    let(:search_params_all) {'_id=EOBProfessionalTransportation1&_include=ExplanationOfBenefit:*'}
+    let(:search_params_all) { '_id=EOBProfessionalTransportation1&_include=ExplanationOfBenefit:*' }
     let(:explanation_of_benefit_id) { 'EOBProfessionalTransportation1' }
 
-    let(:bundle_all) do 
+    let(:bundle_all) do
       FHIR.from_contents(File.read(File.join(__dir__, '..', 'fixtures', 'explanation_of_benefit_all.json')))
     end
 
     before do
       Inferno::Repositories::Tests.new.insert(explanation_of_benefit_include_test_all)
+      setup_mock_test(explanation_of_benefit_include_test_all, explanation_of_benefit)
     end
 
     it 'passes performing an _include search for ExplanationOfBenefit:*' do
       request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_all}")
-        .to_return(status: 200, body: bundle_all.to_json)
-      
+                .to_return(status: 200, body: bundle_all.to_json)
+
       # Test include with * parameter to ensure all resources are included
-      result = run(explanation_of_benefit_include_test_all, c4bb_v200_eob__id_search_test_param: explanation_of_benefit_id,  url:)
+      result = run(explanation_of_benefit_include_test_all, url:)
       expect(result.result).to eq('pass')
       expect(request).to have_been_made.once
     end
 
     it 'fails performing an _include search for ExplanationOfBenefit:* when there is an unreferenced patient resource in the bundle' do
       # Expect that test fails when a patient resource is included in the bundle but no base resource references it
-      bundle_all.entry.push({resource: patient2})
+      bundle_all.entry.push({ resource: patient2 })
 
       request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_all}")
-        .to_return(status: 200, body: bundle_all.to_json)
-      
+                .to_return(status: 200, body: bundle_all.to_json)
+
       # Test include with * parameter to ensure all resources are included
-      result = run(explanation_of_benefit_include_test_all, c4bb_v200_eob__id_search_test_param: explanation_of_benefit_id,  url:)
+      result = run(explanation_of_benefit_include_test_all, url:)
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('No ExplanationOfBenefit references Patient/456 in the search result.')
       expect(request).to have_been_made.once
@@ -540,17 +500,16 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     it 'fails performing an _include search for ExplanationOfBenefit:* when there is an unreferenced patient resource in the bundle with same id as another resouce' do
       # Expect that test fails when a patient resource is included in the bundle but no base resource references it
       patient2.id = 'Payer2'
-      bundle_all.entry.push({resource: patient2})
+      bundle_all.entry.push({ resource: patient2 })
 
       request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_all}")
-        .to_return(status: 200, body: bundle_all.to_json)
-      
+                .to_return(status: 200, body: bundle_all.to_json)
+
       # Test include with * parameter to ensure all resources are included
-      result = run(explanation_of_benefit_include_test_all, c4bb_v200_eob__id_search_test_param: explanation_of_benefit_id,  url:)
+      result = run(explanation_of_benefit_include_test_all, url:)
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('No ExplanationOfBenefit references Patient/Payer2 in the search result.')
       expect(request).to have_been_made.once
     end
-
   end
 end
