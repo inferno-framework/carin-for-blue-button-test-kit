@@ -17,6 +17,7 @@ module CarinForBlueButtonTestKit
             title: 'OAuth Credentials',
             type: :oauth_credentials,
             optional: true
+      input_order :url, :smart_credentials
 
       PROFILES = {
         'Coverage' => ['http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage'].freeze,
