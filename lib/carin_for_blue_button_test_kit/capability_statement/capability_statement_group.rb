@@ -13,6 +13,10 @@ module CarinForBlueButtonTestKit
       )
 
       run_as_group
+      input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
 
       PROFILES = {
         'Coverage' => ['http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage'].freeze,
@@ -30,7 +34,7 @@ module CarinForBlueButtonTestKit
         'RelatedPerson' => ['http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-RelatedPerson'].freeze
     }.freeze
 
-      
+
     # test from: :carin_bb_conformance_support
     # test from: :carin_bb_json_support
 
