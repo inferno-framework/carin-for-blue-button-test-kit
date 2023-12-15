@@ -44,11 +44,6 @@ read succeeds.
 
       id :c4bb_v110_practitioner
       run_as_group
-      input :smart_credentials,
-            title: 'OAuth Credentials',
-            type: :oauth_credentials,
-            optional: true
-      input_order :url, :smart_credentials
 
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'practitioner', 'metadata.yml'), aliases: true))

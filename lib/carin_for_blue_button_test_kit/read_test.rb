@@ -5,18 +5,21 @@ module CarinForBlueButtonTestKit
     end
 
     def perform_read_test(resources, _reply_handler = nil)
-      skip_if resources.blank?, no_resources_skip_message
+      skip_if resources.blank? && resource_ids.blank?, no_resources_skip_message
+      resources_to_read_ids = resource_ids
+      if resources_to_read_ids.blank?
+        resources_to_read = readable_resources(resources)
 
-      resources_to_read = readable_resources(resources)
-
-      assert resources_to_read.present?, "No #{resource_type} id found."
+        assert resources_to_read.present?, "No #{resource_type} id found."
+        resources_to_read_ids = resources_to_read.map { |resource| resource_id(resource) }
+      end
 
       if config.options[:read_all_resources]
-        resources_to_read.each do |resource|
-          read_and_validate(resource)
+        resources_to_read_ids.each do |id|
+          read_and_validate(id)
         end
       else
-        read_and_validate(resources_to_read.first)
+        read_and_validate(resources_to_read_ids.first)
       end
     end
 
@@ -28,18 +31,15 @@ module CarinForBlueButtonTestKit
         .uniq { |resource| resource.is_a?(FHIR::Reference) ? resource.reference.split('/').last : resource.id }
     end
 
-    def read_and_validate(resource_to_read)
-      id = resource_id(resource_to_read)
-
+    def read_and_validate(id)
       fhir_read resource_type, id
 
       assert_response_status(200)
       assert_resource_type(resource_type)
       assert resource.id.present? && resource.id == id, bad_resource_id_message(id)
 
-      return unless resource_to_read.is_a? FHIR::Reference
-
       all_scratch_resources << resource
+      all_scratch_resources.uniq!
     end
 
     def resource_id(resource)

@@ -10,13 +10,18 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the ExplanationOfBenefit read interaction.'
 
       id :c4bb_v200devnonfinancial_eob_outpatient_institutional_non_financial_read_test
-
+      
       def resource_type
         'ExplanationOfBenefit'
       end
 
       def scratch_resources
         scratch[:explanationofbenefit_resources] ||= {}
+      end
+
+      def resource_ids
+        return [] unless respond_to? :additional_eob_outpatient_institutional_non_financial_ids
+        additional_eob_outpatient_institutional_non_financial_ids.split(',').map(&:strip)
       end
 
       run do

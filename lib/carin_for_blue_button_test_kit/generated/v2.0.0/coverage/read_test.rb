@@ -10,13 +10,18 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the Coverage read interaction.'
 
       id :c4bb_v200_coverage_read_test
-
+      
       def resource_type
         'Coverage'
       end
 
       def scratch_resources
         scratch[:coverage_resources] ||= {}
+      end
+
+      def resource_ids
+        return [] unless respond_to? :additional_coverage_ids
+        additional_coverage_ids.split(',').map(&:strip)
       end
 
       run do

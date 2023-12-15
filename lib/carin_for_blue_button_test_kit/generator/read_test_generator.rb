@@ -112,6 +112,10 @@ module CarinForBlueButtonTestKit
                       .flatten
       end
 
+      def no_search_params?
+        search_params.blank?
+      end
+
       def generate
         FileUtils.mkdir_p(output_file_directory)
         File.open(output_file_name, 'w') { |f| f.write(output) }
