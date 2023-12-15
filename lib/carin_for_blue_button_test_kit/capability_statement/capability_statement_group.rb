@@ -13,11 +13,6 @@ module CarinForBlueButtonTestKit
       )
 
       run_as_group
-      input :smart_credentials,
-            title: 'OAuth Credentials',
-            type: :oauth_credentials,
-            optional: true
-      input_order :url, :smart_credentials
 
       PROFILES = {
         'Coverage' => ['http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage'].freeze,
@@ -33,11 +28,12 @@ module CarinForBlueButtonTestKit
         'Patient' => ['http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient'].freeze,
         'Practitioner' => ['http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner'].freeze,
         'RelatedPerson' => ['http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-RelatedPerson'].freeze
-    }.freeze
+      }.freeze
 
 
-    # test from: :carin_bb_conformance_support
-    # test from: :carin_bb_json_support
+      test from: :carin_bb_conformance_support
+      test from: :carin_bb_fhir_version
+      test from: :carin_bb_json_support
 
     # test from: :carin_bb_profile_support do
     #   config(

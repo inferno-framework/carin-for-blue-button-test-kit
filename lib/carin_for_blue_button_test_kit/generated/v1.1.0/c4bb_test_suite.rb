@@ -63,6 +63,12 @@ module CarinForBlueButtonTestKit
           conformant C4BB resources.
         )
 
+        input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
+        input_order :url, :smart_credentials
+
         group from: :capability_statement_group
     
         group from: :c4bb_v110_patient
