@@ -10,29 +10,28 @@ module CarinForBlueButtonTestKit
       description 'A server <%= conformance_expectation %> support the <%= resource_type %> read interaction.'
 
       id :<%= test_id %>
-
-      input :<%= profile_identifier %>_ids,
-        title: "<%= profile_identifier %> IDs",
+      <% if no_search_params? %>
+      input :additional_<%= profile_identifier %>_ids,
+        title: "Additional <%= profile_identifier %> IDs",
         type: 'text',
-        description: "<%= input_description.strip %>"
-
-      input_order :url, :smart_credentials, :<%= profile_identifier %>_ids
-
+        description: "<%= input_description.strip %>. This is optional, but must be provided if executing only the <%= resource_type %> test group.",
+        optional: true
+      <% end %>
       def resource_type
         '<%= resource_type %>'
       end
 
       def scratch_resources
-        scratch[:<%= profile_identifier %>_resources] ||= {}
+        scratch[:<%= resource_type.downcase %>_resources] ||= {}
       end
 
-      def <%= profile_identifier %>_id_list
-        return [nil] unless respond_to? :<%= profile_identifier %>_ids
-        <%= profile_identifier %>_ids.split(',').map(&:strip)
+      def resource_ids
+        return [] unless respond_to? :additional_<%= profile_identifier%>_ids
+        additional_<%= profile_identifier%>_ids.split(',').map(&:strip)
       end
 
       run do
-        perform_read_test(<%= profile_identifier %>_id_list)
+        perform_read_test(<%= resource_collection_string %>)
       end
     end
   end

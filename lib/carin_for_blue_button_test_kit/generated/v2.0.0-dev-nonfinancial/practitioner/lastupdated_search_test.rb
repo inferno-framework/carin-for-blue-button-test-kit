@@ -18,13 +18,7 @@ none are returned, the test is skipped.
       id :c4bb_v200devnonfinancial_practitioner__lastUpdated_search_test
       optional
       
-
-      input :c4bb_v200devnonfinancial_practitioner__lastUpdated_search_test_param,
-        title: 'Practitioner search parameter for _lastUpdated',
-        type: 'text',
-        description: 'Practitioner search parameter: _lastUpdated',
-        optional: true
-
+      
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'Practitioner',
@@ -39,11 +33,9 @@ none are returned, the test is skipped.
       def scratch_resources
         scratch[:practitioner_resources] ||= {}
       end
-      
+
       run do
-        skip_if c4bb_v200devnonfinancial_practitioner__lastUpdated_search_test_param.blank?, 'Practitioner search parameter for _lastUpdated not provided'
-        
-        run_search_test(c4bb_v200devnonfinancial_practitioner__lastUpdated_search_test_param)
+        run_search_test
       end
     end
   end

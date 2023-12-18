@@ -7,10 +7,6 @@ require_relative '../../custom_groups/v1.1.0/c4bb_smart_launch_group'
 
 require_relative 'patient_group'
 require_relative 'eob_group'
-require_relative 'eob_inpatient_institutional_group'
-require_relative 'eob_outpatient_institutional_group'
-require_relative 'eob_pharmacy_group'
-require_relative 'eob_professional_non_clinician_group'
 require_relative 'coverage_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
@@ -67,14 +63,16 @@ module CarinForBlueButtonTestKit
           conformant C4BB resources.
         )
 
+        input :smart_credentials,
+            title: 'OAuth Credentials',
+            type: :oauth_credentials,
+            optional: true
+        input_order :url, :smart_credentials
+
         group from: :capability_statement_group
     
         group from: :c4bb_v110_patient
         group from: :c4bb_v110_eob
-        group from: :c4bb_v110_eob_inpatient_institutional
-        group from: :c4bb_v110_eob_outpatient_institutional
-        group from: :c4bb_v110_eob_pharmacy
-        group from: :c4bb_v110_eob_professional_non_clinician
         group from: :c4bb_v110_coverage
         group from: :c4bb_v110_organization
         group from: :c4bb_v110_practitioner

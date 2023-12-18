@@ -71,10 +71,6 @@ read succeeds.
       run_as_group
       optional
       
-      input :smart_credentials,
-            title: 'OAuth Credentials',
-            type: :oauth_credentials,
-            optional: true
 
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'practitioner', 'metadata.yml'), aliases: true))

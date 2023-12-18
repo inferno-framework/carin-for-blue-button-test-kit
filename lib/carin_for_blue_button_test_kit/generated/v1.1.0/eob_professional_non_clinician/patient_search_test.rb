@@ -28,12 +28,13 @@ requirement of CARIN IG for Blue Button® v1.1.0.
       )
 
       id :c4bb_v110_eob_professional_non_clinician_patient_search_test
-
-      input :c4bb_v110_eob_professional_non_clinician_patient_search_test_param,
-        title: 'ExplanationOfBenefit search parameter for patient',
+      
+      input :patient_ids,
+        title: 'Patient IDs',
         type: 'text',
-        description: 'ExplanationOfBenefit search parameter: patient'
-
+        description: 'Comma separated list of patient IDs that in sum
+                          contain all MUST SUPPORT elements'
+      
       def self.properties
         @properties ||= SearchTestProperties.new(
           first_search: true,
@@ -50,12 +51,11 @@ requirement of CARIN IG for Blue Button® v1.1.0.
       end
 
       def scratch_resources
-        scratch[:eob_professional_non_clinician_resources] ||= {}
+        scratch[:explanationofbenefit_resources] ||= {}
       end
-      
+
       run do
-        
-        run_search_test(c4bb_v110_eob_professional_non_clinician_patient_search_test_param)
+        run_search_test
       end
     end
   end

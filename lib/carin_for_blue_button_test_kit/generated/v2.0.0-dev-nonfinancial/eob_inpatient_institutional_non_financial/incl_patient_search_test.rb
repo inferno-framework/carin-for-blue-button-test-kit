@@ -21,17 +21,16 @@ module CarinForBlueButtonTestKit
 
       id :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_include_ExplanationOfBenefit_patient_search_test
 
-      input :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial__id_search_test_param,
-        title: 'ExplanationOfBenefit search parameter for _id',
-        type: 'text',
-        description: 'ExplanationOfBenefit search parameter: _id'
-
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
       end
 
+      def scratch_resources
+        scratch[:explanationofbenefit_resources] ||= {}
+      end
+
       run do
-        run_include_search('ExplanationOfBenefit:patient', resource_id: c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial__id_search_test_param)
+        run_include_search('ExplanationOfBenefit:patient')
       end
     end
   end

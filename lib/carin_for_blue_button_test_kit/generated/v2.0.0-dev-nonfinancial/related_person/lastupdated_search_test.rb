@@ -18,13 +18,7 @@ none are returned, the test is skipped.
       id :c4bb_v200devnonfinancial_related_person__lastUpdated_search_test
       optional
       
-
-      input :c4bb_v200devnonfinancial_related_person__lastUpdated_search_test_param,
-        title: 'RelatedPerson search parameter for _lastUpdated',
-        type: 'text',
-        description: 'RelatedPerson search parameter: _lastUpdated',
-        optional: true
-
+      
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'RelatedPerson',
@@ -37,13 +31,11 @@ none are returned, the test is skipped.
       end
 
       def scratch_resources
-        scratch[:related_person_resources] ||= {}
+        scratch[:relatedperson_resources] ||= {}
       end
-      
+
       run do
-        skip_if c4bb_v200devnonfinancial_related_person__lastUpdated_search_test_param.blank?, 'RelatedPerson search parameter for _lastUpdated not provided'
-        
-        run_search_test(c4bb_v200devnonfinancial_related_person__lastUpdated_search_test_param)
+        run_search_test
       end
     end
   end

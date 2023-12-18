@@ -10,15 +10,7 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the Patient read interaction.'
 
       id :c4bb_v200_patient_read_test
-
-      input :patient_ids,
-        title: "patient IDs",
-        type: 'text',
-        description: "Comma separated list of patient IDs that in sum
-                          contain all MUST SUPPORT elements"
-
-      input_order :url, :smart_credentials, :patient_ids
-
+      
       def resource_type
         'Patient'
       end
@@ -27,13 +19,13 @@ module CarinForBlueButtonTestKit
         scratch[:patient_resources] ||= {}
       end
 
-      def patient_id_list
-        return [nil] unless respond_to? :patient_ids
-        patient_ids.split(',').map(&:strip)
+      def resource_ids
+        return [] unless respond_to? :additional_patient_ids
+        additional_patient_ids.split(',').map(&:strip)
       end
 
       run do
-        perform_read_test(patient_id_list)
+        perform_read_test(all_scratch_resources)
       end
     end
   end

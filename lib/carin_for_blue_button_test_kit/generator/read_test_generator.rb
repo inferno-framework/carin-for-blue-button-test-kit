@@ -6,8 +6,8 @@ module CarinForBlueButtonTestKit
       class << self
         def generate(ig_metadata, base_output_dir)
           ig_metadata.groups
-            .select { |group| read_interaction(group).present? }
-            .each { |group| new(group, base_output_dir).generate }
+                     .select { |group| read_interaction(group).present? }
+                     .each { |group| new(group, base_output_dir).generate }
         end
 
         def read_interaction(group_metadata)
@@ -65,33 +65,33 @@ module CarinForBlueButtonTestKit
       end
 
       def resource_type
-         return group_metadata.resource
+        group_metadata.resource
       end
 
       def specific_resource_type
         case profile_identifier
-        when 'explanation_of_benefit_inpatient_institutional'
-          return "ExplanationOfBenefitInpatientInstitutional"
-        when 'explanation_of_benefit_inpatient_institutional_nonfinancial'
-          return "ExplanationOfBenefitInpatientInstitutionalNonFinancial"
-        when 'explanation_of_benefit_oral'
-          return "ExplanationOfBenefitOral"
-        when 'explanation_of_benefit_oral_nonfinancial'
-          return "ExplanationOfBenefitOralNonFinancial"
-        when 'explanation_of_benefit_outpatient_institutional'
-          return "ExplanationOfBenefitOutpatientInstitutional"
-        when 'explanation_of_benefit_outpatient_institutional_nonfinancial'
-          return "ExplanationOfBenefitOutpatientInstitutionalNonFinancial"
-        when 'explanation_of_benefit_pharmacy'
-          return "ExplanationOfBenefitPharmacy"
-        when 'explanation_of_benefit_pharmacy_nonfinancial'
-          return "ExplanationOfBenefitPharmacyNonFinancial"
-        when 'explanation_of_benefit_professional_non_clinician'
-          return "ExplanationOfBenefitProfessionalNonClinician"
-        when 'explanation_of_benefit_professional_non_clinician_nonfinancial'
-          return "ExplanationOfBenefitProfessionalNonClinicianNonFinancial"
+        when 'eob_inpatient_institutional'
+          'ExplanationOfBenefitInpatientInstitutional'
+        when 'eob_inpatient_institutional_nonfinancial'
+          'ExplanationOfBenefitInpatientInstitutionalNonFinancial'
+        when 'eob_oral'
+          'ExplanationOfBenefitOral'
+        when 'eob_oral_nonfinancial'
+          'ExplanationOfBenefitOralNonFinancial'
+        when 'eob_outpatient_institutional'
+          'ExplanationOfBenefitOutpatientInstitutional'
+        when 'eob_outpatient_institutional_nonfinancial'
+          'ExplanationOfBenefitOutpatientInstitutionalNonFinancial'
+        when 'eob_pharmacy'
+          'ExplanationOfBenefitPharmacy'
+        when 'eob_pharmacy_nonfinancial'
+          'ExplanationOfBenefitPharmacyNonFinancial'
+        when 'eob_professional_non_clinician'
+          'ExplanationOfBenefitProfessionalNonClinician'
+        when 'eob_professional_non_clinician_nonfinancial'
+          'ExplanationOfBenefitProfessionalNonClinicianNonFinancial'
         else
-          return self.resource_type
+          resource_type
         end
       end
 
@@ -107,6 +107,15 @@ module CarinForBlueButtonTestKit
         read_interaction[:expectation]
       end
 
+      def search_params
+        group_metadata.searches.map { |search| search[:names] }
+                      .flatten
+      end
+
+      def no_search_params?
+        search_params.blank?
+      end
+
       def generate
         FileUtils.mkdir_p(output_file_directory)
         File.open(output_file_name, 'w') { |f| f.write(output) }
@@ -118,16 +127,16 @@ module CarinForBlueButtonTestKit
       end
 
       def input_description
-        desc_content =  if profile_identifier == 'patient'
-                          "
+        desc_content = if profile_identifier == 'patient'
+                         "
                           Comma separated list of patient IDs that in sum
                           contain all MUST SUPPORT elements
                           "
-                        else
-                          "#{profile_identifier} Resource ID"
-                        end
+                       else
+                         "#{profile_identifier} Resource ID"
+                       end
         <<~INPUT_DESCRIPTION
-        #{desc_content}
+          #{desc_content}
         INPUT_DESCRIPTION
       end
     end

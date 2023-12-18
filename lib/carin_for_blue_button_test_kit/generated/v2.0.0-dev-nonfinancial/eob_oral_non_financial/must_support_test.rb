@@ -96,7 +96,7 @@ module CarinForBlueButtonTestKit
       end
 
       def scratch_resources
-        scratch[:eob_oral_non_financial_resources] ||= {}
+        scratch[:explanationofbenefit_resources] ||= {}
       end
 
       run do

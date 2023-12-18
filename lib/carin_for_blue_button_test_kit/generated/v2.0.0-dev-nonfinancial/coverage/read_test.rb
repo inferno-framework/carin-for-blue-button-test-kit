@@ -10,14 +10,7 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the Coverage read interaction.'
 
       id :c4bb_v200devnonfinancial_coverage_read_test
-
-      input :coverage_ids,
-        title: "coverage IDs",
-        type: 'text',
-        description: "coverage Resource ID"
-
-      input_order :url, :smart_credentials, :coverage_ids
-
+      
       def resource_type
         'Coverage'
       end
@@ -26,13 +19,13 @@ module CarinForBlueButtonTestKit
         scratch[:coverage_resources] ||= {}
       end
 
-      def coverage_id_list
-        return [nil] unless respond_to? :coverage_ids
-        coverage_ids.split(',').map(&:strip)
+      def resource_ids
+        return [] unless respond_to? :additional_coverage_ids
+        additional_coverage_ids.split(',').map(&:strip)
       end
 
       run do
-        perform_read_test(coverage_id_list)
+        perform_read_test(scratch.dig(:references, 'Coverage'))
       end
     end
   end

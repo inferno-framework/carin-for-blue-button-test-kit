@@ -10,14 +10,13 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the Organization read interaction.'
 
       id :c4bb_v110_organization_read_test
-
-      input :organization_ids,
-        title: "organization IDs",
+      
+      input :additional_organization_ids,
+        title: "Additional organization IDs",
         type: 'text',
-        description: "organization Resource ID"
-
-      input_order :url, :smart_credentials, :organization_ids
-
+        description: "organization Resource ID. This is optional, but must be provided if executing only the Organization test group.",
+        optional: true
+      
       def resource_type
         'Organization'
       end
@@ -26,13 +25,13 @@ module CarinForBlueButtonTestKit
         scratch[:organization_resources] ||= {}
       end
 
-      def organization_id_list
-        return [nil] unless respond_to? :organization_ids
-        organization_ids.split(',').map(&:strip)
+      def resource_ids
+        return [] unless respond_to? :additional_organization_ids
+        additional_organization_ids.split(',').map(&:strip)
       end
 
       run do
-        perform_read_test(organization_id_list)
+        perform_read_test(scratch.dig(:references, 'Organization'))
       end
     end
   end

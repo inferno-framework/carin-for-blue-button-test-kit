@@ -92,7 +92,7 @@ module CarinForBlueButtonTestKit
       end
 
       def scratch_resources
-        scratch[:eob_professional_non_clinician_non_financial_resources] ||= {}
+        scratch[:explanationofbenefit_resources] ||= {}
       end
 
       run do

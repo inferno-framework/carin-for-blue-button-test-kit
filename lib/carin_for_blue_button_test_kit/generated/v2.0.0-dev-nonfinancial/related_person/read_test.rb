@@ -10,29 +10,22 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the RelatedPerson read interaction.'
 
       id :c4bb_v200devnonfinancial_related_person_read_test
-
-      input :related_person_ids,
-        title: "related_person IDs",
-        type: 'text',
-        description: "related_person Resource ID"
-
-      input_order :url, :smart_credentials, :related_person_ids
-
+      
       def resource_type
         'RelatedPerson'
       end
 
       def scratch_resources
-        scratch[:related_person_resources] ||= {}
+        scratch[:relatedperson_resources] ||= {}
       end
 
-      def related_person_id_list
-        return [nil] unless respond_to? :related_person_ids
-        related_person_ids.split(',').map(&:strip)
+      def resource_ids
+        return [] unless respond_to? :additional_related_person_ids
+        additional_related_person_ids.split(',').map(&:strip)
       end
 
       run do
-        perform_read_test(related_person_id_list)
+        perform_read_test(scratch.dig(:references, 'RelatedPerson'))
       end
     end
   end

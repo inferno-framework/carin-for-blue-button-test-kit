@@ -8,11 +8,11 @@ module CarinForBlueButtonTestKit
       include CarinForBlueButtonTestKit::MustSupportTest
       include CarinForBlueButtonTestKit::CARIN4BBV200DEVNONFINANCIAL
 
-      title 'All must support elements are provided in the ExplanationOfBenefit resources returned'
+      title 'All must support elements are provided in the ExplanationOfBenefitProfessionalNonClinician resources returned'
       description %(
         CARIN for Blue Button Responders SHALL be capable of populating all data elements as
         part of the query results as specified by the CARIN for Blue Button Capability
-        Statement. This test will look through the ExplanationOfBenefit resources
+        Statement. This test will look through the ExplanationOfBenefitProfessionalNonClinician resources
         found previously for the following must support elements:
 
                 * ExplanationOfBenefit.adjudication
@@ -97,7 +97,7 @@ module CarinForBlueButtonTestKit
       end
 
       def scratch_resources
-        scratch[:eob_professional_non_clinician_resources] ||= {}
+        scratch[:explanationofbenefit_resources] ||= {}
       end
 
       run do
