@@ -19,7 +19,6 @@ RSpec.describe CarinForBlueButtonTestKit::ReadTest do
 
     # This can be set to allow/disallow the test to read all FHIR resource for each inputted resource id, otherwise only reads first resource
     runnable.config.options[:read_all_resources] = inputs[:read_all_resources]
-
     inputs.each do |name, value|
       session_data_repo.save(
         test_session_id: test_session.id,
@@ -43,7 +42,8 @@ RSpec.describe CarinForBlueButtonTestKit::ReadTest do
     let(:patient_read_test) do
       Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::PatientReadTest) do
         fhir_client { url :url }
-        input :url, :patient_ids, :read_all_resources
+        input :url, :patient_ids
+        input :read_all_resources, optional: true
       end
     end
 
@@ -65,7 +65,7 @@ RSpec.describe CarinForBlueButtonTestKit::ReadTest do
       request = stub_request(:get, "#{url}/Patient/#{patient_id_1}")
                 .to_return(status: 200, body: patient.to_json)
 
-      result = run(patient_read_test, url:)
+      result = run(patient_read_test, url:, patient_ids: patient_id_1)
       expect(result.result).to eq('pass')
       expect(request).to have_been_made.once
     end
