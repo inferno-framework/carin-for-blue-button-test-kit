@@ -13,12 +13,17 @@ RSpec.describe CarinForBlueButtonTestKit::ReadTest do
   let(:url) { 'http://example.com/fhir' }
   let(:error_outcome) { FHIR::OperationOutcome.new(issue: [{ severity: 'error' }]) }
 
+  let(:patient) { FHIR.from_contents(patient_json_string) }
+  let(:patient2) { FHIR.from_contents(patient_json_string) }
+  let(:organization) { FHIR.from_contents(organization_json_string) }
+  let(:patient_id_1) { 'Patient1' }
+  let(:patient_id_2) { 'Patient2' }
+  let(:patient_ids) { 'Patient1, Patient2' }
+
   def run(runnable, inputs = {})
     test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
     test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
 
-    # This can be set to allow/disallow the test to read all FHIR resource for each inputted resource id, otherwise only reads first resource
-    runnable.config.options[:read_all_resources] = inputs[:read_all_resources]
     inputs.each do |name, value|
       session_data_repo.save(
         test_session_id: test_session.id,
@@ -43,16 +48,8 @@ RSpec.describe CarinForBlueButtonTestKit::ReadTest do
       Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::PatientReadTest) do
         fhir_client { url :url }
         input :url, :patient_ids
-        input :read_all_resources, optional: true
       end
     end
-
-    let(:patient) { FHIR.from_contents(patient_json_string) }
-    let(:patient2) { FHIR.from_contents(patient_json_string) }
-    let(:organization) { FHIR.from_contents(organization_json_string) }
-    let(:patient_id_1) { 'Patient1' }
-    let(:patient_id_2) { 'Patient2' }
-    let(:patient_ids) { 'Patient1, Patient2' }
 
     before do
       Inferno::Repositories::Tests.new.insert(patient_read_test)
@@ -70,24 +67,6 @@ RSpec.describe CarinForBlueButtonTestKit::ReadTest do
       expect(request).to have_been_made.once
     end
 
-    it 'passes if a 200 is received with 2 valid patients' do
-      request1 = stub_request(:get, "#{url}/Patient/#{patient_id_1}")
-                 .to_return(status: 200, body: patient.to_json)
-
-      request2 = stub_request(:get, "#{url}/Patient/#{patient_id_2}")
-                 .to_return(status: 200, body: patient2.to_json)
-
-      result = run(
-        patient_read_test,
-        url:,
-        patient_ids:,
-        read_all_resources: true
-      )
-      expect(result.result).to eq('pass')
-      expect(request1).to have_been_made.once
-      expect(request2).to have_been_made.once
-    end
-
     it 'passes reading only first of 2 valid patients' do
       request1 = stub_request(:get, "#{url}/Patient/#{patient_id_1}")
                  .to_return(status: 200, body: patient.to_json)
@@ -98,8 +77,7 @@ RSpec.describe CarinForBlueButtonTestKit::ReadTest do
       result = run(
         patient_read_test,
         url:,
-        patient_ids:,
-        read_all_resources: false
+        patient_ids:
       )
       expect(result.result).to eq('pass')
       expect(request1).to have_been_made.once
@@ -113,8 +91,7 @@ RSpec.describe CarinForBlueButtonTestKit::ReadTest do
       result = run(
         patient_read_test,
         url:,
-        patient_ids: patient_id_1,
-        read_all_resources: false
+        patient_ids: patient_id_1
       )
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 200, but received 400')
@@ -135,12 +112,49 @@ RSpec.describe CarinForBlueButtonTestKit::ReadTest do
       result = run(
         patient_read_test,
         url:,
-        patient_ids: patient_id_1,
-        read_all_resources: false
+        patient_ids: patient_id_1
       )
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected resource type: expected Patient, but received Organization')
       expect(request).to have_been_made.once
+    end
+  end
+  
+  describe 'multiple patient read test' do
+    let(:multiple_patient_read_test) do
+      Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::PatientReadTest) do
+        fhir_client { url :url }
+        config(
+          options: {
+            read_all_resources: true
+          }
+        )
+        input :url, :patient_ids
+      end
+    end
+
+    before do
+      Inferno::Repositories::Tests.new.insert(multiple_patient_read_test)
+      patient2.id = 'Patient2'
+      patientarr = [patient, patient2]
+      setup_mock_test(multiple_patient_read_test, patientarr)
+    end
+
+    it 'passes if a 200 is received with 2 valid patients' do
+      request1 = stub_request(:get, "#{url}/Patient/#{patient_id_1}")
+                 .to_return(status: 200, body: patient.to_json)
+
+      request2 = stub_request(:get, "#{url}/Patient/#{patient_id_2}")
+                 .to_return(status: 200, body: patient2.to_json)
+
+      result = run(
+        multiple_patient_read_test,
+        url:,
+        patient_ids:
+      )
+      expect(result.result).to eq('pass')
+      expect(request1).to have_been_made.once
+      expect(request2).to have_been_made.once
     end
   end
 end
