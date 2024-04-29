@@ -4,16 +4,17 @@ module CarinForBlueButtonTestKit
   class Generator
     class SuiteGenerator
       class << self
-        def generate(ig_metadata, base_output_dir)
-          new(ig_metadata, base_output_dir).generate
+        def generate(ig_metadata, base_output_dir, ig_file_name)
+          new(ig_metadata, base_output_dir, ig_file_name).generate
         end
       end
 
-      attr_accessor :ig_metadata, :base_output_dir
+      attr_accessor :ig_metadata, :base_output_dir, :ig_file_name
 
-      def initialize(ig_metadata, base_output_dir)
+      def initialize(ig_metadata, base_output_dir, ig_file_name)
         self.ig_metadata = ig_metadata
         self.base_output_dir = base_output_dir
+        self.ig_file_name = ig_file_name
       end
 
       def template
@@ -49,7 +50,11 @@ module CarinForBlueButtonTestKit
       end
 
       def validator_env_name
-        "#{ig_metadata.reformatted_version.upcase}_VALIDATOR_URL"
+        "#{ig_metadata.reformatted_version.upcase}_FHIR_RESOURCE_VALIDATOR_URL"
+      end
+
+      def ig_relative_path
+        "igs/#{File.basename(ig_file_name)}"
       end
 
       def ig_link

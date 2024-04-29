@@ -41,11 +41,21 @@ module CarinForBlueButtonTestKit
           end
       end
 
-      validator do
-        url ENV.fetch('V200DEVNONFINANCIAL_VALIDATOR_URL', 'http://validator_service:4567')
-      end
-
       id :c4bb_v200devnonfinancial
+
+      VALIDATION_MESSAGE_FILTERS = [
+        /\A\S+: \S+: URL value '.*' does not resolve/
+      ].freeze
+
+      fhir_resource_validator do
+        url ENV.fetch('V200DEVNONFINANCIAL_FHIR_RESOURCE_VALIDATOR_URL', 'http://hl7_validator_service:3500')
+
+        igs 'igs/carin4bb-200-dev-nonfinancial-fixed.tgz'
+
+        exclude_message do |message|
+          VALIDATION_MESSAGE_FILTERS.any? { |filter| filter.match? message.message }
+        end
+      end
 
       input :url,
         title: 'FHIR Endpoint',
