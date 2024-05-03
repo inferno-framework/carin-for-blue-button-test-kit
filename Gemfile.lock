@@ -3,6 +3,7 @@ PATH
   specs:
     carin_for_blue_button_test_kit (0.10.0)
       inferno_core (~> 0.4.2)
+      smart_app_launch_test_kit (~> 0.4)
 
 GEM
   remote: https://rubygems.org/
@@ -15,11 +16,13 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
+    aes_key_wrap (1.1.0)
     base62-rb (0.3.1)
     base64 (0.2.0)
     bcp47 (0.3.3)
       i18n
     bigdecimal (3.1.7)
+    bindata (2.5.0)
     blueprinter (0.25.2)
     byebug (11.1.3)
     coderay (1.1.3)
@@ -143,10 +146,11 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
+    httpclient (2.8.3)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
-    inferno_core (0.4.33)
+    inferno_core (0.4.34)
       activesupport (~> 6.1.7.5)
       base62-rb (= 0.3.1)
       blueprinter (= 0.25.2)
@@ -176,18 +180,24 @@ GEM
     irb (1.12.0)
       rdoc
       reline (>= 0.4.2)
+    json-jwt (1.15.3.1)
+      activesupport (>= 4.2)
+      aes_key_wrap
+      bindata
+      httpclient
     jwt (2.8.1)
       base64
     kramdown (2.4.0)
       rexml
-    method_source (1.0.0)
+    method_source (1.1.0)
     mime-types (3.5.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2024.0305)
-    mini_portile2 (2.8.5)
+    mini_portile2 (2.8.6)
     minitest (5.22.3)
     multi_json (1.15.0)
-    multi_xml (0.6.0)
+    multi_xml (0.7.1)
+      bigdecimal (~> 3.1)
     multipart-post (2.4.0)
     mustermann (1.1.2)
       ruby2_keywords (~> 0.0.1)
@@ -196,14 +206,14 @@ GEM
       mustermann (= 1.1.2)
     netrc (0.11.0)
     nio4r (2.7.1)
-    nokogiri (1.16.3)
+    nokogiri (1.16.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.16.3-arm64-darwin)
+    nokogiri (1.16.4-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.3-x86_64-darwin)
+    nokogiri (1.16.4-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.3-x86_64-linux)
+    nokogiri (1.16.4-x86_64-linux)
       racc (~> 1.4)
     oauth2 (1.4.11)
       faraday (>= 0.17.3, < 3.0)
@@ -259,9 +269,10 @@ GEM
       connection_pool (>= 2.2.5, < 3)
       rack (~> 2.0)
       redis (>= 4.5.0, < 5)
-    smart_app_launch_test_kit (0.2.2)
+    smart_app_launch_test_kit (0.4.2)
       inferno_core (>= 0.4.2)
-      jwt (~> 2.2)
+      json-jwt (~> 1.15.3)
+      jwt (~> 2.6)
       tls_test_kit (~> 0.2.0)
     sqlite3 (1.7.3)
       mini_portile2 (~> 2.8.0)
@@ -311,7 +322,6 @@ DEPENDENCIES
   factory_bot (~> 6.1)
   foreman
   rspec (~> 3.10)
-  smart_app_launch_test_kit (~> 0.2.2)
   webmock (~> 3.11)
 
 BUNDLED WITH

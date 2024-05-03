@@ -73,7 +73,7 @@ module CarinForBlueButtonTestKit
         end
 
         def generate_suites
-            SuiteGenerator.generate(ig_metadata, base_output_dir)
+            SuiteGenerator.generate(ig_metadata, base_output_dir, ig_file_name)
         end
 
         def generate_must_support_tests

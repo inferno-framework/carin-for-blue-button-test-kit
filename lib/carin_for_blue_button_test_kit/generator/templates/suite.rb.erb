@@ -36,11 +36,19 @@ module CarinForBlueButtonTestKit
           end
       end
 
-      validator do
-        url ENV.fetch('<%= validator_env_name %>', 'http://validator_service:4567')
-      end
-
       id :<%= suite_id %>
+
+      VALIDATION_MESSAGE_FILTERS = [
+        /\A\S+: \S+: URL value '.*' does not resolve/
+      ].freeze
+
+      fhir_resource_validator do
+        igs '<%= ig_relative_path %>'
+
+        exclude_message do |message|
+          VALIDATION_MESSAGE_FILTERS.any? { |filter| filter.match? message.message }
+        end
+      end
 
       input :url,
         title: 'FHIR Endpoint',
