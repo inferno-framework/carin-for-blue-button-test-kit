@@ -45,8 +45,6 @@ module CarinForBlueButtonTestKit
       ].freeze
 
       fhir_resource_validator do
-        url ENV.fetch('V110_FHIR_RESOURCE_VALIDATOR_URL', 'http://hl7_validator_service:3500')
-
         igs 'igs/carin4bb-110.tgz'
 
         exclude_message do |message|

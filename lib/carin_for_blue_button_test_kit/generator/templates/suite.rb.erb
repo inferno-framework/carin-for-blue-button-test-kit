@@ -43,8 +43,6 @@ module CarinForBlueButtonTestKit
       ].freeze
 
       fhir_resource_validator do
-        url ENV.fetch('<%= validator_env_name %>', 'http://hl7_validator_service:3500')
-
         igs '<%= ig_relative_path %>'
 
         exclude_message do |message|
