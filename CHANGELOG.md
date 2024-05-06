@@ -1,3 +1,14 @@
+# 0.11.0
+
+* FI-2395: Add data rights legend by @bmath10 in
+  https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/34
+* Dependency Updates 2024-03-19 by @Jammjammjamm in
+  https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/35
+* Dependency Updates 2024-04-05 by @Jammjammjamm in
+  https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/36
+* FI-2429: Migrate to HL7 validator wrapper by @dehall in
+  https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/37
+
 # 0.10.0
 
 * FI-2191 Reorganize tests into SMART group and Carin group
