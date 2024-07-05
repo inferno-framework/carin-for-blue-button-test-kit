@@ -1,3 +1,12 @@
+# 0.11.2
+
+* Dependency Updates 2024-07-03 by @Jammjammjamm in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/42
+
+# 0.11.1
+
+* Dependency Updates 2024-06-05 by @Jammjammjamm in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/40
+* FI-2429: Additional changes for HL7 validator transition by @dehall in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/39
+
 # 0.11.0
 
 * FI-2395: Add data rights legend by @bmath10 in
