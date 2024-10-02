@@ -29,7 +29,7 @@ namespace :requirements do
     Inferno::Application.start(:suites)
 
     require_relative 'lib/inferno_requirements_tools/tasks/map_requirements'
-    CarinForBlueButtonTestKit::InfernoRequirementsTools::Tasks::MapRequirements.new.run
+    InfernoRequirementsTools::Tasks::MapRequirements.new.run
   end
 end
 
@@ -40,7 +40,7 @@ namespace :requirements do
     Inferno::Application.start(:suites)
 
     require_relative 'lib/inferno_requirements_tools/tasks/map_requirements'
-    CarinForBlueButtonTestKit::InfernoRequirementsTools::Tasks::MapRequirements.new.run_check
+    InfernoRequirementsTools::Tasks::MapRequirements.new.run_check
   end
 end
 
