@@ -17,9 +17,22 @@ module CarinForBlueButtonTestKit
         message: %(
           Access Token: #{access_token} \n
           Submit Carin requests via the following method:
-          * Single Resource API: `#{submit_url}`, with `:endpoint` replaced with the endpoint you want to reach
+          * Single Resource API: `#{submit_url}?:search_params`, with `:endpoint` replaced with the endpoint you want
+          to reach and `:search_params` replaced with the search parameters for the request.
 
-          and [click here](#{resume_claims_data_url}?token=#{access_token}) when done.
+          The following Carin resources can be accessed on the Inferno Reference Server with the following IDs:
+            * Patient: `998`
+            * Coverage: `c4bb-Coverage`
+            * Organization: `c4bb-Organization`
+            * Practitioner: `c4bb-Practitioner`
+            * RelatedPerson: `c4bb-RelatedPerson`
+            * ExplanationOfBenefit Inpatient Institutional: `c4bb-EOBInpatient`
+            * ExplanationOfBenefit Outpatient Institutional: `c4bb-EOBOutpatient`
+            * ExplanationOfBenefit Oral: `c4bb-EOBOral`
+            * ExplanationOfBenefit Pharmacy: `c4bb-EOBPharmacy`
+            * ExplanationOfBenefit Professional NonClinician: `c4bb-EOBProfessional`
+
+          [Click here](#{resume_claims_data_url}?token=#{access_token}) when done.
         ),
         timeout: 900
       )

@@ -29,25 +29,33 @@ module CarinForBlueButtonTestKit
       request.status = 200
     end
 
+    def error_response_resource(request)
+      response = server_proxy.get('Patient', { _id: 998 })
+      response_resource = FHIR.from_contents(response.body)
+      response_resource.entry = [{ fullUrl: 'urn:uuid:2866af9c-137d-4458-a8a9-eeeec0ce5583',
+                                   resource: mock_operation_outcome_resource, search: { mode: 'outcome' } }]
+      response_resource.link.first.url = request.url # specific case for Operation Outcome handling
+      request.status = 403
+      response_resource
+    end
+
     def carin_resource_response(request, test = nil, test_result = nil)
       endpoint = resource_endpoint(request.url)
-      params = match_request_to_expectation(endpoint, request.query_parameters)
-      if params
-        response = server_proxy.get(endpoint, params)
-        request.status = response.status
-        response_resource = replace_bundle_urls(FHIR.from_contents(response.body))
-        request.response_headers = remove_transfer_encoding_header(response.headers)
-        request.response_body = response_resource.to_json
-        request.response_header('content-length').value = request.response_body.length
+      if endpoint
+        params = match_request_to_expectation(endpoint, request.query_parameters)
+        if params
+          response = server_proxy.get(endpoint, params)
+          request.status = response.status
+          response_resource = replace_bundle_urls(FHIR.from_contents(response.body))
+          request.response_headers = remove_transfer_encoding_and_content_length_header(response.headers)
+
+        else
+          response_resource = error_response_resource(request)
+        end
       else
-        response = server_proxy.get('Patient', { _id: 998 })
-        response_resource = FHIR.from_contents(response.body)
-        response_resource.entry = [{ fullUrl: 'urn:uuid:2866af9c-137d-4458-a8a9-eeeec0ce5583',
-                                     resource: mock_operation_outcome_resource, search: { mode: 'outcome' } }]
-        response_resource.link.first.url = request.url # specific case for Operation Outcome handling
-        request.status = 400
-        request.response_body = response_resource.to_json
+        response_resource = error_response_resource(request)
       end
+      request.response_body = response_resource.to_json
     end
 
     def read_next_page(request, test = nil, test_result = nil)
@@ -64,12 +72,12 @@ module CarinForBlueButtonTestKit
       }
     end
 
-    def remove_transfer_encoding_header(headers)
-      if headers['transfer-encoding'].nil?
-        headers
-      else
-        headers.reject! { |key, value| key == 'transfer-encoding' }
-      end
+    def remove_transfer_encoding_and_content_length_header(headers)
+      headers.reject! { |key, value| key == 'transfer-encoding' } if headers['transfer-encoding'].present?
+
+      return headers unless headers['Content-Length'].present?
+
+      headers.reject! { |key, value| key == 'Content-Length' }
     end
 
     def match_request_to_expectation(endpoint, params)
@@ -104,12 +112,13 @@ module CarinForBlueButtonTestKit
     end
 
     # Pull resource type from url
-    # e.g. http://example.org/fhir/Patient/123 -> Patient
+    # e.g. http://example.org/fhir/Patient?_id=123 -> Patient
     # @private
     def resource_endpoint(url)
       return unless url.start_with?('http://', 'https://')
 
-      %r{custom/c4bb_client/fhir/(.*)\?}.match(url)[1]
+      match = %r{custom/c4bb_client/fhir/(.*)\?}.match(url)
+      match[1] if match.present?
     end
 
     # @private
