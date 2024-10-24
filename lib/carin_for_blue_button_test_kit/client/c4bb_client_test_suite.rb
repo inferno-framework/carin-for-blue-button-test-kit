@@ -11,6 +11,16 @@ require_relative 'client_validation_test'
 require_relative 'claim_data_request_tests/initial_scratch_storing'
 require_relative 'claim_data_request_tests/initial_wait_test'
 require_relative 'claim_data_request_tests/patient_claims_data_request_test'
+require_relative 'claim_data_request_tests/coverage_claims_data_request_test'
+require_relative 'claim_data_request_tests/organization_claims_data_request_test'
+require_relative 'claim_data_request_tests/practitioner_claims_data_request_test'
+require_relative 'claim_data_request_tests/relatedperson_claims_data_request_test'
+require_relative 'claim_data_request_tests/eob_inpatient_claims_data_request_test'
+require_relative 'claim_data_request_tests/eob_outpatient_claims_data_request_test'
+require_relative 'claim_data_request_tests/eob_oral_claims_data_request_test'
+require_relative 'claim_data_request_tests/eob_pharmacy_claims_data_request_test'
+require_relative 'claim_data_request_tests/eob_professional_claims_data_request_test'
+
 require_relative 'claim_data_request_tests/client_claims_data_attestation_test'
 
 module CarinForBlueButtonTestKit
@@ -74,6 +84,11 @@ module CarinForBlueButtonTestKit
       CarinForBlueButtonClientSuite.extract_bearer_token(request)
     end
 
+    record_response_route :get, BASE_FHIR_PATH, SUBMIT_TAG, method(:read_next_page),
+                          resumes: method(:test_resumes?) do |request|
+      CarinForBlueButtonClientSuite.extract_bearer_token(request)
+    end
+
     resume_test_route :get, RESUME_PASS_PATH do |request|
       CarinForBlueButtonClientSuite.extract_token_from_query_params(request)
     end
@@ -90,10 +105,19 @@ module CarinForBlueButtonTestKit
 
     group do
       run_as_group
-      title 'Carin For Blue Button data request tests'
+      title 'Carin For Blue Button claims data request tests'
       test from: :initial_wait_test
       test from: :initial_scratch_storing
       test from: :patient_claims_data_request_test
+      test from: :coverage_claims_data_request_test
+      test from: :organization_claims_data_request_test
+      test from: :practitioner_claims_data_request_test
+      test from: :relatedperson_claims_data_request_test
+      test from: :eob_inpatient_claims_data_request_test
+      test from: :eob_outpatient_claims_data_request_test
+      test from: :eob_oral_claims_data_request_test
+      test from: :eob_pharmacy_claims_data_request_test
+      test from: :eob_professional_claims_data_request_test
       test from: :client_claims_data_attestation
     end
   end

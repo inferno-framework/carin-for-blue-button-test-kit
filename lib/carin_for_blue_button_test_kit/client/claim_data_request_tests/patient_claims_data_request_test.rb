@@ -9,7 +9,7 @@ module CarinForBlueButtonTestKit
     id :patient_claims_data_request_test
     title 'Patient resources related to the patient matched are gathered'
     description %(
-      This test will look through all returned Patient resources for a specific expected resource related to the matched patient.
+      This test will look through all returned Patient resources for a specific expected Carin Patient resource.
     )
     input :access_token
 
