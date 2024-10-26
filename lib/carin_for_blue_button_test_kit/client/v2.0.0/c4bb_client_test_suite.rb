@@ -1,7 +1,8 @@
 require 'inferno/dsl/oauth_credentials'
-require_relative 'ext/inferno_core/record_response_route'
-require_relative 'ext/inferno_core/runnable'
-require_relative 'ext/inferno_core/request'
+require_relative 'endpoints/submit_claims_endpoint'
+require_relative 'endpoints/token_endpoint'
+require_relative 'endpoints/next_page_endpoint'
+
 require_relative 'urls'
 require_relative 'mock_server'
 require_relative 'tags'
@@ -24,12 +25,12 @@ require_relative 'claim_data_request_tests/eob_professional_claims_data_request_
 require_relative 'claim_data_request_tests/client_claims_data_attestation_test'
 
 module CarinForBlueButtonTestKit
-  class CarinForBlueButtonClientSuite < Inferno::TestSuite
+  class C4BBV200ClientSuite < Inferno::TestSuite
     extend MockServer
     extend ClientValidationTest
 
-    id :c4bb_client
-    title 'Carin For Blue Button Client Test Suite'
+    id :c4bb_v200_client
+    title 'Carin For Blue Button® v2.0.0 Client Test Suite'
     description %(
       The CARIN for Blue Button test suite validates system conformance to the HL7® FHIR®
       [CARIN for Blue Button® Implementation Guide](http://hl7.org/fhir/us/carin-bb/STU2).
@@ -70,35 +71,24 @@ module CarinForBlueButtonTestKit
       end
     end
 
-    record_response_route :post, TOKEN_PATH, AUTH_TAG, method(:token_response) do |request|
-      CarinForBlueButtonClientSuite.extract_client_id(request)
-    end
+    suite_endpoint :post, TOKEN_PATH, TokenEndpoint
 
-    record_response_route :get, PATIENT_PATH, SUBMIT_TAG, method(:carin_resource_response), # Patient needs a specific definition
-                          resumes: method(:test_resumes?) do |request|
-      CarinForBlueButtonClientSuite.extract_bearer_token(request)
-    end
+    suite_endpoint :get, PATIENT_PATH, SubmitClaimsEndpoint
 
-    record_response_route :get, SUBMIT_PATH, SUBMIT_TAG, method(:carin_resource_response),
-                          resumes: method(:test_resumes?) do |request|
-      CarinForBlueButtonClientSuite.extract_bearer_token(request)
-    end
+    suite_endpoint :get, SUBMIT_PATH, SubmitClaimsEndpoint
 
-    record_response_route :get, BASE_FHIR_PATH, SUBMIT_TAG, method(:read_next_page),
-                          resumes: method(:test_resumes?) do |request|
-      CarinForBlueButtonClientSuite.extract_bearer_token(request)
-    end
+    suite_endpoint :get, BASE_FHIR_PATH, NextPageEndpoint
 
     resume_test_route :get, RESUME_PASS_PATH do |request|
-      CarinForBlueButtonClientSuite.extract_token_from_query_params(request)
+      C4BBV200ClientSuite.extract_token_from_query_params(request)
     end
 
     resume_test_route :get, RESUME_CLAIMS_DATA_PATH do |request|
-      CarinForBlueButtonClientSuite.extract_token_from_query_params(request)
+      C4BBV200ClientSuite.extract_token_from_query_params(request)
     end
 
     resume_test_route :get, RESUME_FAIL_PATH, result: 'fail' do |request|
-      CarinForBlueButtonClientSuite.extract_token_from_query_params(request)
+      C4BBV200ClientSuite.extract_token_from_query_params(request)
     end
 
     route(:get, METADATA_PATH, get_metadata)
