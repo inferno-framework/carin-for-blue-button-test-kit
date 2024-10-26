@@ -6,7 +6,6 @@ module CarinForBlueButtonTestKit
                          Patient: ['998'],
                          Practitioner: ['c4bb-Practitioner'],
                          RelatedPerson: ['c4bb-RelatedPerson'] }.freeze
-  # TODO: What about Provenance?
 
   SEARCHES_BY_PRIORITY = { Coverage: [['_id'], ['_lastUpdated']],
                            ExplanationOfBenefit: [['_id'], ['patient'], ['identifier'], ['_lastUpdated'],
