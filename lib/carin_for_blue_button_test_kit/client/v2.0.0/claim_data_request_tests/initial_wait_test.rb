@@ -21,7 +21,7 @@ module CarinForBlueButtonTestKit
           to reach and `:search_params` replaced with the search parameters for the request.
 
           The following Carin resources can be accessed on the Inferno Reference Server with the following IDs:
-            * Patient: `998`
+            * Patient: `888`
             * Coverage: `c4bb-Coverage`
             * Organization: `c4bb-Organization`
             * Practitioner: `c4bb-Practitioner`

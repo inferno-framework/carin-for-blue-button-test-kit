@@ -9,6 +9,7 @@ module CarinForBlueButtonTestKit
   #
   # Note that there are numerous expected validation issues that can safely be ignored.
   # See here for full list: https://hl7.org/fhir/us/carin-bb/STU2/qa.html#suppressed
+
   module MockServer
     include URLs
 
@@ -20,6 +21,7 @@ module CarinForBlueButtonTestKit
                    'Host' => ENV.fetch('HOST_HEADER') }
       ) do |proxy|
         proxy.use FaradayMiddleware::Gzip
+        proxy.options.params_encoder = Faraday::FlatParamsEncoder
       end
     end
 
@@ -30,7 +32,7 @@ module CarinForBlueButtonTestKit
     end
 
     def error_response_resource(request)
-      server_response = server_proxy.get('Patient', { _id: 998 })
+      server_response = server_proxy.get('Patient', { _id: 888 })
       response_resource = FHIR.from_contents(server_response.body)
       response_resource.entry = [{ fullUrl: 'urn:uuid:2866af9c-137d-4458-a8a9-eeeec0ce5583',
                                    resource: mock_operation_outcome_resource, search: { mode: 'outcome' } }]
@@ -39,12 +41,21 @@ module CarinForBlueButtonTestKit
       response_resource
     end
 
+    def get_params(query_string)
+      params = {}
+      query_string.split('&').each do |param|
+        split_param = param.split('=')
+        params[split_param.first] = [] if params[split_param.first].nil?
+        params[split_param.first].append(split_param.last)
+      end
+      params
+    end
+
     def carin_resource_response(request, test = nil, test_result = nil)
       endpoint = resource_endpoint(request.url)
       if endpoint
-        require 'pry'
-        require 'pry-byebug'
-        params = match_request_to_expectation(endpoint, JSON.parse(request.params.to_json))
+        request_parameters = get_params(request.query_string)
+        params = match_request_to_expectation(endpoint, request_parameters)
         if params
           server_response = server_proxy.get(endpoint, params)
           response.status = server_response.status
@@ -54,6 +65,20 @@ module CarinForBlueButtonTestKit
         else
           response_resource = error_response_resource(request)
         end
+      else
+        response_resource = error_response_resource(request)
+      end
+      response.body = response_resource.to_json
+    end
+
+    def carin_resource_id_response(request)
+      endpoint = resource_id_endpoint(request.url)
+      if endpoint
+        server_response = server_proxy.get(endpoint)
+        response.status = server_response.status
+        response_resource = FHIR.from_contents(server_response.body)
+        response.headers.merge!(server_response.headers)
+        remove_transfer_encoding_and_content_length_header(response.headers)
       else
         response_resource = error_response_resource(request)
       end
@@ -70,7 +95,7 @@ module CarinForBlueButtonTestKit
     def get_metadata
       proc {
         [200, { 'Content-Type' => 'application/fhir+json;charset=utf-8' },
-         [File.read('lib/carin_for_blue_button_test_kit/metadata/mock_capability_statement.json')]]
+         [File.read('lib/carin_for_blue_button_test_kit/client/v2.0.0/metadata/mock_capability_statement.json')]]
       }
     end
 
@@ -118,8 +143,17 @@ module CarinForBlueButtonTestKit
       match[1] if match.present?
     end
 
+    def resource_id_endpoint(url)
+      return unless url.start_with?('http://', 'https://')
+
+      match = %r{custom/c4bb_v200_client/fhir/(.*)}.match(url)
+      match[1] if match.present?
+    end
+
     def mock_operation_outcome_resource
-      FHIR.from_contents(File.read('lib/carin_for_blue_button_test_kit/client/v2.0.0/metadata/mock_operation_outcome_resource.json'))
+      FHIR.from_contents(File.read(
+                           'lib/carin_for_blue_button_test_kit/client/v2.0.0/metadata/mock_operation_outcome_resource.json'
+                         ))
     end
 
     def replace_bundle_urls(bundle)
