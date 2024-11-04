@@ -16,7 +16,7 @@ module CarinForBlueButtonTestKit
     run do
       skip_if scratch[:Patient].nil?, 'No requests made for Patient resources'
 
-      assert scratch[:Patient].any? { |resource| resource.id == '998' }, 'Unable to find expected resource: 998'
+      assert scratch[:Patient].any? { |resource| resource.id == '888' }, 'Unable to find expected resource: 888'
     end
   end
 end
