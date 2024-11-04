@@ -3,14 +3,14 @@ module CarinForBlueButtonTestKit
                          ExplanationOfBenefit: ['c4bb-EOBInpatient', 'c4bb-EOBOral', 'c4bb-EOBOutpatient',
                                                 'c4bb-EOBPharmacy', 'c4bb-EOBProfessional'],
                          Organization: ['c4bb-Organization'],
-                         Patient: ['998'],
+                         Patient: ['888'],
                          Practitioner: ['c4bb-Practitioner'],
                          RelatedPerson: ['c4bb-RelatedPerson'] }.freeze
 
   SEARCHES_BY_PRIORITY = { Coverage: [['_id'], ['_lastUpdated']],
                            ExplanationOfBenefit: [['_id'], ['patient'], ['identifier'], ['_lastUpdated'],
                                                   ['service-date'], ['service-start-date'], ['billable-period-start'],
-                                                  ['type']],
+                                                  ['type'], ['_include']],
                            Organization: [['_id'], ['_lastUpdated']],
                            Patient: [['_id'], ['_lastUpdated']],
                            Practitioner: [['_id'], ['_lastUpdated']],

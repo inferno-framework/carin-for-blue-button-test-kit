@@ -2,6 +2,7 @@ require 'inferno/dsl/oauth_credentials'
 require_relative 'endpoints/submit_claims_endpoint'
 require_relative 'endpoints/token_endpoint'
 require_relative 'endpoints/next_page_endpoint'
+require_relative 'endpoints/resource_id_endpoint'
 
 require_relative 'urls'
 require_relative 'mock_server'
@@ -76,6 +77,8 @@ module CarinForBlueButtonTestKit
     suite_endpoint :get, PATIENT_PATH, SubmitClaimsEndpoint
 
     suite_endpoint :get, SUBMIT_PATH, SubmitClaimsEndpoint
+
+    suite_endpoint :get, RESOURCE_ID_PATH, ResourceIDEndpoint
 
     suite_endpoint :get, BASE_FHIR_PATH, NextPageEndpoint
 

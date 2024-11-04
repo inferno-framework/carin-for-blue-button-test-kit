@@ -1,0 +1,12 @@
+{
+  "title": "Carin CPCDS Reference Implementation Client",
+  "id": "carin_cpcds_client_ri_preset",
+  "test_suite_id": "c4bb_v200_client",
+  "inputs": [
+    {
+      "name": "access_token",
+      "type": "text",
+      "value": "SAMPLE_TOKEN"
+    }
+  ]
+}
