@@ -3,7 +3,6 @@ PATH
   specs:
     carin_for_blue_button_test_kit (0.12.0)
       inferno_core (~> 0.5.0)
-      roo (~> 2.7.1)
       smart_app_launch_test_kit (~> 0.4)
 
 GEM
@@ -318,6 +317,7 @@ DEPENDENCIES
   debug
   factory_bot (~> 6.1)
   foreman
+  roo (~> 2.7.1)
   rspec (~> 3.10)
   webmock (~> 3.11)
 
