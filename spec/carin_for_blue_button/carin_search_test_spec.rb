@@ -46,6 +46,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     end
 
     before do
+      service_date_search_test.id(SecureRandom.uuid)
       Inferno::Repositories::Tests.new.insert(service_date_search_test)
       setup_mock_test(service_date_search_test, eob)
     end
@@ -86,6 +87,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     end
 
     before do
+      service_start_date_search_test.id(SecureRandom.uuid)
       Inferno::Repositories::Tests.new.insert(service_start_date_search_test)
       setup_mock_test(service_start_date_search_test, eob)
     end
@@ -124,6 +126,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     end
 
     before do
+      billable_period_start_search_test.id(SecureRandom.uuid)
       Inferno::Repositories::Tests.new.insert(billable_period_start_search_test)
       setup_mock_test(billable_period_start_search_test, eob)
     end
@@ -162,6 +165,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     end
 
     before do
+      type_search_test.id(SecureRandom.uuid)
       Inferno::Repositories::Tests.new.insert(type_search_test)
       setup_mock_test(type_search_test, eob)
     end
@@ -207,6 +211,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     end
 
     before do
+      id_search_test.id(SecureRandom.uuid)
       Inferno::Repositories::Tests.new.insert(id_search_test)
       setup_mock_test(id_search_test, patient)
     end
@@ -287,6 +292,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     end
 
     before do
+      coverage_last_updated_search_test.id(SecureRandom.uuid)
       Inferno::Repositories::Tests.new.insert(coverage_last_updated_search_test)
       setup_mock_test(coverage_last_updated_search_test, coverage)
     end
@@ -339,6 +345,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     end
 
     before do
+      eob_last_updated_search_test.id(SecureRandom.uuid)
       Inferno::Repositories::Tests.new.insert(eob_last_updated_search_test)
       setup_mock_test(eob_last_updated_search_test, eob)
     end
@@ -390,6 +397,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     end
 
     before do
+      explanation_of_benefit_include_test_patient.id(SecureRandom.uuid)
       Inferno::Repositories::Tests.new.insert(explanation_of_benefit_include_test_patient)
       setup_mock_test(explanation_of_benefit_include_test_patient, explanation_of_benefit)
     end
@@ -469,6 +477,7 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
     end
 
     before do
+      explanation_of_benefit_include_test_all.id(SecureRandom.uuid)
       Inferno::Repositories::Tests.new.insert(explanation_of_benefit_include_test_all)
       setup_mock_test(explanation_of_benefit_include_test_all, explanation_of_benefit)
     end
