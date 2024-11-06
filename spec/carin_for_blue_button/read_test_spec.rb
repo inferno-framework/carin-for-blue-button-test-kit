@@ -52,6 +52,7 @@ RSpec.describe CarinForBlueButtonTestKit::ReadTest do
     end
 
     before do
+      patient_read_test.id(SecureRandom.uuid)
       Inferno::Repositories::Tests.new.insert(patient_read_test)
       patient2.id = 'Patient2'
       patientarr = [patient, patient2]
@@ -119,7 +120,7 @@ RSpec.describe CarinForBlueButtonTestKit::ReadTest do
       expect(request).to have_been_made.once
     end
   end
-  
+
   describe 'multiple patient read test' do
     let(:multiple_patient_read_test) do
       Class.new(CarinForBlueButtonTestKit::CARIN4BBV200::PatientReadTest) do
@@ -134,6 +135,7 @@ RSpec.describe CarinForBlueButtonTestKit::ReadTest do
     end
 
     before do
+      multiple_patient_read_test.id(SecureRandom.uuid)
       Inferno::Repositories::Tests.new.insert(multiple_patient_read_test)
       patient2.id = 'Patient2'
       patientarr = [patient, patient2]
