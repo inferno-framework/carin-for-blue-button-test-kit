@@ -10,8 +10,9 @@ require_relative 'tags'
 require_relative 'collection'
 require_relative 'client_validation_test'
 
+require_relative 'initial_wait_test'
+
 require_relative 'claim_data_request_tests/initial_scratch_storing'
-require_relative 'claim_data_request_tests/initial_wait_test'
 require_relative 'claim_data_request_tests/patient_claims_data_request_test'
 require_relative 'claim_data_request_tests/coverage_claims_data_request_test'
 require_relative 'claim_data_request_tests/organization_claims_data_request_test'
@@ -22,6 +23,8 @@ require_relative 'claim_data_request_tests/eob_outpatient_claims_data_request_te
 require_relative 'claim_data_request_tests/eob_oral_claims_data_request_test'
 require_relative 'claim_data_request_tests/eob_pharmacy_claims_data_request_test'
 require_relative 'claim_data_request_tests/eob_professional_claims_data_request_test'
+
+require_relative 'required_searches_tests/patient_search_birthdate'
 
 require_relative 'claim_data_request_tests/client_claims_data_attestation_test'
 
@@ -98,8 +101,13 @@ module CarinForBlueButtonTestKit
 
     group do
       run_as_group
-      title 'Carin For Blue Button claims data request tests'
+      title 'Carin For Blue Button Request Wait Test'
       test from: :initial_wait_test
+    end
+
+    group do
+      run_as_group
+      title 'Carin For Blue Button claims data request tests'
       test from: :initial_scratch_storing
       test from: :patient_claims_data_request_test
       test from: :coverage_claims_data_request_test
@@ -112,6 +120,12 @@ module CarinForBlueButtonTestKit
       test from: :eob_pharmacy_claims_data_request_test
       test from: :eob_professional_claims_data_request_test
       test from: :client_claims_data_attestation
+    end
+
+    group do
+      run_as_group
+      title 'Carin For Blue Button required search tests'
+      test from: :patient_search_birthdate
     end
   end
 end
