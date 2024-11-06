@@ -7,4 +7,5 @@ gemspec
 group :development, :test do
   gem 'debug'
   gem 'foreman'
+  gem 'roo', '~> 2.7.1'
 end
