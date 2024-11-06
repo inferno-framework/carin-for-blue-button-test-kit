@@ -108,9 +108,9 @@ module CarinForBlueButtonTestKit
     end
 
     def match_request_to_expectation(endpoint, params)
-      matched_search = SEARCHES_BY_PRIORITY[endpoint.to_sym].find do |expectation|
+      matched_search = SEARCHES_BY_PRIORITY[endpoint.to_sym].select do |expectation|
         (params.keys.map(&:to_s) & expectation).sort == expectation
-      end
+      end.map(&:first)
 
       if matched_search
         return params.select do |key, value|
