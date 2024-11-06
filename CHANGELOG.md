@@ -1,3 +1,8 @@
+# 0.12.0
+
+* FI-3086: Add the Ability to Map Requirements to Test into the CARIN Test Kit by @emichaud998 in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/46
+* FI-3410: Update inferno core requirement by @Jammjammjamm in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/49
+
 # 0.11.2
 
 * Dependency Updates 2024-07-03 by @Jammjammjamm in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/42
