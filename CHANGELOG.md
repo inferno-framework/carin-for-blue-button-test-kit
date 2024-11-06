@@ -1,3 +1,7 @@
+# 0.12.1
+
+* move roo to a development dependency in the gemfile by @karlnaden in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/51
+
 # 0.12.0
 
 * FI-3086: Add the Ability to Map Requirements to Test into the CARIN Test Kit by @emichaud998 in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/46
