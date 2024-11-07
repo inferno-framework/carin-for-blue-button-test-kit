@@ -15,8 +15,20 @@ module CarinForBlueButtonTestKit
 
     def tags
       params = get_params(request.query_string)
-      param_string = params.keys.map(&:to_s).join('_')
-      [SUBMIT_TAG, param_string]
+      params.keys.each do |key|
+        next unless key == '_include'
+
+        params[key].each do |value|
+          params["#{key}=#{value}"] = value
+        end
+        params.delete(key)
+      end
+
+      tags = [SUBMIT_TAG]
+      params.each_key do |param|
+        tags.append(param)
+      end
+      tags
     end
 
     def update_result

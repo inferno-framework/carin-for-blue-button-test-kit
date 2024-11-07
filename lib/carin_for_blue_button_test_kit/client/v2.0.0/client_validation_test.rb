@@ -13,6 +13,13 @@ module CarinForBlueButtonTestKit
       end
     end
 
+    def resource_type_endpoint(url)
+      return unless url.start_with?('http://', 'https://')
+
+      match = %r{custom/c4bb_v200_client/fhir/(.*)\?}.match(url)
+      match[1] if match.present?
+    end
+
     def connect_bundle(export_binary)
       export_binary.split(/(?<=}\n)(?={)/).map { |str| FHIR.from_contents(str) }
     end

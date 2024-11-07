@@ -1,4 +1,4 @@
-require_relative 'urls'
+require_relative '../urls'
 module CarinForBlueButtonTestKit
   class C4BBClientSubmitMustSupportTest < Inferno::Test
     include URLs
