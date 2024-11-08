@@ -51,7 +51,7 @@ module CarinForBlueButtonTestKit
     end
 
     run do
-      search_params = scratch[:ExplanationOfBenefitSearch]
+      search_params = resource_previous_search_params(:ExplanationOfBenefitSearch)
       skip_if search_params.nil?, 'No search requests made for Explanation of Benefit resource'
       missing_params = []
       required_searches.each do |search_param|

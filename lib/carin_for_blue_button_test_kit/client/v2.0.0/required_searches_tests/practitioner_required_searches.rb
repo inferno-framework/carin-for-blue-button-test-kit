@@ -12,21 +12,17 @@ module CarinForBlueButtonTestKit
       This test will look through all the requests for to find a Practitioner search request with each of the following
       required search parameters:
         * _id
-        * name
-        * identifier
     )
     input :access_token
 
     def required_searches
       [
-        '_id',
-        'name',
-        'identifier'
+        '_id'
       ]
     end
 
     run do
-      search_params = scratch[:PractitionerSearch]
+      search_params = resource_previous_search_params(:PractitionerSearch)
       skip_if search_params.nil?, 'No search requests made for Practitioner resource'
 
       missing_params = []

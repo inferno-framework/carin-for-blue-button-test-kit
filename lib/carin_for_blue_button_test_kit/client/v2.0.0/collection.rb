@@ -7,13 +7,12 @@ module CarinForBlueButtonTestKit
                          Practitioner: ['c4bb-Practitioner'],
                          RelatedPerson: ['c4bb-RelatedPerson'] }.freeze
 
-  SEARCHES_BY_PRIORITY = { Coverage: [['_id'], ['_lastUpdated'], ['patient']],
+  SEARCHES_BY_PRIORITY = { Coverage: [['_id'], ['_lastUpdated']],
                            ExplanationOfBenefit: [['_id'], ['patient'], ['identifier'], ['_lastUpdated'],
                                                   ['service-date'], ['service-start-date'], ['billable-period-start'],
                                                   ['type'], ['_include']],
-                           Organization: [['_id'], ['_lastUpdated'], ['name'], ['address']],
-                           Patient: [['_id'], ['_lastUpdated'], ['birthdate'], ['family'], ['gender'], ['given'],
-                                     ['identifier'], ['name']],
-                           Practitioner: [['_id'], ['_lastUpdated'], ['name'], ['identifier']],
-                           RelatedPerson: [['_id'], ['_lastUpdated'], ['patient']] }.freeze
+                           Organization: [['_id'], ['_lastUpdated']],
+                           Patient: [['_id'], ['_lastUpdated']],
+                           Practitioner: [['_id'], ['_lastUpdated']],
+                           RelatedPerson: [['_id'], ['_lastUpdated']] }.freeze
 end

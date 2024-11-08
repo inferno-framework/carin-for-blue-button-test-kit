@@ -24,7 +24,7 @@ module CarinForBlueButtonTestKit
         params.delete(key)
       end
 
-      tags = [SUBMIT_TAG]
+      tags = [RESOURCE_API_TAG]
       params.each_key do |param|
         tags.append(param)
       end

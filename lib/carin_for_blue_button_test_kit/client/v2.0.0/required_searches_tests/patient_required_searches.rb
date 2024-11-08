@@ -12,37 +12,17 @@ module CarinForBlueButtonTestKit
       This test will look through all the requests for to find a Patient search request with each of the following
       required search parameters:
         * _id
-        * birthdate
-        * family
-        * gender
-        * given
-        * identifier
-        * name
-        * birthdate+family
-        * family+gender
-        * birthdate+name
-        * gender+name
     )
     input :access_token
 
     def required_searches
       [
-        '_id',
-        'birthdate',
-        'family',
-        'gender',
-        'given',
-        'identifier',
-        'name',
-        'birthdate+family',
-        'family+gender',
-        'birthdate+name',
-        'gender+name'
+        '_id'
       ]
     end
 
     run do
-      search_params = scratch[:PatientSearch]
+      search_params = resource_previous_search_params(:PatientSearch)
       skip_if search_params.nil?, 'No search requests made for Patient resource'
 
       missing_params = []

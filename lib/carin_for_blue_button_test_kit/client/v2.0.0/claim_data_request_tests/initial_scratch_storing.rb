@@ -1,4 +1,5 @@
-require_relative 'client_validation_test'
+require_relative '../client_validation_test'
+require_relative '../tags'
 module CarinForBlueButtonTestKit
   class Carin4BBClientScratchStorage < Inferno::Test
     include CarinForBlueButtonTestKit::ClientValidationTest
@@ -22,15 +23,6 @@ module CarinForBlueButtonTestKit
 
     run do
       previous_claims_data_request_resources.each do |request, resources|
-        search_params = request.tags - ['carin_submit']
-        endpoint_resource = resource_type_endpoint(request.url)
-        scratch[:"#{endpoint_resource}Search"] ||= []
-        search_params.each do |search_param|
-          unless scratch[:"#{endpoint_resource}Search"].include?(search_param)
-            scratch[:"#{endpoint_resource}Search"].append(search_param)
-          end
-        end
-
         resources.each do |resource|
           if resource.resourceType == 'ExplanationOfBenefit'
             profile = extract_eob_profile(resource)

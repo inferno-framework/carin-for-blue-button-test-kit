@@ -22,7 +22,7 @@ module CarinForBlueButtonTestKit
     end
 
     run do
-      search_params = scratch[:RelatedPersonSearch]
+      search_params = resource_previous_search_params(:RelatedPersonSearch)
       skip_if search_params.nil?, 'No search requests made for RelatedPerson resource'
 
       missing_params = []

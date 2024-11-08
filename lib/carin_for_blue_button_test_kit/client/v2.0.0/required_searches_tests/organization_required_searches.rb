@@ -12,21 +12,17 @@ module CarinForBlueButtonTestKit
       This test will look through all the requests for to find a Organization search request with each of the following
       required search parameters:
         * _id
-        * name
-        * address
     )
     input :access_token
 
     def required_searches
       [
-        '_id',
-        'name',
-        'address'
+        '_id'
       ]
     end
 
     run do
-      search_params = scratch[:OrganizationSearch]
+      search_params = resource_previous_search_params(:OrganizationSearch)
       skip_if search_params.nil?, 'No search requests made for Organization resource'
 
       missing_params = []

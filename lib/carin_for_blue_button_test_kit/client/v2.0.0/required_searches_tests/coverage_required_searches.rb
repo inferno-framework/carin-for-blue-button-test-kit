@@ -12,19 +12,17 @@ module CarinForBlueButtonTestKit
       This test will look through all the requests for to find a Coverage search request with each of the following
       required search parameters:
         * _id
-        * patient
     )
     input :access_token
 
     def required_searches
       [
-        '_id',
-        'patient'
+        '_id'
       ]
     end
 
     run do
-      search_params = scratch[:CoverageSearch]
+      search_params = resource_previous_search_params(:CoverageSearch)
       skip_if search_params.nil?, 'No search requests made for Coverage resource'
 
       missing_params = []

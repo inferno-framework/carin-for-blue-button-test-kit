@@ -111,8 +111,8 @@ module CarinForBlueButtonTestKit
       headers.delete('Content-Length')
     end
 
-    def match_request_to_expectation(endpoint, params)
-      matched_search = SEARCHES_BY_PRIORITY[endpoint.to_sym].select do |expectation|
+    def match_request_to_expectation(resource_type, params)
+      matched_search = SEARCHES_BY_PRIORITY[resource_type.to_sym].select do |expectation|
         (params.keys.map(&:to_s) & expectation).sort == expectation
       end.map(&:first)
 

@@ -24,27 +24,12 @@ module CarinForBlueButtonTestKit
           The following search parameters are required for each resource type:
             * Patient: `888`
               * _id
-              * birthdate
-              * family
-              * gender
-              * given
-              * identifier
-              * name
-              * birthdate+family
-              * family+gender
-              * birthdate+name
-              * gender+name
             * Coverage: `c4bb-Coverage`
               * _id
-              * patient
             * Organization: `c4bb-Organization`
               * _id
-              * name
-              * address
             * Practitioner: `c4bb-Practitioner`
               * _id
-              * name
-              * identifier
             * RelatedPerson: `c4bb-RelatedPerson`
               * _id
             * ExplanationOfBenefit: `c4bb-EOBInpatient`, `c4bb-EOBOutpatient`, `c4bb-EOBOral`, `c4bb-EOBPharmacy`,

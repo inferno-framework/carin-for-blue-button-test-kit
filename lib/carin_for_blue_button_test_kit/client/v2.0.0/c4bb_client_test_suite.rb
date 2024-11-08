@@ -11,7 +11,7 @@ require_relative 'collection'
 require_relative 'client_validation_test'
 
 require_relative 'claim_data_request_tests/initial_wait_test'
-require_relative 'initial_scratch_storing'
+require_relative 'claim_data_request_tests/initial_scratch_storing'
 require_relative 'claim_data_request_tests/patient_claims_data_request_test'
 require_relative 'claim_data_request_tests/coverage_claims_data_request_test'
 require_relative 'claim_data_request_tests/organization_claims_data_request_test'
@@ -84,7 +84,7 @@ module CarinForBlueButtonTestKit
 
     suite_endpoint :get, PATIENT_PATH, SubmitClaimsEndpoint
 
-    suite_endpoint :get, SUBMIT_PATH, SubmitClaimsEndpoint
+    suite_endpoint :get, RESOURCE_API_PATH, SubmitClaimsEndpoint
 
     suite_endpoint :get, RESOURCE_ID_PATH, ResourceIDEndpoint
 
@@ -126,7 +126,6 @@ module CarinForBlueButtonTestKit
       run_as_group
       title 'Carin For Blue Button required search tests'
       test from: :initial_wait_test_required_searches
-      test from: :initial_scratch_storing
       test from: :patient_required_searches
       test from: :coverage_required_searches
       test from: :organization_required_searches
