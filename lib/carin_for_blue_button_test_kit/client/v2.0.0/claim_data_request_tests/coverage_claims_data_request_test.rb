@@ -14,9 +14,10 @@ module CarinForBlueButtonTestKit
     input :access_token
 
     run do
-      skip_if scratch[:Coverage].nil?, 'No requests made for Coverage resources'
+      resources = previous_resource_requests(:Coverage)
+      skip_if resources.nil?, 'No requests made for Coverage resources'
 
-      assert scratch[:Coverage].any? { |resource| resource.id == 'c4bb-Coverage' },
+      assert resources.any? { |resource| resource.id == 'c4bb-Coverage' },
              'Unable to find expected resource: c4bb-Coverage'
     end
   end

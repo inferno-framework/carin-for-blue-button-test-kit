@@ -13,7 +13,38 @@ module CarinForBlueButtonTestKit
       end
     end
 
-    def previous_claims_data_search_parameters
+    def extract_eob_profile(resource)
+      profile_url = resource.meta.profile.find do |profile|
+        profile.include?('StructureDefinition/C4BB-ExplanationOfBenefit')
+      end
+      match = %r{http://hl7.org/fhir/us/carin-bb/StructureDefinition/(.*)}.match(profile_url)
+      return unless match.present?
+
+      match[1].delete_prefix('C4BB-ExplanationOfBenefit-').split('|')[0].gsub('-', '_')
+    end
+
+    def previous_claims_data_request_resources_scratch
+      previous_claims_data_request_resources.each do |request, resources|
+        resources.each do |resource|
+          if resource.resourceType == 'ExplanationOfBenefit'
+            profile = extract_eob_profile(resource)
+            identifier = "#{resource.resourceType}_#{profile}"
+            scratch[identifier.to_sym] ||= []
+            scratch[identifier.to_sym] |= [resource]
+          end
+          scratch[resource.resourceType.to_sym] ||= []
+          scratch[resource.resourceType.to_sym] |= [resource]
+        end
+      end
+      scratch[:SavedResourceRequests] = true
+    end
+
+    def previous_resource_requests(resource_tag)
+      previous_claims_data_request_resources_scratch unless scratch[:SavedResourceRequests]
+      scratch[resource_tag]
+    end
+
+    def previous_claims_data_search_parameters_scratch
       previous_claims_data_request_resources.each_key do |request|
         search_params = request.tags - [RESOURCE_API_TAG]
         endpoint_resource = resource_type_endpoint(request.url)
@@ -28,7 +59,7 @@ module CarinForBlueButtonTestKit
     end
 
     def resource_previous_search_params(resource_tag)
-      previous_claims_data_search_parameters unless scratch[:SavedSearchParams]
+      previous_claims_data_search_parameters_scratch unless scratch[:SavedSearchParams]
       scratch[resource_tag]
     end
 

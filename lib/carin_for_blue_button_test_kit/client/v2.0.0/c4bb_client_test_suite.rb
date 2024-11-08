@@ -11,7 +11,6 @@ require_relative 'collection'
 require_relative 'client_validation_test'
 
 require_relative 'claim_data_request_tests/initial_wait_test'
-require_relative 'claim_data_request_tests/initial_scratch_storing'
 require_relative 'claim_data_request_tests/patient_claims_data_request_test'
 require_relative 'claim_data_request_tests/coverage_claims_data_request_test'
 require_relative 'claim_data_request_tests/organization_claims_data_request_test'
@@ -108,7 +107,6 @@ module CarinForBlueButtonTestKit
       run_as_group
       title 'Carin For Blue Button claims data request tests'
       test from: :initial_wait_test
-      test from: :initial_scratch_storing
       test from: :patient_claims_data_request_test
       test from: :coverage_claims_data_request_test
       test from: :organization_claims_data_request_test

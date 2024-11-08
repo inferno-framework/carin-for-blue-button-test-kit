@@ -15,9 +15,10 @@ module CarinForBlueButtonTestKit
     input :access_token
 
     run do
-      skip_if scratch[:Organization].nil?, 'No requests made for Organization resources'
+      resources = previous_resource_requests(:Organization)
+      skip_if resources.nil?, 'No requests made for Organization resources'
 
-      assert scratch[:Organization].any? { |resource|
+      assert resources.any? { |resource|
         resource.id == 'c4bb-Organization'
       }, 'Unable to find expected resource: c4bb-Organization'
     end
