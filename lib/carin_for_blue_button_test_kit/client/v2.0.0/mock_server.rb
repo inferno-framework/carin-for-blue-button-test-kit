@@ -59,7 +59,11 @@ module CarinForBlueButtonTestKit
         if params
           server_response = server_proxy.get(endpoint, params)
           response.status = server_response.status
-          response_resource = replace_bundle_urls(FHIR.from_contents(server_response.body))
+          response_resource = if response.status == 200
+                                replace_bundle_urls(FHIR.from_contents(server_response.body))
+                              else
+                                FHIR.from_contents(server_response.body)
+                              end
           response.headers.merge!(server_response.headers)
           remove_transfer_encoding_and_content_length_header(response.headers)
         else
