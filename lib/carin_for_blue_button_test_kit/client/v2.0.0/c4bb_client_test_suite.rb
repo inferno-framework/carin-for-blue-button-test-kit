@@ -1,5 +1,5 @@
 require 'inferno/dsl/oauth_credentials'
-require_relative 'endpoints/submit_claims_endpoint'
+require_relative 'endpoints/resource_api_endpoint'
 require_relative 'endpoints/token_endpoint'
 require_relative 'endpoints/next_page_endpoint'
 require_relative 'endpoints/resource_id_endpoint'
@@ -81,9 +81,9 @@ module CarinForBlueButtonTestKit
 
     suite_endpoint :post, TOKEN_PATH, TokenEndpoint
 
-    suite_endpoint :get, PATIENT_PATH, SubmitClaimsEndpoint
+    suite_endpoint :get, PATIENT_PATH, ResourceAPIEndpoint
 
-    suite_endpoint :get, RESOURCE_API_PATH, SubmitClaimsEndpoint
+    suite_endpoint :get, RESOURCE_API_PATH, ResourceAPIEndpoint
 
     suite_endpoint :get, RESOURCE_ID_PATH, ResourceIDEndpoint
 
@@ -106,6 +106,7 @@ module CarinForBlueButtonTestKit
     group do
       run_as_group
       title 'Carin For Blue Button claims data request tests'
+
       test from: :initial_wait_test
       test from: :patient_claims_data_request_test
       test from: :coverage_claims_data_request_test
@@ -123,6 +124,7 @@ module CarinForBlueButtonTestKit
     group do
       run_as_group
       title 'Carin For Blue Button required search tests'
+
       test from: :initial_wait_test_required_searches
       test from: :patient_required_searches
       test from: :coverage_required_searches

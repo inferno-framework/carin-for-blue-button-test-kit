@@ -1,8 +1,8 @@
 module CarinForBlueButtonTestKit
   module ClientValidationTest
-    def previous_claims_data_request_resources
+    def previous_claims_data_request_resources(resource_type_tag = nil)
       hash = Hash.new { |hash, key| hash[key] = [] }
-      previous_claims_data_requests.each_with_object(hash) do |request, request_resource_hash|
+      previous_claims_data_requests(resource_type_tag).each_with_object(hash) do |request, request_resource_hash|
         request_resources =
           if request.status == 200
             request.resource.entry.map(&:resource)
@@ -23,9 +23,11 @@ module CarinForBlueButtonTestKit
       match[1].delete_prefix('C4BB-ExplanationOfBenefit-').split('|')[0].gsub('-', '_')
     end
 
-    def previous_claims_data_request_resources_scratch
-      previous_claims_data_request_resources.each do |request, resources|
+    def previous_claims_data_request_resources_scratch(resource_type_tag)
+      previous_claims_data_request_resources(resource_type_tag).each do |request, resources|
         resources.each do |resource|
+          next unless resource_type_tag.to_s.include?(resource.resourceType)
+
           if resource.resourceType == 'ExplanationOfBenefit'
             profile = extract_eob_profile(resource)
             identifier = "#{resource.resourceType}_#{profile}"
@@ -36,12 +38,11 @@ module CarinForBlueButtonTestKit
           scratch[resource.resourceType.to_sym] |= [resource]
         end
       end
-      scratch[:SavedResourceRequests] = true
     end
 
-    def previous_resource_requests(resource_tag)
-      previous_claims_data_request_resources_scratch unless scratch[:SavedResourceRequests]
-      scratch[resource_tag]
+    def previous_resource_requests(resource_type_tag)
+      previous_claims_data_request_resources_scratch(resource_type_tag)
+      scratch[resource_type_tag]
     end
 
     def previous_claims_data_search_parameters_scratch
@@ -74,8 +75,12 @@ module CarinForBlueButtonTestKit
       export_binary.split(/(?<=}\n)(?={)/).map { |str| FHIR.from_contents(str) }
     end
 
-    def previous_claims_data_requests
-      @previous_claims_data_requests ||= load_tagged_requests(RESOURCE_API_TAG)
+    def previous_claims_data_requests(resource_type_tag = nil)
+      if resource_type_tag.present?
+        load_tagged_requests(RESOURCE_API_TAG, resource_type_tag.to_s)
+      else
+        load_tagged_requests(RESOURCE_API_TAG)
+      end
     end
 
     def flattened_all_resources

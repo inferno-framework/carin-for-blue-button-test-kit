@@ -2,7 +2,7 @@ require_relative '../urls'
 require_relative '../client_validation_test'
 
 module CarinForBlueButtonTestKit
-  class C4BBClientEOBequiredSearches < Inferno::Test
+  class C4BBClientEOBRequiredSearches < Inferno::Test
     include URLs
     include CarinForBlueButtonTestKit::ClientValidationTest
 

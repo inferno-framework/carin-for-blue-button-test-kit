@@ -56,7 +56,7 @@ module CarinForBlueButtonTestKit
       if endpoint
         request_parameters = get_params(request.query_string)
         params = match_request_to_expectation(endpoint, request_parameters)
-        if params
+        if params.present?
           server_response = server_proxy.get(endpoint, params)
           response.status = server_response.status
           response_resource = if response.status == 200
@@ -116,7 +116,7 @@ module CarinForBlueButtonTestKit
         (params.keys.map(&:to_s) & expectation).sort == expectation
       end.map(&:first)
 
-      if matched_search
+      if matched_search.present?
         return params.select do |key, value|
           matched_search.include?(key.to_s) || key == '_revInclude' || key == '_include'
         end
