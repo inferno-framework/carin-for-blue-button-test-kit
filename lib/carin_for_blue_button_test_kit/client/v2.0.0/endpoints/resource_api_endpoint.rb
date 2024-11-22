@@ -15,9 +15,9 @@ module CarinForBlueButtonTestKit
       response
     end
 
-    def add_resource_tags(tags, response_body)
-      if response_body.resourceType == 'Bundle'
-        response_body.entry.each do |entry_resource|
+    def add_resource_tags(tags, response_body_resource)
+      if response_body_resource.resourceType == 'Bundle'
+        response_body_resource.entry.each do |entry_resource|
           resource = entry_resource.resource
           resource_type_tag = resource.resourceType
           if resource.resourceType == 'ExplanationOfBenefit'
@@ -27,6 +27,7 @@ module CarinForBlueButtonTestKit
           tags.append(resource_type_tag) unless tags.include?(resource_type_tag)
         end
       else
+        resource = response_body_resource
         resource_type_tag = resource.resourceType
         if resource.resourceType == 'ExplanationOfBenefit'
           profile = extract_eob_profile(resource)
@@ -57,7 +58,7 @@ module CarinForBlueButtonTestKit
 
       tags = [RESOURCE_API_TAG]
 
-      add_resource_tags(tags, response_body)
+      add_resource_tags(tags, response_body) if response_body.present?
       add_search_param_tags(tags, params)
 
       tags
