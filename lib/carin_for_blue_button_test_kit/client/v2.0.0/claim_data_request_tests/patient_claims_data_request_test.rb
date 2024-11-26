@@ -14,9 +14,10 @@ module CarinForBlueButtonTestKit
     input :access_token
 
     run do
-      skip_if scratch[:Patient].nil?, 'No requests made for Patient resources'
+      resources = previous_resource_requests(:Patient)
+      skip_if resources.nil?, 'No requests made for Patient resources'
 
-      assert scratch[:Patient].any? { |resource| resource.id == '888' }, 'Unable to find expected resource: 888'
+      assert resources.any? { |resource| resource.id == '888' }, 'Unable to find expected resource: 888'
     end
   end
 end

@@ -1,5 +1,5 @@
 require 'inferno/dsl/oauth_credentials'
-require_relative 'endpoints/submit_claims_endpoint'
+require_relative 'endpoints/resource_api_endpoint'
 require_relative 'endpoints/token_endpoint'
 require_relative 'endpoints/next_page_endpoint'
 require_relative 'endpoints/resource_id_endpoint'
@@ -10,8 +10,8 @@ require_relative 'tags'
 require_relative 'collection'
 require_relative 'client_validation_test'
 
-require_relative 'claim_data_request_tests/initial_scratch_storing'
-require_relative 'claim_data_request_tests/initial_wait_test'
+require_relative 'initial_wait_test'
+
 require_relative 'claim_data_request_tests/patient_claims_data_request_test'
 require_relative 'claim_data_request_tests/coverage_claims_data_request_test'
 require_relative 'claim_data_request_tests/organization_claims_data_request_test'
@@ -22,6 +22,13 @@ require_relative 'claim_data_request_tests/eob_outpatient_claims_data_request_te
 require_relative 'claim_data_request_tests/eob_oral_claims_data_request_test'
 require_relative 'claim_data_request_tests/eob_pharmacy_claims_data_request_test'
 require_relative 'claim_data_request_tests/eob_professional_claims_data_request_test'
+
+require_relative 'required_searches_tests/patient_required_searches'
+require_relative 'required_searches_tests/coverage_required_searches'
+require_relative 'required_searches_tests/organization_required_searches'
+require_relative 'required_searches_tests/practitioner_required_searches'
+require_relative 'required_searches_tests/relatedperson_required_searches'
+require_relative 'required_searches_tests/eob_required_searches'
 
 require_relative 'claim_data_request_tests/client_claims_data_attestation_test'
 
@@ -74,9 +81,9 @@ module CarinForBlueButtonTestKit
 
     suite_endpoint :post, TOKEN_PATH, TokenEndpoint
 
-    suite_endpoint :get, PATIENT_PATH, SubmitClaimsEndpoint
+    suite_endpoint :get, PATIENT_PATH, ResourceAPIEndpoint
 
-    suite_endpoint :get, SUBMIT_PATH, SubmitClaimsEndpoint
+    suite_endpoint :get, RESOURCE_API_PATH, ResourceAPIEndpoint
 
     suite_endpoint :get, RESOURCE_ID_PATH, ResourceIDEndpoint
 
@@ -98,19 +105,53 @@ module CarinForBlueButtonTestKit
 
     group do
       run_as_group
-      title 'Carin For Blue Button claims data request tests'
+      title 'Wait for Claims Data and Search Requests'
       test from: :initial_wait_test
-      test from: :initial_scratch_storing
+    end
+
+    group do
+      title 'C4BB Patient Profile claims data and search request tests'
       test from: :patient_claims_data_request_test
+      test from: :patient_required_searches
+    end
+
+    group do
+      title 'C4BB Coverage Profile claims data and search request tests'
       test from: :coverage_claims_data_request_test
+      test from: :coverage_required_searches
+    end
+
+    group do
+      title 'C4BB Organization Profile claims data and search request tests'
       test from: :organization_claims_data_request_test
+      test from: :organization_required_searches
+    end
+
+    group do
+      title 'C4BB Practitioner Profile claims data and search request tests'
       test from: :practitioner_claims_data_request_test
+      test from: :practitioner_required_searches
+    end
+
+    group do
+      title 'C4BB RelatedPerson Profile claims data and search request tests'
       test from: :relatedperson_claims_data_request_test
+      test from: :relatedperson_required_searches
+    end
+
+    group do
+      title 'C4BB ExplanationOfBenefit Profiles claims data and search request tests'
       test from: :eob_inpatient_claims_data_request_test
       test from: :eob_outpatient_claims_data_request_test
       test from: :eob_oral_claims_data_request_test
       test from: :eob_pharmacy_claims_data_request_test
       test from: :eob_professional_claims_data_request_test
+      test from: :eob_required_searches
+    end
+
+    group do
+      run_as_group
+      title 'Carin For Blue Button Client Attestation'
       test from: :client_claims_data_attestation
     end
   end

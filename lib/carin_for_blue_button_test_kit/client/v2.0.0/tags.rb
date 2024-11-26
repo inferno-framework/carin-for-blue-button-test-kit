@@ -2,6 +2,6 @@
 
 module CarinForBlueButtonTestKit
   AUTH_TAG = 'carin_auth'
-  SUBMIT_TAG = 'carin_submit'
+  RESOURCE_API_TAG = 'carin_resource_api'
   RESOURCE_ID_TAG = 'carin_resource_id'
 end

@@ -1,7 +1,7 @@
 module CarinForBlueButtonTestKit
   TOKEN_PATH = '/mock_auth/token'
   PATIENT_PATH = '/fhir/Patient'
-  SUBMIT_PATH = '/fhir/:endpoint'
+  RESOURCE_API_PATH = '/fhir/:endpoint'
   RESOURCE_ID_PATH = '/fhir/:endpoint/:id'
   METADATA_PATH = '/fhir/metadata'
   BASE_FHIR_PATH = '/fhir'
@@ -27,7 +27,7 @@ module CarinForBlueButtonTestKit
     end
 
     def submit_url
-      @submit_url ||= base_url + SUBMIT_PATH
+      @submit_url ||= base_url + RESOURCE_API_PATH
     end
 
     def resource_id_url

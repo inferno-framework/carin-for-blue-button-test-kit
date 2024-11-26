@@ -14,7 +14,7 @@ module CarinForBlueButtonTestKit
     end
 
     def tags
-      [SUBMIT_TAG]
+      [RESOURCE_API_TAG]
     end
 
     def update_result

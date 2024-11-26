@@ -56,10 +56,14 @@ module CarinForBlueButtonTestKit
       if endpoint
         request_parameters = get_params(request.query_string)
         params = match_request_to_expectation(endpoint, request_parameters)
-        if params
+        if params.present?
           server_response = server_proxy.get(endpoint, params)
           response.status = server_response.status
-          response_resource = replace_bundle_urls(FHIR.from_contents(server_response.body))
+          response_resource = if response.status == 200
+                                replace_bundle_urls(FHIR.from_contents(server_response.body))
+                              else
+                                FHIR.from_contents(server_response.body)
+                              end
           response.headers.merge!(server_response.headers)
           remove_transfer_encoding_and_content_length_header(response.headers)
         else
@@ -107,12 +111,12 @@ module CarinForBlueButtonTestKit
       headers.delete('Content-Length')
     end
 
-    def match_request_to_expectation(endpoint, params)
-      matched_search = SEARCHES_BY_PRIORITY[endpoint.to_sym].find do |expectation|
+    def match_request_to_expectation(resource_type, params)
+      matched_search = SEARCHES_BY_PRIORITY[resource_type.to_sym].select do |expectation|
         (params.keys.map(&:to_s) & expectation).sort == expectation
-      end
+      end.map(&:first)
 
-      if matched_search
+      if matched_search.present?
         return params.select do |key, value|
           matched_search.include?(key.to_s) || key == '_revInclude' || key == '_include'
         end
