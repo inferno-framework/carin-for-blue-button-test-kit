@@ -14,9 +14,10 @@ module CarinForBlueButtonTestKit
     input :access_token
 
     run do
-      skip_if scratch[:RelatedPerson].nil?, 'No requests made for RelatedPerson resources'
+      resources = previous_resource_requests(:RelatedPerson)
+      skip_if resources.nil?, 'No requests made for RelatedPerson resources'
 
-      assert scratch[:RelatedPerson].any? { |resource| resource.id == 'c4bb-RelatedPerson' },
+      assert resources.any? { |resource| resource.id == 'c4bb-RelatedPerson' },
              'Unable to find expected resource: c4bb-RelatedPerson'
     end
   end

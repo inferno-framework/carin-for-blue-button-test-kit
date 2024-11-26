@@ -15,12 +15,11 @@ module CarinForBlueButtonTestKit
     input :access_token
 
     run do
-      skip_if scratch[:ExplanationOfBenefit_Inpatient_Institutional].nil?,
+      resources = previous_resource_requests(:ExplanationOfBenefit_Inpatient_Institutional)
+      skip_if resources.nil?,
               'No requests made for ExplanationOfBenefit resources'
 
-      assert scratch[:ExplanationOfBenefit_Inpatient_Institutional].any? { |resource|
-        resource.id == 'c4bb-EOBInpatient'
-      },
+      assert resources.any? { |resource| resource.id == 'c4bb-EOBInpatient' },
              'Unable to find expected resource: c4bb-EOBInpatient'
     end
   end

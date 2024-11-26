@@ -15,9 +15,10 @@ module CarinForBlueButtonTestKit
     input :access_token
 
     run do
-      skip_if scratch[:Practitioner].nil?, 'No requests made for Practitioner resources'
+      resources = previous_resource_requests(:Practitioner)
+      skip_if resources.nil?, 'No requests made for Practitioner resources'
 
-      assert scratch[:Practitioner].any? { |resource| resource.id == 'c4bb-Practitioner' },
+      assert resources.any? { |resource| resource.id == 'c4bb-Practitioner' },
              'Unable to find expected resource: c4bb-Practitioner'
     end
   end
