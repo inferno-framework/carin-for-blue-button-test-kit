@@ -12,12 +12,32 @@ module CarinForBlueButtonTestKit
       This test will look through all the requests for to find a Patient search request with each of the following
       required search parameters:
         * _id
+        * birthdate
+        * family
+        * gender
+        * given
+        * identifier
+        * name
+        * birthdate+family
+        * family+gender
+        * birthdate+name
+        * gender+name
     )
     input :access_token
 
     def required_searches
       [
-        '_id'
+        '_id',
+        'birthdate',
+        'family',
+        'gender',
+        'given',
+        'identifier',
+        'name',
+        'birthdate+family',
+        'family+gender',
+        'birthdate+name',
+        'gender+name'
       ]
     end
 

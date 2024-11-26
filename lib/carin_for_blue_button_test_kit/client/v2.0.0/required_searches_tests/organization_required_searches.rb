@@ -12,12 +12,16 @@ module CarinForBlueButtonTestKit
       This test will look through all the requests for to find a Organization search request with each of the following
       required search parameters:
         * _id
+        * name
+        * address
     )
     input :access_token
 
     def required_searches
       [
-        '_id'
+        '_id',
+        'name',
+        'address'
       ]
     end
 

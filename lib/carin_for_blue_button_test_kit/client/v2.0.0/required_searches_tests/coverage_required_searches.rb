@@ -12,12 +12,14 @@ module CarinForBlueButtonTestKit
       This test will look through all the requests for to find a Coverage search request with each of the following
       required search parameters:
         * _id
+        * patient
     )
     input :access_token
 
     def required_searches
       [
-        '_id'
+        '_id',
+        'patient'
       ]
     end
 
