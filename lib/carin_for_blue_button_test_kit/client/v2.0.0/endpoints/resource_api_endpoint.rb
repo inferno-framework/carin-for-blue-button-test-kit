@@ -37,7 +37,8 @@ module CarinForBlueButtonTestKit
       end
     end
 
-    def add_search_param_tags(tags, params)
+    def add_search_param_tags(tags, endpoint_resource, params)
+      tags.append("#{endpoint_resource}Search")
       params.keys.each do |key|
         next unless key == '_include'
 
@@ -56,10 +57,12 @@ module CarinForBlueButtonTestKit
       response_body = FHIR.from_contents(carin_resource_response(request))
       params = get_params(request.query_string)
 
+      endpoint_resource = resource_endpoint(request.url)
+
       tags = [RESOURCE_API_TAG]
 
       add_resource_tags(tags, response_body) if response_body.present?
-      add_search_param_tags(tags, params)
+      add_search_param_tags(tags, endpoint_resource, params)
 
       tags
     end

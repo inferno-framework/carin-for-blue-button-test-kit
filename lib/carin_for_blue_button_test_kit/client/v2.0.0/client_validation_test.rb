@@ -1,6 +1,12 @@
 module CarinForBlueButtonTestKit
   module ClientValidationTest
-    def previous_claims_data_request_resources(resource_type_tag = nil)
+    def all_resource_types
+      ['Patient', 'Coverage', 'Organization', 'Practitioner', 'RelatedPerson',
+       'ExplanationOfBenefit_Inpatient_Institutional', 'ExplanationOfBenefit_Outpatient_Institutional',
+       'ExplanationOfBenefit_Oral', 'ExplanationOfBenefit_Pharmacy', 'ExplanationOfBenefit_Professional_NonClinician']
+    end
+
+    def previous_claims_data_request_resources(resource_type_tag)
       hash = Hash.new { |hash, key| hash[key] = [] }
       previous_claims_data_requests(resource_type_tag).each_with_object(hash) do |request, request_resource_hash|
         request_resources =
@@ -45,10 +51,11 @@ module CarinForBlueButtonTestKit
       scratch[resource_type_tag]
     end
 
-    def previous_claims_data_search_parameters_scratch
-      previous_claims_data_request_resources.each_key do |request|
-        search_params = request.tags - [RESOURCE_API_TAG]
+    def previous_claims_data_search_parameters_scratch(resource_type_tag)
+      previous_claims_data_request_resources(resource_type_tag).each_key do |request|
         endpoint_resource = resource_type_endpoint(request.url)
+        search_params = request.tags - [RESOURCE_API_TAG, resource_type_tag.to_s] - all_resource_types
+
         scratch[:"#{endpoint_resource}Search"] ||= []
         search_params.each do |search_param|
           unless scratch[:"#{endpoint_resource}Search"].include?(search_param)
@@ -60,7 +67,7 @@ module CarinForBlueButtonTestKit
     end
 
     def resource_previous_search_params(resource_tag)
-      previous_claims_data_search_parameters_scratch unless scratch[:SavedSearchParams]
+      previous_claims_data_search_parameters_scratch(resource_tag)
       scratch[resource_tag]
     end
 
@@ -76,11 +83,7 @@ module CarinForBlueButtonTestKit
     end
 
     def previous_claims_data_requests(resource_type_tag = nil)
-      if resource_type_tag.present?
-        load_tagged_requests(RESOURCE_API_TAG, resource_type_tag.to_s)
-      else
-        load_tagged_requests(RESOURCE_API_TAG)
-      end
+      load_tagged_requests(RESOURCE_API_TAG, resource_type_tag.to_s)
     end
 
     def flattened_all_resources
