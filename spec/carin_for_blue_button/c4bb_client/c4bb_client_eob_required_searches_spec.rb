@@ -63,6 +63,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
   end
   let(:eob_include_search_tags) do
     ['carin_resource_api',
+     'ExplanationOfBenefitSearch',
      'ExplanationOfBenefit_Inpatient_Institutional',
      'ExplanationOfBenefit_Outpatient_Institutional',
      'ExplanationOfBenefit_Oral',
@@ -84,6 +85,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
 
   let(:eob_include_all_search_tags) do
     ['carin_resource_api',
+     'ExplanationOfBenefitSearch',
      'ExplanationOfBenefit_Inpatient_Institutional',
      'ExplanationOfBenefit_Outpatient_Institutional',
      'ExplanationOfBenefit_Oral',
@@ -101,6 +103,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
   let(:eob_required_search_tags) do
     [
       'carin_resource_api',
+      'ExplanationOfBenefitSearch',
       'ExplanationOfBenefit_Inpatient_Institutional',
       'identifier',
       'service-date',
@@ -113,6 +116,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
   let(:eob_last_upated_search_tags) do
     [
       'carin_resource_api',
+      'ExplanationOfBenefitSearch',
       'ExplanationOfBenefit_Inpatient_Institutional',
       '_lastUpdated'
     ]
@@ -121,6 +125,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
   let(:eob_id_search_tags) do
     [
       'carin_resource_api',
+      'ExplanationOfBenefitSearch',
       'ExplanationOfBenefit_Inpatient_Institutional',
       '_id'
     ]

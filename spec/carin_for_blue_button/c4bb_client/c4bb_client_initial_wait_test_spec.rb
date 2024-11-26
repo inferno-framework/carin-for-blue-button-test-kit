@@ -1,7 +1,7 @@
-require_relative '../../../lib/carin_for_blue_button_test_kit/client/v2.0.0/claim_data_request_tests/initial_wait_test'
+require_relative '../../../lib/carin_for_blue_button_test_kit/client/v2.0.0/initial_wait_test'
 require_relative '../../request_helper'
 
-RSpec.describe CarinForBlueButtonTestKit::C4BBClientSubmitMustSupportTest do
+RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
   include Rack::Test::Methods
   include RequestHelpers
 
@@ -22,7 +22,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientSubmitMustSupportTest do
 
   let(:patient_api_request) { "#{base_url}#{patient_endpoint}" }
   let(:eob_include_search) { "#{base_url}#{eob_include_search_endpoint}" }
-  let(:invalid_patient_api_request) { "#{base_url}/Patient?name=John" }
+  let(:invalid_patient_api_request) { "#{base_url}/Patient?death-date=2024-10-21" }
   let(:server_patient_api_request) { "#{fhir_server}#{patient_endpoint}" }
   let(:server_eob_include_search) { "#{fhir_server}#{eob_include_search_endpoint}" }
 
