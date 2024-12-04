@@ -10,7 +10,7 @@ module CarinForBlueButtonTestKit
     title 'Practitioner required search parameters'
     description %(
       This test will look through all the requests for to find a Practitioner search request with each of the following
-      required search parameters:
+      Carin for Blue Button and US Core required search parameters:
         * _id
         * name
         * identifier

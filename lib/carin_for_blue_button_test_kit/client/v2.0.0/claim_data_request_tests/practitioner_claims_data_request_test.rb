@@ -9,8 +9,8 @@ module CarinForBlueButtonTestKit
     id :practitioner_claims_data_request_test
     title 'Practitioner resources related to Carin claims data are gathered'
     description %(
-      This test will look through all returned Practitioner resources for a specific expected Carin Practitioner
-      resource.
+      This test will look through all returned Practitioner resources for a specific expected Practitioner
+      resource that supports the Carin for Blue Button Practitioner profile on the Inferno Reference Server.
     )
     input :access_token
 

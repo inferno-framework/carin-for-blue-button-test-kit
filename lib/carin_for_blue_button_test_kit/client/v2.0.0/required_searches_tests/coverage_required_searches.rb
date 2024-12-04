@@ -10,7 +10,7 @@ module CarinForBlueButtonTestKit
     title 'Coverage required search parameters'
     description %(
       This test will look through all the requests for to find a Coverage search request with each of the following
-      required search parameters:
+      Carin for Blue Button and US Core required search parameters:
         * _id
         * patient
     )

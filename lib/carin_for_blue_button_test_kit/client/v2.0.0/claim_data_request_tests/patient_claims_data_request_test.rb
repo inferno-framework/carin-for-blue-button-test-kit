@@ -9,7 +9,8 @@ module CarinForBlueButtonTestKit
     id :patient_claims_data_request_test
     title 'Patient resources related to the patient matched are gathered'
     description %(
-      This test will look through all returned Patient resources for a specific expected Carin Patient resource.
+      This test will look through all returned Patient resources for a specific expected Patient
+      resource that supports the Carin for Blue Button Patient profile on the Inferno Reference Server.
     )
     input :access_token
 

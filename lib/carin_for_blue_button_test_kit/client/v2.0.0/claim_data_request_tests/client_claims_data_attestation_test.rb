@@ -14,7 +14,10 @@ module CarinForBlueButtonTestKit
       wait(
         identifier:,
         message: %(
-          I attest that the client system under test was able to receive and process all of the requsted claims data.
+          I attest that the client system under test was able to receive and process all of the requested
+          Carin for Blue Button claims data, including all of the profile data elements that have a minimum cardinality
+          greater than or equal to 1 and/or flagged as Must Support as defined by that profiles StructureDefinition
+          for each resource.
 
           [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
 

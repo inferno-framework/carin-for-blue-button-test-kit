@@ -9,8 +9,9 @@ module CarinForBlueButtonTestKit
     id :eob_inpatient_claims_data_request_test
     title 'Inpatient Institutional ExplanationOfBenefit resources related to Carin claims data are gathered'
     description %(
-      This test will look through all returned Inpatient Institutional ExplanationOfBenefit resources for a specific
-      expected Carin ExplanationOfBenefit resource on the Inferno Reference Server.
+      This test will look through all returned ExplanationOfBenefit resources for a specific expected
+      ExplanationOfBenefit resource that supports the Carin for Blue Button Inpatient Institutional ExplanationOfBenefit
+      profile on the Inferno Reference Server.
     )
     input :access_token
 

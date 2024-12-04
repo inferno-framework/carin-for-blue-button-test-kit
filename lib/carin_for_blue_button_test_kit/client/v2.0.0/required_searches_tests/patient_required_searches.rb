@@ -10,7 +10,7 @@ module CarinForBlueButtonTestKit
     title 'Patient required search parameters'
     description %(
       This test will look through all the requests for to find a Patient search request with each of the following
-      required search parameters:
+      Carin for Blue Button and US Core required search parameters:
         * _id
         * birthdate
         * family

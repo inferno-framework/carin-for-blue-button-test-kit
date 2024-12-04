@@ -21,7 +21,7 @@ module CarinForBlueButtonTestKit
           to reach and `:search_params` replaced with the search parameters for the request.
 
           The following Carin resources can be accessed on the Inferno Reference Server with the following IDs, and
-          following search parameters are required for each resource type:
+          the following search parameters are required for each resource type:
 
             * Patient: `888`
               * _id

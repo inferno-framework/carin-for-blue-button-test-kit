@@ -39,10 +39,8 @@ module CarinForBlueButtonTestKit
 
     id :c4bb_v200_client
     title 'Carin For Blue Button® v2.0.0 Client Test Suite'
-    description %(
-      The CARIN for Blue Button test suite validates system conformance to the HL7® FHIR®
-      [CARIN for Blue Button® Implementation Guide](http://hl7.org/fhir/us/carin-bb/STU2).
-    )
+    description File.read(File.join(__dir__, '..', '..', 'docs',
+                                    'carin_for_blue_button_v2.0.0_client_suite_description.md'))
 
     def self.test_resumes?(test)
       !test.config.options[:accepts_multiple_requests]
@@ -106,41 +104,89 @@ module CarinForBlueButtonTestKit
     group do
       run_as_group
       title 'Wait for Claims Data and Search Requests'
+      description %(
+        This test will wait for the client system under test to submit requests for resources for each Carin for Blue
+        Button profiles, and for requests including all of the required search parameters for each resource type.
+      )
+
       test from: :initial_wait_test
     end
 
     group do
       title 'C4BB Patient Profile claims data and search request tests'
+      description %(
+        These tests look through all the requests sent in from the client system to ensure a request was made that
+        returned the Patient resource implementing the Carin for Blue Button Patient profile from the Inferno
+        Reference Server. It will also verify that each required search Parameter for the Patient resource specified
+        in the Carin for Blue Button IG and the US Core 3.1.1 IG  was used in requests made by the client.
+      )
+
       test from: :patient_claims_data_request_test
       test from: :patient_required_searches
     end
 
     group do
       title 'C4BB Coverage Profile claims data and search request tests'
+      description %(
+        These tests look through all the requests sent in from the client system to ensure a request was made that
+        returned the Coverage resource implementing the Carin for Blue Button Coverage profile from the Inferno
+        Reference Server. It will also verify that each required search Parameter for the Coverage resource specified
+        in the Carin for Blue Button IG and the US Core 3.1.1 IG  was used in requests made by the client.
+      )
+
       test from: :coverage_claims_data_request_test
       test from: :coverage_required_searches
     end
 
     group do
       title 'C4BB Organization Profile claims data and search request tests'
+      description %(
+        These tests look through all the requests sent in from the client system to ensure a request was made that
+        returned the Organization resource implementing the Carin for Blue Button Organization profile from the Inferno
+        Reference Server. It will also verify that each required search Parameter for the Organization resource
+        specified in the Carin for Blue Button IG and the US Core 3.1.1 IG  was used in requests made by the client.
+      )
+
       test from: :organization_claims_data_request_test
       test from: :organization_required_searches
     end
 
     group do
       title 'C4BB Practitioner Profile claims data and search request tests'
+      description %(
+        These tests look through all the requests sent in from the client system to ensure a request was made that
+        returned the Practitioner resource implementing the Carin for Blue Button Practitioner profile from the Inferno
+        Reference Server. It will also verify that each required search Parameter for the Practitioner resource
+        specified in the Carin for Blue Button IG and the US Core 3.1.1 IG  was used in requests made by the client.
+      )
+
       test from: :practitioner_claims_data_request_test
       test from: :practitioner_required_searches
     end
 
     group do
       title 'C4BB RelatedPerson Profile claims data and search request tests'
+      description %(
+        These tests look through all the requests sent in from the client system to ensure a request was made that
+        returned the RelatedPerson resource implementing the Carin for Blue Button RelatedPerson profile from the
+        Inferno Reference Server. It will also verify that each required search Parameter for the RelatedPerson resource
+        specified in the Carin for Blue Button IG and the US Core 3.1.1 IG  was used in requests made by the client.
+      )
+
       test from: :relatedperson_claims_data_request_test
       test from: :relatedperson_required_searches
     end
 
     group do
       title 'C4BB ExplanationOfBenefit Profiles claims data and search request tests'
+      description %(
+        These tests look through all the requests sent in from the client system to ensure a request was made that
+        returned the ExplanationOfBenefit resources implementing each of the Carin for Blue Button ExplanationOfBenefit
+        profiles from the Inferno Reference Server. It will also verify that each required search Parameter for the
+        ExplanationOfBenefit resource specified in the Carin for Blue Button IG and the US Core 3.1.1 IG  was used in
+        requests made by the client.
+      )
+
       test from: :eob_inpatient_claims_data_request_test
       test from: :eob_outpatient_claims_data_request_test
       test from: :eob_oral_claims_data_request_test
@@ -152,6 +198,11 @@ module CarinForBlueButtonTestKit
     group do
       run_as_group
       title 'Carin For Blue Button Client Attestation'
+      description %(
+        Attest that the client system under test was able to sucessfully process all of the requested resources for
+        each of the Carin for Blue Button profiles.
+      )
+
       test from: :client_claims_data_attestation
     end
   end

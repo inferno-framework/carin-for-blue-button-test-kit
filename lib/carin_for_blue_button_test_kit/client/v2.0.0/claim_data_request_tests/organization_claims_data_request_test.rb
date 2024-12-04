@@ -9,8 +9,8 @@ module CarinForBlueButtonTestKit
     id :organization_claims_data_request_test
     title 'Organization resources related to Carin claims data are gathered'
     description %(
-      This test will look through all returned Organization resources for a specific expected Carin Organization
-      resource.
+      This test will look through all returned Organization resources for a specific expected Organization
+      resource that supports the Carin for Blue Button Organization profile on the Inferno Reference Server.
     )
     input :access_token
 
