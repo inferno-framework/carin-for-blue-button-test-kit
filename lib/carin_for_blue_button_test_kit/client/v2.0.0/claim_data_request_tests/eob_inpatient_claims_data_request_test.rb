@@ -16,8 +16,6 @@ module CarinForBlueButtonTestKit
     )
     input :access_token
 
-    verifies_requirements '170.315(g)(31)_hti-2-proposal@32'
-
     run do
       resources = previous_resource_requests(:ExplanationOfBenefit_Inpatient_Institutional)
       skip_if resources.nil?,

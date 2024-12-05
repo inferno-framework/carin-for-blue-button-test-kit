@@ -38,7 +38,7 @@ module CarinForBlueButtonTestKit
     extend ClientValidationTest
 
     id :c4bb_v200_client
-    title 'CARIN For Blue Button® v2.0.0 Client Test Suite'
+    title 'CARIN IG for Blue Button® v2.0.0 Client Test Suite'
     description File.read(File.join(__dir__, '..', '..', 'docs',
                                     'carin_for_blue_button_v2.0.0_client_suite_description.md'))
 
@@ -119,11 +119,11 @@ module CarinForBlueButtonTestKit
       title 'C4BB Patient Profile claims data and search request tests'
       description %(
         These tests look through all the requests sent in from the client system to ensure a request was made that
-        returned the Patient resource implementing the CARIN for Blue Button [Patient profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Patient.html)
-        from the Inferno Reference Server. It will also verify that each required search Parameter for the Patient
-        resource specified in the [CARIN IG for Blue Button](https://hl7.org/fhir/us/carin-bb/STU2/CapabilityStatement-c4bb.html#patient)
-        and the [US Core Client Capability Statement](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html#patient)
-        was used in requests made by the client.
+        returned a Patient resource implementing the CARIN for Blue Button [Patient profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Patient.html).
+        It will also verify that the client made a request using each required search parameter for the Patient resource
+        specified in the [CARIN IG for Blue Button](https://hl7.org/fhir/us/carin-bb/STU2/CapabilityStatement-c4bb.html#patient)
+        and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html#patient)
+        Capability Statements.
       )
 
       test from: :patient_claims_data_request_test
@@ -134,11 +134,11 @@ module CarinForBlueButtonTestKit
       title 'C4BB Coverage Profile claims data and search request tests'
       description %(
         These tests look through all the requests sent in from the client system to ensure a request was made that
-        returned the Coverage resource implementing the CARIN for Blue Button [Coverage profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Coverage.html)
-        from the Inferno Reference Server. It will also verify that each required search Parameter for the Coverage
+        returned a Coverage resource implementing the CARIN for Blue Button [Coverage profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Coverage.html).
+        It will also verify that the client made a request using each required search parameter for the Coverage
         resource specified in the [CARIN IG for Blue Button](https://hl7.org/fhir/us/carin-bb/STU2/CapabilityStatement-c4bb.html#coverage)
-        and the [US Core Client Capability Statement](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html)
-        was used in requests made by the client.
+        and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html)
+        Capability Statements.
       )
 
       test from: :coverage_claims_data_request_test
@@ -149,11 +149,11 @@ module CarinForBlueButtonTestKit
       title 'C4BB Organization Profile claims data and search request tests'
       description %(
         These tests look through all the requests sent in from the client system to ensure a request was made that
-        returned the Organization resource implementing the CARIN for Blue Button [Organization profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Organization.html)
-        from the Inferno Reference Server. It will also verify that each required search Parameter for the Organization
+        returned a Organization resource implementing the CARIN for Blue Button [Organization profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Organization.html).
+        It will also verify that the client made a request using each required search parameter for the Organization
         resource specified in the [CARIN IG for Blue Button](https://hl7.org/fhir/us/carin-bb/STU2/CapabilityStatement-c4bb.html#organization)
-        and the [US Core Client Capability Statement](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html#organization)
-        was used in requests made by the client.
+        and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html#organization)
+        Capability Statements.
       )
 
       test from: :organization_claims_data_request_test
@@ -164,11 +164,11 @@ module CarinForBlueButtonTestKit
       title 'C4BB Practitioner Profile claims data and search request tests'
       description %(
         These tests look through all the requests sent in from the client system to ensure a request was made that
-        returned the Practitioner resource implementing the CARIN for Blue Button [Practitioner profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Practitioner.html)
-        from the Inferno Reference Server. It will also verify that each required search Parameter for the Practitioner
+        returned a Practitioner resource implementing the CARIN for Blue Button [Practitioner profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Practitioner.html).
+        It will also verify that the client made a request using each required search parameter for the Practitioner
         resource specified in the [CARIN IG for Blue Button](https://hl7.org/fhir/us/carin-bb/STU2/CapabilityStatement-c4bb.html#practitioner)
-        and the [US Core Client Capability Statement](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html#practitioner)
-        was used in requests made by the client.
+        and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html#practitioner)
+        Capability Statements.
       )
 
       test from: :practitioner_claims_data_request_test
@@ -179,11 +179,11 @@ module CarinForBlueButtonTestKit
       title 'C4BB RelatedPerson Profile claims data and search request tests'
       description %(
         These tests look through all the requests sent in from the client system to ensure a request was made that
-        returned the RelatedPerson resource implementing the CARIN for Blue Button [RelatedPerson profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-RelatedPerson.html)
-        from the Inferno Reference Server. It will also verify that each required search Parameter for the RelatedPerson
+        returned a RelatedPerson resource implementing the CARIN for Blue Button [RelatedPerson profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-RelatedPerson.html).
+        It will also verify that the client made a request using each required search parameter for the RelatedPerson
         resource specified in the [CARIN IG for Blue Button](https://hl7.org/fhir/us/carin-bb/STU2/CapabilityStatement-c4bb.html#relatedperson)
-        and the [US Core Client Capability Statement](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html)
-        was used in requests made by the client.
+        and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html)
+        Capability Statements.
       )
 
       test from: :relatedperson_claims_data_request_test
@@ -194,12 +194,12 @@ module CarinForBlueButtonTestKit
       title 'C4BB ExplanationOfBenefit Profiles claims data and search request tests'
       description %(
         These tests look through all the requests sent in from the client system to ensure a request was made that
-        returned the ExplanationOfBenefit resources implementing each of the
-        CARIN for Blue Button [ExplanationOfBenefit profiles](https://hl7.org/fhir/us/carin-bb/STU2/artifacts.html#structures-resource-profiles)
-        from the Inferno Reference Server. It will also verify that each required search Parameter for the
+        returned ExplanationOfBenefit resources implementing each of the
+        CARIN for Blue Button [ExplanationOfBenefit profiles](https://hl7.org/fhir/us/carin-bb/STU2/artifacts.html#structures-resource-profiles).
+        It will also verify that the client made a request using each required search parameter for the
         ExplanationOfBenefit resource specified in the [CARIN IG for Blue Button](https://hl7.org/fhir/us/carin-bb/STU2/CapabilityStatement-c4bb.html#explanationofbenefit)
-        and the [US Core Client Capability Statement](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html)
-        was used in requests made by the client.
+        and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html)
+        Capability Statements.
       )
 
       test from: :eob_inpatient_claims_data_request_test

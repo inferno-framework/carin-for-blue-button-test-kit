@@ -20,8 +20,7 @@ module CarinForBlueButtonTestKit
     )
     input :access_token
 
-    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@14',
-                          '170.315(g)(31)_hti-2-proposal@32'
+    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@14'
 
     def required_searches
       [

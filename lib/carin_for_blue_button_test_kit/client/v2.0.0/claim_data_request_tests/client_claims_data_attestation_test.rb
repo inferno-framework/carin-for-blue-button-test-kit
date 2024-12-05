@@ -10,8 +10,7 @@ module CarinForBlueButtonTestKit
     id :client_claims_data_attestation
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@3',
-                          'hl7.fhir.us.carin-bb_2.0.0@13',
-                          '170.315(g)(31)_hti-2-proposal@33'
+                          'hl7.fhir.us.carin-bb_2.0.0@13'
 
     run do
       identifier = SecureRandom.hex(32)

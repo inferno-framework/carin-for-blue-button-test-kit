@@ -14,8 +14,9 @@ requirements and may change the test verification logic.
 ## Test Methodology
 
 For these tests Inferno simulates a FHIR server playing the role of a 
-[CARIN IG for Blue Button® Responder](https://hl7.org/fhir/us/carin-bb/STU2/Conformance_Requirements.html#actors). Inferno will wait for
-the client under test to request a resource for each of the CARIN for Blue Button profiles, which include the following:
+[CARIN IG for Blue Button® Responder](https://hl7.org/fhir/us/carin-bb/STU2/Conformance_Requirements.html#actors).
+Inferno's simulated server contains a patient (resource id 888) that includes linked examples of all CARIN IG for
+Blue Button profiles with all required and must support elements populated:
   - [Patient](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Patient.html)
   - [Coverage](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Coverage.html)
   - [Organization](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Organization.html)
@@ -27,11 +28,7 @@ the client under test to request a resource for each of the CARIN for Blue Butto
   - [Pharmacy ExplanationOfBenefit](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-ExplanationOfBenefit-Pharmacy.html)
   - [Professional NonClinician ExplanationOfBenefit](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-ExplanationOfBenefit-Professional-NonClinician.html)
 
-The tests also waits for search requests to be made for each of the required searches described for each resource in the
-CARIN for Blue Button IG and the US Core 3.1.1 IG. Inferno's simulated server contains instances of each profile defined
-in the IG which include all of the required and Must Support elements.
-
-Once the tester has finished submitting requests to Inferno from the client under test, Inferno will review the requests performed verify conformance. Specifically, Inferno checks that the client:
+During execution, Inferno will wait for the client under test to issue requests and will respond to them with the requested data. Inferno will then evaluate the requests in aggregate to verify that they demonstrate that the client:
   - Retrieved instances of each [CARIN IG for Blue Button profile](https://hl7.org/fhir/us/carin-bb/STU2/artifacts.html#structures-resource-profiles)
   - Performed searches using the search parameters and search parameter combinations marked as **SHALL** within the [C4BB CapabilityStatement](https://hl7.org/fhir/us/carin-bb/STU2/CapabilityStatement-c4bb.html)
   and the [US Core Client CapabilityStatement](https://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html).
@@ -47,13 +44,21 @@ any tests in this suite:
    `Authorization` header of HTTP requests made against Inferno. Inferno uses the
    value to identify incoming requests that belong to the testing session.
 
+The CARIN for Blue Button Patient that the client needs to request data for can be requested and searched for
+with the following information:
+ - resource id: 888
+ - name: Johnny
+ - member identifier: 1234-234-1243-12345678901
+ - date of birth: 1986-01-01
+ - gender: male
+
 Once the testing starts, Inferno will wait for CARIN for Blue Button resource and search requests from the client,
 return the requested CARIN resources to the client, and verify the interaction.
 
 ### Sample Execution - Postman
 
 To try out these tests without a CARIN for Blue Button client implementation, you may
-run them using [this Postman collection](https://github.com/inferno-framework/carin-for-blue-button-test-kit/config/presets/C4BB%20Client%20Search%20Tests.postman_collection.json). This Postman collection includes all of the required CARIN for Blue Button profile resource requests and required search
+run them using [this Postman collection](https://github.com/inferno-framework/carin-for-blue-button-test-kit/blob/config/presets/C4BB%20Client%20Search%20Tests.postman_collection.json). This Postman collection includes all of the required CARIN for Blue Button profile resource requests and required search
 requests needed to pass all of the tests.
 
 To run the client tests against the Postman collection:
