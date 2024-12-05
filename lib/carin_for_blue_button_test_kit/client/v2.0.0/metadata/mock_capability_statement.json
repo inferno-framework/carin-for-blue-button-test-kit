@@ -8,7 +8,7 @@
     "http://hl7.org/fhir/us/carin-bb/CapabilityStatement/c4bb"
   ],
   "implementation": {
-      "description": "Inferno Carin For Blue Button Client Testing Simulation Server",
+      "description": "Inferno CARIN For Blue Button Client Testing Simulation Server",
       "url": "http://localhost:8080/reference-server/r4"
   },
   "fhirVersion": "4.0.1",

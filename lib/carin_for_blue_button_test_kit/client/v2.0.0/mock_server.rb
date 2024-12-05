@@ -5,7 +5,7 @@ require_relative 'client_validation_test'
 # require_relative 'metadata/mock_capability_statement'
 
 module CarinForBlueButtonTestKit
-  # Serve responses to Carin requests
+  # Serve responses to CARIN requests
   #
   # Note that there are numerous expected validation issues that can safely be ignored.
   # See here for full list: https://hl7.org/fhir/us/carin-bb/STU2/qa.html#suppressed

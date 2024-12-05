@@ -441,7 +441,7 @@
 	"variable": [
 		{
 			"key": "url_prefix",
-			"value": "http://localhost:4567/custom/c4bb_v200_client/fhir",
+			"value": "https://inferno.healthit.gov/suites/custom/c4bb_v200_client/fhir",
 			"type": "string"
 		}
 	]

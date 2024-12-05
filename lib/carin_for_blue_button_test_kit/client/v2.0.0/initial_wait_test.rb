@@ -16,11 +16,11 @@ module CarinForBlueButtonTestKit
         identifier: access_token,
         message: %(
           Access Token: #{access_token} \n
-          Submit Carin requests via the following method:
+          Submit CARIN requests via the following method:
           * Single Resource API: `#{submit_url}?:search_params`, with `:endpoint` replaced with the endpoint you want
           to reach and `:search_params` replaced with the search parameters for the request.
 
-          The following Carin resources can be accessed on the Inferno Reference Server with the following IDs, and
+          The following CARIN resources can be accessed on the Inferno Reference Server with the following IDs, and
           the following search parameters are required for each resource type:
 
             * Patient: `888`

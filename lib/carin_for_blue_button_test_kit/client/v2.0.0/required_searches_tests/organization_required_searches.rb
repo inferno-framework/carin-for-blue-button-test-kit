@@ -9,13 +9,19 @@ module CarinForBlueButtonTestKit
     id :organization_required_searches
     title 'Organization required search parameters'
     description %(
-      This test will look through all the requests for to find a Organization search request with each of the following
-      Carin for Blue Button and US Core required search parameters:
+      This test will look through all the requests to find a Organization search request with each of the following
+      required search parameters specified for the Organization resource in the
+      [CARIN for Blue Button](https://hl7.org/fhir/us/carin-bb/STU2/CapabilityStatement-c4bb.html#organization)
+      and [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html#organization)
+      Capability Statements:
         * _id
         * name
         * address
     )
     input :access_token
+
+    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@14',
+                          '170.315(g)(31)_hti-2-proposal@32'
 
     def required_searches
       [
