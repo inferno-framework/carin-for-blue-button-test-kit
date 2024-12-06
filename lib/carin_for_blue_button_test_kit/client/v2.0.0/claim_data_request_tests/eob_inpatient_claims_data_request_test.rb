@@ -7,10 +7,10 @@ module CarinForBlueButtonTestKit
     include CarinForBlueButtonTestKit::ClientValidationTest
 
     id :eob_inpatient_claims_data_request_test
-    title 'Inpatient Institutional ExplanationOfBenefit resources related to Carin claims data are gathered'
+    title 'Inpatient Institutional ExplanationOfBenefit resources related to CARIN claims data are gathered'
     description %(
-      This test will look through all returned Inpatient Institutional ExplanationOfBenefit resources for a specific
-      expected Carin ExplanationOfBenefit resource on the Inferno Reference Server.
+      This test verifies that an instance returned by requests made by the client is an ExplanationOfBenefit resource
+      that conforms to the CARIN for Blue Button [Outpatient Institutional ExplanationOfBenefit profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-ExplanationOfBenefit-Outpatient-Institutional.html).
     )
     input :access_token
 

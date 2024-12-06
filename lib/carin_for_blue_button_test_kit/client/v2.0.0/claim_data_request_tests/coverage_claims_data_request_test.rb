@@ -7,9 +7,10 @@ module CarinForBlueButtonTestKit
     include CarinForBlueButtonTestKit::ClientValidationTest
 
     id :coverage_claims_data_request_test
-    title 'Coverage resources related to Carin claims data are gathered'
+    title 'Coverage resources related to CARIN claims data are gathered'
     description %(
-      This test will look through all returned Coverage resources for a specific expected Carin Coverage resource.
+      This test verifies that an instance returned by requests made by the client is a Coverage resource
+      that conforms to the CARIN for Blue Button [Coverage profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Coverage.html).
     )
     input :access_token
 

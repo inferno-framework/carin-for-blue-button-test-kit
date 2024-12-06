@@ -7,10 +7,10 @@ module CarinForBlueButtonTestKit
     include CarinForBlueButtonTestKit::ClientValidationTest
 
     id :organization_claims_data_request_test
-    title 'Organization resources related to Carin claims data are gathered'
+    title 'Organization resources related to CARIN claims data are gathered'
     description %(
-      This test will look through all returned Organization resources for a specific expected Carin Organization
-      resource.
+      This test verifies that an instance returned by requests made by the client is an Organization resource
+      that conforms to the CARIN for Blue Button [Organization profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Organization.html).
     )
     input :access_token
 
