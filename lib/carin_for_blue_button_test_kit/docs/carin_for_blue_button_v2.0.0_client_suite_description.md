@@ -46,11 +46,11 @@ any tests in this suite:
 
 The CARIN for Blue Button Patient that the client needs to request data for can be requested and searched for
 with the following information:
- - resource id: 888
- - name: Johnny
- - member identifier: 1234-234-1243-12345678901
- - date of birth: 1986-01-01
- - gender: male
+ - **Resource ID**: 888
+ - **Name**: Johnny Smith
+ - **Member Identifier**: 1234-234-1243-12345678901 (system: http://inferno.healthit.gov/reference-server/r4/uniquememberidentifier)
+ - **Date of Birth**: 1986-01-01
+ - **Gender**: male
 
 Once the testing starts, Inferno will wait for CARIN for Blue Button resource and search requests from the client,
 return the requested CARIN resources to the client, and verify the interaction.
@@ -79,3 +79,13 @@ of these sample executions from disrupting your session it
 is recommended, but not required, to:
 1. Update the Authorization tab of the C4BB Client Search Tests collection in Postman to a random value
 2. When starting the tests, provide the same value in the access_token input.
+
+## Current Limitations
+
+This test kit is still in draft form and does not test all of the requirements and features
+described in the CARIN IG For Blue Button. You can find information on the requirements
+that the test kit covers and does not cover in the [Requirements Coverage](https://github.com/inferno-framework/carin-for-blue-button-test-kit/blob/main/lib/carin_for_blue_button_test_kit/requirements/generated/carin-for-blue-button-test-kit_requirements_coverage.csv)
+CSV document.
+
+Specific current limitations to highlight include:
+   - Testers must manually configure their client system to connect to a specific target patient and ingest specific curated sample CARIN data.    Future versions of the test may allow more flexibility in the patient identity and the associated data.

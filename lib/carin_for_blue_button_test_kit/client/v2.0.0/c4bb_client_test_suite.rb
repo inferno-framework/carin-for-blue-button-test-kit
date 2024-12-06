@@ -155,6 +155,7 @@ module CarinForBlueButtonTestKit
         and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html#organization)
         Capability Statements.
       )
+      optional
 
       test from: :organization_claims_data_request_test
       test from: :organization_required_searches
@@ -170,6 +171,7 @@ module CarinForBlueButtonTestKit
         and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html#practitioner)
         Capability Statements.
       )
+      optional
 
       test from: :practitioner_claims_data_request_test
       test from: :practitioner_required_searches
@@ -185,6 +187,7 @@ module CarinForBlueButtonTestKit
         and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html)
         Capability Statements.
       )
+      optional
 
       test from: :relatedperson_claims_data_request_test
       test from: :relatedperson_required_searches

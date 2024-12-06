@@ -9,9 +9,8 @@ module CarinForBlueButtonTestKit
     id :relatedperson_claims_data_request_test
     title 'RelatedPerson resources related to CARIN claims data are gathered'
     description %(
-      This test will look through all returned RelatedPerson resources for a specific expected RelatedPerson
-      resource that supports the CARIN for Blue Button [RelatedPerson profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-RelatedPerson.html)
-      on the Inferno Reference Server.
+      This test verifies that an instance returned by requests made by the client is a RelatedPerson resource
+      that conforms to the CARIN for Blue Button [RelatedPerson profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-RelatedPerson.html).
     )
     input :access_token
 

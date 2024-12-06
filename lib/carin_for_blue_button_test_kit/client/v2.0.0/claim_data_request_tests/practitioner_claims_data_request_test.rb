@@ -9,9 +9,8 @@ module CarinForBlueButtonTestKit
     id :practitioner_claims_data_request_test
     title 'Practitioner resources related to CARIN claims data are gathered'
     description %(
-      This test will look through all returned Practitioner resources for a specific expected Practitioner
-      resource that supports the CARIN for Blue Button [Practitioner profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Practitioner.html)
-      on the Inferno Reference Server.
+      This test verifies that an instance returned by requests made by the client is a Practitioner resource
+      that conforms to the CARIN for Blue Button [Practitioner profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Practitioner.html).
     )
     input :access_token
 
