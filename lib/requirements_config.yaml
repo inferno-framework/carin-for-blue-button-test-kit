@@ -1,0 +1,14 @@
+test_kit_id: carin_for_blue_button_test_kit
+
+suites: 
+  - id: c4bb_v200_client
+    class_name: CarinForBlueButtonTestKit::C4BBV200ClientSuite
+    suite_actor: Consumer
+
+requirement_sets:
+  - id: hl7.fhir.us.carin-bb_2.0.0
+    folder: Carin 4 BB
+    requirements: All
+    actor_map:
+      - {spec: Consumer, test_kit: Consumer}
+      - {spec: Health Plan, test_kit: Health Plan}

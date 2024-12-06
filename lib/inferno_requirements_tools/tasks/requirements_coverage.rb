@@ -1,46 +1,67 @@
 # frozen_string_literal: true
 
-require 'CSV'
-require 'roo'
+require 'csv'
+require 'yaml'
 require_relative '../ext/inferno_core/runnable'
 
 module InfernoRequirementsTools
   module Tasks
-    # This class manages the mapping of IG requirements to test kit tests.
-    # It expects a CSV file in the repo at lib/carin_for_blue_button_test_kit/requirements/Requirements.csv
-    # This file must have a column with the header 'ID' which holds user-designated IDs for each requirement.
-    # These requirement IDs must map to the IDs specified in the test kit using `verifies_requirements`
+    # This class manages the mapping of test kit tests to requirements that they verify
+    # and creates a CSV file with the tests that cover each requirement.
+    # It expects a CSV file in the repo at `lib/[test kit id]/requirements/[test kit id]_requirements.csv`
+    # that serves as the source of the requirement set for the test kit. The requirements in
+    # this files are identified by a requirement set and an id and tests, groups, and suites
+    # within in the test kit can claim that they verify a requirement by including a reference
+    # to that requirementin the form <requirement set>@<id> in their `verifies_requirements` field.
+    # Requirements that are out of scope can be listed in a companion file
+    # `lib/[test kit id]/requirements/[test kit id]_out_of_scope_requirements.csv`.
     #
-    # The `run` method generates a CSV file at lib/carin_for_blue_button_test_kit/requirements/Requirements_Coverage.csv.
+    # The `run` method generates a CSV file at
+    # `lib/[test kit id]/requirements/generated/[test kit id]_requirements_coverage.csv``.
     # This file will be identical to the input spreadsheet, plus an additional column which holds a comma separated
     # list of inferno test IDs that test each requirement. These test IDs are Inferno short form IDs that represent the
     # position of the test within its group and suite. For example, the fifth test in the second group will have an ID
     # of 2.05. This ID is also shown in the Inferno web UI.
-    # The output file is also sorted by requirement ID.
     #
     # The `run_check` method will check whether the previously generated file is up-to-date.
-    class MapRequirements
-      # Update these constants based on the test kit.
-      TEST_KIT_ID = 'carin-for-blue-button-test-kit'
-      TEST_SUITES = [CarinForBlueButtonTestKit::CARIN4BBV200::C4BBTestSuite].freeze # list of suite classes
-      SUITE_ID_TO_ACTOR_MAP = {
-        'c4bb_v200' => 'Health Plan'
-      }.freeze
+    class RequirementsCoverage
+      VERSION = '0.2.0' # update when making meaningful changes to this method for tracking used versions
+      CONFIG = YAML.load_file(File.join('lib', 'requirements_config.yaml'))
+
+      TEST_KIT_ID = CONFIG['test_kit_id']
+      TEST_SUITES = CONFIG['suites'].map do |test_suite|
+        Object.const_get(test_suite['class_name'])
+      end
+
+      SUITE_ID_TO_ACTOR_MAP = CONFIG['suites'].each_with_object({}) do |test_suite, hash|
+        hash[test_suite['id']] = test_suite['suite_actor']
+      end
 
       # Derivative constants
-      TEST_KIT_CODE_FOLDER = TEST_KIT_ID.gsub('-', '_')
-      INPUT_HEADERS = ['Req Set', 'ID', 'URL', 'Requirement', 'Conformance', 'Actor', 'Sub-Requirement(s)',
-                       'Conditionality'].freeze
+      TEST_KIT_CODE_FOLDER = TEST_KIT_ID
+      DASHERIZED_TEST_KIT_ID = TEST_KIT_ID.gsub('_', '-')
+      INPUT_HEADERS = [
+        'Req Set',
+        'ID',
+        'URL',
+        'Requirement',
+        'Conformance',
+        'Actor',
+        'Sub-Requirement(s)',
+        'Conditionality'
+      ].freeze
       SHORT_ID_HEADER = 'Short ID(s)'
       FULL_ID_HEADER = 'Full ID(s)'
-      INPUT_FILE_NAME = "#{TEST_KIT_ID}_requirements.csv"
+      INPUT_FILE_NAME = "#{DASHERIZED_TEST_KIT_ID}_requirements.csv".freeze
       INPUT_FILE = File.join('lib', TEST_KIT_CODE_FOLDER, 'requirements', INPUT_FILE_NAME).freeze
-      NOT_TESTED_FILE_NAME = "#{TEST_KIT_ID}_out_of_scope_requirements.csv"
+      NOT_TESTED_FILE_NAME = "#{DASHERIZED_TEST_KIT_ID}_out_of_scope_requirements.csv".freeze
       NOT_TESTED_FILE = File.join('lib', TEST_KIT_CODE_FOLDER, 'requirements', NOT_TESTED_FILE_NAME).freeze
-      OUTPUT_FILE_NAME = "#{TEST_KIT_ID}_requirements_coverage.csv"
-      OUTPUT_FILE_DIRECTORY = File.join('lib', TEST_KIT_CODE_FOLDER, 'requirements', 'generated').freeze
+      OUTPUT_HEADERS = INPUT_HEADERS + TEST_SUITES.flat_map do |suite|
+                                         ["#{suite.title} #{SHORT_ID_HEADER}", "#{suite.title} #{FULL_ID_HEADER}"]
+                                       end
+      OUTPUT_FILE_NAME = "#{DASHERIZED_TEST_KIT_ID}_requirements_coverage.csv".freeze
+      OUTPUT_FILE_DIRECTORY = File.join('lib', TEST_KIT_CODE_FOLDER, 'requirements', 'generated')
       OUTPUT_FILE = File.join(OUTPUT_FILE_DIRECTORY, OUTPUT_FILE_NAME).freeze
-      BOM = "\xEF\xBB\xBF"
 
       def input_rows
         @input_rows ||=
@@ -59,7 +80,7 @@ module InfernoRequirementsTools
         not_tested_requirements = {}
         CSV.parse(File.open(NOT_TESTED_FILE, 'r:bom|utf-8'), headers: true).each do |row|
           row_hash = row.to_h
-          not_tested_requirements["#{row_hash['Req Set']}##{row_hash['ID']}"] = row_hash
+          not_tested_requirements["#{row_hash['Req Set']}@#{row_hash['ID']}"] = row_hash
         end
 
         not_tested_requirements
@@ -85,51 +106,56 @@ module InfernoRequirementsTools
 
       def new_csv
         @new_csv ||=
-          CSV.generate do |csv|
-            output_headers = TEST_SUITES.each_with_object(INPUT_HEADERS.dup) do |suite, headers|
-              headers << "#{suite.title} #{SHORT_ID_HEADER}"
-              headers << "#{suite.title} #{FULL_ID_HEADER}"
-            end
-
-            csv << output_headers
+          CSV.generate(+"\xEF\xBB\xBF") do |csv|
+            csv << OUTPUT_HEADERS
             input_rows.each do |row| # NOTE: use row order from source file
-              row_actor = row['Actor']
+              next if row['Conformance'] == 'DEPRECATED' # filter out deprecated rows
+
               TEST_SUITES.each do |suite|
                 suite_actor = SUITE_ID_TO_ACTOR_MAP[suite.id]
-                if row_actor&.include?(suite_actor)
-                  set_and_req_id = "#{row['Req Set']}##{row['ID']}"
-                  suite_requirement_items = inferno_requirements_map[set_and_req_id]&.filter do |item|
-                    item[:suite_id] == suite.id
-                  end
-                  short_ids = suite_requirement_items&.map { |item| item[:short_id] }
-                  full_ids = suite_requirement_items&.map { |item| item[:full_id] }
-                  if short_ids.blank? && not_tested_requirements_map.has_key?(set_and_req_id)
-                    row["#{suite.title} #{SHORT_ID_HEADER}"] = 'Not Tested'
-                    row["#{suite.title} #{FULL_ID_HEADER}"] = 'Not Tested'
-                  else
-                    row["#{suite.title} #{SHORT_ID_HEADER}"] = short_ids&.join(', ')
-                    row["#{suite.title} #{FULL_ID_HEADER}"] = full_ids&.join(', ')
-                  end
+                if row['Actor']&.include?(suite_actor)
+                  add_suite_tests_for_row(row, suite)
                 else
                   row["#{suite.title} #{SHORT_ID_HEADER}"] = 'NA'
                   row["#{suite.title} #{FULL_ID_HEADER}"] = 'NA'
                 end
               end
-
               csv << row.values
             end
           end
       end
 
+      def add_suite_tests_for_row(row, suite)
+        set_and_req_id = "#{row['Req Set']}@#{row['ID']}"
+        items = get_items_for_requirement(set_and_req_id, suite)
+        short_ids = items[0]
+        full_ids = items[1]
+        if short_ids.blank? && not_tested_requirements_map.key?(set_and_req_id)
+          row["#{suite.title} #{SHORT_ID_HEADER}"] = 'Not Tested'
+          row["#{suite.title} #{FULL_ID_HEADER}"] = 'Not Tested'
+        else
+          row["#{suite.title} #{SHORT_ID_HEADER}"] = short_ids&.join(', ')
+          row["#{suite.title} #{FULL_ID_HEADER}"] = full_ids&.join(', ')
+        end
+      end
+
+      def get_items_for_requirement(set_and_req_id, suite)
+        suite_requirement_items = inferno_requirements_map[set_and_req_id]&.filter do |item|
+          item[:suite_id] == suite.id
+        end
+        [
+          suite_requirement_items&.map { |item| item[:short_id] },
+          suite_requirement_items&.map { |item| item[:full_id] }
+        ]
+      end
+
       def input_requirement_ids
-        @input_requirement_ids ||= input_rows.map { |row| "#{row['Req Set']}##{row['ID']}" }
+        @input_requirement_ids ||= input_rows.map { |row| "#{row['Req Set']}@#{row['ID']}" }
       end
 
       # The requirements present in Inferno that aren't in the input spreadsheet
       def unmatched_requirements_map
-        @unmatched_requirements_map ||= inferno_requirements_map.filter do |requirement_id, _|
-          !input_requirement_ids.include?(requirement_id)
-        end
+        @unmatched_requirements_map ||= inferno_requirements_map.except(*input_requirement_ids)
       end
 
       def old_csv
@@ -138,7 +164,7 @@ module InfernoRequirementsTools
 
       def run
         unless File.exist?(INPUT_FILE)
-          puts "Could not find input file: #{INPUT_FILE}. Aborting requirements mapping..."
+          puts "Could not find input file: #{INPUT_FILE}. Aborting requirements coverage generation..."
           exit(1)
         end
 
@@ -148,11 +174,11 @@ module InfernoRequirementsTools
         end
 
         if File.exist?(OUTPUT_FILE)
-          if old_csv == (BOM + new_csv)
+          if old_csv == new_csv
             puts "'#{OUTPUT_FILE_NAME}' file is up to date."
             return
           else
-            puts 'Requirements mapping has changed.'
+            puts 'Requirements coverage has changed.'
           end
         else
           puts "No existing #{OUTPUT_FILE_NAME}."
@@ -160,13 +186,13 @@ module InfernoRequirementsTools
 
         puts "Writing to file #{OUTPUT_FILE}..."
         FileUtils.mkdir_p(OUTPUT_FILE_DIRECTORY)
-        File.write(OUTPUT_FILE, BOM + new_csv)
+        File.write(OUTPUT_FILE, new_csv)
         puts 'Done.'
       end
 
       def run_check
         unless File.exist?(INPUT_FILE)
-          puts "Could not find input file: #{INPUT_FILE}. Aborting requirements mapping check..."
+          puts "Could not find input file: #{INPUT_FILE}. Aborting requirements coverage check..."
           exit(1)
         end
 
@@ -176,7 +202,7 @@ module InfernoRequirementsTools
         end
 
         if File.exist?(OUTPUT_FILE)
-          if old_csv == (BOM + new_csv)
+          if old_csv == new_csv
             puts "'#{OUTPUT_FILE_NAME}' file is up to date."
             return unless unmatched_requirements_map.any?
           else
@@ -184,7 +210,7 @@ module InfernoRequirementsTools
               #{OUTPUT_FILE_NAME} file is out of date.
               To regenerate the file, run:
 
-                  bundle exec rake requirements:map_requirements
+                  bundle exec rake requirements:generate_coverage
 
             MESSAGE
           end
@@ -193,7 +219,7 @@ module InfernoRequirementsTools
             No existing #{OUTPUT_FILE_NAME} file.
             To generate the file, run:
 
-                  bundle exec rake requirementss:map_requirements
+                  bundle exec rake requirements:generate_coverage
 
           MESSAGE
         end
@@ -223,6 +249,7 @@ module InfernoRequirementsTools
       # ---------------+------------+----------
       # req-id-1       | short-id-1 | full-id-1
       # req-id-2       | short-id-2 | full-id-2
+      #
       def output_requirements_map_table(requirements_map)
         headers = %w[requirement_id short_id full_id]
         col_widths = headers.map(&:length)
@@ -237,6 +264,11 @@ module InfernoRequirementsTools
           headers[2].ljust(col_widths[2])
         ].join(' | ')
         puts col_widths.map { |width| '-' * width }.join('-+-')
+        output_requirements_map_table_contents(requirements_map, col_widths)
+        puts
+      end
+
+      def output_requirements_map_table_contents(requirements_map, col_widths)
         requirements_map.each do |requirement_id, runnables|
           runnables.each do |runnable|
             puts [
@@ -246,7 +278,6 @@ module InfernoRequirementsTools
             ].join(' | ')
           end
         end
-        puts
       end
     end
   end
