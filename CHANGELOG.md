@@ -1,3 +1,7 @@
+# 0.13.2
+
+* Fix: Made Carin Wait Test ID Unique by @vanessuniq in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/57
+
 # 0.13.1
 
 * add documentation markdown files to the gem
