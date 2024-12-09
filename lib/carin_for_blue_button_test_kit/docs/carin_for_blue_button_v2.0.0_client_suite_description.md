@@ -32,7 +32,7 @@ During execution, Inferno will wait for the client under test to issue requests 
   - Retrieved instances of each [CARIN IG for Blue Button profile](https://hl7.org/fhir/us/carin-bb/STU2/artifacts.html#structures-resource-profiles)
   - Performed searches using the search parameters and search parameter combinations marked as **SHALL** within the [C4BB CapabilityStatement](https://hl7.org/fhir/us/carin-bb/STU2/CapabilityStatement-c4bb.html)
   and the [US Core Client CapabilityStatement](https://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html).
-  - Processed and retained all profile instances and data elements marked as required or must support via tester attestation.
+  - Processed and retained all profile instances and data elements marked as required or must support.
 
 ## Running the Tests
 
@@ -88,4 +88,5 @@ that the test kit covers and does not cover in the [Requirements Coverage](https
 CSV document.
 
 Specific current limitations to highlight include:
-   - Testers must manually configure their client system to connect to a specific target patient and ingest specific curated sample CARIN data.    Future versions of the test may allow more flexibility in the patient identity and the associated data.
+   - Testers must manually configure their client system to connect to a specific target patient and ingest specific curated sample CARIN data. Future versions of the tests may allow more flexibility in the patient identity and the associated data.
+   - Testers must attest to their system's ability to process and retain all received information. Currently, this is implemented as a single test. Future versions of the tests may split this test out into different attestations per profile or other more fine-grained organization.
