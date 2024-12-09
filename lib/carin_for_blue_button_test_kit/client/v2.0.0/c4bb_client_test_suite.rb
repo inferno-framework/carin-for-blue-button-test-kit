@@ -112,7 +112,7 @@ module CarinForBlueButtonTestKit
         [US Core Client CapabilityStatement](https://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html).
       )
 
-      test from: :initial_wait_test
+      test from: :c4bb_v200_initial_wait_test
     end
 
     group do
