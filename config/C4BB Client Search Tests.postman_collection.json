@@ -393,7 +393,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url_prefix}}/ExplanationOfBenefit?_lastUpdated=2024-10-21",
+					"raw": "{{url_prefix}}/ExplanationOfBenefit?_lastUpdated>2024-10-21",
 					"host": [
 						"{{url_prefix}}"
 					],
@@ -402,8 +402,8 @@
 					],
 					"query": [
 						{
-							"key": "_lastUpdated",
-							"value": "2024-10-21"
+							"key": "_lastUpdated>2024-10-21",
+							"value": null
 						}
 					]
 				}
