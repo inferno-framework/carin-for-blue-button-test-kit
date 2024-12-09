@@ -38,7 +38,7 @@ Blue Button® IG.
 ### Sample Postman Collection
 
 To try out these tests without a CARIN for Blue Button client implementation, you may
-run them using [this Postman collection](https://github.com/inferno-framework/carin-for-blue-button-test-kit/blob/config/presets/C4BB%20Client%20Search%20Tests.postman_collection.json). This Postman collection includes all of the required CARIN for Blue Button profile resource requests and required search
+run them using [this Postman collection](https://github.com/inferno-framework/carin-for-blue-button-test-kit/blob/config/C4BB%20Client%20Search%20Tests.postman_collection.json). This Postman collection includes all of the required CARIN for Blue Button profile resource requests and required search
 requests needed to pass all of the tests.
 
 To run the client tests against the Postman collection:
