@@ -1,4 +1,4 @@
-# 0.12.3
+# 0.13.0
 
 * FI-3271/FI-3272: Implement Mock Server and CARIN tests for required/must-support elements for Client-Based CARIN Testing by @emichaud998 in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/47
 
