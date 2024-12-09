@@ -55,7 +55,7 @@ module CarinForBlueButtonTestKit
 
     def tags
       response_body = FHIR.from_contents(carin_resource_response(request))
-      params = get_params(request.query_string)
+      params = get_param_tags(request.query_string)
 
       endpoint_resource = resource_endpoint(request.url)
 
