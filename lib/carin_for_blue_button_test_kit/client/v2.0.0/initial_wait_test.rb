@@ -3,7 +3,7 @@ module CarinForBlueButtonTestKit
   class C4BBClientInitialWaitTest < Inferno::Test
     include URLs
 
-    id :initial_wait_test
+    id :c4bb_v200_initial_wait_test
     title 'Client makes claims data and required search parameter requests'
     description %(
       This test will receive claims data requests and search requests until the user confirms they are done.

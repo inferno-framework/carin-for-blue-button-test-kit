@@ -6,7 +6,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
   include RequestHelpers
 
   let(:suite) { Inferno::Repositories::TestSuites.new.find('c4bb_v200_client') }
-  let(:test) { Inferno::Repositories::Tests.new.find('initial_wait_test') }
+  let(:test) { Inferno::Repositories::Tests.new.find('c4bb_v200_initial_wait_test') }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:results_repo) { Inferno::Repositories::Results.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: 'c4bb_v200_client') }
@@ -78,10 +78,10 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
     allow(test).to receive_messages(suite:, parent: suite)
 
     patient_fhir_api_request = stub_request(:get, server_patient_api_request)
-      .with(
-        headers: { 'Authorization' => "Bearer #{access_token}" }
-      )
-      .to_return(status: 200, body: c4bb_patient_search_bundle.to_json)
+                               .with(
+                                 headers: { 'Authorization' => "Bearer #{access_token}" }
+                               )
+                               .to_return(status: 200, body: c4bb_patient_search_bundle.to_json)
 
     result = run(test, access_token:)
 
@@ -106,10 +106,10 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
     allow(test).to receive_messages(suite:, parent: suite)
 
     eob_fhir_include_search = stub_request(:get, server_eob_include_search)
-      .with(
-        headers: { 'Authorization' => "Bearer #{access_token}" }
-      )
-      .to_return(status: 200, body: c4bb_eob_include_bundle.to_json)
+                              .with(
+                                headers: { 'Authorization' => "Bearer #{access_token}" }
+                              )
+                              .to_return(status: 200, body: c4bb_eob_include_bundle.to_json)
 
     result = run(test, access_token:)
 
@@ -170,10 +170,10 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
     allow(test).to receive_messages(suite:, parent: suite)
 
     patient_fhir_api_request = stub_request(:get, server_patient_api_request)
-      .with(
-        headers: { 'Authorization' => "Bearer #{access_token}" }
-      )
-      .to_return(status: 200, body: c4bb_patient_search_bundle.to_json)
+                               .with(
+                                 headers: { 'Authorization' => "Bearer #{access_token}" }
+                               )
+                               .to_return(status: 200, body: c4bb_patient_search_bundle.to_json)
 
     result = run(test, access_token:)
 
@@ -199,10 +199,10 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
     allow(test).to receive_messages(suite:, parent: suite)
 
     patient_fhir_api_request = stub_request(:get, server_patient_api_request)
-      .with(
-        headers: { 'Authorization' => "Bearer #{access_token}" }
-      )
-      .to_return(status: 404, body: c4bb_patient_search_bundle.to_json)
+                               .with(
+                                 headers: { 'Authorization' => "Bearer #{access_token}" }
+                               )
+                               .to_return(status: 404, body: c4bb_patient_search_bundle.to_json)
 
     result = run(test, access_token:)
 
