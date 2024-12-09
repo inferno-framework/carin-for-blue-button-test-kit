@@ -41,6 +41,20 @@ module CarinForBlueButtonTestKit
       response_resource
     end
 
+    def get_param_tags(query_string)
+      params = {}
+      query_string.split('&').each do |param|
+        split_param = if param.include?('%')
+                        param.split('%')
+                      else
+                        param.split('=')
+                      end
+        params[split_param.first] = [] if params[split_param.first].nil?
+        params[split_param.first].append(split_param.last)
+      end
+      params
+    end
+
     def get_params(query_string)
       params = {}
       query_string.split('&').each do |param|
@@ -113,12 +127,18 @@ module CarinForBlueButtonTestKit
 
     def match_request_to_expectation(resource_type, params)
       matched_search = SEARCHES_BY_PRIORITY[resource_type.to_sym].select do |expectation|
-        (params.keys.map(&:to_s) & expectation).sort == expectation
+        (params.keys.map(&:to_s).map do |key|
+          if key.include?('_lastUpdated')
+            key.split('%').first
+          else
+            key
+          end
+        end & expectation).sort == expectation
       end.map(&:first)
 
       if matched_search.present?
         return params.select do |key, value|
-          matched_search.include?(key.to_s) || key == '_revInclude' || key == '_include'
+          matched_search.include?(key.to_s.split('%').first) || key == '_revInclude' || key == '_include'
         end
       end
       nil
