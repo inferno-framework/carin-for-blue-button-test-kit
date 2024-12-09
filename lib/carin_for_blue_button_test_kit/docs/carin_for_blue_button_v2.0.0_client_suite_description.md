@@ -58,8 +58,8 @@ return the requested CARIN resources to the client, and verify the interaction.
 ### Sample Execution - Postman
 
 To try out these tests without a CARIN for Blue Button client implementation, you may
-run them using [this Postman collection](https://github.com/inferno-framework/carin-for-blue-button-test-kit/blob/main/config/C4BB%20Client%20Search%20Tests.postman_collection.json). This Postman collection includes all of the required CARIN for Blue Button profile resource requests and required search
-requests needed to pass all of the tests.
+run them using [this Postman collection](https://github.com/inferno-framework/carin-for-blue-button-test-kit/blob/main/config/C4BB%20Client%20Search%20Tests.postman_collection.json). This Postman collection includes many of the required CARIN for Blue Button profile
+resource requests and required search requests. Note that the demo is not expected to pass all of the tests.
 
 To run the client tests against the Postman collection:
 1. Start an Inferno session of the CARIN for Blue Button Client test suite.
