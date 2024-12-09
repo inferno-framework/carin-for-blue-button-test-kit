@@ -62,7 +62,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url_prefix}}/Patient?birthdate=1986-01-01&family=Example1&gender=male&given=Johnny&identifier=1234-234-1243-12345678901&name=Johnny",
+					"raw": "{{url_prefix}}/Patient?birthdate=1986-01-01&family=Smith&gender=male&given=Johnny&identifier=1234-234-1243-12345678901&name=Johnny",
 					"host": [
 						"{{url_prefix}}"
 					],
@@ -76,7 +76,7 @@
 						},
 						{
 							"key": "family",
-							"value": "Example1"
+							"value": "Smith"
 						},
 						{
 							"key": "gender",
@@ -93,6 +93,11 @@
 						{
 							"key": "name",
 							"value": "Johnny"
+						},
+						{
+							"key": "address",
+							"value": "Pittsburgh",
+							"disabled": true
 						}
 					]
 				}
@@ -443,6 +448,12 @@
 			"key": "url_prefix",
 			"value": "https://inferno.healthit.gov/suites/custom/c4bb_v200_client/fhir",
 			"type": "string"
+		},
+		{
+			"key": "url_prefix",
+			"value": "http://localhost:4567/custom/c4bb_v200_client/fhir",
+			"type": "string",
+			"disabled": true
 		}
 	]
 }
