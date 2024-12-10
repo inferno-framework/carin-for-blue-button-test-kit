@@ -111,6 +111,7 @@ module CarinForBlueButtonTestKit
         [C4BB CapabilityStatement](https://hl7.org/fhir/us/carin-bb/STU2/CapabilityStatement-c4bb.html) and the
         [US Core Client CapabilityStatement](https://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html).
       )
+      id :c4bb_claims_data_wait_test_group
 
       test from: :c4bb_v200_initial_wait_test
     end
@@ -125,6 +126,7 @@ module CarinForBlueButtonTestKit
         and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html#patient)
         Capability Statements.
       )
+      id :c4bb_patient_profile_test_group
 
       test from: :patient_claims_data_request_test
       test from: :patient_required_searches
@@ -140,6 +142,7 @@ module CarinForBlueButtonTestKit
         and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html)
         Capability Statements.
       )
+      id :c4bb_coverage_profile_test_group
 
       test from: :coverage_claims_data_request_test
       test from: :coverage_required_searches
@@ -155,6 +158,7 @@ module CarinForBlueButtonTestKit
         and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html#organization)
         Capability Statements.
       )
+      id :c4bb_organization_profile_test_group
       optional
 
       test from: :organization_claims_data_request_test
@@ -171,6 +175,7 @@ module CarinForBlueButtonTestKit
         and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html#practitioner)
         Capability Statements.
       )
+      id :c4bb_practitioner_profile_test_group
       optional
 
       test from: :practitioner_claims_data_request_test
@@ -187,6 +192,7 @@ module CarinForBlueButtonTestKit
         and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html)
         Capability Statements.
       )
+      id :c4bb_relatedperson_profile_test_group
       optional
 
       test from: :relatedperson_claims_data_request_test
@@ -204,6 +210,7 @@ module CarinForBlueButtonTestKit
         and the [US Core Client](https://www.hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-client.html)
         Capability Statements.
       )
+      id :c4bb_explanationofbenefit_profiles_test_group
 
       test from: :eob_inpatient_claims_data_request_test
       test from: :eob_outpatient_claims_data_request_test
@@ -220,6 +227,7 @@ module CarinForBlueButtonTestKit
         Attest that the client system under test was able to sucessfully process all of the requested resources for
         each of the CARIN for Blue Button profiles.
       )
+      id :c4bb_client_attestation_test_group
 
       test from: :client_claims_data_attestation
     end
