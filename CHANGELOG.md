@@ -1,3 +1,7 @@
+# 0.13.3
+
+* Deployment fixes by @karlnaden in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/59
+
 # 0.13.2
 
 * Fix: Made Carin Wait Test ID Unique by @vanessuniq in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/57
