@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f11a6849-b32a-4815-b1cc-092dd230a369",
+		"_postman_id": "b8f9e4c6-ad99-4b2e-a29a-e7a4549709de",
 		"name": "C4BB Client Search Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "11477963"
+		"_exporter_id": "32597978"
 	},
 	"item": [
 		{
@@ -318,6 +318,33 @@
 			"response": []
 		},
 		{
+			"name": "EOB required _include searches (unsupported)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_prefix}}/ExplanationOfBenefit?_include=ExplanationOfBenefit:insurer&patient=888",
+					"host": [
+						"{{url_prefix}}"
+					],
+					"path": [
+						"ExplanationOfBenefit"
+					],
+					"query": [
+						{
+							"key": "_include",
+							"value": "ExplanationOfBenefit:insurer"
+						},
+						{
+							"key": "patient",
+							"value": "888"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "EOB _include all search",
 			"request": {
 				"method": "GET",
@@ -361,26 +388,41 @@
 						{
 							"key": "identifier",
 							"value": "AW123412341234123412341234123412"
-						},
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EOB required searches (unsupported)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_prefix}}/ExplanationOfBenefit?service-date=2019-11-02&service-start-date=2019-11-02&billable-period-start=2019-01-01&type=institutional",
+					"host": [
+						"{{url_prefix}}"
+					],
+					"path": [
+						"ExplanationOfBenefit"
+					],
+					"query": [
 						{
 							"key": "service-date",
-							"value": "2019-11-02",
-							"disabled": true
+							"value": "2019-11-02"
 						},
 						{
 							"key": "service-start-date",
-							"value": "2019-11-02",
-							"disabled": true
+							"value": "2019-11-02"
 						},
 						{
 							"key": "billable-period-start",
-							"value": "2019-01-01",
-							"disabled": true
+							"value": "2019-01-01"
 						},
 						{
 							"key": "type",
-							"value": "institutional",
-							"disabled": true
+							"value": "institutional"
 						}
 					]
 				}
@@ -393,7 +435,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url_prefix}}/ExplanationOfBenefit?_lastUpdated=2024-10-21",
+					"raw": "{{url_prefix}}/ExplanationOfBenefit?_lastUpdated=gt2024-10-21",
 					"host": [
 						"{{url_prefix}}"
 					],
@@ -403,7 +445,7 @@
 					"query": [
 						{
 							"key": "_lastUpdated",
-							"value": "2024-10-21"
+							"value": "gt2024-10-21"
 						}
 					]
 				}
