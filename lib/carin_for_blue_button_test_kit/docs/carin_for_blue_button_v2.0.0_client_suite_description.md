@@ -88,6 +88,6 @@ that the test kit covers and does not cover in the [Requirements Coverage](https
 CSV document.
 
 Specific current limitations to highlight include:
-   - Inferno's simulated CARIN server does not support all required search parameters on the ExplanationOfBenefit resource, including service-date, service-start-date, billable-period-start, type, _include=ExplanationOfBenefit:insurer. Searches that include these search parameters will always return an OperationOutcome indicating failure. This means that systems cannot pass the tests at this time.
+   - Inferno's simulated CARIN server does not support all required search parameters on the ExplanationOfBenefit resource, including service-date, service-start-date, billable-period-start, type, and _include=ExplanationOfBenefit:insurer. Searches that include these search parameters will always return an OperationOutcome indicating failure. This means that systems cannot pass the tests at this time.
    - Testers must manually configure their client system to connect to a specific target patient and ingest specific curated sample CARIN data. Future versions of the tests may allow more flexibility in the patient identity and the associated data.
    - Testers must attest to their system's ability to process and retain all received information. Currently, this is implemented as a single test. Future versions of the tests may split this test out into different attestations per profile or other more fine-grained organization.
