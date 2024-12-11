@@ -51,7 +51,7 @@ module CarinForBlueButtonTestKit
     end
 
     def suite_id
-      self.class.suite.id
+      CarinForBlueButtonTestKit::C4BBV200ClientSuite.id
     end
   end
 end
