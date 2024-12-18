@@ -183,14 +183,14 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
 
     make_all_eob_search_requests(eob_required_searches)
 
-    result = run(test, access_token:)
+    result = run(test)
     expect(result.result).to eq('pass')
   end
 
   it 'skips if no EOB search requests were made' do
     allow(test).to receive(:suite).and_return(suite)
 
-    result = run(test, access_token:)
+    result = run(test)
     expect(result.result).to eq('skip')
     expect(result.result_message).to eq('No search requests made for Explanation of Benefit resource')
   end
@@ -201,7 +201,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
     eob_required_searches.pop
     make_all_eob_search_requests(eob_required_searches)
 
-    result = run(test, access_token:)
+    result = run(test)
     expect(result.result).to eq('fail')
     expect(result.result_message).to match(/_id/)
   end

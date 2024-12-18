@@ -1,6 +1,7 @@
 require 'inferno/dsl/oauth_credentials'
 require_relative 'endpoints/resource_api_endpoint'
 require_relative 'endpoints/token_endpoint'
+require_relative 'endpoints/authorize_endpoint'
 require_relative 'endpoints/next_page_endpoint'
 require_relative 'endpoints/resource_id_endpoint'
 
@@ -77,7 +78,9 @@ module CarinForBlueButtonTestKit
       end
     end
 
-    suite_endpoint :post, TOKEN_PATH, TokenEndpoint
+    suite_endpoint :post, TOKEN_PATH, MockAuthorization::TokenEndpoint
+    suite_endpoint :get, AUTH_PATH, MockAuthorization::AuthorizeEndpoint
+    suite_endpoint :post, AUTH_PATH, MockAuthorization::AuthorizeEndpoint
 
     suite_endpoint :get, PATIENT_PATH, ResourceAPIEndpoint
 
@@ -100,6 +103,7 @@ module CarinForBlueButtonTestKit
     end
 
     route(:get, METADATA_PATH, get_metadata)
+    route(:get, SMART_CONFIG_PATH, carin_smart_config)
 
     group do
       run_as_group

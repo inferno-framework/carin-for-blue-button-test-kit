@@ -1,5 +1,7 @@
 module CarinForBlueButtonTestKit
   TOKEN_PATH = '/mock_auth/token'
+  AUTH_PATH = '/mock_auth/authorization'
+  SMART_CONFIG_PATH = '/.well-known/smart-configuration'
   PATIENT_PATH = '/fhir/Patient'
   RESOURCE_API_PATH = '/fhir/:endpoint'
   RESOURCE_ID_PATH = '/fhir/:endpoint/:id'
@@ -16,6 +18,14 @@ module CarinForBlueButtonTestKit
 
     def token_url
       @token_url ||= base_url + TOKEN_PATH
+    end
+
+    def authorization_url
+      @authorization_url ||= base_url + AUTH_PATH
+    end
+
+    def smart_configuration_url
+      @smart_configuration_url ||= base_url + SMART_CONFIG_PATH
     end
 
     def base_fhir_url

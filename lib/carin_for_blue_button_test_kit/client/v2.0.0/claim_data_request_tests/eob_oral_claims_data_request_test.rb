@@ -12,7 +12,6 @@ module CarinForBlueButtonTestKit
       This test verifies that an instance returned by requests made by the client is an ExplanationOfBenefit resource
       that conforms to the CARIN for Blue Button [Oral ExplanationOfBenefit profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-ExplanationOfBenefit-Oral.html).
     )
-    input :access_token
 
     run do
       resources = previous_resource_requests(:ExplanationOfBenefit_Oral)
