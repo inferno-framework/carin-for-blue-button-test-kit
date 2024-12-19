@@ -30,17 +30,6 @@ module CarinForBlueButtonTestKit
                                                          fhir_user: granted_scopes.include?('fhirUser')))
         end
 
-        # fhir_context_input = find_test_input("#{input_group_prefix}_smart_fhir_context")
-        # begin
-        #   fhir_context = JSON.parse(fhir_context_input)
-        # rescue StandardError
-        #   fhir_context = nil
-        # end
-        # response_hash.merge!(fhirContext: fhir_context) if fhir_context
-
-        # smart_patient_input = find_test_input("#{input_group_prefix}_smart_patient_id")
-        # response_hash.merge!(patient: smart_patient_input) if smart_patient_input
-
         response_hash.merge!(patient: '888')
 
         response.body = response_hash.to_json
