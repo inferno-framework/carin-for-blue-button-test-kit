@@ -40,7 +40,8 @@ During execution, Inferno will wait for the client under test to issue requests 
 
 The following input must be provided by the tester to execute
 any tests in this suite:
-1. *Access Token*: A `Bearer` token that the client under test will send in the 
+1. *Client ID*: A Client ID that the client under test will use to connect to the test suite via SMART.
+   This client ID will be sent back to the client as the `Bearer` token that the client under test will send in the 
    `Authorization` header of HTTP requests made against Inferno. Inferno uses the
    value to identify incoming requests that belong to the testing session.
 
@@ -63,7 +64,7 @@ requests needed to pass all of the tests. Note that some requests within the col
 
 To run the client tests against the Postman collection:
 1. Start an Inferno session of the CARIN for Blue Button Client test suite.
-3. Click the "Run All Tests" button in the upper right and type in "SAMPLE_TOKEN" for the `access_token` input in the dialog that appears.
+3. Click the "Run All Tests" button in the upper right and type in "SAMPLE_TOKEN" for the `Client ID` input in the dialog that appears.
 4. Click the "Submit" button. The simulated server will then be waiting for an interaction.
 4. Open Postman and import the `C4BB Client Search Tests` Postman collection.
 5. Send each of the requests listed under the `C4BB Client Search Tests` Postman collection and ensure a
@@ -78,7 +79,7 @@ to use the same token, they may interfere with each other. To prevent concurrent
 of these sample executions from disrupting your session it
 is recommended, but not required, to:
 1. Update the Authorization tab of the C4BB Client Search Tests collection in Postman to a random value
-2. When starting the tests, provide the same value in the access_token input.
+2. When starting the tests, provide the same value in the `Client ID` input.
 
 ## Current Limitations
 
@@ -91,3 +92,4 @@ Specific current limitations to highlight include:
    - Inferno's simulated CARIN server does not support all required search parameters on the ExplanationOfBenefit resource, including service-date, service-start-date, billable-period-start, type, and _include=ExplanationOfBenefit:insurer. Inferno recognizes searches made using those parameters and will give the client credit for having performed them, but will always return an OperationOutcome indicating failure. 
    - Testers must manually configure their client system to connect to a specific target patient and ingest specific curated sample CARIN data. Future versions of the tests may allow more flexibility in the patient identity and the associated data.
    - Testers must attest to their system's ability to process and retain all received information. Currently, this is implemented as a single test. Future versions of the tests may split this test out into different attestations per profile or other more fine-grained organization.
+   - This test kit contains basic SMART App Launch capabilities that may not be complete. In particular, refresh tokens are not currently supported and scopes are not precise. To provide feedback and input on the design of this feature and help us prioritize improvements, submit a ticket [here](https://github.com/inferno-framework/carin-for-blue-button-test-kit/issues).

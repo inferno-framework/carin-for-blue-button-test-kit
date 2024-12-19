@@ -12,7 +12,6 @@ module CarinForBlueButtonTestKit
       This test verifies that an instance returned by requests made by the client is a Practitioner resource
       that conforms to the CARIN for Blue Button [Practitioner profile](https://hl7.org/fhir/us/carin-bb/STU2/StructureDefinition-C4BB-Practitioner.html).
     )
-    input :access_token
 
     run do
       resources = previous_resource_requests(:Practitioner)
