@@ -13,8 +13,6 @@ module CarinForBlueButtonTestKit
     include URLs
 
     SUPPORTED_SCOPES = ['launch', 'patient/*.rs', 'user/*.rs', 'offline_access', 'openid', 'fhirUser'].freeze
-    RSA_PRIVATE_KEY = OpenSSL::PKey::RSA.generate(2048)
-    RSA_PUBLIC_KEY = RSA_PRIVATE_KEY.public_key
 
     def server_proxy
       @server_proxy ||= Faraday.new(
@@ -165,6 +163,10 @@ module CarinForBlueButtonTestKit
 
     def extract_token_from_query_params(request)
       request.query_parameters['token']
+    end
+
+    def extract_test_run_identifier_from_query_params(request)
+      request.query_parameters['test_run_identifier']
     end
 
     # Pull resource type from url

@@ -28,8 +28,8 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
 
   let(:client_id) { 'SAMPLE_TOKEN' }
 
-  let(:resume_pass_url) do
-    "#{Inferno::Application['base_url']}/custom/c4bb_v200_client/resume_claims_data?token=#{client_id}"
+  let(:resume_claims_data_url) do
+    "#{Inferno::Application['base_url']}/custom/c4bb_v200_client/resume_claims_data?test_run_identifier=#{client_id}"
   end
 
   let(:c4bb_eob_include_bundle) do
@@ -96,7 +96,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
     expect(response_body['resourceType']).to eq('Bundle')
     expect(response_body['entry'].first['resource']['resourceType']).to eq('Patient')
     expect(last_request.env['inferno.tags']).to include('carin_resource_api', 'Patient', '_id')
-    get(resume_pass_url)
+    get(resume_claims_data_url)
     result = results_repo.find(result.id)
     expect(result.result).to eq('pass')
     expect(patient_fhir_api_request).to have_been_made
@@ -141,7 +141,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
                                                         '_include=ExplanationOfBenefit:care-team',
                                                         '_include=ExplanationOfBenefit:coverage',
                                                         '_include=ExplanationOfBenefit:payee')
-    get(resume_pass_url)
+    get(resume_claims_data_url)
     result = results_repo.find(result.id)
     expect(result.result).to eq('pass')
     expect(eob_fhir_include_search).to have_been_made
@@ -161,7 +161,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
     result = results_repo.find(result.id)
     expect(result.result).to eq('wait')
 
-    get(resume_pass_url)
+    get(resume_claims_data_url)
     result = results_repo.find(result.id)
     expect(result.result).to eq('pass')
   end
@@ -189,7 +189,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
     result = results_repo.find(result.id)
     expect(result.result).to eq('wait')
 
-    get(resume_pass_url)
+    get(resume_claims_data_url)
     result = results_repo.find(result.id)
     expect(result.result).to eq('pass')
     expect(patient_fhir_api_request).to have_been_made
@@ -218,7 +218,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
     expect(response_body['resourceType']).to eq('Bundle')
     expect(response_body['entry'].first['resource']['resourceType']).to eq('Patient')
 
-    get(resume_pass_url)
+    get(resume_claims_data_url)
     result = results_repo.find(result.id)
     expect(result.result).to eq('pass')
     expect(patient_fhir_api_request).to have_been_made

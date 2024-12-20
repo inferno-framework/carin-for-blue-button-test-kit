@@ -11,8 +11,9 @@ module CarinForBlueButtonTestKit
     input :client_id,
           title: 'Client ID',
           description: %(
-            Enter the client ID you will use to connect to this CARIN server via SMART. This client ID will be sent
-            back as the access token to send requests to this server.
+            Enter the client ID you will use to connect to this CARIN server via a SMART launch. If you wish to send
+            requests without performing a SMART launch, enter the Bearer access token you will provide with your
+            requests here instead.
           )
 
     config options: { accepts_multiple_requests: true }
@@ -73,7 +74,7 @@ module CarinForBlueButtonTestKit
                 * ExplanationOfBenefit:payee
                 * ExplanationOfBenefit:*
 
-          [Click here](#{resume_claims_data_url}?token=#{client_id}) when done.
+          [Click here](#{resume_claims_data_url}?test_run_identifier=#{client_id}) when done.
         ),
         timeout: 900
       )

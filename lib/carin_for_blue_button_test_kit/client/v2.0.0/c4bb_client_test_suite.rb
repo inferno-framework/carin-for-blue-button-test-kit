@@ -90,11 +90,11 @@ module CarinForBlueButtonTestKit
 
     suite_endpoint :get, BASE_FHIR_PATH, NextPageEndpoint
 
-    resume_test_route :get, RESUME_PASS_PATH do |request|
-      C4BBV200ClientSuite.extract_token_from_query_params(request)
+    resume_test_route :get, RESUME_CLAIMS_DATA_PATH do |request|
+      C4BBV200ClientSuite.extract_test_run_identifier_from_query_params(request)
     end
 
-    resume_test_route :get, RESUME_CLAIMS_DATA_PATH do |request|
+    resume_test_route :get, RESUME_PASS_PATH do |request|
       C4BBV200ClientSuite.extract_token_from_query_params(request)
     end
 
@@ -104,6 +104,7 @@ module CarinForBlueButtonTestKit
 
     route(:get, METADATA_PATH, get_metadata)
     route(:get, SMART_CONFIG_PATH, carin_smart_config)
+    route(:get, JKWS_PATH, MockAuthorization.method(:jwks))
 
     group do
       run_as_group

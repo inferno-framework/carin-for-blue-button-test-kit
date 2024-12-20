@@ -1,10 +1,12 @@
 require_relative '../tags'
 require_relative '../urls'
 require_relative '../mock_server'
+require_relative '../mock_authorization'
 
 module CarinForBlueButtonTestKit
   module MockAuthorization
     AUTHORIZED_PRACTITIONER_ID = 'c4bb-Practitioner'.freeze # Must exist on the FHIR_REFERENCE_SERVER (env var)
+    CARIN_PATIENT_ID = '888'.freeze # Must exist on the FHIR_REFERENCE_SERVER (env var)
 
     class TokenEndpoint < Inferno::DSL::SuiteEndpoint
       include CarinForBlueButtonTestKit::MockServer
@@ -19,7 +21,7 @@ module CarinForBlueButtonTestKit
 
       def make_response
         client_id = extract_client_id
-        access_token = client_id
+        access_token = JWT.encode({ inferno_client_id: client_id }, nil, 'none')
         granted_scopes = SUPPORTED_SCOPES & requested_scopes
 
         response_hash = { access_token:, scope: granted_scopes.join(' '), token_type: 'bearer',
@@ -30,7 +32,7 @@ module CarinForBlueButtonTestKit
                                                          fhir_user: granted_scopes.include?('fhirUser')))
         end
 
-        response_hash.merge!(patient: '888')
+        response_hash.merge!(patient: CARIN_PATIENT_ID)
 
         response.body = response_hash.to_json
         response.headers['Cache-Control'] = 'no-store'
@@ -58,20 +60,6 @@ module CarinForBlueButtonTestKit
           end
 
         jwt_payload['iss'] || jwt_payload['sub'] if jwt_payload.present?
-      end
-
-      def input_group_prefix
-        if test.id.include?('static')
-          'static'
-        elsif test.id.include?('adaptive')
-          'adaptive'
-        else
-          'resp'
-        end
-      end
-
-      def find_test_input(input_name)
-        JSON.parse(result.input_json)&.find { |input| input['name'] == input_name }&.dig('value')
       end
 
       def extract_client_id_from_basic_auth
