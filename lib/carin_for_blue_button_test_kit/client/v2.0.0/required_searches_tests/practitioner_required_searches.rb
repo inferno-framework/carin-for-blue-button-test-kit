@@ -18,7 +18,6 @@ module CarinForBlueButtonTestKit
         * name
         * identifier
     )
-    input :access_token
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@14'
 

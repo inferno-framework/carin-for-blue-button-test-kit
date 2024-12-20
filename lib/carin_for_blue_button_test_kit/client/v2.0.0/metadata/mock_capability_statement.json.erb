@@ -23,6 +23,34 @@
     {
       "mode": "server",
       "documentation": "The C4BB  Server **SHALL**:\n\n1. Support all profiles defined in this Implementation Guide..\n2.  Implement the RESTful behavior according to the FHIR specification.\n3. Return the following response classes:\n   - (Status 400): invalid parameter\n   - (Status 401/4xx): unauthorized request\n   - (Status 403): insufficient scope\n   - (Status 404): unknown resource\n   - (Status 410): deleted resource.\n4. Support json source formats for all CARIN-BB interactions.\n5. Identify the CARIN-BB  profiles supported as part of the FHIR `meta.profile` attribute for each instance.\n6. Support the searchParameters on each profile  individually and in combination.\n\nThe C4BB  Server **SHOULD**:\n\n1. Support xml source formats for all C4BB interactions.\n",
+      "security": {
+        "extension": [
+            {
+                "url": "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris",
+                "extension": [
+                    {
+                        "url": "token",
+                        "valueUri": "<%= Inferno::Application['base_url']  %>/custom/c4bb_v200_client/mock_auth/token"
+                    },
+                    {
+                        "url": "authorize",
+                        "valueUri": "<%= Inferno::Application['base_url']  %>/custom/c4bb_v200_client/mock_auth/authorization"
+                    }
+                ]
+            }
+        ],
+        "service": [
+            {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/restful-security-service",
+                        "code": "SMART-on-FHIR"
+                    }
+                ],
+                "text": "OAuth2 using SMART-on-FHIR profile (see http://docs.smarthealthit.org)"
+            }
+        ]
+      },
       "resource": [
         {
           "extension": [

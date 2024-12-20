@@ -1,24 +1,102 @@
 require_relative '../tags'
+require_relative '../urls'
 require_relative '../mock_server'
+require_relative '../mock_authorization'
 
 module CarinForBlueButtonTestKit
-  class TokenEndpoint < Inferno::DSL::SuiteEndpoint
-    include CarinForBlueButtonTestKit::MockServer
+  module MockAuthorization
+    AUTHORIZED_PRACTITIONER_ID = 'c4bb-Practitioner'.freeze # Must exist on the FHIR_REFERENCE_SERVER (env var)
+    CARIN_PATIENT_ID = '888'.freeze # Must exist on the FHIR_REFERENCE_SERVER (env var)
 
-    def test_run_identifier
-      extract_client_id(request)
-    end
+    class TokenEndpoint < Inferno::DSL::SuiteEndpoint
+      include CarinForBlueButtonTestKit::MockServer
 
-    def make_response
-      token_response(request)
-    end
+      def test_run_identifier
+        extract_client_id
+      end
 
-    def tags
-      [AUTH_TAG]
-    end
+      def tags
+        [TOKEN_TAG]
+      end
 
-    def update_result
-      results_repo.update(result.id, result: 'pass') unless test.config.options[:accepts_multiple_requests]
+      def make_response
+        client_id = extract_client_id
+        access_token = JWT.encode({ inferno_client_id: client_id }, nil, 'none')
+        granted_scopes = SUPPORTED_SCOPES & requested_scopes
+
+        response_hash = { access_token:, scope: granted_scopes.join(' '), token_type: 'bearer',
+                          expires_in: 3600 }
+
+        if granted_scopes.include?('openid')
+          response_hash.merge!(id_token: create_id_token(client_id,
+                                                         fhir_user: granted_scopes.include?('fhirUser')))
+        end
+
+        response_hash.merge!(patient: CARIN_PATIENT_ID)
+
+        response.body = response_hash.to_json
+        response.headers['Cache-Control'] = 'no-store'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.status = 200
+      end
+
+      private
+
+      def extract_client_id
+        # Public client            || confidential client asymmetric          || confidential client symmetric
+        request.params[:client_id] || extract_client_id_from_client_assertion || extract_client_id_from_basic_auth
+      end
+
+      def extract_client_id_from_client_assertion
+        encoded_jwt = request.params[:client_assertion]
+        return unless encoded_jwt.present?
+
+        jwt_payload =
+          begin
+            JWT.decode(encoded_jwt, nil, false)&.first # skip signature verification
+          rescue StandardError
+            nil
+          end
+
+        jwt_payload['iss'] || jwt_payload['sub'] if jwt_payload.present?
+      end
+
+      def extract_client_id_from_basic_auth
+        encoded_credentials = request.headers['authorization']&.delete_prefix('Basic ')
+        return unless encoded_credentials.present?
+
+        decoded_credentials = Base64.decode64(encoded_credentials)
+        decoded_credentials&.split(':')&.first
+      end
+
+      def requested_scopes
+        auth_request = requests_repo.tagged_requests(result.test_session_id, [AUTHORIZE_TAG]).last
+        return [] unless auth_request
+
+        auth_params = if auth_request.verb.downcase == 'get'
+                        auth_request.query_parameters
+                      else
+                        URI.decode_www_form(auth_request.request_body)&.to_h
+                      end
+        scope_str = auth_params&.dig('scope')
+        scope_str ? URI.decode_www_form_component(scope_str).split : []
+      end
+
+      def create_id_token(client_id, fhir_user: false)
+        # No point in mocking an identity provider, just always use known Practitioner as the authorized user
+        suite_fhir_base_url = request.url.split(TOKEN_PATH).first + BASE_FHIR_PATH
+        id_token_hash = {
+          iss: suite_fhir_base_url,
+          sub: AUTHORIZED_PRACTITIONER_ID,
+          aud: client_id,
+          exp: Time.now.to_i + (24 * 60 * 60), # 24 hrs
+          iat: Time.now.to_i
+        }
+        id_token_hash.merge!(fhirUser: "#{suite_fhir_base_url}/Practitioner/#{AUTHORIZED_PRACTITIONER_ID}") if fhir_user
+
+        JWT.encode(id_token_hash, RSA_PRIVATE_KEY, 'RS256')
+      end
     end
   end
 end

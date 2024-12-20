@@ -1,13 +1,16 @@
 module CarinForBlueButtonTestKit
-  TOKEN_PATH = '/mock_auth/token'
-  PATIENT_PATH = '/fhir/Patient'
-  RESOURCE_API_PATH = '/fhir/:endpoint'
-  RESOURCE_ID_PATH = '/fhir/:endpoint/:id'
-  METADATA_PATH = '/fhir/metadata'
-  BASE_FHIR_PATH = '/fhir'
-  RESUME_PASS_PATH = '/resume_pass'
-  RESUME_CLAIMS_DATA_PATH = '/resume_claims_data'
-  RESUME_FAIL_PATH = '/resume_fail'
+  TOKEN_PATH = '/mock_auth/token'.freeze
+  AUTH_PATH = '/mock_auth/authorization'.freeze
+  JKWS_PATH = '/.well-known/jwks.json'.freeze
+  SMART_CONFIG_PATH = '/.well-known/smart-configuration'.freeze
+  PATIENT_PATH = '/fhir/Patient'.freeze
+  RESOURCE_API_PATH = '/fhir/:endpoint'.freeze
+  RESOURCE_ID_PATH = '/fhir/:endpoint/:id'.freeze
+  METADATA_PATH = '/fhir/metadata'.freeze
+  BASE_FHIR_PATH = '/fhir'.freeze
+  RESUME_PASS_PATH = '/resume_pass'.freeze
+  RESUME_CLAIMS_DATA_PATH = '/resume_claims_data'.freeze
+  RESUME_FAIL_PATH = '/resume_fail'.freeze
 
   module URLs
     def base_url
@@ -16,6 +19,18 @@ module CarinForBlueButtonTestKit
 
     def token_url
       @token_url ||= base_url + TOKEN_PATH
+    end
+
+    def authorization_url
+      @authorization_url ||= base_url + AUTH_PATH
+    end
+
+    def jwks_url
+      @jwks_url ||= base_url + JKWS_PATH
+    end
+
+    def smart_configuration_url
+      @smart_configuration_url ||= base_url + SMART_CONFIG_PATH
     end
 
     def base_fhir_url

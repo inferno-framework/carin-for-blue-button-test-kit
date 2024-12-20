@@ -8,14 +8,21 @@ module CarinForBlueButtonTestKit
     description %(
       This test will receive claims data requests and search requests until the user confirms they are done.
     )
-    input :access_token
+    input :client_id,
+          title: 'Client ID',
+          description: %(
+            Enter the client ID you will use to connect to this CARIN server via a SMART launch. If you wish to send
+            requests without performing a SMART launch, enter the Bearer access token you will provide with your
+            requests here instead.
+          )
+
     config options: { accepts_multiple_requests: true }
 
     run do
       wait(
-        identifier: access_token,
+        identifier: client_id,
         message: %(
-          Access Token: #{access_token} \n
+          Access Token: #{client_id} \n
           Submit CARIN requests via the following method:
           * Single Resource API: `#{submit_url}?:search_params`, with `:endpoint` replaced with the endpoint you want
           to reach and `:search_params` replaced with the search parameters for the request.
@@ -67,7 +74,7 @@ module CarinForBlueButtonTestKit
                 * ExplanationOfBenefit:payee
                 * ExplanationOfBenefit:*
 
-          [Click here](#{resume_claims_data_url}?token=#{access_token}) when done.
+          [Click here](#{resume_claims_data_url}?test_run_identifier=#{client_id}) when done.
         ),
         timeout: 900
       )

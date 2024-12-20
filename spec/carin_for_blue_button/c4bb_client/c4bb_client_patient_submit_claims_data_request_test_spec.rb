@@ -105,7 +105,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientPatientSubmitClaimsDataReque
 
     create_fhir_api_request(body: JSON.parse(c4bb_patient_search_bundle.to_json))
 
-    result = run(test, access_token:)
+    result = run(test)
     expect(result.result).to eq('pass')
   end
 
@@ -115,7 +115,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientPatientSubmitClaimsDataReque
     create_fhir_api_request(url: eob_include_search, body: JSON.parse(c4bb_eob_include_bundle.to_json),
                             tags: eob_include_search_tags)
 
-    result = run(test, access_token:)
+    result = run(test)
     expect(result.result).to eq('pass')
   end
 
@@ -125,7 +125,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientPatientSubmitClaimsDataReque
     c4bb_patient_search_bundle.entry.first.resource.id = 999
     create_fhir_api_request(body: JSON.parse(c4bb_patient_search_bundle.to_json))
 
-    result = run(test, access_token:)
+    result = run(test)
     expect(result.result).to eq('fail')
     expect(result.result_message).to eq('Unable to find expected resource: 888')
   end
@@ -139,7 +139,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientPatientSubmitClaimsDataReque
     create_fhir_api_request(url: eob_include_search, body: JSON.parse(c4bb_eob_include_bundle.to_json),
                             tags: eob_include_search_tags - ['Patient'])
 
-    result = run(test, access_token:)
+    result = run(test)
     expect(result.result).to eq('skip')
     expect(result.result_message).to eq('No requests made for Patient resources')
   end
