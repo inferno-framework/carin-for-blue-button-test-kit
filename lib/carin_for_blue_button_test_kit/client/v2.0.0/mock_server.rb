@@ -12,7 +12,7 @@ module CarinForBlueButtonTestKit
   module MockServer
     include URLs
 
-    SUPPORTED_SCOPES = ['launch', 'patient/*.rs', 'user/*.rs', 'offline_access', 'openid', 'fhirUser'].freeze
+    SUPPORTED_SCOPES = ['launch', 'patient/*.rs', 'user/*.rs', 'offline_access'].freeze
 
     def server_proxy
       @server_proxy ||= Faraday.new(

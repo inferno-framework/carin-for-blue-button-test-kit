@@ -5,7 +5,6 @@ require_relative '../mock_authorization'
 
 module CarinForBlueButtonTestKit
   module MockAuthorization
-    AUTHORIZED_PRACTITIONER_ID = 'c4bb-Practitioner'.freeze # Must exist on the FHIR_REFERENCE_SERVER (env var)
     CARIN_PATIENT_ID = '888'.freeze # Must exist on the FHIR_REFERENCE_SERVER (env var)
 
     class TokenEndpoint < Inferno::DSL::SuiteEndpoint

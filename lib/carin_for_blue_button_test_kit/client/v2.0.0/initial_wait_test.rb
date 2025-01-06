@@ -12,8 +12,7 @@ module CarinForBlueButtonTestKit
           title: 'Client ID',
           description: %(
             Enter the client ID you will use to connect to this CARIN server via a SMART launch. If you wish to send
-            requests without performing a SMART launch, enter the Bearer access token you will provide with your
-            requests here instead.
+            requests without performing a SMART launch, encode this client id in a JWT and send as the Bearer token.
           )
 
     config options: { accepts_multiple_requests: true }
