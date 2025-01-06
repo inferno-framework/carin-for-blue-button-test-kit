@@ -64,7 +64,7 @@ requests needed to pass all of the tests. Note that some requests within the col
 
 To run the client tests against the Postman collection:
 1. Start an Inferno session of the CARIN for Blue Button Client test suite.
-3. Click the "Run All Tests" button in the upper right and type in "SAMPLE_TOKEN" for the `Client ID` input in the dialog that appears.
+3. Click the "Run All Tests" button in the upper right and type in "SAMPLE_CLIENT_ID" for the `Client ID` input in the dialog that appears.
 4. Click the "Submit" button. The simulated server will then be waiting for an interaction.
 4. Open Postman and import the `C4BB Client Search Tests` Postman collection.
 5. Send each of the requests listed under the `C4BB Client Search Tests` Postman collection and ensure a
@@ -78,8 +78,8 @@ to associate requests with sessions. If multiple concurrent sessions are configu
 to use the same token, they may interfere with each other. To prevent concurrent executors
 of these sample executions from disrupting your session it
 is recommended, but not required, to:
-1. Update the Authorization tab of the C4BB Client Search Tests collection in Postman to a random value
-2. When starting the tests, provide the same value in the `Client ID` input.
+1. Update the Authorization tab of the C4BB Client Search Tests collection in Postman to an encoded JWT with a random client id as the payload
+2. When starting the tests, provide the client id in the `Client ID` input.
 
 ## Current Limitations
 

@@ -29,7 +29,7 @@ module CarinForBlueButtonTestKit
         ]
       }.to_json
 
-      [200, { 'Content-Type' => 'application/json', 'Access-Control-Allow-Origin' => '*' }, [response_body]]
+      [200, { 'Content-Type' => 'application/json' }, [response_body]]
     end
   end
 end

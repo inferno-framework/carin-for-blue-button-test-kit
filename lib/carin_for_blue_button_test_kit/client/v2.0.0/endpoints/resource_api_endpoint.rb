@@ -10,7 +10,7 @@ module CarinForBlueButtonTestKit
     include CarinForBlueButtonTestKit::ClientValidationTest
 
     def test_run_identifier
-      extract_client_id_from_bearer_token(request) || extract_bearer_token(request)
+      extract_client_id_from_bearer_token(request)
     end
 
     def make_response

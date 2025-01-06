@@ -26,7 +26,9 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
   let(:server_patient_api_request) { "#{fhir_server}#{patient_endpoint}" }
   let(:server_eob_include_search) { "#{fhir_server}#{eob_include_search_endpoint}" }
 
-  let(:client_id) { 'SAMPLE_TOKEN' }
+  let(:reference_server_token) { 'SAMPLE_TOKEN' }
+  let(:client_id) { 'SAMPLE_CLIENT_ID' }
+  let(:bearer_token) { JWT.encode({ inferno_client_id: 'SAMPLE_CLIENT_ID' }, nil, 'none') }
 
   let(:resume_claims_data_url) do
     "#{Inferno::Application['base_url']}/custom/c4bb_v200_client/resume_claims_data?test_run_identifier=#{client_id}"
@@ -79,7 +81,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
 
     patient_fhir_api_request = stub_request(:get, server_patient_api_request)
       .with(
-        headers: { 'Authorization' => "Bearer #{client_id}" }
+        headers: { 'Authorization' => "Bearer #{reference_server_token}" }
       )
       .to_return(status: 200, body: c4bb_patient_search_bundle.to_json)
 
@@ -87,7 +89,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
 
     expect(result.result).to eq('wait')
 
-    header 'Authorization', "Bearer #{client_id}"
+    header 'Authorization', "Bearer #{bearer_token}"
     get(patient_api_request)
 
     expect(last_response).to be_ok
@@ -107,7 +109,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
 
     eob_fhir_include_search = stub_request(:get, server_eob_include_search)
       .with(
-        headers: { 'Authorization' => "Bearer #{client_id}" }
+        headers: { 'Authorization' => "Bearer #{reference_server_token}" }
       )
       .to_return(status: 200, body: c4bb_eob_include_bundle.to_json)
 
@@ -115,7 +117,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
 
     expect(result.result).to eq('wait')
 
-    header 'Authorization', "Bearer #{client_id}"
+    header 'Authorization', "Bearer #{bearer_token}"
     get(eob_include_search)
 
     expect(last_response).to be_ok
@@ -171,13 +173,13 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
 
     patient_fhir_api_request = stub_request(:get, server_patient_api_request)
       .with(
-        headers: { 'Authorization' => "Bearer #{client_id}" }
+        headers: { 'Authorization' => "Bearer #{reference_server_token}" }
       )
       .to_return(status: 200, body: c4bb_patient_search_bundle.to_json)
 
     result = run(test, client_id:)
 
-    header 'Authorization', "Bearer #{client_id}"
+    header 'Authorization', "Bearer #{bearer_token}"
     get(invalid_patient_api_request)
 
     expect(last_response.status).to eq(403)
@@ -200,7 +202,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
 
     patient_fhir_api_request = stub_request(:get, server_patient_api_request)
       .with(
-        headers: { 'Authorization' => "Bearer #{client_id}" }
+        headers: { 'Authorization' => "Bearer #{reference_server_token}" }
       )
       .to_return(status: 404, body: c4bb_patient_search_bundle.to_json)
 
@@ -208,7 +210,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
 
     expect(result.result).to eq('wait')
 
-    header 'Authorization', "Bearer #{client_id}"
+    header 'Authorization', "Bearer #{bearer_token}"
     get(patient_api_request)
 
     expect(last_response.status).to eq(404)

@@ -27,17 +27,11 @@ module CarinForBlueButtonTestKit
         response_hash = { access_token:, scope: granted_scopes.join(' '), token_type: 'bearer',
                           expires_in: 3600 }
 
-        if granted_scopes.include?('openid')
-          response_hash.merge!(id_token: create_id_token(client_id,
-                                                         fhir_user: granted_scopes.include?('fhirUser')))
-        end
-
         response_hash.merge!(patient: CARIN_PATIENT_ID)
 
         response.body = response_hash.to_json
         response.headers['Cache-Control'] = 'no-store'
         response.headers['Pragma'] = 'no-cache'
-        response.headers['Access-Control-Allow-Origin'] = '*'
         response.status = 200
       end
 
@@ -81,21 +75,6 @@ module CarinForBlueButtonTestKit
                       end
         scope_str = auth_params&.dig('scope')
         scope_str ? URI.decode_www_form_component(scope_str).split : []
-      end
-
-      def create_id_token(client_id, fhir_user: false)
-        # No point in mocking an identity provider, just always use known Practitioner as the authorized user
-        suite_fhir_base_url = request.url.split(TOKEN_PATH).first + BASE_FHIR_PATH
-        id_token_hash = {
-          iss: suite_fhir_base_url,
-          sub: AUTHORIZED_PRACTITIONER_ID,
-          aud: client_id,
-          exp: Time.now.to_i + (24 * 60 * 60), # 24 hrs
-          iat: Time.now.to_i
-        }
-        id_token_hash.merge!(fhirUser: "#{suite_fhir_base_url}/Practitioner/#{AUTHORIZED_PRACTITIONER_ID}") if fhir_user
-
-        JWT.encode(id_token_hash, RSA_PRIVATE_KEY, 'RS256')
       end
     end
   end

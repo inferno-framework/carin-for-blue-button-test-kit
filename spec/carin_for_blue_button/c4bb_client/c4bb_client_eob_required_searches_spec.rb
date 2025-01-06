@@ -131,7 +131,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
     ]
   end
 
-  let(:access_token) { 'SAMPLE_TOKEN' }
+  let(:bearer_token) { JWT.encode({ inferno_client_id: 'SAMPLE_CLIENT_ID' }, nil, 'none') }
 
   def make_all_eob_search_requests(eob_searches)
     eob_searches.each do |search|
@@ -147,7 +147,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
       {
         type: 'request',
         name: 'Authorization',
-        value: "Bearer #{access_token}"
+        value: "Bearer #{bearer_token}"
       }
     ]
     repo_create(

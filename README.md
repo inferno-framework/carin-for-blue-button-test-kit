@@ -43,7 +43,7 @@ requests needed to pass all of the tests. Note that some requests within the col
 
 To run the client tests against the Postman collection:
 1. Start an Inferno session of the CARIN for Blue Button Client test suite.
-3. Click the "Run All Tests" button in the upper right and type in "SAMPLE_TOKEN" for the `Client ID` input in the dialog that appears.
+3. Click the "Run All Tests" button in the upper right and type in "SAMPLE_CLIENT_ID" for the `Client ID` input in the dialog that appears.
 4. Click the "Submit" button. The simulated server will then be waiting for an interaction.
 4. Open Postman and import the `C4BB Client Search Tests` Postman collection.
 5. Send each of the requests listed under the `C4BB Client Search Tests` Postman collection and ensure a
