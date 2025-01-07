@@ -26,11 +26,14 @@ module CarinForBlueButtonTestKit
         message: %(
           ### SMART App Launch
 
-          You may connect to the Inferno CARIN client test server using the [SMART Backend Services](https://hl7.org/fhir/smart-app-launch/STU2/backend-services.html)
-          Authorization protocol. Perform the following steps:
-            1. Retrieve .well-known/smart-configuration: `#{smart_configuration_url}`
-            2. Obtain access token: `#{token_url}`
-            3. Access FHIR API
+          You may connect to the Inferno CARIN client test server via
+          [SMART App Launch](https://hl7.org/fhir/smart-app-launch/STU2/app-launch.html).
+          Perform the following steps:
+            1. Perform a [Standalone Launch](https://hl7.org/fhir/smart-app-launch/STU2/app-launch.html#step-2-launch-standalone)
+            2. Retrieve .well-known/smart-configuration: `#{smart_configuration_url}`
+            3. Obtain authorization code: `#{authorization_url}`
+            4. Obtain access token: `#{token_url}`
+            5. Access FHIR API
 
           ### Request Identification
 
