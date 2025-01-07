@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "b8f9e4c6-ad99-4b2e-a29a-e7a4549709de",
+		"_postman_id": "31f62fc0-0070-4c62-b7d5-255360685bfb",
 		"name": "C4BB Client Search Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "32597978"
+		"_exporter_id": "11477963"
 	},
 	"item": [
 		{
@@ -458,7 +458,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "SAMPLE_TOKEN",
+				"value": "eyJhbGciOiJub25lIn0.eyJpbmZlcm5vX2NsaWVudF9pZCI6IlNBTVBMRV9DTElFTlRfSUQifQ.",
 				"type": "string"
 			}
 		]

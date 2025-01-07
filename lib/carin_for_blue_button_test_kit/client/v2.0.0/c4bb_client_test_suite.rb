@@ -1,6 +1,7 @@
 require 'inferno/dsl/oauth_credentials'
 require_relative 'endpoints/resource_api_endpoint'
 require_relative 'endpoints/token_endpoint'
+require_relative 'endpoints/authorize_endpoint'
 require_relative 'endpoints/next_page_endpoint'
 require_relative 'endpoints/resource_id_endpoint'
 
@@ -77,7 +78,9 @@ module CarinForBlueButtonTestKit
       end
     end
 
-    suite_endpoint :post, TOKEN_PATH, TokenEndpoint
+    suite_endpoint :post, TOKEN_PATH, MockAuthorization::TokenEndpoint
+    suite_endpoint :get, AUTH_PATH, MockAuthorization::AuthorizeEndpoint
+    suite_endpoint :post, AUTH_PATH, MockAuthorization::AuthorizeEndpoint
 
     suite_endpoint :get, PATIENT_PATH, ResourceAPIEndpoint
 
@@ -87,11 +90,11 @@ module CarinForBlueButtonTestKit
 
     suite_endpoint :get, BASE_FHIR_PATH, NextPageEndpoint
 
-    resume_test_route :get, RESUME_PASS_PATH do |request|
-      C4BBV200ClientSuite.extract_token_from_query_params(request)
+    resume_test_route :get, RESUME_CLAIMS_DATA_PATH do |request|
+      C4BBV200ClientSuite.extract_test_run_identifier_from_query_params(request)
     end
 
-    resume_test_route :get, RESUME_CLAIMS_DATA_PATH do |request|
+    resume_test_route :get, RESUME_PASS_PATH do |request|
       C4BBV200ClientSuite.extract_token_from_query_params(request)
     end
 
@@ -100,6 +103,8 @@ module CarinForBlueButtonTestKit
     end
 
     route(:get, METADATA_PATH, get_metadata)
+    route(:get, SMART_CONFIG_PATH, carin_smart_config)
+    route(:get, JKWS_PATH, MockAuthorization.method(:jwks))
 
     group do
       run_as_group

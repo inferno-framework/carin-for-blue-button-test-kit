@@ -1,12 +1,14 @@
 require_relative '../tags'
 require_relative '../mock_server'
+require_relative '../mock_authorization'
 
 module CarinForBlueButtonTestKit
   class ResourceIDEndpoint < Inferno::DSL::SuiteEndpoint
     include CarinForBlueButtonTestKit::MockServer
+    include CarinForBlueButtonTestKit::MockAuthorization
 
     def test_run_identifier
-      extract_bearer_token(request)
+      extract_client_id_from_bearer_token(request)
     end
 
     def make_response

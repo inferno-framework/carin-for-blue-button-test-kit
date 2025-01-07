@@ -131,7 +131,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
     ]
   end
 
-  let(:access_token) { 'SAMPLE_TOKEN' }
+  let(:bearer_token) { JWT.encode({ inferno_client_id: 'SAMPLE_CLIENT_ID' }, nil, 'none') }
 
   def make_all_eob_search_requests(eob_searches)
     eob_searches.each do |search|
@@ -147,7 +147,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
       {
         type: 'request',
         name: 'Authorization',
-        value: "Bearer #{access_token}"
+        value: "Bearer #{bearer_token}"
       }
     ]
     repo_create(
@@ -183,14 +183,14 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
 
     make_all_eob_search_requests(eob_required_searches)
 
-    result = run(test, access_token:)
+    result = run(test)
     expect(result.result).to eq('pass')
   end
 
   it 'skips if no EOB search requests were made' do
     allow(test).to receive(:suite).and_return(suite)
 
-    result = run(test, access_token:)
+    result = run(test)
     expect(result.result).to eq('skip')
     expect(result.result_message).to eq('No search requests made for Explanation of Benefit resource')
   end
@@ -201,7 +201,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
     eob_required_searches.pop
     make_all_eob_search_requests(eob_required_searches)
 
-    result = run(test, access_token:)
+    result = run(test)
     expect(result.result).to eq('fail')
     expect(result.result_message).to match(/_id/)
   end

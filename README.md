@@ -43,7 +43,7 @@ requests needed to pass all of the tests. Note that some requests within the col
 
 To run the client tests against the Postman collection:
 1. Start an Inferno session of the CARIN for Blue Button Client test suite.
-3. Click the "Run All Tests" button in the upper right and type in "SAMPLE_TOKEN" for the `access_token` input in the dialog that appears.
+3. Click the "Run All Tests" button in the upper right and type in "SAMPLE_CLIENT_ID" for the `Client ID` input in the dialog that appears.
 4. Click the "Submit" button. The simulated server will then be waiting for an interaction.
 4. Open Postman and import the `C4BB Client Search Tests` Postman collection.
 5. Send each of the requests listed under the `C4BB Client Search Tests` Postman collection and ensure a
@@ -55,8 +55,7 @@ To run the client tests against the Postman collection:
 ### CPCDS Reference Implementation Client
 
 To try out these tests without a Carin for Blue Button client implementation, you may
-run them using the [CPCDS Reference Implementation Client](https://github.com/carin-alliance/cpcds-client-ri). Use this
-[forked repository](https://github.com/emichaud998/cpcds-client-ri), which been adjusted to work with this test kit.
+run them using the [CPCDS Reference Implementation Client](https://github.com/carin-alliance/cpcds-client-ri).
 
 1. Follow the instructions listed [here](https://github.com/carin-alliance/cpcds-client-ri?tab=readme-ov-file#running-app-locally)
    to get the CPCDS Reference Implementation Client running locally.
@@ -70,9 +69,9 @@ To run the client tests against the CPCDS Reference Implementation Client:
 3. Click the "Wait for Claims Data and Search Requests" test group in the left navigation sidebar.
 4. Click the "Run Tests" button in the upper right and click the "Submit" button in the dialog
    that appears. The simulated server will then be waiting for an interaction.
-5. Navigate to `localhost:3000`. Enter the Carin Client Suite FHIR endpoint URL, and then type the Carin patient id, `888`,
-   into the client secret and client id fields. Hit the "Connect" button.
-6. On the next page, hit the "Display" button to make a request to the Carin Client Suite .
+5. Navigate to `localhost:3000`. Enter the Carin Client Suite FHIR endpoint URL, and then type `SAMPLE_CLIENT_ID`
+   into the client ID field and `SAMPLE_CLIENT_SECRET` into the client secret field. Hit the "Connect" button.
+6. This will connect the client with the test suite via SMART and the client will automatically make a request to the test suite.
 7. In the Inferno Client Suite, click the "Click here" link in the wait dialog to signal the client has finished submitting requests.
 8. Navigate to each Carin for Blue Button Profile test group in the left navigation sidebar, and for each test group hit the run
    icon next all the tests listed except for the last required search parameters test

@@ -8,14 +8,44 @@ module CarinForBlueButtonTestKit
     description %(
       This test will receive claims data requests and search requests until the user confirms they are done.
     )
-    input :access_token
+    input :client_id,
+          title: 'Client ID',
+          description: %(
+            Enter the client ID you will use to connect to this CARIN server via a SMART launch.
+          )
+
     config options: { accepts_multiple_requests: true }
+
+    def example_client_jwt_payload_part
+      Base64.strict_encode64({ inferno_client_id: client_id }.to_json).delete('=')
+    end
 
     run do
       wait(
-        identifier: access_token,
+        identifier: client_id,
         message: %(
-          Access Token: #{access_token} \n
+          ### SMART App Launch
+
+          You may connect to the Inferno CARIN client test server via
+          [SMART App Launch](https://hl7.org/fhir/smart-app-launch/STU2/app-launch.html).
+          Perform the following steps:
+            1. Perform a [Standalone Launch](https://hl7.org/fhir/smart-app-launch/STU2/app-launch.html#step-2-launch-standalone)
+            2. Retrieve .well-known/smart-configuration: `#{smart_configuration_url}`
+            3. Obtain authorization code: `#{authorization_url}`
+            4. Obtain access token: `#{token_url}`
+            5. Access FHIR API
+
+          ### Request Identification
+
+          In order to identify requests for this session, Inferno will look for
+          an `Authorization` header with value:
+
+          ```
+          Bearer eyJhbGciOiJub25lIn0.#{example_client_jwt_payload_part}.
+          ```
+
+          ### FHIR API
+
           Submit CARIN requests via the following method:
           * Single Resource API: `#{submit_url}?:search_params`, with `:endpoint` replaced with the endpoint you want
           to reach and `:search_params` replaced with the search parameters for the request.
@@ -67,7 +97,8 @@ module CarinForBlueButtonTestKit
                 * ExplanationOfBenefit:payee
                 * ExplanationOfBenefit:*
 
-          [Click here](#{resume_claims_data_url}?token=#{access_token}) when done.
+
+          [Click here](#{resume_claims_data_url}?test_run_identifier=#{client_id}) when done.
         ),
         timeout: 900
       )

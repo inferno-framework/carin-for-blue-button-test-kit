@@ -2,7 +2,6 @@ require_relative 'user_input_response'
 require_relative 'urls'
 require_relative 'collection'
 require_relative 'client_validation_test'
-# require_relative 'metadata/mock_capability_statement'
 
 module CarinForBlueButtonTestKit
   # Serve responses to CARIN requests
@@ -12,6 +11,8 @@ module CarinForBlueButtonTestKit
 
   module MockServer
     include URLs
+
+    SUPPORTED_SCOPES = ['launch', 'patient/*.rs', 'user/*.rs', 'offline_access'].freeze
 
     def server_proxy
       @server_proxy ||= Faraday.new(
@@ -23,12 +24,6 @@ module CarinForBlueButtonTestKit
         proxy.use FaradayMiddleware::Gzip
         proxy.options.params_encoder = Faraday::FlatParamsEncoder
       end
-    end
-
-    def token_response(request, _test = nil, _test_result = nil)
-      # Placeholder for a more complete mock token endpoint
-      response.body = { access_token: SecureRandom.hex, token_type: 'bearer', expires_in: 300 }.to_json
-      response.status = 200
     end
 
     def error_response_resource(request)
@@ -97,9 +92,42 @@ module CarinForBlueButtonTestKit
     end
 
     def get_metadata
+      erb_template = ERB.new(
+        File.read(
+          'lib/carin_for_blue_button_test_kit/client/v2.0.0/metadata/mock_capability_statement.json.erb'
+        )
+      )
+      capability_statement = JSON.parse(erb_template.result).to_json
+
       proc {
         [200, { 'Content-Type' => 'application/fhir+json;charset=utf-8' },
-         [File.read('lib/carin_for_blue_button_test_kit/client/v2.0.0/metadata/mock_capability_statement.json')]]
+         [capability_statement]]
+      }
+    end
+
+    def carin_smart_config
+      response_body =
+        {
+          authorization_endpoint: authorization_url,
+          token_endpoint: token_url,
+          token_endpoint_auth_methods_supported: ['private_key_jwt'],
+          token_endpoint_auth_signing_alg_values_supported: ['RS256'],
+          grant_types_supported: ['authorization_code'],
+          scopes_supported: SUPPORTED_SCOPES,
+          response_types_supported: ['code'],
+          code_challenge_methods_supported: ['S256'],
+          capabilities: [
+            'launch-ehr',
+            'permission-patient',
+            'permission-user',
+            'client-public',
+            'client-confidential-symmetric',
+            'client-confidential-asymmetric'
+          ]
+        }.to_json
+
+      proc {
+        [200, { 'Content-Type' => 'application/json' }, [response_body]]
       }
     end
 
@@ -135,6 +163,10 @@ module CarinForBlueButtonTestKit
 
     def extract_token_from_query_params(request)
       request.query_parameters['token']
+    end
+
+    def extract_test_run_identifier_from_query_params(request)
+      request.query_parameters['test_run_identifier']
     end
 
     # Pull resource type from url
