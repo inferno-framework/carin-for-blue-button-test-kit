@@ -78,8 +78,9 @@ to associate requests with sessions. If multiple concurrent sessions are configu
 to use the same token, they may interfere with each other. To prevent concurrent executors
 of these sample executions from disrupting your session it
 is recommended, but not required, to:
-1. Update the Authorization tab of the C4BB Client Search Tests collection in Postman to an encoded JWT with a random client id as the payload
-2. When starting the tests, provide the client id in the `Client ID` input.
+1. When starting the tests, provide a random client id in the `Client ID` input.
+2. A wait dialog will appear for the first test to wait for incoming requests. This window provides the bearer token Inferno expects to receive in the Authorization header of incoming requests.
+3. Update the Authorization tab of the C4BB Client Search Tests collection in Postman to this provided bearer token.
 
 ## Current Limitations
 
