@@ -189,7 +189,8 @@ module CarinForBlueButtonTestKit
 
     def mock_operation_outcome_resource
       FHIR.from_contents(File.read(
-                           'lib/carin_for_blue_button_test_kit/client/v2.0.0/metadata/mock_operation_outcome_resource.json'
+                           File.join(__dir__,
+                                     'metadata/mock_operation_outcome_resource.json')
                          ))
     end
 
