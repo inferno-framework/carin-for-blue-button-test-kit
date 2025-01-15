@@ -94,7 +94,8 @@ module CarinForBlueButtonTestKit
     def get_metadata
       erb_template = ERB.new(
         File.read(
-          'lib/carin_for_blue_button_test_kit/client/v2.0.0/metadata/mock_capability_statement.json.erb'
+          File.join(__dir__,
+                    'metadata/mock_capability_statement.json.erb')
         )
       )
       capability_statement = JSON.parse(erb_template.result).to_json
