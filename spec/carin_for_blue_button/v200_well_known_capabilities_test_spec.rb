@@ -16,7 +16,8 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200DEVNONFINANCIAL::WellKnown
   end
 
   let(:test) { described_class }
-  let(:test_session) { repo_create(:test_session, test_suite_id: 'c4bb_v200') }
+  let(:suite_id) { 'c4bb_v200' }
+  let(:test_session) { repo_create(:test_session, test_suite_id: suite_id) }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:well_known_config) do
     {
