@@ -17,7 +17,6 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::SmartScopesTest do
 
   let(:test) { described_class }
   let(:suite_id) { 'c4bb_v200' }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite_id) }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:required_scopes) do
     %w[
