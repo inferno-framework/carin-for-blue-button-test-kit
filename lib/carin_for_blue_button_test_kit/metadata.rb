@@ -61,7 +61,7 @@ module CarinForBlueButtonTestKit
     DESCRIPTION
     suite_ids [:c4bb_v110, :c4bb_v200, :c4bb_v200_client, :c4bb_v200devnonfinancial]
     tags ['CARIN']
-    last_updated '2025-01-28'
+    last_updated LAST_UPDATED
     version VERSION
     maturity 'Medium'
     authors ['Inferno Team']
