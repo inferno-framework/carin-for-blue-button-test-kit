@@ -23,11 +23,19 @@ module CarinForBlueButtonTestKit
         Development build for the [non-financial branch](https://build.fhir.org/ig/HL7/carin-bb/branches/non-financial/).
         
       )
-      version VERSION
+
       links [
+        {
+          label: 'Report Issue',
+          url: 'https://github.com/inferno-framework/carin-for-blue-button-test-kit/issues'
+        },
         {
           label: 'Open Source',
           url: 'https://github.com/inferno-framework/carin-for-blue-button-test-kit'
+        },
+        {
+          label: 'Download',
+          url: 'https://github.com/inferno-framework/carin-for-blue-button-test-kit/releases'
         },
         {
           label: 'Implementation Guide',

@@ -21,11 +21,19 @@ module CarinForBlueButtonTestKit
 
         
       )
-      version VERSION
+
       links [
+        {
+          label: 'Report Issue',
+          url: 'https://github.com/inferno-framework/carin-for-blue-button-test-kit/issues'
+        },
         {
           label: 'Open Source',
           url: 'https://github.com/inferno-framework/carin-for-blue-button-test-kit'
+        },
+        {
+          label: 'Download',
+          url: 'https://github.com/inferno-framework/carin-for-blue-button-test-kit/releases'
         },
         {
           label: 'Implementation Guide',
