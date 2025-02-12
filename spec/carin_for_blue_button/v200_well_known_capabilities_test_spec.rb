@@ -1,23 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200DEVNONFINANCIAL::WellKnownCapabilitiesTest do
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name:,
-        value:,
-        type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
-  end
-
   let(:test) { described_class }
   let(:suite_id) { 'c4bb_v200' }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:well_known_config) do
     {
       capabilities: required_capabilities
