@@ -14,18 +14,7 @@ module CarinForBlueButtonTestKit
     def perform_must_support_test(resources)
       skip_if resources.blank?, "No #{resource_type} resources were found"
 
-      missing_elements(resources)
-      missing_slices(resources)
-      missing_extensions(resources)
-
-      handle_must_support_choices if metadata.must_supports[:choices].present?
-
-      if (missing_elements + missing_slices + missing_extensions).length.zero?
-        pass
-      end
-
-      skip "Could not find #{missing_must_support_strings.join(', ')} in the #{resources.length} " \
-           "provided #{resource_type} resource(s)"
+      skip_if(*must_support_elements_missing?(resources, nil, metadata:))
     end
 
     def handle_must_support_choices
