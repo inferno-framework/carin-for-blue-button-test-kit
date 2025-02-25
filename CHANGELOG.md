@@ -1,3 +1,19 @@
+# 0.14.0
+
+* **Ruby Version Update:** Upgraded Ruby to `3.3.6`.
+* **Inferno Core Update:** Bumped to version `0.6`.
+* **Gemspec Updates:**
+  * Switched to `git` for specifying files.
+  * Added `presets` to the gem package.
+  * Updated any test kit dependencies
+* **Test Kit Metadata:** Implemented Test Kit metadata for Inferno Platform.
+* **Environment Updates:** Updated Ruby version in the Dockerfile and GitHub Actions workflow.
+* Add Group IDs to Each Group in the CARIN Client Test Suite by @emichaud998 in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/61
+* Endpoint Suite ID Fix by @emichaud998 in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/62
+* FI-3404: Add SMART on FHIR Workflow Support to CARIN Client tests by @emichaud998 in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/63
+* Fix Metadata File Path by @emichaud998 in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/64
+* FI-3648: Add Spec for Shared Tests and Implement Features for the Failing Tests by @vanessuniq in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/65
+
 # 0.13.3
 
 * Deployment fixes by @karlnaden in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/59
