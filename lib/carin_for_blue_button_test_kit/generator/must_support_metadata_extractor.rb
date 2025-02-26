@@ -34,6 +34,7 @@ module CarinForBlueButtonTestKit
         must_support_extension_elements.map do |element|
           {
             id: element.id,
+            path: element.path.gsub("#{resource}.", ''),
             url: element.type.first.profile.first
           }
         end
