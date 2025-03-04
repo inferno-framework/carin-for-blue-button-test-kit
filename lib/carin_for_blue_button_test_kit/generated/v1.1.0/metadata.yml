@@ -43,6 +43,8 @@
     :extensions: []
     :slices:
     - :name: Coverage.class:group
+      :slice_id: Coverage.class:group
+      :slice_name: group
       :path: class
       :discriminator:
         :type: patternCodeableConcept
@@ -50,6 +52,8 @@
         :code: group
         :system: http://terminology.hl7.org/CodeSystem/coverage-class
     - :name: Coverage.class:plan
+      :slice_id: Coverage.class:plan
+      :slice_name: plan
       :path: class
       :discriminator:
         :type: patternCodeableConcept
@@ -1071,6 +1075,8 @@
     :extensions: []
     :slices:
     - :name: ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus
+      :slice_id: ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus
+      :slice_name: billingnetworkcontractingstatus
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -1078,6 +1084,8 @@
         :code: billingnetworkcontractingstatus
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:admissionperiod
+      :slice_id: ExplanationOfBenefit.supportingInfo:admissionperiod
+      :slice_name: admissionperiod
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -1085,6 +1093,8 @@
         :code: admissionperiod
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:clmrecvddate
+      :slice_id: ExplanationOfBenefit.supportingInfo:clmrecvddate
+      :slice_name: clmrecvddate
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -1092,6 +1102,8 @@
         :code: clmrecvddate
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:typeofbill
+      :slice_id: ExplanationOfBenefit.supportingInfo:typeofbill
+      :slice_name: typeofbill
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -1099,6 +1111,8 @@
         :code: typeofbill
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:pointoforigin
+      :slice_id: ExplanationOfBenefit.supportingInfo:pointoforigin
+      :slice_name: pointoforigin
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -1106,6 +1120,8 @@
         :code: pointoforigin
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:admtype
+      :slice_id: ExplanationOfBenefit.supportingInfo:admtype
+      :slice_name: admtype
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -1113,6 +1129,8 @@
         :code: admtype
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:discharge-status
+      :slice_id: ExplanationOfBenefit.supportingInfo:discharge-status
+      :slice_name: discharge-status
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -1120,6 +1138,8 @@
         :code: discharge-status
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:drg
+      :slice_id: ExplanationOfBenefit.supportingInfo:drg
+      :slice_name: drg
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -1127,6 +1147,8 @@
         :code: drg
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:medicalrecordnumber
+      :slice_id: ExplanationOfBenefit.supportingInfo:medicalrecordnumber
+      :slice_name: medicalrecordnumber
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -1134,6 +1156,8 @@
         :code: medicalrecordnumber
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:patientaccountnumber
+      :slice_id: ExplanationOfBenefit.supportingInfo:patientaccountnumber
+      :slice_name: patientaccountnumber
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -1141,6 +1165,8 @@
         :code: patientaccountnumber
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+      :slice_id: ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+      :slice_name: adjudicationamounttype
       :path: item.adjudication
       :discriminator:
         :type: requiredBinding
@@ -1161,6 +1187,8 @@
         - discount
         - drugcost
     - :name: ExplanationOfBenefit.item.adjudication:denialreason
+      :slice_id: ExplanationOfBenefit.item.adjudication:denialreason
+      :slice_name: denialreason
       :path: item.adjudication
       :discriminator:
         :type: patternCodeableConcept
@@ -1168,6 +1196,8 @@
         :code: denialreason
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
     - :name: ExplanationOfBenefit.item.adjudication:allowedunits
+      :slice_id: ExplanationOfBenefit.item.adjudication:allowedunits
+      :slice_name: allowedunits
       :path: item.adjudication
       :discriminator:
         :type: patternCodeableConcept
@@ -1175,6 +1205,8 @@
         :code: allowedunits
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
     - :name: ExplanationOfBenefit.adjudication:adjudicationamounttype
+      :slice_id: ExplanationOfBenefit.adjudication:adjudicationamounttype
+      :slice_name: adjudicationamounttype
       :path: adjudication
       :discriminator:
         :type: requiredBinding
@@ -1195,6 +1227,8 @@
         - discount
         - drugcost
     - :name: ExplanationOfBenefit.adjudication:denialreason
+      :slice_id: ExplanationOfBenefit.adjudication:denialreason
+      :slice_name: denialreason
       :path: adjudication
       :discriminator:
         :type: patternCodeableConcept
@@ -1202,6 +1236,8 @@
         :code: denialreason
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
     - :name: ExplanationOfBenefit.total:adjudicationamounttype
+      :slice_id: ExplanationOfBenefit.total:adjudicationamounttype
+      :slice_name: adjudicationamounttype
       :path: total
       :discriminator:
         :type: requiredBinding
@@ -1222,6 +1258,8 @@
         - discount
         - drugcost
     - :name: ExplanationOfBenefit.total:benefitpaymentstatus
+      :slice_id: ExplanationOfBenefit.total:benefitpaymentstatus
+      :slice_name: benefitpaymentstatus
       :path: total
       :discriminator:
         :type: requiredBinding
@@ -2158,6 +2196,8 @@
     :extensions: []
     :slices:
     - :name: ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus
+      :slice_id: ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus
+      :slice_name: billingnetworkcontractingstatus
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -2165,6 +2205,8 @@
         :code: billingnetworkcontractingstatus
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:clmrecvddate
+      :slice_id: ExplanationOfBenefit.supportingInfo:clmrecvddate
+      :slice_name: clmrecvddate
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -2172,6 +2214,8 @@
         :code: clmrecvddate
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:typeofbill
+      :slice_id: ExplanationOfBenefit.supportingInfo:typeofbill
+      :slice_name: typeofbill
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -2179,6 +2223,8 @@
         :code: typeofbill
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:pointoforigin
+      :slice_id: ExplanationOfBenefit.supportingInfo:pointoforigin
+      :slice_name: pointoforigin
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -2186,6 +2232,8 @@
         :code: pointoforigin
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:admtype
+      :slice_id: ExplanationOfBenefit.supportingInfo:admtype
+      :slice_name: admtype
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -2193,6 +2241,8 @@
         :code: admtype
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:discharge-status
+      :slice_id: ExplanationOfBenefit.supportingInfo:discharge-status
+      :slice_name: discharge-status
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -2200,6 +2250,8 @@
         :code: discharge-status
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:medicalrecordnumber
+      :slice_id: ExplanationOfBenefit.supportingInfo:medicalrecordnumber
+      :slice_name: medicalrecordnumber
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -2207,6 +2259,8 @@
         :code: medicalrecordnumber
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:patientaccountnumber
+      :slice_id: ExplanationOfBenefit.supportingInfo:patientaccountnumber
+      :slice_name: patientaccountnumber
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -2214,6 +2268,8 @@
         :code: patientaccountnumber
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+      :slice_id: ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+      :slice_name: adjudicationamounttype
       :path: item.adjudication
       :discriminator:
         :type: requiredBinding
@@ -2234,6 +2290,8 @@
         - discount
         - drugcost
     - :name: ExplanationOfBenefit.item.adjudication:denialreason
+      :slice_id: ExplanationOfBenefit.item.adjudication:denialreason
+      :slice_name: denialreason
       :path: item.adjudication
       :discriminator:
         :type: patternCodeableConcept
@@ -2241,6 +2299,8 @@
         :code: denialreason
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
     - :name: ExplanationOfBenefit.item.adjudication:allowedunits
+      :slice_id: ExplanationOfBenefit.item.adjudication:allowedunits
+      :slice_name: allowedunits
       :path: item.adjudication
       :discriminator:
         :type: patternCodeableConcept
@@ -2248,6 +2308,8 @@
         :code: allowedunits
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
     - :name: ExplanationOfBenefit.adjudication:adjudicationamounttype
+      :slice_id: ExplanationOfBenefit.adjudication:adjudicationamounttype
+      :slice_name: adjudicationamounttype
       :path: adjudication
       :discriminator:
         :type: requiredBinding
@@ -2268,6 +2330,8 @@
         - discount
         - drugcost
     - :name: ExplanationOfBenefit.adjudication:denialreason
+      :slice_id: ExplanationOfBenefit.adjudication:denialreason
+      :slice_name: denialreason
       :path: adjudication
       :discriminator:
         :type: patternCodeableConcept
@@ -2275,6 +2339,8 @@
         :code: denialreason
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
     - :name: ExplanationOfBenefit.total:adjudicationamounttype
+      :slice_id: ExplanationOfBenefit.total:adjudicationamounttype
+      :slice_name: adjudicationamounttype
       :path: total
       :discriminator:
         :type: requiredBinding
@@ -2295,6 +2361,8 @@
         - discount
         - drugcost
     - :name: ExplanationOfBenefit.total:benefitpaymentstatus
+      :slice_id: ExplanationOfBenefit.total:benefitpaymentstatus
+      :slice_name: benefitpaymentstatus
       :path: total
       :discriminator:
         :type: requiredBinding
@@ -3189,6 +3257,8 @@
     :extensions: []
     :slices:
     - :name: ExplanationOfBenefit.supportingInfo:dayssupply
+      :slice_id: ExplanationOfBenefit.supportingInfo:dayssupply
+      :slice_name: dayssupply
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -3196,6 +3266,8 @@
         :code: dayssupply
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:dawcode
+      :slice_id: ExplanationOfBenefit.supportingInfo:dawcode
+      :slice_name: dawcode
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -3203,6 +3275,8 @@
         :code: dawcode
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:refillNum
+      :slice_id: ExplanationOfBenefit.supportingInfo:refillNum
+      :slice_name: refillNum
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -3210,6 +3284,8 @@
         :code: refillnum
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus
+      :slice_id: ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus
+      :slice_name: billingnetworkcontractingstatus
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -3217,6 +3293,8 @@
         :code: billingnetworkcontractingstatus
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:brandgenericindicator
+      :slice_id: ExplanationOfBenefit.supportingInfo:brandgenericindicator
+      :slice_name: brandgenericindicator
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -3224,6 +3302,8 @@
         :code: brandgenericindicator
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:rxoriginCode
+      :slice_id: ExplanationOfBenefit.supportingInfo:rxoriginCode
+      :slice_name: rxoriginCode
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -3231,6 +3311,8 @@
         :code: rxorigincode
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:clmrecvddate
+      :slice_id: ExplanationOfBenefit.supportingInfo:clmrecvddate
+      :slice_name: clmrecvddate
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -3238,6 +3320,8 @@
         :code: clmrecvddate
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:compoundcode
+      :slice_id: ExplanationOfBenefit.supportingInfo:compoundcode
+      :slice_name: compoundcode
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -3245,6 +3329,8 @@
         :code: compoundcode
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+      :slice_id: ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+      :slice_name: adjudicationamounttype
       :path: item.adjudication
       :discriminator:
         :type: requiredBinding
@@ -3265,6 +3351,8 @@
         - discount
         - drugcost
     - :name: ExplanationOfBenefit.item.adjudication:denialreason
+      :slice_id: ExplanationOfBenefit.item.adjudication:denialreason
+      :slice_name: denialreason
       :path: item.adjudication
       :discriminator:
         :type: patternCodeableConcept
@@ -3272,6 +3360,8 @@
         :code: denialreason
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
     - :name: ExplanationOfBenefit.total:adjudicationamounttype
+      :slice_id: ExplanationOfBenefit.total:adjudicationamounttype
+      :slice_name: adjudicationamounttype
       :path: total
       :discriminator:
         :type: requiredBinding
@@ -3292,6 +3382,8 @@
         - discount
         - drugcost
     - :name: ExplanationOfBenefit.total:benefitpaymentstatus
+      :slice_id: ExplanationOfBenefit.total:benefitpaymentstatus
+      :slice_name: benefitpaymentstatus
       :path: total
       :discriminator:
         :type: requiredBinding
@@ -4143,6 +4235,8 @@
     :extensions: []
     :slices:
     - :name: ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus
+      :slice_id: ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus
+      :slice_name: billingnetworkcontractingstatus
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -4150,6 +4244,8 @@
         :code: billingnetworkcontractingstatus
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:performingnetworkcontractingstatus
+      :slice_id: ExplanationOfBenefit.supportingInfo:performingnetworkcontractingstatus
+      :slice_name: performingnetworkcontractingstatus
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -4157,6 +4253,8 @@
         :code: performingnetworkcontractingstatus
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:clmrecvddate
+      :slice_id: ExplanationOfBenefit.supportingInfo:clmrecvddate
+      :slice_name: clmrecvddate
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -4164,6 +4262,8 @@
         :code: clmrecvddate
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:servicefacility
+      :slice_id: ExplanationOfBenefit.supportingInfo:servicefacility
+      :slice_name: servicefacility
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -4171,6 +4271,8 @@
         :code: servicefacility
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:medicalrecordnumber
+      :slice_id: ExplanationOfBenefit.supportingInfo:medicalrecordnumber
+      :slice_name: medicalrecordnumber
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -4178,6 +4280,8 @@
         :code: medicalrecordnumber
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.supportingInfo:patientaccountnumber
+      :slice_id: ExplanationOfBenefit.supportingInfo:patientaccountnumber
+      :slice_name: patientaccountnumber
       :path: supportingInfo
       :discriminator:
         :type: patternCodeableConcept
@@ -4185,6 +4289,8 @@
         :code: patientaccountnumber
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
     - :name: ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+      :slice_id: ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+      :slice_name: adjudicationamounttype
       :path: item.adjudication
       :discriminator:
         :type: requiredBinding
@@ -4205,6 +4311,8 @@
         - discount
         - drugcost
     - :name: ExplanationOfBenefit.item.adjudication:denialreason
+      :slice_id: ExplanationOfBenefit.item.adjudication:denialreason
+      :slice_name: denialreason
       :path: item.adjudication
       :discriminator:
         :type: patternCodeableConcept
@@ -4212,6 +4320,8 @@
         :code: denialreason
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
     - :name: ExplanationOfBenefit.item.adjudication:benefitpaymentstatus
+      :slice_id: ExplanationOfBenefit.item.adjudication:benefitpaymentstatus
+      :slice_name: benefitpaymentstatus
       :path: item.adjudication
       :discriminator:
         :type: requiredBinding
@@ -4221,6 +4331,8 @@
         - outofnetwork
         - other
     - :name: ExplanationOfBenefit.item.adjudication:allowedunits
+      :slice_id: ExplanationOfBenefit.item.adjudication:allowedunits
+      :slice_name: allowedunits
       :path: item.adjudication
       :discriminator:
         :type: patternCodeableConcept
@@ -4228,6 +4340,8 @@
         :code: allowedunits
         :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
     - :name: ExplanationOfBenefit.total:adjudicationamounttype
+      :slice_id: ExplanationOfBenefit.total:adjudicationamounttype
+      :slice_name: adjudicationamounttype
       :path: total
       :discriminator:
         :type: requiredBinding
@@ -4879,24 +4993,32 @@
     :extensions: []
     :slices:
     - :name: Organization.identifier:NPI
+      :slice_id: Organization.identifier:NPI
+      :slice_name: NPI
       :path: identifier
       :discriminator:
         :type: patternIdentifier
         :path: ''
         :system: http://hl7.org/fhir/sid/us-npi
     - :name: Organization.identifier:tax
+      :slice_id: Organization.identifier:tax
+      :slice_name: tax
       :path: identifier
       :discriminator:
         :type: patternIdentifier
         :path: ''
         :system: urn:oid:2.16.840.1.113883.4.4
     - :name: Organization.identifier:payerid
+      :slice_id: Organization.identifier:payerid
+      :slice_name: payerid
       :path: identifier
       :discriminator:
         :type: patternIdentifier
         :path: ''
         :system:
     - :name: Organization.identifier:naiccode
+      :slice_id: Organization.identifier:naiccode
+      :slice_name: naiccode
       :path: identifier
       :discriminator:
         :type: patternIdentifier
@@ -4998,6 +5120,8 @@
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex
     :slices:
     - :name: Patient.identifier:memberid
+      :slice_id: Patient.identifier:memberid
+      :slice_name: memberid
       :path: identifier
       :discriminator:
         :type: patternCodeableConcept
@@ -5005,6 +5129,8 @@
         :code: MB
         :system: http://terminology.hl7.org/CodeSystem/v2-0203
     - :name: Patient.identifier:uniquememberid
+      :slice_id: Patient.identifier:uniquememberid
+      :slice_name: uniquememberid
       :path: identifier
       :discriminator:
         :type: patternCodeableConcept
@@ -5190,12 +5316,16 @@
     :extensions: []
     :slices:
     - :name: Practitioner.identifier:NPI
+      :slice_id: Practitioner.identifier:NPI
+      :slice_name: NPI
       :path: identifier
       :discriminator:
         :type: patternIdentifier
         :path: ''
         :system: http://hl7.org/fhir/sid/us-npi
     - :name: Practitioner.identifier:tax
+      :slice_id: Practitioner.identifier:tax
+      :slice_name: tax
       :path: identifier
       :discriminator:
         :type: patternIdentifier

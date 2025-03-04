@@ -88,6 +88,8 @@
   :extensions: []
   :slices:
   - :name: Coverage.class:group
+    :slice_id: Coverage.class:group
+    :slice_name: group
     :path: class
     :discriminator:
       :type: patternCodeableConcept
@@ -95,6 +97,8 @@
       :code: group
       :system: http://terminology.hl7.org/CodeSystem/coverage-class
   - :name: Coverage.class:plan
+    :slice_id: Coverage.class:plan
+    :slice_name: plan
     :path: class
     :discriminator:
       :type: patternCodeableConcept

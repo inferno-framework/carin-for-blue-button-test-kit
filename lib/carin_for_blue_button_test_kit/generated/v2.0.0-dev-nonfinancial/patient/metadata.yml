@@ -80,6 +80,8 @@
     :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex
   :slices:
   - :name: Patient.identifier:memberid
+    :slice_id: Patient.identifier:memberid
+    :slice_name: memberid
     :path: identifier
     :discriminator:
       :type: patternCodeableConcept
@@ -87,6 +89,8 @@
       :code: MB
       :system: http://terminology.hl7.org/CodeSystem/v2-0203
   - :name: Patient.identifier:uniquememberid
+    :slice_id: Patient.identifier:uniquememberid
+    :slice_name: uniquememberid
     :path: identifier
     :discriminator:
       :type: patternCodeableConcept
