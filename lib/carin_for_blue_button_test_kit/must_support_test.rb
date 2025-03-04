@@ -14,7 +14,7 @@ module CarinForBlueButtonTestKit
     def perform_must_support_test(resources)
       skip_if resources.blank?, "No #{resource_type} resources were found"
 
-      skip { assert_must_support_elements_present(resources, nil, metadata:) }
+      skip { assert_must_support_elements_present(resources, 'http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient') }
     end
   end
 end
