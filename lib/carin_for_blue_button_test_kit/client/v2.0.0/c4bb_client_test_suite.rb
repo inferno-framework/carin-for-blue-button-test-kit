@@ -1,4 +1,3 @@
-require 'inferno/dsl/oauth_credentials'
 require_relative 'endpoints/resource_api_endpoint'
 require_relative 'endpoints/token_endpoint'
 require_relative 'endpoints/authorize_endpoint'
