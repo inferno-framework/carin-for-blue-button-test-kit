@@ -28,8 +28,11 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::SmartScopesTest do
 
   context 'All required scopes are not requested' do
     it 'fails if a required scope was not requested' do
-      result = run(test, requested_scopes: 'online_access launch',
-                         received_scopes: 'launch')
+      result = run(
+        test,
+        smart_auth_info: Inferno::DSL::AuthInfo.new(requested_scopes: 'online_access launch'),
+        received_scopes: 'launch'
+      )
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to include('Required scopes were not requested: ')
@@ -38,22 +41,31 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::SmartScopesTest do
 
   context 'All required scopes requested' do
     it 'fails if all the required scopes were not granted' do
-      result = run(test, requested_scopes: required_scopes.join(' '),
-                         received_scopes: 'patient/*.*')
+      result = run(
+        test,
+        smart_auth_info: Inferno::DSL::AuthInfo.new(requested_scopes: required_scopes.join(' ')),
+        received_scopes: 'patient/*.*'
+      )
 
       expect(result.result).to eq('fail')
     end
 
     it 'passes if the granted scopes are the super set of the required requested scopes' do
-      result = run(test, requested_scopes: required_scopes.join(' '),
-                         received_scopes: 'patient/*.* user/*.* openid fhirUser launch/patient')
+      result = run(
+        test,
+        smart_auth_info: Inferno::DSL::AuthInfo.new(requested_scopes: required_scopes.join(' ')),
+        received_scopes: 'patient/*.* user/*.* openid fhirUser launch/patient'
+      )
 
       expect(result.result).to eq('pass')
     end
 
     it 'passes if the granted scopes are the exact required requested scopes' do
-      result = run(test, requested_scopes: required_scopes.join(' '),
-                         received_scopes: required_scopes.join(' '))
+      result = run(
+        test,
+        smart_auth_info: Inferno::DSL::AuthInfo.new(requested_scopes: required_scopes.join(' ')),
+        received_scopes: required_scopes.join(' ')
+      )
 
       expect(result.result).to eq('pass')
     end
