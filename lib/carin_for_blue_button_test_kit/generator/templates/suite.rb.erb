@@ -57,6 +57,15 @@ module CarinForBlueButtonTestKit
         end
       end
 
+      config(
+        inputs: {
+          smart_auth_info: { name: :smart_auth_info }
+        },
+        outputs: {
+          smart_auth_info: { name: :smart_auth_info }
+        }
+      )
+
       input :url,
         title: 'FHIR Endpoint',
         description: 'URL of the FHIR endpoint'
