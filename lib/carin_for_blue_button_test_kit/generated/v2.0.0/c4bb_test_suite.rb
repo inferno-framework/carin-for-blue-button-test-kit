@@ -1,4 +1,3 @@
-require 'inferno/dsl/oauth_credentials'
 require 'smart_app_launch_test_kit'
 require_relative '../../version'
 
@@ -61,13 +60,22 @@ module CarinForBlueButtonTestKit
         end
       end
 
+      config(
+        inputs: {
+          smart_auth_info: { name: :smart_auth_info }
+        },
+        outputs: {
+          smart_auth_info: { name: :smart_auth_info }
+        }
+      )
+
       input :url,
         title: 'FHIR Endpoint',
         description: 'URL of the FHIR endpoint'
 
       fhir_client do
         url :url
-        oauth_credentials :smart_credentials
+        auth_info :smart_auth_info
       end
 
       group from: :c4bb_v200_smart_launch
@@ -80,11 +88,10 @@ module CarinForBlueButtonTestKit
           conformant C4BB resources.
         )
 
-        input :smart_credentials,
+        input :smart_auth_info,
             title: 'OAuth Credentials',
-            type: :oauth_credentials,
+            type: :auth_info,
             optional: true
-        input_order :url, :smart_credentials
 
         group from: :capability_statement_group
     
