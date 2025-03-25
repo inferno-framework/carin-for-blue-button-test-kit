@@ -22,7 +22,8 @@ module CarinForBlueButtonTestKit
           * `user/Organization.read`
           * `user/Practitioner.read`
       )
-      input :requested_scopes, :received_scopes
+      input :received_scopes
+      input :smart_auth_info, type: :auth_info
       uses_request :token
 
       PATIENT_COMPARTMENT_RESOURCE_TYPES = %w[
@@ -39,6 +40,10 @@ module CarinForBlueButtonTestKit
 
       def required_scopes
         config.options[:required_scopes]
+      end
+
+      def requested_scopes
+        smart_auth_info.requested_scopes
       end
 
       def access_level_regex
