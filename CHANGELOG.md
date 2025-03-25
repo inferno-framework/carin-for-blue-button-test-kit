@@ -1,3 +1,12 @@
+# 0.15.0
+##Breaking Change
+This release updates the CARIN IG for Blue Button® Test Kit to use AuthInfo
+rather than OAuthCredentials for storing auth information. As a result of this
+change, any test kits which rely on this test kit will need to be updated to use
+AuthInfo rather than OAuthCredentials inputs.
+
+* FI-3746: Use AuthInfo by @Jammjammjamm in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/68
+
 # 0.14.0
 
 * **Ruby Version Update:** Upgraded Ruby to `3.3.6`.
