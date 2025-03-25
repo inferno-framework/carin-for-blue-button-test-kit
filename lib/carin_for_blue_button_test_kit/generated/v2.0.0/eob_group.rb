@@ -26,6 +26,9 @@ require_relative 'eob_pharmacy/validation_test'
 require_relative 'eob_pharmacy/must_support_test'
 require_relative 'eob_professional_non_clinician/validation_test'
 require_relative 'eob_professional_non_clinician/must_support_test'
+require_relative '../../custom_groups/v2.0.0/eob/type_data_absent_test'
+require_relative '../../custom_groups/v2.0.0/eob/insurer_same_test'
+require_relative '../../custom_groups/v2.0.0/eob/outcome_complete_test'
 
 module CarinForBlueButtonTestKit
   module CARIN4BBV200
@@ -132,6 +135,9 @@ read succeeds.
       test from: :c4bb_v200_eob_pharmacy_must_support_test
       test from: :c4bb_v200_eob_professional_non_clinician_validation_test
       test from: :c4bb_v200_eob_professional_non_clinician_must_support_test
+      test from: :c4bb_v200_custom_eob_type_data_absent
+      test from: :c4bb_v200_custom_eob_insurer_same
+      test from: :c4bb_v200_custom_eob_outcome_complete
     end
   end
 end
