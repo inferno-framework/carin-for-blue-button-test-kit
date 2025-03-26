@@ -298,6 +298,8 @@
   :extensions: []
   :slices:
   - :name: ExplanationOfBenefit.identifier:uniqueclaimid
+    :slice_id: ExplanationOfBenefit.identifier:uniqueclaimid
+    :slice_name: uniqueclaimid
     :path: identifier
     :discriminator:
       :type: patternCodeableConcept

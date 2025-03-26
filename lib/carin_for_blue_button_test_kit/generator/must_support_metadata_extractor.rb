@@ -34,6 +34,7 @@ module CarinForBlueButtonTestKit
         must_support_extension_elements.map do |element|
           {
             id: element.id,
+            path: element.path.gsub("#{resource}.", ''),
             url: element.type.first.profile.first
           }
         end
@@ -63,6 +64,8 @@ module CarinForBlueButtonTestKit
         must_support_pattern_slice_elements.map do |current_element|
           {
             name: current_element.id,
+            slice_id: current_element.id,
+            slice_name: current_element.sliceName,
             path: current_element.path.gsub("#{resource}.", '')
           }.tap do |metadata|
             discriminator = discriminators(sliced_element(current_element)).first

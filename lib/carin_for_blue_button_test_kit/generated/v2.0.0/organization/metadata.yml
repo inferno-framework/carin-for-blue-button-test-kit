@@ -71,24 +71,32 @@
   :extensions: []
   :slices:
   - :name: Organization.identifier:NPI
+    :slice_id: Organization.identifier:NPI
+    :slice_name: NPI
     :path: identifier
     :discriminator:
       :type: patternIdentifier
       :path: ''
       :system: http://hl7.org/fhir/sid/us-npi
   - :name: Organization.identifier:tax
+    :slice_id: Organization.identifier:tax
+    :slice_name: tax
     :path: identifier
     :discriminator:
       :type: patternIdentifier
       :path: ''
       :system: urn:oid:2.16.840.1.113883.4.4
   - :name: Organization.identifier:payerid
+    :slice_id: Organization.identifier:payerid
+    :slice_name: payerid
     :path: identifier
     :discriminator:
       :type: patternIdentifier
       :path: ''
       :system:
   - :name: Organization.identifier:naiccode
+    :slice_id: Organization.identifier:naiccode
+    :slice_name: naiccode
     :path: identifier
     :discriminator:
       :type: patternIdentifier
