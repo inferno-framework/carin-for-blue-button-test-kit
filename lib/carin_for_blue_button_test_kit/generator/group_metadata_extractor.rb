@@ -1,8 +1,7 @@
 # frozen_string_literal: true
-
+require 'inferno'
 require_relative 'group_metadata'
 require_relative 'ig_metadata'
-require_relative 'must_support_metadata_extractor'
 require_relative 'search_metadata_extractor'
 require_relative 'terminology_binding_metadata_extractor'
 
@@ -213,7 +212,7 @@ module CarinForBlueButtonTestKit
 
       def must_support_metadata_extractor
         @must_support_metadata_extractor ||=
-          MustSupportMetadataExtractor.new(profile_elements, profile, resource, ig_resources)
+          Inferno::DSL::MustSupportMetadataExtractor.new(profile_elements, profile, resource, ig_resources)
       end
 
       def must_supports
