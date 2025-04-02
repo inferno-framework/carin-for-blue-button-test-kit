@@ -309,105 +309,120 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: ExplanationOfBenefit.identifier:uniqueclaimid
+  - :slice_id: ExplanationOfBenefit.identifier:uniqueclaimid
+    :slice_name: uniqueclaimid
     :path: identifier
     :discriminator:
       :type: patternCodeableConcept
       :path: type
       :code: uc
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType
-  - :name: ExplanationOfBenefit.supportingInfo:clmrecvddate
+  - :slice_id: ExplanationOfBenefit.supportingInfo:clmrecvddate
+    :slice_name: clmrecvddate
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: clmrecvddate
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:servicefacility
+  - :slice_id: ExplanationOfBenefit.supportingInfo:servicefacility
+    :slice_name: servicefacility
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: servicefacility
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:orthodontics
+  - :slice_id: ExplanationOfBenefit.supportingInfo:orthodontics
+    :slice_name: orthodontics
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: orthodontics
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:prosthesis
+  - :slice_id: ExplanationOfBenefit.supportingInfo:prosthesis
+    :slice_name: prosthesis
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: prosthesis
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:additionalbodysite
+  - :slice_id: ExplanationOfBenefit.supportingInfo:additionalbodysite
+    :slice_name: additionalbodysite
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: additionalbodysite
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:missingtoothnumber
+  - :slice_id: ExplanationOfBenefit.supportingInfo:missingtoothnumber
+    :slice_name: missingtoothnumber
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: missingtoothnumber
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:medicalrecordnumber
+  - :slice_id: ExplanationOfBenefit.supportingInfo:medicalrecordnumber
+    :slice_name: medicalrecordnumber
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: medicalrecordnumber
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:patientaccountnumber
+  - :slice_id: ExplanationOfBenefit.supportingInfo:patientaccountnumber
+    :slice_name: patientaccountnumber
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: patientaccountnumber
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.item.adjudication:adjustmentreason
+  - :slice_id: ExplanationOfBenefit.item.adjudication:adjustmentreason
+    :slice_name: adjustmentreason
     :path: item.adjudication
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: adjustmentreason
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
-  - :name: ExplanationOfBenefit.item.adjudication:benefitpaymentstatus
+  - :slice_id: ExplanationOfBenefit.item.adjudication:benefitpaymentstatus
+    :slice_name: benefitpaymentstatus
     :path: item.adjudication
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: benefitpaymentstatus
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
-  - :name: ExplanationOfBenefit.item.adjudication:allowedunits
+  - :slice_id: ExplanationOfBenefit.item.adjudication:allowedunits
+    :slice_name: allowedunits
     :path: item.adjudication
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: allowedunits
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
-  - :name: ExplanationOfBenefit.adjudication:billingnetworkstatus
+  - :slice_id: ExplanationOfBenefit.adjudication:billingnetworkstatus
+    :slice_name: billingnetworkstatus
     :path: adjudication
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: billingnetworkstatus
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
-  - :name: ExplanationOfBenefit.adjudication:renderingnetworkstatus
+  - :slice_id: ExplanationOfBenefit.adjudication:renderingnetworkstatus
+    :slice_name: renderingnetworkstatus
     :path: adjudication
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: renderingnetworkstatus
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
-  - :name: ExplanationOfBenefit.adjudication:benefitpaymentstatus
+  - :slice_id: ExplanationOfBenefit.adjudication:benefitpaymentstatus
+    :slice_name: benefitpaymentstatus
     :path: adjudication
     :discriminator:
       :type: patternCodeableConcept
@@ -417,7 +432,7 @@
   :elements:
   - :path: meta
   - :path: meta.lastUpdated
-  - :path: identifier.value
+  - :path: identifier:uniqueclaimid.value
   - :path: status
   - :path: type.coding.code
     :fixed_value: oral
@@ -425,14 +440,20 @@
   - :path: patient
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient
   - :path: billablePeriod
   - :path: billablePeriod.start
   - :path: insurer
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization
   - :path: provider
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner
   - :path: related
   - :path: related.relationship
   - :path: related.reference
@@ -449,22 +470,18 @@
   - :path: careTeam.role
   - :path: careTeam.qualification
   - :path: supportingInfo
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: clmrecvddate
-  - :path: supportingInfo.timing[x]
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: servicefacility
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: orthodontics
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: prosthesis
-  - :path: supportingInfo.value[x]
-  - :path: supportingInfo.sequence
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: additionalbodysite
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: missingtoothnumber
-  - :path: supportingInfo.code
+  - :path: supportingInfo:clmrecvddate.category
+  - :path: supportingInfo:clmrecvddate.timing[x]
+  - :path: supportingInfo:servicefacility.category
+  - :path: supportingInfo:orthodontics.category
+  - :path: supportingInfo:orthodontics.value[x]
+  - :path: supportingInfo:prosthesis.category
+  - :path: supportingInfo:prosthesis.value[x]
+  - :path: supportingInfo:additionalbodysite.sequence
+  - :path: supportingInfo:additionalbodysite.category
+  - :path: supportingInfo:additionalbodysite.code
+  - :path: supportingInfo:missingtoothnumber.category
+  - :path: supportingInfo:missingtoothnumber.code
   - :path: diagnosis
   - :path: diagnosis.diagnosis[x]
   - :path: diagnosis.type
@@ -473,6 +490,8 @@
   - :path: insurance.coverage
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage
   - :path: item
   - :path: item.sequence
   - :path: item.informationSequence
@@ -484,16 +503,16 @@
   - :path: item.noteNumber
   - :path: item.adjudication
   - :path: item.adjudication.category
-  - :path: item.adjudication.category.coding.code
-    :fixed_value: adjustmentreason
-  - :path: item.adjudication.category.coding.code
-    :fixed_value: benefitpaymentstatus
-  - :path: item.adjudication.reason
-  - :path: item.adjudication.category.coding.code
-    :fixed_value: allowedunits
+  - :path: item.adjudication:adjustmentreason.category
+  - :path: item.adjudication:adjustmentreason.reason
+  - :path: item.adjudication:benefitpaymentstatus.category
+  - :path: item.adjudication:benefitpaymentstatus.reason
+  - :path: item.adjudication:allowedunits.category
   - :path: adjudication
   - :path: adjudication.category
-  - :path: adjudication.reason
+  - :path: adjudication:billingnetworkstatus.reason
+  - :path: adjudication:renderingnetworkstatus.reason
+  - :path: adjudication:benefitpaymentstatus.reason
   - :path: payment
   - :path: payment.type
   - :path: processNote
@@ -1110,8 +1129,6 @@
   :file_name: validation_test.rb
 - :id: c4bb_v200devnonfinancial_eob_oral_non_financial_must_support_test
   :file_name: must_support_test.rb
-:id: c4bb_v200devnonfinancial_eob_oral_non_financial
-:file_name: eob_oral_non_financial_group.rb
 :delayed_references:
 - :path: insurer
   :resources:

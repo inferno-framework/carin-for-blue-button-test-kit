@@ -17,10 +17,12 @@ module CarinForBlueButtonTestKit
 
                 * Coverage.beneficiary
         * Coverage.class
-        * Coverage.class.name
-        * Coverage.class.value
         * Coverage.class:group
+        * Coverage.class:group.name
+        * Coverage.class:group.value
         * Coverage.class:plan
+        * Coverage.class:plan.name
+        * Coverage.class:plan.value
         * Coverage.identifier
         * Coverage.meta
         * Coverage.meta.lastUpdated
