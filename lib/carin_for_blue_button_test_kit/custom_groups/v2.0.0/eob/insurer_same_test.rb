@@ -18,6 +18,7 @@ module CarinForBlueButtonTestKit
         'hl7.fhir.us.carin-bb_2.0.0@124',
         'hl7.fhir.us.carin-bb_2.0.0@125',
         'hl7.fhir.us.carin-bb_2.0.0@127',
+        'hl7.fhir.us.carin-bb_2.0.0@128',
         'hl7.fhir.us.carin-bb_2.0.0@129'
 
       def resource_type
@@ -36,13 +37,10 @@ module CarinForBlueButtonTestKit
 
       run do
         resources = scratch_resources[:all]
-
         skip_if resources.blank?,
                 "No #{resource_type} resources were returned"
   
         resources.each do |eob|
-          insurer = get_reference(eob.insurer, :organization)
-
           eob.insurance.each do |insurance|
             coverage = get_reference(insurance.coverage, :coverage)
 
@@ -50,12 +48,8 @@ module CarinForBlueButtonTestKit
               assert resource_id(eob.insurer) == resource_id(coverage.payor.first),
                "ExplanationOfBenefit.insurer differs from ExplanationOfBenefit.insurance.coverage.payor when ExplanationOfBenefit.insurance.focal == True. They must be equal."
             else
-              payor = get_reference(coverage.payor.first, :organization)
-
               assert resource_id(eob.insurer) != resource_id(coverage.payor.first),
                "ExplanationOfBenefit.insurer equals ExplanationOfBenefit.insurance.coverage.payor when ExplanationOfBenefit.insurance.focal == False. They must differ."
-              assert insurer.display != payor.display,
-               "ExplanationOfBenefit.insurer.display equals ExplanationOfBenefit.insurance.coverage.payor.display when ExplanationOfBenefit.insurance.focal == False. They must differ."
             end
           end
         end

@@ -10,6 +10,8 @@ module CarinForBlueButtonTestKit
       
       verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@115'
 
+      DAR_CODE_SYSTEM_URL = 'http://terminology.hl7.org/CodeSystem/data-absent-reason'.freeze
+
       def resource_type
         'ExplanationOfBenefit'
       end
@@ -27,7 +29,7 @@ module CarinForBlueButtonTestKit
         resources.each do |resource|
           eob_type = resource.type
           eob_type.coding.each do |coding|
-            assert !(coding.code == 'unknown' && coding.system == DAR_CODE_SYSTEM_URL), 'ExplanationOfBenefit.type uses a data absent reason'
+            assert coding.system != DAR_CODE_SYSTEM_URL, 'ExplanationOfBenefit.type uses a data absent reason. It must not.'
           end
         end
       end

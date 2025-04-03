@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'pry'
 module CarinForBlueButtonTestKit
   module CARIN4BBV200
     class OutcomeCompleteTest < Inferno::Test
