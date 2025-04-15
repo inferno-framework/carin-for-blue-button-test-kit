@@ -28,13 +28,17 @@ requirement of CARIN IG for Blue Button® v2.0.0-dev-nonfinancial.
       input :c4bb_v200devnonfinancial_organization__id_search_test_param,
         title: 'Organization search parameter for _id',
         type: 'text',
-        description: 'This input is optional. If running all tests, the search will look for
-                          its parameter values from the results returned in the EOB tests. If no
-                          Organization resource was returned in previous EOB tests and this
-                          input is not provided, the search is skipped.
+        description: %q(
+          
+This input is optional. If running all tests, the search will look for
+its parameter values from the results returned in the EOB tests. If no
+Organization resource was returned in previous EOB tests and this
+input is not provided, the search is skipped.
 
-                          When running just the Organization Test group, this input is
-                          required to perform the search, otherwise the search is skipped.',
+When running just the Organization Test group, this input is
+required to perform the search, otherwise the search is skipped.
+
+        ),
         optional: true
       
       def self.properties

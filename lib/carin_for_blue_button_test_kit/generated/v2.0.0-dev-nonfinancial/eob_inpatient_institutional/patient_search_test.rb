@@ -32,8 +32,12 @@ requirement of CARIN IG for Blue Button® v2.0.0-dev-nonfinancial.
       input :patient_ids,
         title: 'Patient IDs',
         type: 'text',
-        description: 'Comma separated list of patient IDs that in sum
-                          contain all MUST SUPPORT elements'
+        description: %q(
+          
+Comma separated list of patient IDs that in sum
+contain all MUST SUPPORT elements
+
+        )
       
       def self.properties
         @properties ||= SearchTestProperties.new(
