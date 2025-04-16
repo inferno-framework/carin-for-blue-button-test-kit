@@ -1,7 +1,12 @@
+require 'smart_app_launch_test_kit'
 require_relative 'urls'
+require_relative 'session_identification'
+require_relative 'client_descriptions'
+
 module CarinForBlueButtonTestKit
   class C4BBClientInitialWaitTest < Inferno::Test
     include URLs
+    include SessionIdentification
 
     id :c4bb_v200_initial_wait_test
     title 'Client makes claims data and required search parameter requests'
@@ -9,46 +14,53 @@ module CarinForBlueButtonTestKit
       This test will receive claims data requests and search requests until the user confirms they are done.
     )
     input :client_id,
-          title: 'Client ID',
-          description: %(
-            Enter the client ID you will use to connect to this CARIN server via a SMART launch.
-          )
+          title: 'Client Id',
+          type: 'text',
+          optional: true,
+          locked: true,
+          description: INPUT_CLIENT_ID_LOCKED
+    input :session_url_path,
+          title: 'Session-specific URL path extension',
+          type: 'text',
+          optional: true,
+          locked: true,
+          description: INPUT_SESSION_URL_PATH_LOCKED
+    input :smart_launch_urls,
+          title: 'SMART App Launch URL(s)',
+          type: 'textarea',
+          locked: true,
+          optional: true,
+          description: SMARTAppLaunch::INPUT_SMART_LAUNCH_URLS_DESCRIPTION_LOCKED
+    input :launch_context,
+          title: 'Launch Context',
+          type: 'textarea',
+          optional: true,
+          description: SMARTAppLaunch::INPUT_LAUNCH_CONTEXT_DESCRIPTION       
+    input :fhir_user_relative_reference,
+          title: 'FHIR User Relative Reference',
+          type: 'text',
+          optional: true,
+          description: SMARTAppLaunch::INPUT_FHIR_USER_RELATIVE_REFERENCE
 
+    output :launch_key
     config options: { accepts_multiple_requests: true }
 
-    def example_client_jwt_payload_part
-      Base64.strict_encode64({ inferno_client_id: client_id }.to_json).delete('=')
-    end
-
     run do
+      session_identifier = session_wait_identifier(client_id, session_url_path)
+      session_single_resource_api_url = session_url(client_id, session_url_path)
+
+      if smart_launch_urls.present?
+        launch_key = SecureRandom.hex(32)
+        output(launch_key:)
+      end
+
       wait(
-        identifier: client_id,
+        identifier: session_identifier,
         message: %(
-          ### SMART App Launch
-
-          You may connect to the Inferno CARIN client test server via
-          [SMART App Launch](https://hl7.org/fhir/smart-app-launch/STU2/app-launch.html).
-          Perform the following steps:
-            1. Perform a [Standalone Launch](https://hl7.org/fhir/smart-app-launch/STU2/app-launch.html#step-2-launch-standalone)
-            2. Retrieve .well-known/smart-configuration: `#{smart_configuration_url}`
-            3. Obtain authorization code: `#{authorization_url}`
-            4. Obtain access token: `#{token_url}`
-            5. Access FHIR API
-
-          ### Request Identification
-
-          In order to identify requests for this session, Inferno will look for
-          an `Authorization` header with value:
-
-          ```
-          Bearer eyJhbGciOiJub25lIn0.#{example_client_jwt_payload_part}.
-          ```
-
-          ### FHIR API
-
           Submit CARIN requests via the following method:
-          * Single Resource API: `#{submit_url}?:search_params`, with `:endpoint` replaced with the endpoint you want
-          to reach and `:search_params` replaced with the search parameters for the request.
+          * Single Resource API: `#{session_single_resource_api_url}?:search_params`, with `:endpoint`
+          replaced with the endpoint you want to reach and `:search_params` replaced with the search parameters
+          for the request.
 
           The following CARIN resources can be accessed on the Inferno Reference Server with the following IDs, and
           the following search parameters are required for each resource type:
@@ -98,7 +110,7 @@ module CarinForBlueButtonTestKit
                 * ExplanationOfBenefit:*
 
 
-          [Click here](#{resume_claims_data_url}?test_run_identifier=#{client_id}) when done.
+          [Click here](#{resume_claims_data_url}?test_run_identifier=#{session_identifier}) when done.
         ),
         timeout: 900
       )
