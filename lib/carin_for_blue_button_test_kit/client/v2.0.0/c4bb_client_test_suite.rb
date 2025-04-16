@@ -159,7 +159,9 @@ module CarinForBlueButtonTestKit
         CARIN for Blue Button server and then Inferno will check that the entire scope of
         the API defined by the IG has been used.
       )
+      id :c4bb_data_access
       run_as_group
+
       group do
         title 'Wait for Claims Data and Search Requests'
         description %(
