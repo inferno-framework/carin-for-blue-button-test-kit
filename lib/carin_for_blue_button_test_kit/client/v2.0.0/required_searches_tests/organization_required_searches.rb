@@ -29,6 +29,12 @@ module CarinForBlueButtonTestKit
       ]
     end
 
+    def suite_id # allow overriding without extension - used by resource_previous_search_params logic
+      return config.options[:suite_id] if config.options[:suite_id].present?
+
+      C4BBV200ClientSuite.id
+    end
+
     run do
       search_params = resource_previous_search_params(:OrganizationSearch)
       skip_if search_params.nil?, 'No search requests made for Organization resource'
