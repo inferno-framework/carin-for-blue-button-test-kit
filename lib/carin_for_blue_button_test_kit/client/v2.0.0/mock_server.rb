@@ -154,14 +154,14 @@ module CarinForBlueButtonTestKit
     def resource_endpoint(url)
       return unless url.start_with?('http://', 'https://')
 
-      match = %r{custom/#{client_id}/fhir/(.*)\?}.match(url)
+      match = %r{custom/#{suite_id}/fhir/(.*)\?}.match(url)
       match[1] if match.present?
     end
 
     def resource_id_endpoint(url)
       return unless url.start_with?('http://', 'https://')
 
-      match = %r{custom/#{client_id}/fhir/(.*)}.match(url)
+      match = %r{custom/#{suite_id}/fhir/(.*)}.match(url)
       match[1] if match.present?
     end
 
