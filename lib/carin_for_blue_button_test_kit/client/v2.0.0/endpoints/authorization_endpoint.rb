@@ -43,8 +43,6 @@ module CarinForBlueButtonTestKit
           else
             SMARTAppLaunch::SMART_TAG
           end
-        
-        puts "AUTH TAGS: #{tags}"
 
         tags
       end
