@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/inferno-framework/smart-app-launch-test-kit.git
-  revision: 7a76bf4bce9c0753f6b308aaa53d89c97eb2e493
+  revision: eb52167d009c3f16dea911d1ba241a6e02af160d
   branch: client_authorization_code_tests
   specs:
     smart_app_launch_test_kit (0.6.1)
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/inferno-framework/udap-security-test-kit.git
-  revision: 70e8c12e8ce2f95048bf3c5cc5752bc55feb5066
+  revision: 79dddd9832ab810be933b827ed2712e338ca12b5
   branch: client_authorization_code_tests
   specs:
     udap_security_test_kit (0.11.3)
