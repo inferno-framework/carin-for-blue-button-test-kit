@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require 'inferno'
+require 'inferno/dsl/must_support_metadata_extractor'
 require_relative 'group_metadata'
 require_relative 'ig_metadata'
 require_relative 'search_metadata_extractor'
