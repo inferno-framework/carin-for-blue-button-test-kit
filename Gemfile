@@ -4,10 +4,6 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'inferno_core',
-    git: 'https://github.com/inferno-framework/inferno-core.git',
-    branch: 'fi-3813-ms-fixes'
-
 group :development, :test do
   gem 'debug'
   gem 'foreman'

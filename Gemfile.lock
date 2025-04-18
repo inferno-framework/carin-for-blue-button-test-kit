@@ -1,42 +1,8 @@
-GIT
-  remote: https://github.com/inferno-framework/inferno-core.git
-  revision: aea2cf25ac377171e4c38052ab3c6f4bc7094eac
-  branch: fi-3813-ms-fixes
-  specs:
-    inferno_core (0.6.8)
-      activesupport (~> 6.1.7.5)
-      base62-rb (= 0.3.1)
-      blueprinter (= 0.25.2)
-      concurrent-ruby (= 1.3.4)
-      dotenv (~> 2.7)
-      dry-configurable (= 1.0.0)
-      dry-container (= 0.10.0)
-      dry-core (= 1.0.0)
-      dry-inflector (= 1.0.0)
-      dry-system (= 1.0.0)
-      faraday (~> 1.2)
-      faraday_middleware (~> 1.2)
-      fhir_client (>= 5.0.3)
-      fhir_models (>= 4.2.2)
-      hanami-controller (= 2.0.0)
-      hanami-router (= 2.0.0)
-      oj (= 3.11.0)
-      pastel (~> 0.8.0)
-      pry
-      pry-byebug
-      puma (~> 5.6.7)
-      rake (~> 13.0)
-      sequel (~> 5.42.0)
-      sidekiq (~> 7.2.4)
-      sqlite3 (~> 1.4)
-      thor (~> 1.2.1)
-      tty-markdown (~> 0.7.1)
-
 PATH
   remote: .
   specs:
     carin_for_blue_button_test_kit (0.15.0)
-      inferno_core (~> 0.6.8)
+      inferno_core (~> 0.6.9)
       smart_app_launch_test_kit (~> 0.6.0)
 
 GEM
@@ -56,12 +22,12 @@ GEM
     bcp47 (0.3.3)
       i18n
     bigdecimal (3.1.9)
-    bindata (2.5.0)
+    bindata (2.5.1)
     blueprinter (0.25.2)
     byebug (12.0.0)
     coderay (1.1.3)
     concurrent-ruby (1.3.4)
-    connection_pool (2.5.0)
+    connection_pool (2.5.1)
     crack (1.0.0)
       bigdecimal
       rexml
@@ -173,8 +139,36 @@ GEM
       mutex_m
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
+    inferno_core (0.6.9)
+      activesupport (~> 6.1.7.5)
+      base62-rb (= 0.3.1)
+      blueprinter (= 0.25.2)
+      concurrent-ruby (= 1.3.4)
+      dotenv (~> 2.7)
+      dry-configurable (= 1.0.0)
+      dry-container (= 0.10.0)
+      dry-core (= 1.0.0)
+      dry-inflector (= 1.0.0)
+      dry-system (= 1.0.0)
+      faraday (~> 1.2)
+      faraday_middleware (~> 1.2)
+      fhir_client (>= 5.0.3)
+      fhir_models (>= 4.2.2)
+      hanami-controller (= 2.0.0)
+      hanami-router (= 2.0.0)
+      oj (= 3.11.0)
+      pastel (~> 0.8.0)
+      pry
+      pry-byebug
+      puma (~> 5.6.7)
+      rake (~> 13.0)
+      sequel (~> 5.42.0)
+      sidekiq (~> 7.2.4)
+      sqlite3 (~> 1.4)
+      thor (~> 1.2.1)
+      tty-markdown (~> 0.7.1)
     io-console (0.8.0)
-    irb (1.15.1)
+    irb (1.15.2)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
@@ -192,7 +186,7 @@ GEM
     mime-types (3.6.2)
       logger
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2025.0402)
+    mime-types-data (3.2025.0415)
     mini_portile2 (2.8.8)
     minitest (5.25.5)
     multi_json (1.15.0)
@@ -249,7 +243,7 @@ GEM
       psych (>= 4.0.0)
     redis-client (0.24.0)
       connection_pool
-    reline (0.6.0)
+    reline (0.6.1)
       io-console (~> 0.5)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
@@ -282,7 +276,7 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.19.0)
-    smart_app_launch_test_kit (0.6.0)
+    smart_app_launch_test_kit (0.6.1)
       inferno_core (>= 0.6.3)
       json-jwt (~> 1.15.3)
       jwt (~> 2.6)
@@ -334,7 +328,6 @@ DEPENDENCIES
   debug
   factory_bot (~> 6.1)
   foreman
-  inferno_core!
   rack-test
   roo (~> 2.7.1)
   rspec (~> 3.10)
