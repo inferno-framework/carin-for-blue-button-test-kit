@@ -31,14 +31,17 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.insurer
         * ExplanationOfBenefit.item
         * ExplanationOfBenefit.item.adjudication
-        * ExplanationOfBenefit.item.adjudication.amount
         * ExplanationOfBenefit.item.adjudication.category
-        * ExplanationOfBenefit.item.adjudication.category.coding.code
-        * ExplanationOfBenefit.item.adjudication.reason
         * ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+        * ExplanationOfBenefit.item.adjudication:adjudicationamounttype.amount
+        * ExplanationOfBenefit.item.adjudication:adjudicationamounttype.category
         * ExplanationOfBenefit.item.adjudication:allowedunits
+        * ExplanationOfBenefit.item.adjudication:allowedunits.category
         * ExplanationOfBenefit.item.adjudication:benefitpaymentstatus
+        * ExplanationOfBenefit.item.adjudication:benefitpaymentstatus.category
         * ExplanationOfBenefit.item.adjudication:denialreason
+        * ExplanationOfBenefit.item.adjudication:denialreason.category
+        * ExplanationOfBenefit.item.adjudication:denialreason.reason
         * ExplanationOfBenefit.item.modifier
         * ExplanationOfBenefit.item.noteNumber
         * ExplanationOfBenefit.item.productOrService
@@ -59,15 +62,19 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.related.relationship
         * ExplanationOfBenefit.status
         * ExplanationOfBenefit.supportingInfo
-        * ExplanationOfBenefit.supportingInfo.category.coding.code
-        * ExplanationOfBenefit.supportingInfo.code
-        * ExplanationOfBenefit.supportingInfo.timing[x]
         * ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus
+        * ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.category
+        * ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.code
         * ExplanationOfBenefit.supportingInfo:clmrecvddate
+        * ExplanationOfBenefit.supportingInfo:clmrecvddate.category
+        * ExplanationOfBenefit.supportingInfo:clmrecvddate.timing[x]
         * ExplanationOfBenefit.supportingInfo:medicalrecordnumber
         * ExplanationOfBenefit.supportingInfo:patientaccountnumber
         * ExplanationOfBenefit.supportingInfo:performingnetworkcontractingstatus
+        * ExplanationOfBenefit.supportingInfo:performingnetworkcontractingstatus.category
+        * ExplanationOfBenefit.supportingInfo:performingnetworkcontractingstatus.code
         * ExplanationOfBenefit.supportingInfo:servicefacility
+        * ExplanationOfBenefit.supportingInfo:servicefacility.category
         * ExplanationOfBenefit.total
         * ExplanationOfBenefit.total.category
         * ExplanationOfBenefit.total:adjudicationamounttype

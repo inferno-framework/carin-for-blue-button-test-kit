@@ -35,7 +35,11 @@ module CarinForBlueButtonTestKit
         * Patient.identifier.system
         * Patient.identifier.value
         * Patient.identifier:memberid
+        * Patient.identifier:memberid.system
+        * Patient.identifier:memberid.value
         * Patient.identifier:uniquememberid
+        * Patient.identifier:uniquememberid.system
+        * Patient.identifier:uniquememberid.value
         * Patient.meta
         * Patient.meta.lastUpdated
         * Patient.name

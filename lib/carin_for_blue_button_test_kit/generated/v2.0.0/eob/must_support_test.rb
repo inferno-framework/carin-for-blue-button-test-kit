@@ -20,8 +20,8 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.careTeam
         * ExplanationOfBenefit.careTeam.provider
         * ExplanationOfBenefit.careTeam.role
-        * ExplanationOfBenefit.identifier.value
         * ExplanationOfBenefit.identifier:uniqueclaimid
+        * ExplanationOfBenefit.identifier:uniqueclaimid.value
         * ExplanationOfBenefit.insurance
         * ExplanationOfBenefit.insurance.coverage
         * ExplanationOfBenefit.insurance.focal

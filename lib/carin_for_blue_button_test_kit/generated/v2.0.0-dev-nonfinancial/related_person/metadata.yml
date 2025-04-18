@@ -77,6 +77,8 @@
   - :path: patient
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient
   - :path: relationship
   - :path: name
   - :path: telecom

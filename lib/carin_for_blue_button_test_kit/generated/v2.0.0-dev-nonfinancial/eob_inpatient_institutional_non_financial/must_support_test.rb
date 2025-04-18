@@ -17,10 +17,12 @@ module CarinForBlueButtonTestKit
 
                 * ExplanationOfBenefit.adjudication
         * ExplanationOfBenefit.adjudication.category
-        * ExplanationOfBenefit.adjudication.reason
         * ExplanationOfBenefit.adjudication:adjustmentreason
+        * ExplanationOfBenefit.adjudication:adjustmentreason.reason
         * ExplanationOfBenefit.adjudication:benefitpaymentstatus
+        * ExplanationOfBenefit.adjudication:benefitpaymentstatus.reason
         * ExplanationOfBenefit.adjudication:billingnetworkstatus
+        * ExplanationOfBenefit.adjudication:billingnetworkstatus.reason
         * ExplanationOfBenefit.billablePeriod
         * ExplanationOfBenefit.billablePeriod.end
         * ExplanationOfBenefit.billablePeriod.start
@@ -33,8 +35,8 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.diagnosis.onAdmission
         * ExplanationOfBenefit.diagnosis.type
         * ExplanationOfBenefit.identifier
-        * ExplanationOfBenefit.identifier.value
         * ExplanationOfBenefit.identifier:uniqueclaimid
+        * ExplanationOfBenefit.identifier:uniqueclaimid.value
         * ExplanationOfBenefit.insurance
         * ExplanationOfBenefit.insurance.coverage
         * ExplanationOfBenefit.insurance.focal
@@ -42,11 +44,12 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.item
         * ExplanationOfBenefit.item.adjudication
         * ExplanationOfBenefit.item.adjudication.category
-        * ExplanationOfBenefit.item.adjudication.category.coding.code
-        * ExplanationOfBenefit.item.adjudication.reason
-        * ExplanationOfBenefit.item.adjudication.value
         * ExplanationOfBenefit.item.adjudication:adjustmentreason
+        * ExplanationOfBenefit.item.adjudication:adjustmentreason.category
+        * ExplanationOfBenefit.item.adjudication:adjustmentreason.reason
         * ExplanationOfBenefit.item.adjudication:allowedunits
+        * ExplanationOfBenefit.item.adjudication:allowedunits.category
+        * ExplanationOfBenefit.item.adjudication:allowedunits.value
         * ExplanationOfBenefit.item.modifier
         * ExplanationOfBenefit.item.noteNumber
         * ExplanationOfBenefit.item.productOrService
@@ -76,18 +79,28 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.status
         * ExplanationOfBenefit.subType.coding.code
         * ExplanationOfBenefit.supportingInfo
-        * ExplanationOfBenefit.supportingInfo.category.coding.code
-        * ExplanationOfBenefit.supportingInfo.code
-        * ExplanationOfBenefit.supportingInfo.timing[x]
         * ExplanationOfBenefit.supportingInfo:admissionperiod
+        * ExplanationOfBenefit.supportingInfo:admissionperiod.category
         * ExplanationOfBenefit.supportingInfo:admtype
+        * ExplanationOfBenefit.supportingInfo:admtype.category
+        * ExplanationOfBenefit.supportingInfo:admtype.code
         * ExplanationOfBenefit.supportingInfo:clmrecvddate
+        * ExplanationOfBenefit.supportingInfo:clmrecvddate.category
+        * ExplanationOfBenefit.supportingInfo:clmrecvddate.timing[x]
         * ExplanationOfBenefit.supportingInfo:discharge-status
+        * ExplanationOfBenefit.supportingInfo:discharge-status.category
+        * ExplanationOfBenefit.supportingInfo:discharge-status.code
         * ExplanationOfBenefit.supportingInfo:drg
+        * ExplanationOfBenefit.supportingInfo:drg.category
+        * ExplanationOfBenefit.supportingInfo:drg.code
         * ExplanationOfBenefit.supportingInfo:medicalrecordnumber
         * ExplanationOfBenefit.supportingInfo:patientaccountnumber
         * ExplanationOfBenefit.supportingInfo:pointoforigin
+        * ExplanationOfBenefit.supportingInfo:pointoforigin.category
+        * ExplanationOfBenefit.supportingInfo:pointoforigin.code
         * ExplanationOfBenefit.supportingInfo:typeofbill
+        * ExplanationOfBenefit.supportingInfo:typeofbill.category
+        * ExplanationOfBenefit.supportingInfo:typeofbill.code
         * ExplanationOfBenefit.type.coding.code
         * ExplanationOfBenefit.use
       )

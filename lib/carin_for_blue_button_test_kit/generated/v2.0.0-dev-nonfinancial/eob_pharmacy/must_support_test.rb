@@ -17,9 +17,10 @@ module CarinForBlueButtonTestKit
 
                 * ExplanationOfBenefit.adjudication
         * ExplanationOfBenefit.adjudication.category
-        * ExplanationOfBenefit.adjudication.reason
         * ExplanationOfBenefit.adjudication:benefitpaymentstatus
+        * ExplanationOfBenefit.adjudication:benefitpaymentstatus.reason
         * ExplanationOfBenefit.adjudication:billingnetworkstatus
+        * ExplanationOfBenefit.adjudication:billingnetworkstatus.reason
         * ExplanationOfBenefit.billablePeriod
         * ExplanationOfBenefit.billablePeriod.start
         * ExplanationOfBenefit.careTeam
@@ -27,20 +28,21 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.careTeam.role
         * ExplanationOfBenefit.created
         * ExplanationOfBenefit.identifier
-        * ExplanationOfBenefit.identifier.value
         * ExplanationOfBenefit.identifier:uniqueclaimid
+        * ExplanationOfBenefit.identifier:uniqueclaimid.value
         * ExplanationOfBenefit.insurance
         * ExplanationOfBenefit.insurance.coverage
         * ExplanationOfBenefit.insurance.focal
         * ExplanationOfBenefit.insurer
         * ExplanationOfBenefit.item
         * ExplanationOfBenefit.item.adjudication
-        * ExplanationOfBenefit.item.adjudication.amount
         * ExplanationOfBenefit.item.adjudication.category
-        * ExplanationOfBenefit.item.adjudication.category.coding.code
-        * ExplanationOfBenefit.item.adjudication.reason
         * ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+        * ExplanationOfBenefit.item.adjudication:adjudicationamounttype.amount
+        * ExplanationOfBenefit.item.adjudication:adjudicationamounttype.category
         * ExplanationOfBenefit.item.adjudication:rejectreason
+        * ExplanationOfBenefit.item.adjudication:rejectreason.category
+        * ExplanationOfBenefit.item.adjudication:rejectreason.reason
         * ExplanationOfBenefit.item.detail
         * ExplanationOfBenefit.item.detail.productOrService
         * ExplanationOfBenefit.item.detail.quantity
@@ -67,18 +69,30 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.related.relationship
         * ExplanationOfBenefit.status
         * ExplanationOfBenefit.supportingInfo
-        * ExplanationOfBenefit.supportingInfo.category.coding.code
-        * ExplanationOfBenefit.supportingInfo.code
-        * ExplanationOfBenefit.supportingInfo.timing[x]
-        * ExplanationOfBenefit.supportingInfo.value[x]
         * ExplanationOfBenefit.supportingInfo:brandgenericindicator
+        * ExplanationOfBenefit.supportingInfo:brandgenericindicator.category
+        * ExplanationOfBenefit.supportingInfo:brandgenericindicator.code
         * ExplanationOfBenefit.supportingInfo:clmrecvddate
+        * ExplanationOfBenefit.supportingInfo:clmrecvddate.category
+        * ExplanationOfBenefit.supportingInfo:clmrecvddate.timing[x]
         * ExplanationOfBenefit.supportingInfo:compoundcode
+        * ExplanationOfBenefit.supportingInfo:compoundcode.category
+        * ExplanationOfBenefit.supportingInfo:compoundcode.code
         * ExplanationOfBenefit.supportingInfo:dawcode
+        * ExplanationOfBenefit.supportingInfo:dawcode.category
+        * ExplanationOfBenefit.supportingInfo:dawcode.code
         * ExplanationOfBenefit.supportingInfo:dayssupply
+        * ExplanationOfBenefit.supportingInfo:dayssupply.category
+        * ExplanationOfBenefit.supportingInfo:dayssupply.value[x]
         * ExplanationOfBenefit.supportingInfo:refillNum
+        * ExplanationOfBenefit.supportingInfo:refillNum.category
+        * ExplanationOfBenefit.supportingInfo:refillNum.value[x]
         * ExplanationOfBenefit.supportingInfo:refillsAuthorized
+        * ExplanationOfBenefit.supportingInfo:refillsAuthorized.category
+        * ExplanationOfBenefit.supportingInfo:refillsAuthorized.value[x]
         * ExplanationOfBenefit.supportingInfo:rxoriginCode
+        * ExplanationOfBenefit.supportingInfo:rxoriginCode.category
+        * ExplanationOfBenefit.supportingInfo:rxoriginCode.code
         * ExplanationOfBenefit.total
         * ExplanationOfBenefit.total.amount
         * ExplanationOfBenefit.total.category

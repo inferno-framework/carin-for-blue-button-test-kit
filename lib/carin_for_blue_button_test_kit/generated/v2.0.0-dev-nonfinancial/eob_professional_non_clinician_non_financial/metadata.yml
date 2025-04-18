@@ -305,119 +305,136 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: ExplanationOfBenefit.identifier:uniqueclaimid
+  - :slice_id: ExplanationOfBenefit.identifier:uniqueclaimid
+    :slice_name: uniqueclaimid
     :path: identifier
     :discriminator:
       :type: patternCodeableConcept
       :path: type
       :code: uc
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType
-  - :name: ExplanationOfBenefit.supportingInfo:clmrecvddate
+  - :slice_id: ExplanationOfBenefit.supportingInfo:clmrecvddate
+    :slice_name: clmrecvddate
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: clmrecvddate
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:servicefacility
+  - :slice_id: ExplanationOfBenefit.supportingInfo:servicefacility
+    :slice_name: servicefacility
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: servicefacility
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:medicalrecordnumber
+  - :slice_id: ExplanationOfBenefit.supportingInfo:medicalrecordnumber
+    :slice_name: medicalrecordnumber
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: medicalrecordnumber
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:patientaccountnumber
+  - :slice_id: ExplanationOfBenefit.supportingInfo:patientaccountnumber
+    :slice_name: patientaccountnumber
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: patientaccountnumber
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:patientweight
+  - :slice_id: ExplanationOfBenefit.supportingInfo:patientweight
+    :slice_name: patientweight
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: patientweight
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:ambulancetransportreason
+  - :slice_id: ExplanationOfBenefit.supportingInfo:ambulancetransportreason
+    :slice_name: ambulancetransportreason
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: ambulancetransportreason
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:transportationdistance
+  - :slice_id: ExplanationOfBenefit.supportingInfo:transportationdistance
+    :slice_name: transportationdistance
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: transportationdistance
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:roudtrippurpose
+  - :slice_id: ExplanationOfBenefit.supportingInfo:roudtrippurpose
+    :slice_name: roudtrippurpose
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: roudtrippurpose
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:stretcherpurpose
+  - :slice_id: ExplanationOfBenefit.supportingInfo:stretcherpurpose
+    :slice_name: stretcherpurpose
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: stretcherpurpose
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:pickuplocation
+  - :slice_id: ExplanationOfBenefit.supportingInfo:pickuplocation
+    :slice_name: pickuplocation
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: pickuplocation
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:dropofflocation
+  - :slice_id: ExplanationOfBenefit.supportingInfo:dropofflocation
+    :slice_name: dropofflocation
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: dropofflocation
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.item.adjudication:adjustmentreason
+  - :slice_id: ExplanationOfBenefit.item.adjudication:adjustmentreason
+    :slice_name: adjustmentreason
     :path: item.adjudication
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: adjustmentreason
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
-  - :name: ExplanationOfBenefit.item.adjudication:benefitpaymentstatus
+  - :slice_id: ExplanationOfBenefit.item.adjudication:benefitpaymentstatus
+    :slice_name: benefitpaymentstatus
     :path: item.adjudication
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: benefitpaymentstatus
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
-  - :name: ExplanationOfBenefit.item.adjudication:allowedunits
+  - :slice_id: ExplanationOfBenefit.item.adjudication:allowedunits
+    :slice_name: allowedunits
     :path: item.adjudication
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: allowedunits
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
-  - :name: ExplanationOfBenefit.adjudication:billingnetworkstatus
+  - :slice_id: ExplanationOfBenefit.adjudication:billingnetworkstatus
+    :slice_name: billingnetworkstatus
     :path: adjudication
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: billingnetworkstatus
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
-  - :name: ExplanationOfBenefit.adjudication:renderingnetworkstatus
+  - :slice_id: ExplanationOfBenefit.adjudication:renderingnetworkstatus
+    :slice_name: renderingnetworkstatus
     :path: adjudication
     :discriminator:
       :type: patternCodeableConcept
@@ -427,18 +444,22 @@
   :elements:
   - :path: meta
   - :path: meta.lastUpdated
-  - :path: identifier.value
+  - :path: identifier:uniqueclaimid.value
   - :path: status
   - :path: type
   - :path: use
   - :path: patient
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient
   - :path: billablePeriod
   - :path: billablePeriod.start
   - :path: insurer
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization
   - :path: provider
     :types:
     - Reference
@@ -458,11 +479,9 @@
   - :path: careTeam.role
   - :path: careTeam.qualification
   - :path: supportingInfo
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: clmrecvddate
-  - :path: supportingInfo.timing[x]
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: servicefacility
+  - :path: supportingInfo:clmrecvddate.category
+  - :path: supportingInfo:clmrecvddate.timing[x]
+  - :path: supportingInfo:servicefacility.category
   - :path: diagnosis
   - :path: diagnosis.diagnosis[x]
   - :path: diagnosis.type
@@ -471,6 +490,8 @@
   - :path: insurance.coverage
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage
   - :path: item
   - :path: item.sequence
   - :path: item.productOrService
@@ -479,16 +500,15 @@
   - :path: item.noteNumber
   - :path: item.adjudication
   - :path: item.adjudication.category
-  - :path: item.adjudication.category.coding.code
-    :fixed_value: adjustmentreason
-  - :path: item.adjudication.category.coding.code
-    :fixed_value: benefitpaymentstatus
-  - :path: item.adjudication.reason
-  - :path: item.adjudication.category.coding.code
-    :fixed_value: allowedunits
+  - :path: item.adjudication:adjustmentreason.category
+  - :path: item.adjudication:adjustmentreason.reason
+  - :path: item.adjudication:benefitpaymentstatus.category
+  - :path: item.adjudication:benefitpaymentstatus.reason
+  - :path: item.adjudication:allowedunits.category
   - :path: adjudication
   - :path: adjudication.category
-  - :path: adjudication.reason
+  - :path: adjudication:billingnetworkstatus.reason
+  - :path: adjudication:renderingnetworkstatus.reason
   - :path: payment
   - :path: payment.type
   - :path: processNote
@@ -1143,8 +1163,6 @@
   :file_name: validation_test.rb
 - :id: c4bb_v200devnonfinancial_eob_professional_non_clinician_non_financial_must_support_test
   :file_name: must_support_test.rb
-:id: c4bb_v200devnonfinancial_eob_professional_non_clinician_non_financial
-:file_name: eob_professional_non_clinician_non_financial_group.rb
 :delayed_references:
 - :path: insurer
   :resources:
