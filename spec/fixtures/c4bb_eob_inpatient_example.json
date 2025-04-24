@@ -312,6 +312,12 @@
     {
       "focal" : true,
       "coverage" : {
+        "reference" : "Coverage/c4bb-coverage"
+      }
+    },
+    {
+      "focal" : false,
+      "coverage" : {
         "reference" : "Coverage/Coverage2"
       }
     }
