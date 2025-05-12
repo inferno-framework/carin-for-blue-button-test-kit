@@ -5,8 +5,6 @@ require_relative 'client_registration/udap_interaction_test'
 require_relative 'client_registration/udap_verification_test'
 require_relative 'client_registration/configuration_display_smart_test'
 require_relative 'client_registration/configuration_display_udap_test'
-require_relative 'client_registration/configuration_display_other_test'
-require_relative 'client_registration/other_auth_attest_test'
 
 module CarinForBlueButtonTestKit
   class CarinClientRegistrationGroup < Inferno::TestGroup
@@ -60,16 +58,6 @@ module CarinForBlueButtonTestKit
     test from: :c4bb_v200_client_reg_config_udap_display,
           required_suite_options: {
             client_type: CarinClientOptions::UDAP_AUTHORIZATION_CODE
-          }
-
-    # other registration tests
-    test from: :c4bb_v200_client_reg_other_auth_attest,
-          required_suite_options: {
-            client_type: CarinClientOptions::DEDICATED_ENDPOINTS
-          }
-    test from: :c4bb_v200_client_reg_config_other_display,
-          required_suite_options: {
-            client_type: CarinClientOptions::DEDICATED_ENDPOINTS
           }
   end
 end

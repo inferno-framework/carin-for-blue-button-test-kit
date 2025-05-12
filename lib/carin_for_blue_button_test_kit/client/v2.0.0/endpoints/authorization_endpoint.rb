@@ -9,8 +9,8 @@ require_relative '../client_options'
 module CarinForBlueButtonTestKit
   module MockUdapSmartServer
     class AuthorizationEndpoint < Inferno::DSL::SuiteEndpoint
-      include SMARTAppLaunch::MockSMARTServer::SMARTResponseCreation
-      include UDAPSecurityTestKit::MockUDAPServer::UDAPResponseCreation
+      include SMARTAppLaunch::MockSMARTServer::SMARTAuthorizationResponseCreation
+      include UDAPSecurityTestKit::MockUDAPServer::UDAPAuthorizationResponseCreation
       include CarinClientOptions
 
       def test_run_identifier

@@ -8,8 +8,8 @@ require_relative '../tags'
 module CarinForBlueButtonTestKit
   module MockUdapSmartServer
     class TokenEndpoint < Inferno::DSL::SuiteEndpoint
-      include SMARTAppLaunch::MockSMARTServer::SMARTResponseCreation
-      include UDAPSecurityTestKit::MockUDAPServer::UDAPResponseCreation
+      include SMARTAppLaunch::MockSMARTServer::SMARTTokenResponseCreation
+      include UDAPSecurityTestKit::MockUDAPServer::UDAPTokenResponseCreation
       include URLs
 
       def test_run_identifier

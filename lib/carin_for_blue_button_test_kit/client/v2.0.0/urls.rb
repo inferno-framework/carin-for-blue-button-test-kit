@@ -1,19 +1,13 @@
 module CarinForBlueButtonTestKit
-  SESSION_PATH_PLACEHOLDER = '/:session_path'
   TOKEN_PATH = '/auth/token'.freeze
   AUTHORIZATION_PATH = '/auth/authorization'.freeze
   JKWS_PATH = '/.well-known/jwks.json'.freeze
   SMART_CONFIG_PATH = '/.well-known/smart-configuration'.freeze
   PATIENT_PATH = '/fhir/Patient'.freeze
-  SESSION_PATIENT_PATH = SESSION_PATH_PLACEHOLDER + PATIENT_PATH
   RESOURCE_API_PATH = '/fhir/:endpoint'.freeze
-  SESSION_RESOURCE_API_PATH = SESSION_PATH_PLACEHOLDER + RESOURCE_API_PATH
   RESOURCE_ID_PATH = '/fhir/:endpoint/:id'.freeze
-  SESSION_RESOURCE_ID_PATH = SESSION_PATH_PLACEHOLDER + RESOURCE_ID_PATH
   METADATA_PATH = '/fhir/metadata'.freeze
-  SESSION_METADATA_PATH = SESSION_PATH_PLACEHOLDER + METADATA_PATH
   BASE_FHIR_PATH = '/fhir'.freeze
-  SESSION_BASE_FHIR_PATH = SESSION_PATH_PLACEHOLDER + BASE_FHIR_PATH
   RESUME_PASS_PATH = '/resume_pass'.freeze
   RESUME_CLAIMS_DATA_PATH = '/resume_claims_data'.freeze
   RESUME_FAIL_PATH = '/resume_fail'.freeze
@@ -47,24 +41,12 @@ module CarinForBlueButtonTestKit
       fhir_base_url
     end
 
-    def session_fhir_base_url(session_path)
-      return fhir_base_url if session_path.blank?
-
-      base_url + SESSION_BASE_FHIR_PATH.gsub(SESSION_PATH_PLACEHOLDER, "/#{session_path}")
-    end
-
     def patient_url
       @patient_url ||= base_url + PATIENT_PATH
     end
 
     def resource_api_url
       @resource_api_url ||= base_url + RESOURCE_API_PATH
-    end
-
-    def session_resource_api_url(session_path)
-      return resource_api_url if session_path.blank?
-
-      base_url + SESSION_RESOURCE_API_PATH.gsub(SESSION_PATH_PLACEHOLDER, "/#{session_path}")
     end
 
     def resource_id_url

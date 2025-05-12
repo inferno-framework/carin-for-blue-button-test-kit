@@ -1,12 +1,10 @@
 require 'smart_app_launch_test_kit'
 require_relative 'urls'
-require_relative 'session_identification'
 require_relative 'client_descriptions'
 
 module CarinForBlueButtonTestKit
   class C4BBClientInitialWaitTest < Inferno::Test
     include URLs
-    include SessionIdentification
 
     id :c4bb_v200_initial_wait_test
     title 'Client makes claims data and required search parameter requests'
@@ -19,12 +17,6 @@ module CarinForBlueButtonTestKit
           optional: true,
           locked: true,
           description: INPUT_CLIENT_ID_LOCKED
-    input :session_url_path,
-          title: 'Session-specific URL path extension',
-          type: 'text',
-          optional: true,
-          locked: true,
-          description: INPUT_SESSION_URL_PATH_LOCKED
     input :smart_launch_urls,
           title: 'SMART App Launch URL(s)',
           type: 'textarea',
@@ -46,19 +38,16 @@ module CarinForBlueButtonTestKit
     config options: { accepts_multiple_requests: true }
 
     run do
-      session_identifier = session_wait_identifier(client_id, session_url_path)
-      session_single_resource_api_url = session_url(client_id, session_url_path)
-
       if smart_launch_urls.present?
         launch_key = SecureRandom.hex(32)
         output(launch_key:)
       end
 
       wait(
-        identifier: session_identifier,
+        identifier: client_id,
         message: %(
           Submit CARIN requests via the following method:
-          * Single Resource API: `#{session_single_resource_api_url}?:search_params`, with `:endpoint`
+          * Single Resource API: `#{resource_api_url}?:search_params`, with `:endpoint`
           replaced with the endpoint you want to reach and `:search_params` replaced with the search parameters
           for the request.
 
@@ -110,7 +99,7 @@ module CarinForBlueButtonTestKit
                 * ExplanationOfBenefit:*
 
 
-          [Click here](#{resume_claims_data_url}?test_run_identifier=#{session_identifier}) when done.
+          [Click here](#{resume_claims_data_url}?test_run_identifier=#{client_id}) when done.
         ),
         timeout: 900
       )

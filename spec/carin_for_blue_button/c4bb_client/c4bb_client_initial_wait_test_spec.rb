@@ -28,7 +28,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
 
   let(:reference_server_token) { 'SAMPLE_TOKEN' }
   let(:client_id) { 'SAMPLE_CLIENT_ID' }
-  let(:bearer_token) { JWT.encode({ inferno_client_id: 'SAMPLE_CLIENT_ID' }, nil, 'none') }
+  let(:bearer_token) { SMARTAppLaunch::MockSMARTServer.client_id_to_token(client_id, 5) }
 
   let(:resume_claims_data_url) do
     "#{Inferno::Application['base_url']}/custom/c4bb_v200_client/resume_claims_data?test_run_identifier=#{client_id}"

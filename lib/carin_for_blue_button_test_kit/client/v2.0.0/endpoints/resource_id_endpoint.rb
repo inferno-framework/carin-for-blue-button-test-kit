@@ -7,8 +7,6 @@ module CarinForBlueButtonTestKit
     include CarinForBlueButtonTestKit::MockServer
 
     def test_run_identifier
-      return request.params[:session_path] if request.params[:session_path].present?
-
       UDAPSecurityTestKit::MockUDAPServer.issued_token_to_client_id(
         request.headers['authorization']&.delete_prefix('Bearer ')
       )

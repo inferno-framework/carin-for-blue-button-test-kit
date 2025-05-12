@@ -1,29 +1,25 @@
-GIT
-  remote: https://github.com/inferno-framework/smart-app-launch-test-kit.git
-  revision: eb52167d009c3f16dea911d1ba241a6e02af160d
-  branch: client_authorization_code_tests
-  specs:
-    smart_app_launch_test_kit (0.6.1)
-      inferno_core (>= 0.6.3)
-      json-jwt (~> 1.15.3)
-      jwt (~> 2.6)
-      tls_test_kit (~> 0.3.0)
-
-GIT
-  remote: https://github.com/inferno-framework/udap-security-test-kit.git
-  revision: 79dddd9832ab810be933b827ed2712e338ca12b5
-  branch: client_authorization_code_tests
-  specs:
-    udap_security_test_kit (0.11.3)
-      inferno_core (>= 0.6.1)
-      jwt (~> 2.3)
-
 PATH
   remote: .
   specs:
     carin_for_blue_button_test_kit (0.15.0)
       inferno_core (~> 0.6.9)
       smart_app_launch_test_kit (~> 0.6.0)
+
+PATH
+  remote: /Users/knaden/Documents/Inferno/source/smart-app-launch-test-kit
+  specs:
+    smart_app_launch_test_kit (0.6.2)
+      inferno_core (>= 0.6.3)
+      json-jwt (~> 1.15.3)
+      jwt (~> 2.6)
+      tls_test_kit (~> 0.3.0)
+
+PATH
+  remote: /Users/knaden/Documents/Inferno/source/udap-security-test-kit
+  specs:
+    udap_security_test_kit (0.11.4)
+      inferno_core (>= 0.6.1)
+      jwt (~> 2.3)
 
 GEM
   remote: https://rubygems.org/

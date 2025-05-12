@@ -13,7 +13,6 @@ module CarinForBlueButtonTestKit
       SMARTAppLaunch::SMARTClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_ASYMMETRIC
     UDAP_AUTHORIZATION_CODE = 
       UDAPSecurityTestKit::UDAPClientOptions::UDAP_AUTHORIZATION_CODE
-    DEDICATED_ENDPOINTS = DEDICATED_ENDPOINTS_AUTH_TAG
 
     def selected_security_ig(suite_options)
       if suite_options[:client_type].include?(UDAPSecurityTestKit::UDAP_TAG)

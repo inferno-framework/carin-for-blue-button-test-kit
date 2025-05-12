@@ -101,15 +101,10 @@ module CarinForBlueButtonTestKit
                     {
                       label: 'UDAP Authorization Code Client',
                       value: CarinClientOptions::UDAP_AUTHORIZATION_CODE
-                    # },
-                    # {                ***** ENDPOINTS NOT CURRENTLY WORKING *****
-                    #   label: 'Other',
-                    #   value: CarinClientOptions::DEDICATED_ENDPOINTS
                     }
                   ]
 
     route(:get, METADATA_PATH, get_metadata)
-    route(:get, SESSION_METADATA_PATH, get_metadata)
     route(:get, UDAPSecurityTestKit::UDAP_DISCOVERY_PATH, lambda { |_env|
       UDAPSecurityTestKit::MockUDAPServer.udap_server_metadata(id)
     })
@@ -130,13 +125,9 @@ module CarinForBlueButtonTestKit
     suite_endpoint :post, UDAPSecurityTestKit::AUTHORIZATION_PATH, MockUdapSmartServer::AuthorizationEndpoint
 
     suite_endpoint :get, PATIENT_PATH, ResourceAPIEndpoint
-    suite_endpoint :get, SESSION_PATIENT_PATH, ResourceAPIEndpoint
     suite_endpoint :get, RESOURCE_API_PATH, ResourceAPIEndpoint
-    suite_endpoint :get, SESSION_RESOURCE_API_PATH, ResourceAPIEndpoint
     suite_endpoint :get, RESOURCE_ID_PATH, ResourceIDEndpoint
-    suite_endpoint :get, SESSION_RESOURCE_ID_PATH, ResourceIDEndpoint
     suite_endpoint :get, BASE_FHIR_PATH, NextPageEndpoint
-    suite_endpoint :get, SESSION_BASE_FHIR_PATH, NextPageEndpoint
 
     resume_test_route :get, RESUME_CLAIMS_DATA_PATH do |request|
       C4BBV200ClientSuite.extract_test_run_identifier_from_query_params(request)
