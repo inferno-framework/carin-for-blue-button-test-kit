@@ -74,7 +74,7 @@ To run the client tests against the Postman collection:
    1. Select the "Standalone Launch" group and click the "RUN TESTS" button, but don't run the tests yet.
    1. Back in the CARIN test session, select the "CARIN IG for Blue Button® v2.0.0 Client Test Suite" group, click the
       "RUN ALL TESTS" button, fill in the following inputs using the values from the SMART App Tests:
-      - **Client Id** from the SMART tests: **Client ID** input
+      - **Client Id**: from the SMART tests **Client ID** input
       - **SMART App Launch Redirect URI(s)**: from the SMART app "OAuth Redirect URI" value at the top of the input box.
       - **FHIR User Relative Reference**: `Patient/888`
    1. Click "SUBMIT" in the CARIN tests and when the first wait dialog appears, confirm that the client has been set up.
