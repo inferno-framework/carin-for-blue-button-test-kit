@@ -4,6 +4,9 @@ suites:
   - id: c4bb_v200_client
     class_name: CarinForBlueButtonTestKit::C4BBV200ClientSuite
     suite_actor: Consumer
+  - id: c4bb_v200
+    class_name: CarinForBlueButtonTestKit::CARIN4BBV200::C4BBTestSuite
+    suite_actor: Health Plan
 
 requirement_sets:
   - id: hl7.fhir.us.carin-bb_2.0.0

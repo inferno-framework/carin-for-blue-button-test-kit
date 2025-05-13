@@ -28,16 +28,24 @@ hl7.fhir.us.carin-bb_2.0.0,96,Not Verifiable,Overly broad
 hl7.fhir.us.carin-bb_2.0.0,104,Not Verifiable,There's no point in checking that maybe something exists that could exist.
 hl7.fhir.us.carin-bb_2.0.0,106,Not Verifiable,There's no point in checking that maybe something exists that could exist.
 hl7.fhir.us.carin-bb_2.0.0,107,Not Verifiable,MAY requirement
+hl7.fhir.us.carin-bb_2.0.0,118,Not Verifiable,Can't know externally if the explanationofbenefit adjusts a prior explanationofbenefit
+hl7.fhir.us.carin-bb_2.0.0,119,Not Verifiable,Can't know externally if this explanationofbenefit has been adjusted by another
+hl7.fhir.us.carin-bb_2.0.0,120,Not Verifiable,Can't externally know the order of explanationofbenefit adjustments
 hl7.fhir.us.carin-bb_2.0.0,121,Not Verifiable,Cannot test how client apps do look ups
 hl7.fhir.us.carin-bb_2.0.0,122,Not Verifiable,Cannot confirm if client apps assign value to something
 hl7.fhir.us.carin-bb_2.0.0,123,Not Verifiable,There's no point in checking that maybe something exists that could exist.
 hl7.fhir.us.carin-bb_2.0.0,126,Not Verifiable,There's no point in checking that maybe something exists that could exist.
+hl7.fhir.us.carin-bb_2.0.0,130,Not Verifiable,Cannot know if a payer has line item amoutns
+hl7.fhir.us.carin-bb_2.0.0,131,Not Verifiable,Cannot know if a payer has line item amoutns
+hl7.fhir.us.carin-bb_2.0.0,132,Not Verifiable,Cannot know if a payer has line item amoutns
 hl7.fhir.us.carin-bb_2.0.0,137,Not Verifiable,Cannot confirm if client apps assign value to something
 hl7.fhir.us.carin-bb_2.0.0,138,Not Verifiable,Cannot confirm how a client uses values
 hl7.fhir.us.carin-bb_2.0.0,139,Not Verifiable,Cannot confirm if client apps assign value to something
 hl7.fhir.us.carin-bb_2.0.0,140,Not Verifiable,Cannot confirm how a client uses values
 hl7.fhir.us.carin-bb_2.0.0,143,Not Verifiable,Appears to be business logic not a calculation that we can confirm
 hl7.fhir.us.carin-bb_2.0.0,147,Not Verifiable,Cannot confirm how a client uses values
+hl7.fhir.us.carin-bb_2.0.0,148,Not Verifiable,Service facility is an organization. Provider and care team are practitioners. They definitely won't be referencing the same objects. Can't compare `id`s as these are internal identifiers. More global identifiers like NPI are not required. So we don't have a way to compare these fields.
+hl7.fhir.us.carin-bb_2.0.0,149,Not Verifiable,There's no `.diagnosisSequence` on `.item`. This is likely a typo.
 hl7.fhir.us.carin-bb_2.0.0,154,Not Verifiable,Appears to be business logic not a calculation that we can confirm
 hl7.fhir.us.carin-bb_2.0.0,155,Not Verifiable,Appears to be business logic not a calculation that we can confirm
 hl7.fhir.us.carin-bb_2.0.0,166,Not Verifiable,Cannot know how clients interpret data.
@@ -51,3 +59,10 @@ hl7.fhir.us.carin-bb_2.0.0,182,Not Verifiable,Cannot know
 hl7.fhir.us.carin-bb_2.0.0,184,Not Verifiable,Cannot confirm how a client uses values
 hl7.fhir.us.carin-bb_2.0.0,185,Not Verifiable,Cannot know 
 hl7.fhir.us.carin-bb_2.0.0,188,Not Verifiable,Cannot confirm how a client uses values
+hl7.fhir.us.carin-bb_2.0.0,190,Not Verifiable,Appears to be business logic not a calculation that we can confirm
+hl7.fhir.us.carin-bb_2.0.0,191,Not Verifiable,Appears to be business logic not a calculation that we can confirm
+hl7.fhir.us.carin-bb_2.0.0,192,Not Verifiable,Appears to be business logic not a calculation that we can confirm
+hl7.fhir.us.carin-bb_2.0.0,193,Not Verifiable,Appears to be business logic not a calculation that we can confirm
+hl7.fhir.us.carin-bb_2.0.0,194,Not Verifiable,Appears to be business logic not a calculation that we can confirm
+hl7.fhir.us.carin-bb_2.0.0,195,Not Verifiable,Appears to be business logic not a calculation that we can confirm
+hl7.fhir.us.carin-bb_2.0.0,196,Not Verifiable,Appears to be business logic not a calculation that we can confirm
