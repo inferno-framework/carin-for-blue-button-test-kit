@@ -1,6 +1,5 @@
 require 'smart_app_launch_test_kit'
 require_relative 'urls'
-require_relative 'client_descriptions'
 
 module CarinForBlueButtonTestKit
   class C4BBClientInitialWaitTest < Inferno::Test
@@ -16,7 +15,7 @@ module CarinForBlueButtonTestKit
           type: 'text',
           optional: true,
           locked: true,
-          description: INPUT_CLIENT_ID_LOCKED
+          description: SMARTAppLaunch::INPUT_CLIENT_ID_DESCRIPTION_LOCKED
     input :smart_launch_urls,
           title: 'SMART App Launch URL(s)',
           type: 'textarea',
