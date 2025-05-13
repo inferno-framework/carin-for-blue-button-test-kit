@@ -14,6 +14,7 @@ none are returned, the test is skipped.
 
 
       )
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@100'
 
       id :c4bb_v200_eob_oral__lastUpdated_search_test
       

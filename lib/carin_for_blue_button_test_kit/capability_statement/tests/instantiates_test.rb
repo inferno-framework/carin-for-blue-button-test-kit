@@ -6,6 +6,7 @@ module CarinForBlueButtonTestKit
           This test inspects the CapabilityStatement returned by the server to
           verify that the server instantiates http://hl7.org/fhir/us/carin-bb/CapabilityStatement/c4bb
         )
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@17'
 
       uses_request :capability_statement
 

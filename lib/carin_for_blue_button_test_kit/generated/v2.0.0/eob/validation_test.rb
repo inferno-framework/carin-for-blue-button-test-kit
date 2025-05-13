@@ -20,6 +20,9 @@ to the bound ValueSet. Quantity, Coding, and code element bindings will
 fail if their code/system are not found in the valueset.
 
       )
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@11', 'hl7.fhir.us.carin-bb_2.0.0@12',
+                            'hl7.fhir.us.carin-bb_2.0.0@112', 'hl7.fhir.us.carin-bb_2.0.0@114',
+                            'hl7.fhir.us.carin-bb_2.0.0@131'
 
       output :dar_code_found, :dar_extension_found
 

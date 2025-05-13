@@ -51,6 +51,7 @@ module CarinForBlueButtonTestKit
 
       group from: :smart_discovery do
         run_as_group
+        verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@58', 'hl7.fhir.us.carin-bb_2.0.0@63'
 
         test from: :c4bb_v200_smart_capabilities do
           config(
@@ -95,6 +96,8 @@ module CarinForBlueButtonTestKit
 
           * [Standalone Launch Sequence](https://www.hl7.org/fhir/smart-app-launch/1.0.0/index.html#standalone-launch-sequence)
         )
+        verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@1', 'hl7.fhir.us.carin-bb_2.0.0@60',
+                              'hl7.fhir.us.carin-bb_2.0.0@65', 'hl7.fhir.us.carin-bb_2.0.0@68'
 
         test from: :c4bb_v200_smart_scopes do
           config(
