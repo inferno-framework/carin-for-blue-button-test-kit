@@ -67,8 +67,7 @@ module CarinForBlueButtonTestKit
         tags << (request.params[:udap].present? ? UDAPSecurityTestKit::UDAP_TAG : SMARTAppLaunch::SMART_TAG)
         if [UDAPSecurityTestKit::CLIENT_CREDENTIALS_TAG, 
             UDAPSecurityTestKit::AUTHORIZATION_CODE_TAG, 
-            UDAPSecurityTestKit::REFRESH_TOKEN_TAG
-           ].include?(request.params[:grant_type])
+            UDAPSecurityTestKit::REFRESH_TOKEN_TAG].include?(request.params[:grant_type])
           tags << request.params[:grant_type]
         end
 

@@ -20,7 +20,7 @@ module CarinForBlueButtonTestKit
       def suite_options
         @suite_options ||=
           Inferno::Repositories::TestSessions.new.find(result.test_session_id)
-          &.suite_options&.map { |so| [so.id, so.value] }&.to_h
+            &.suite_options&.map { |so| [so.id, so.value] }&.to_h
       end
 
       def make_response
@@ -37,7 +37,7 @@ module CarinForBlueButtonTestKit
 
       def tags
         tags = [UDAPSecurityTestKit::AUTHORIZATION_TAG, UDAPSecurityTestKit::AUTHORIZATION_CODE_TAG]
-        tags << 
+        tags <<
           if selected_security_ig(suite_options) == UDAPSecurityTestKit::UDAP_TAG
             UDAPSecurityTestKit::UDAP_TAG
           else
