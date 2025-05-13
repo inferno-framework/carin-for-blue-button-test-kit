@@ -1,6 +1,4 @@
 require 'udap_security_test_kit'
-require_relative 'client_auth/authorization_udap_verification_test'
-require_relative 'client_auth/token_udap_verification_test'
 
 module CarinForBlueButtonTestKit
   class C4BBV200ClientAuthUDAPGroup < Inferno::TestGroup
@@ -17,8 +15,12 @@ module CarinForBlueButtonTestKit
     )
     run_as_group
 
-    test from: :c4bb_v200_client_authorization_udap_verification
-    test from: :c4bb_v200_client_token_udap_verification
+    test from: :udap_client_authorization_request_verification,
+         id: :c4bb_v200_client_authorization_udap_verification,
+         config: { options: { client_suite_id: :c4bb_v200_client } }
+    test from: :udap_client_token_request_ac_verification,
+         id: :c4bb_v200_client_token_udap_verification,
+         config: { options: { client_suite_id: :c4bb_v200_client } }
     test from: :udap_client_token_use_verification,
           config: {
             options: { access_request_tags: [RESOURCE_ID_TAG, RESOURCE_API_TAG] }

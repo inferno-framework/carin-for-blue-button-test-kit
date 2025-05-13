@@ -1,6 +1,4 @@
 require 'smart_app_launch_test_kit'
-require_relative 'client_auth/authorization_smart_verification_test'
-require_relative 'client_auth/token_smart_alcs_verification_test'
 
 module CarinForBlueButtonTestKit
   class C4BBV200ClientAuthSMARTConfidentialSymmetricGroup < Inferno::TestGroup
@@ -18,9 +16,12 @@ module CarinForBlueButtonTestKit
     run_as_group
 
     # smart auth verification
-    test from: :c4bb_v200_client_authorization_smart_verification,
-         id: :c4bb_v200_client_authorization_smart_alcs_verification
-    test from: :c4bb_v200_client_token_smart_alcs_verification
+    test from: :smart_client_authorization_request_verification,
+         id: :c4bb_v200_client_authorization_smart_alcs_verification,
+         config: { options: { client_suite_id: :c4bb_v200_client } }
+    test from: :smart_client_token_request_alcs_verification,
+         id: :c4bb_v200_client_token_smart_alcs_verification,
+         config: { options: { client_suite_id: :c4bb_v200_client } }
     test from: :smart_client_token_use_verification,
           config: {
             options: { access_request_tags: [RESOURCE_ID_TAG, RESOURCE_API_TAG] }
