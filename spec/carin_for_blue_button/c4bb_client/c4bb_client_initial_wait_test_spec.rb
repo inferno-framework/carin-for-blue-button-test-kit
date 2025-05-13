@@ -154,7 +154,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
 
     result = run(test, client_id:)
 
-    header 'Authorization', 'Bearer WRONG_TOKEN'
+    header 'Authorization', "Bearer #{SMARTAppLaunch::MockSMARTServer.client_id_to_token('wrong_client_id', 5)}"
     get(patient_api_request)
 
     expect(last_response).to be_server_error

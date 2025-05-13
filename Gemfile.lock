@@ -3,23 +3,8 @@ PATH
   specs:
     carin_for_blue_button_test_kit (0.15.0)
       inferno_core (~> 0.6.9)
-      smart_app_launch_test_kit (~> 0.6.0)
-
-PATH
-  remote: /Users/knaden/Documents/Inferno/source/smart-app-launch-test-kit
-  specs:
-    smart_app_launch_test_kit (0.6.2)
-      inferno_core (>= 0.6.3)
-      json-jwt (~> 1.15.3)
-      jwt (~> 2.6)
-      tls_test_kit (~> 0.3.0)
-
-PATH
-  remote: /Users/knaden/Documents/Inferno/source/udap-security-test-kit
-  specs:
-    udap_security_test_kit (0.11.4)
-      inferno_core (>= 0.6.1)
-      jwt (~> 2.3)
+      smart_app_launch_test_kit (~> 0.6.2)
+      udap_security_test_kit (~> 0.11.4)
 
 GEM
   remote: https://rubygems.org/
@@ -292,7 +277,7 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.19.0)
-    smart_app_launch_test_kit (0.6.1)
+    smart_app_launch_test_kit (0.6.2)
       inferno_core (>= 0.6.3)
       json-jwt (~> 1.15.3)
       jwt (~> 2.6)
@@ -323,6 +308,9 @@ GEM
     tty-screen (0.8.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    udap_security_test_kit (0.11.4)
+      inferno_core (>= 0.6.1)
+      jwt (~> 2.3)
     unicode-display_width (2.6.0)
     unicode_utils (1.4.0)
     webmock (3.25.1)
@@ -347,8 +335,6 @@ DEPENDENCIES
   rack-test
   roo (~> 2.7.1)
   rspec (~> 3.10)
-  smart_app_launch_test_kit!
-  udap_security_test_kit!
   webmock (~> 3.11)
 
 BUNDLED WITH
