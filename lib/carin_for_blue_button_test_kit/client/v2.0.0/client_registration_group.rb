@@ -47,13 +47,13 @@ module CarinForBlueButtonTestKit
     # udap registration tests
     test from: :udap_client_registration_interaction,
          id: :c4bb_v200_client_reg_udap_interaction,
-         config: { options: { client_suite_id: :c4bb_v200_client } },
+         config: { options: { endpoint_suite_id: :c4bb_v200_client } },
          required_suite_options: {
            client_type: CarinClientOptions::UDAP_AUTHORIZATION_CODE
          }
     test from: :udap_client_registration_ac_verification,
          id: :c4bb_v200_client_reg_udap_verification,
-         config: { options: { client_suite_id: :c4bb_v200_client } },
+         config: { options: { endpoint_suite_id: :c4bb_v200_client } },
          required_suite_options: {
            client_type: CarinClientOptions::UDAP_AUTHORIZATION_CODE
          }

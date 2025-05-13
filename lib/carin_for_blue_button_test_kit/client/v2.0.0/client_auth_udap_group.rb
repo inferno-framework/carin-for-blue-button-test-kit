@@ -17,10 +17,10 @@ module CarinForBlueButtonTestKit
 
     test from: :udap_client_authorization_request_verification,
          id: :c4bb_v200_client_authorization_udap_verification,
-         config: { options: { client_suite_id: :c4bb_v200_client } }
+         config: { options: { endpoint_suite_id: :c4bb_v200_client } }
     test from: :udap_client_token_request_ac_verification,
          id: :c4bb_v200_client_token_udap_verification,
-         config: { options: { client_suite_id: :c4bb_v200_client } }
+         config: { options: { endpoint_suite_id: :c4bb_v200_client } }
     test from: :udap_client_token_use_verification,
           config: {
             options: { access_request_tags: [RESOURCE_ID_TAG, RESOURCE_API_TAG] }
