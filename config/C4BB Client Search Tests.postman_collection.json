@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "31f62fc0-0070-4c62-b7d5-255360685bfb",
+		"_postman_id": "a07c1ace-34c3-4309-971f-f0cc3e9b5f33",
 		"name": "C4BB Client Search Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "11477963"
+		"_exporter_id": "32597978"
 	},
 	"item": [
 		{
@@ -458,7 +458,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJub25lIn0.eyJpbmZlcm5vX2NsaWVudF9pZCI6IlNBTVBMRV9DTElFTlRfSUQifQ.",
+				"value": "{{access_token}}",
 				"type": "string"
 			}
 		]
@@ -496,6 +496,11 @@
 			"value": "http://localhost:4567/custom/c4bb_v200_client/fhir",
 			"type": "string",
 			"disabled": true
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "default"
 		}
 	]
 }

@@ -282,23 +282,23 @@ module CarinForBlueButtonTestKit
 
         test from: :client_claims_data_attestation
       end
-    end
 
-    group from: :c4bb_v200_client_auth_smart_alca,
-          required_suite_options: {
-            client_type: CarinClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_ASYMMETRIC
-          }
-    group from: :c4bb_v200_client_auth_smart_alcs,
-          required_suite_options: {
-            client_type: CarinClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_SYMMETRIC
-          }
-    group from: :c4bb_v200_client_auth_smart_alp,
-          required_suite_options: {
-            client_type: CarinClientOptions::SMART_APP_LAUNCH_PUBLIC
-          }
-    group from: :c4bb_v200_client_auth_udap,
-          required_suite_options: {
-            client_type: CarinClientOptions::UDAP_AUTHORIZATION_CODE
-          }
+      group from: :c4bb_v200_client_auth_smart_alca,
+            required_suite_options: {
+              client_type: CarinClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_ASYMMETRIC
+            }
+      group from: :c4bb_v200_client_auth_smart_alcs,
+            required_suite_options: {
+              client_type: CarinClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_SYMMETRIC
+            }
+      group from: :c4bb_v200_client_auth_smart_alp,
+            required_suite_options: {
+              client_type: CarinClientOptions::SMART_APP_LAUNCH_PUBLIC
+            }
+      group from: :c4bb_v200_client_auth_udap,
+            required_suite_options: {
+              client_type: CarinClientOptions::UDAP_AUTHORIZATION_CODE
+            }
+    end
   end
 end
