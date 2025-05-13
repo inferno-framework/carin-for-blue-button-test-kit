@@ -50,8 +50,6 @@ module CarinForBlueButtonTestKit
       - Inferno's simulated CARIN server does not support all required search parameters on the ExplanationOfBenefit resource, including service-date, service-start-date, billable-period-start, type, and _include=ExplanationOfBenefit:insurer. Inferno recognizes searches made using those parameters and will give the client credit for having performed them but will always return an OperationOutcome indicating failure.
       - Testers must manually configure their client system to connect to a specific target patient and ingest specific curated sample CARIN data. Future versions of the tests may allow more flexibility in the patient identity and the associated data.
       - Testers must attest to their system's ability to process and retain all received information. Currently, this is implemented as a single test. Future versions of the tests may split this test out into different attestations per profile or other more fine-grained organization.
-      - Tested systems must be able to use the SMART App Launch or UDAP Consumer-Facing protocols to obtain access
-        tokens to use to access Inferno's simulated FHIR server.
 
       ## Repository
 

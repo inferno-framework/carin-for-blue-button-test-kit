@@ -45,8 +45,9 @@ conforming either to the
 
 When creating a test session, select the Client Security Type corresponding to an
 authentication approach supported by the client. Then start by running the "Client Registration"
-group which will guide you through the registration process. 
-See the *Auth Configuration Details* section below for details.
+group which will guide you through the registration process. See the *Auth Configuration Details* section below for details.
+If the client is not able to use SMART or UDAP protocols to obtain an access token, see the *Demonstration* section
+below for how to use the SMART or UDAP server tests to obtain an access token that the client can use.
 
 Once registration is complete, run the "Verify CARIN for Blue Button Data Access" group and Inferno will 
 wait for CARIN for Blue Button resource and search requests from the client, return the requested CARIN
@@ -196,3 +197,5 @@ Specific current limitations to highlight include:
      echo back the scopes requested by the client and will not check that they are sufficient to grant access to the data requests
      that it makes. To provide feedback and input on the design of this feature and help us prioritize improvements, submit a
      ticket [here](https://github.com/inferno-framework/carin-for-blue-button-test-kit/issues).
+   - In order to access CARIN data on Inferno's simulated FHIR server, an access token must be obtained from Inferno and sent
+     within the HTTP `Authorization` header as a bearer token.
