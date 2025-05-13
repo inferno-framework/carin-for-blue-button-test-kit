@@ -40,8 +40,8 @@ During execution, Inferno will wait for the client under test to issue requests 
 
 Inferno's simulated payer endpoints require authentication using the OAuth flows
 conforming either to the
-- SMART Backend Services flow, or
-- UDAP Business-to-Business Client Credentials flow.
+- SMART [Backend Services flow](https://hl7.org/fhir/smart-app-launch/STU2.2/backend-services.html), or
+- UDAP [Business-to-Business](https://hl7.org/fhir/us/udap-security/STU1/b2b.html) Client Credentials flow.
 
 When creating a test session, select the Client Security Type corresponding to an
 authentication approach supported by the client. Then start by running the "Client Registration"
@@ -71,22 +71,22 @@ To run the client tests against the Postman collection:
    1. In another tab, start an Inferno session for the SMART App Launch STU2.2 test suite. Select the "Demo: Run Against the SMART
       Client Suite" preset corresponding to the authentication type you chose for the CARIN Client session in step 1.
    1. Select the "Standalone Launch" group and click the "RUN TESTS" button, but don't run the tests yet.
-   1. Back in the CARIN test session, select the "Client Registration" group, click the "RUN TESTS" button, and fill in the
-      inputs using the values from the SMART App Tests:
-      - **Client Id** from the SMART tests **Client ID** input
-      - **SMART App Launch Redirect URI(s)** from the SMART app "OAuth Redirect URI" value at the top of the input box.
-   1. Run the CARIN registration tests and once the wait dialog appears, confirm that the client has been set up.
-   1. Select the "Verify CARIN for Blue Button Data Access" group, click the "RUN TESTS" button. In the **FHIR User Relative Reference**
-      input, put `Patient/888` and click "SUBMIT".
-   1. When the wait dialog appears, return to the SMART tests. Update the **FHIR Endpoint** input to use the FHIR endpoint
-      displayed in the wait dialog of the CARIN tests, taking everything up to and including `/fhir`. Click "SUBMIT" and then
-      click the link to authorize when instructed. The tests should complete.
+   1. Back in the CARIN test session, select the "CARIN IG for Blue Button® v2.0.0 Client Test Suite" group, click the
+      "RUN ALL TESTS" button, fill in the following inputs using the values from the SMART App Tests:
+      - **Client Id** from the SMART tests: **Client ID** input
+      - **SMART App Launch Redirect URI(s)**: from the SMART app "OAuth Redirect URI" value at the top of the input box.
+      - **FHIR User Relative Reference**: `Patient/888`
+   1. Click "SUBMIT" in the CARIN tests and when the first wait dialog appears, confirm that the client has been set up.
+   1. When the second wait dialog appears asking for CARIN requests, return to the SMART tests. Update the
+      **FHIR Endpoint** input to use the FHIR endpoint displayed in the wait dialog of the CARIN tests, taking
+      everything up to and including `/fhir`. Click "SUBMIT" and then click the link to authorize when instructed.
+      The tests should complete.
    1. Find the `standalone_access_token` output in test **1.2.06** "Token exchange response body contains required information
       encoded in JSON", and copy the value, which will be a ~100 character string of letters and numbers (e.g.,
       eyJjbGllbnRfaWQiOiJzbWFydF9jbGllbnRfdGVzdF9kZW1vIiwiZXhwaXJhdGlvbiI6MTc0MzUxNDk4Mywibm9uY2UiOiJlZDI5MWIwNmZhMTE4OTc4In0).
 1. Open Postman and import the `C4BB Client Search Tests` Postman collection if not already done.
-1. Open the "Variables" tab of the collection, paste the `standalone_access_token` value into the "Current value" column
-   for the "access_token" variable, and save the collection.
+1. Open the "Variables" tab of the collection, paste the access value obtained in the previous step into the "Current value"
+   column for the "access_token" variable and save the collection.
 5. Send each of the requests listed under the `C4BB Client Search Tests` Postman collection and ensure a
    200 response is received along with any requested CARIN for Blue Button resources.
 6. Once you have finished making requests, click the "Click here" link in the wait dialog of the CARIN client tests to
