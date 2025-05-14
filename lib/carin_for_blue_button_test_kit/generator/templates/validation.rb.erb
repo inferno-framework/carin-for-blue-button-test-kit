@@ -13,15 +13,14 @@ module CarinForBlueButtonTestKit
         description %>
       )
       <%- if test_id == 'c4bb_v200_eob_validation_test' -%>
-      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@11', 'hl7.fhir.us.carin-bb_2.0.0@12',
-                            'hl7.fhir.us.carin-bb_2.0.0@112', 'hl7.fhir.us.carin-bb_2.0.0@114',
-                            'hl7.fhir.us.carin-bb_2.0.0@131'
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@12', 'hl7.fhir.us.carin-bb_2.0.0@112',
+                            'hl7.fhir.us.carin-bb_2.0.0@114', 'hl7.fhir.us.carin-bb_2.0.0@131'
       <%- elsif test_id == 'c4bb_v200_eob_inpatient_institutional_validation_test' -%>
-      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@11', 'hl7.fhir.us.carin-bb_2.0.0@12',
-                            'hl7.fhir.us.carin-bb_2.0.0@133', 'hl7.fhir.us.carin-bb_2.0.0@134',
-                            'hl7.fhir.us.carin-bb_2.0.0@136', 'hl7.fhir.us.carin-bb_2.0.0@141'
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@12', 'hl7.fhir.us.carin-bb_2.0.0@133',
+                            'hl7.fhir.us.carin-bb_2.0.0@134', 'hl7.fhir.us.carin-bb_2.0.0@136',
+                            'hl7.fhir.us.carin-bb_2.0.0@141'
       <%- elsif module_name.include?('V200') -%>
-      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@11', 'hl7.fhir.us.carin-bb_2.0.0@12'
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@12'
       <%- end -%>
 
       output :dar_code_found, :dar_extension_found
