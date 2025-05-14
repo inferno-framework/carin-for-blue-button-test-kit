@@ -23,6 +23,7 @@ module CarinForBlueButtonTestKit
         * Practitioner.name
         * Practitioner.name.family
       )
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@11'
 
       id :c4bb_v200devnonfinancial_practitioner_must_support_test
 

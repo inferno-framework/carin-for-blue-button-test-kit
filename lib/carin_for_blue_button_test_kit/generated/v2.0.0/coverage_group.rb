@@ -67,6 +67,7 @@ The test will attempt to read each reference found and will fail if no
 read succeeds.
 
       )
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@95'
 
       id :c4bb_v200_coverage
       run_as_group

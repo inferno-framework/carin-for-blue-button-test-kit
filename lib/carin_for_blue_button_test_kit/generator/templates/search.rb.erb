@@ -10,6 +10,9 @@ module CarinForBlueButtonTestKit
       description %(<%=
         description %>
       )
+      <%- if module_name.include?('V200') -%>
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@100'
+      <%- end -%>
 
       id :<%= test_id %><% if optional? %>
       optional

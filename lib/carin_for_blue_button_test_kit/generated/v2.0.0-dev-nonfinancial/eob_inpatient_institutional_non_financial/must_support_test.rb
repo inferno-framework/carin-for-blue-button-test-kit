@@ -104,6 +104,7 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.type.coding.code
         * ExplanationOfBenefit.use
       )
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@11'
 
       id :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_must_support_test
 

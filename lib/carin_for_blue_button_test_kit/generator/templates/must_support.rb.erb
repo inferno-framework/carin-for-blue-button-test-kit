@@ -21,6 +21,9 @@ module CarinForBlueButtonTestKit
 
         <%= uscdi_list_string %><% end %>
       )
+      <%- if module_name.include?('V200') -%>
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@11'
+      <%- end -%>
 
       id :<%= test_id %>
 

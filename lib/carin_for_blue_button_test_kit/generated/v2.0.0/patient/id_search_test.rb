@@ -22,6 +22,7 @@ requirement of CARIN IG for Blue Button® v2.0.0.
 
 
       )
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@100'
 
       id :c4bb_v200_patient__id_search_test
       
