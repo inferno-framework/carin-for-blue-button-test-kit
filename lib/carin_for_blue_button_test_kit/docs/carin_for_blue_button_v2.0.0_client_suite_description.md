@@ -40,14 +40,15 @@ During execution, Inferno will wait for the client under test to issue requests 
 
 Inferno's simulated payer endpoints require authentication using the OAuth flows
 conforming either to the
-- SMART [Backend Services flow](https://hl7.org/fhir/smart-app-launch/STU2.2/backend-services.html), or
-- UDAP [Business-to-Business](https://hl7.org/fhir/us/udap-security/STU1/b2b.html) Client Credentials flow.
+- SMART [App Launch flow](https://hl7.org/fhir/smart-app-launch/STU2.2/app-launch.html), or
+- UDAP [Consumer-Facing flow](https://hl7.org/fhir/us/udap-security/STU1/consumer.html).
 
 When creating a test session, select the Client Security Type corresponding to an
-authentication approach supported by the client. Then start by running the "Client Registration"
-group which will guide you through the registration process. See the *Auth Configuration Details* section below for details.
-If the client is not able to use SMART or UDAP protocols to obtain an access token, see the *Demonstration* section
-below for how to use the SMART or UDAP server tests to obtain an access token that the client can use.
+authentication approach supported by the client. Then, start by running the "Client Registration"
+group which will guide you through the registration process, including what inputs to provide. See the
+*Auth Configuration Details* section below for details. If the client is not able to use the SMART or
+UDAP protocols to obtain an access token, see the *Demonstration* section below for how to use the SMART
+or UDAP server tests to obtain an access token that the client can use.
 
 Once registration is complete, run the "Verify CARIN for Blue Button Data Access" group and Inferno will 
 wait for CARIN for Blue Button resource and search requests from the client, return the requested CARIN
@@ -57,7 +58,7 @@ needs to request data for can be requested and searched for with the following i
  - **Name**: Johnny Smith
  - **Member Identifier**: 1234-234-1243-12345678901 (system: http://inferno.healthit.gov/reference-server/r4/uniquememberidentifier)
  - **Date of Birth**: 1986-01-01
- - **Gender**: malex
+ - **Gender**: male
 
 ### Demonstration using Postman
 
@@ -88,13 +89,13 @@ To run the client tests against the Postman collection:
 1. Open Postman and import the `C4BB Client Search Tests` Postman collection if not already done.
 1. Open the "Variables" tab of the collection, paste the access value obtained in the previous step into the "Current value"
    column for the "access_token" variable and save the collection.
-5. Send each of the requests listed under the `C4BB Client Search Tests` Postman collection and ensure a
+1. Send each of the requests listed under the `C4BB Client Search Tests` Postman collection and ensure a
    200 response is received along with any requested CARIN for Blue Button resources.
-6. Once you have finished making requests, click the "Click here" link in the wait dialog of the CARIN client tests to
+1. Once you have finished making requests, click the "Click here" link in the wait dialog of the CARIN client tests to
    evaluate the requests.
-7. An attestation dialog will appear asking the client to attest that it was able to process each of the 
+1. An attestation dialog will appear asking the client to attest that it was able to process each of the 
    the resources it received. Click the first "Click here" link in the wait dialog to pass the test.
-8. The tests will complete and should all pass, with the possible exception of registration errors if executing on a
+1. The tests will complete and should all pass, with the possible exception of registration errors if executing on a
    non-TLS hosted server.
 
 #### Optional Demo Modification: Tester-provided Client Id
