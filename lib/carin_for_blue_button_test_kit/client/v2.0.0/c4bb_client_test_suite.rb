@@ -32,6 +32,8 @@ require_relative 'required_searches_tests/eob_required_searches'
 
 require_relative 'claim_data_request_tests/client_claims_data_attestation_test'
 
+require_relative '../../custom_groups/visual_inspection_and_attestation/v200_client'
+
 module CarinForBlueButtonTestKit
   class C4BBV200ClientSuite < Inferno::TestSuite
     extend MockServer
@@ -235,5 +237,7 @@ module CarinForBlueButtonTestKit
 
       test from: :client_claims_data_attestation
     end
+
+    group from: :c4bb_client_v200_visual_inspection_and_attestation
   end
 end

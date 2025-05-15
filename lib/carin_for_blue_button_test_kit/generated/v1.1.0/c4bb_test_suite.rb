@@ -4,6 +4,7 @@ require_relative '../../version'
 require_relative '../../capability_statement/capability_statement_group'
 require_relative '../../custom_groups/v1.1.0/c4bb_smart_launch_group'
 
+
 require_relative 'patient_group'
 require_relative 'eob_group'
 require_relative 'coverage_group'
@@ -99,6 +100,7 @@ module CarinForBlueButtonTestKit
         group from: :c4bb_v110_coverage
         group from: :c4bb_v110_organization
         group from: :c4bb_v110_practitioner
+
       end
     end
   end

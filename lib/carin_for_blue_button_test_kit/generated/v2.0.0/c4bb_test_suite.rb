@@ -3,6 +3,7 @@ require_relative '../../version'
 
 require_relative '../../capability_statement/capability_statement_group'
 require_relative '../../custom_groups/v2.0.0/c4bb_smart_launch_group'
+require_relative '../../custom_groups/visual_inspection_and_attestation/v200_server'
 
 require_relative 'patient_group'
 require_relative 'eob_group'
@@ -101,6 +102,7 @@ module CarinForBlueButtonTestKit
         group from: :c4bb_v200_organization
         group from: :c4bb_v200_practitioner
         group from: :c4bb_v200_related_person
+        group from: :c4bb_server_v200_visual_inspection_and_attestation
       end
     end
   end
