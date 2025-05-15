@@ -102,7 +102,9 @@ module CarinForBlueButtonTestKit
         group from: :c4bb_v200_organization
         group from: :c4bb_v200_practitioner
         group from: :c4bb_v200_related_person
-        group from: :c4bb_server_v200_visual_inspection_and_attestation
+      end
+      group from: :c4bb_server_v200_visual_inspection_and_attestation do
+        optional
       end
     end
   end

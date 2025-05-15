@@ -94,8 +94,10 @@ module CarinForBlueButtonTestKit
         group from: :capability_statement_group
     <% group_id_list.each do |id| %>
         group from: :<%= id %><% end %>
-<% if module_name == "CARIN4BBV200" %>        group from: :c4bb_server_v200_visual_inspection_and_attestation<% end %>
       end
+<% if module_name == "CARIN4BBV200" %>      group from: :c4bb_server_v200_visual_inspection_and_attestation do
+        optional
+      end<% end %>
     end
   end
 end

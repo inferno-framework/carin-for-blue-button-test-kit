@@ -100,8 +100,8 @@ module CarinForBlueButtonTestKit
         group from: :c4bb_v110_coverage
         group from: :c4bb_v110_organization
         group from: :c4bb_v110_practitioner
-
       end
+
     end
   end
 end

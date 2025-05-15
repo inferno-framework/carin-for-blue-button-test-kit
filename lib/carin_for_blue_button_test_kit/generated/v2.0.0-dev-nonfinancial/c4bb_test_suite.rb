@@ -104,8 +104,8 @@ module CarinForBlueButtonTestKit
         group from: :c4bb_v200devnonfinancial_organization
         group from: :c4bb_v200devnonfinancial_practitioner
         group from: :c4bb_v200devnonfinancial_related_person
-
       end
+
     end
   end
 end

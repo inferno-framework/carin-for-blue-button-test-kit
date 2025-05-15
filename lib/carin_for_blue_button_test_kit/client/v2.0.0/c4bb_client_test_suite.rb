@@ -238,6 +238,8 @@ module CarinForBlueButtonTestKit
       test from: :client_claims_data_attestation
     end
 
-    group from: :c4bb_client_v200_visual_inspection_and_attestation
+    group from: :c4bb_client_v200_visual_inspection_and_attestation do
+      optional
+    end
   end
 end
