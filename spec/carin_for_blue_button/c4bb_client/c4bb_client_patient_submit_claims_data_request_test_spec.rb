@@ -42,7 +42,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientPatientSubmitClaimsDataReque
   let(:patient_api_request) { "#{base_url}#{patient_endpoint}" }
   let(:eob_include_search) { "#{base_url}#{eob_include_search_endpoint}" }
   let(:eob_include_search_tags) do
-    ['carin_resource_api',
+    ['resource_api',
      'ExplanationOfBenefit_Inpatient_Institutional',
      'ExplanationOfBenefit_Outpatient_Institutional',
      'ExplanationOfBenefit_Oral',
@@ -64,7 +64,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientPatientSubmitClaimsDataReque
   let(:access_token) { 'SAMPLE_TOKEN' }
 
   def create_fhir_api_request(url: patient_api_request, body: nil, status: 200,
-                              tags: ['carin_resource_api', 'Patient', '_id'], headers: nil)
+                              tags: ['resource_api', 'Patient', '_id'], headers: nil)
     headers ||= [
       {
         type: 'request',
