@@ -1,16 +1,17 @@
+require 'udap_security_test_kit'
 require_relative '../tags'
 require_relative '../mock_server'
-require_relative '../mock_authorization'
 require_relative '../client_validation_test'
 
 module CarinForBlueButtonTestKit
   class ResourceAPIEndpoint < Inferno::DSL::SuiteEndpoint
     include CarinForBlueButtonTestKit::MockServer
-    include CarinForBlueButtonTestKit::MockAuthorization
     include CarinForBlueButtonTestKit::ClientValidationTest
 
     def test_run_identifier
-      extract_client_id_from_bearer_token(request)
+      UDAPSecurityTestKit::MockUDAPServer.issued_token_to_client_id(
+        request.headers['authorization']&.delete_prefix('Bearer ')
+      )
     end
 
     def make_response

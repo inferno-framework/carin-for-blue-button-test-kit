@@ -106,32 +106,6 @@ module CarinForBlueButtonTestKit
       }
     end
 
-    def carin_smart_config
-      response_body =
-        {
-          authorization_endpoint: authorization_url,
-          token_endpoint: token_url,
-          token_endpoint_auth_methods_supported: ['private_key_jwt'],
-          token_endpoint_auth_signing_alg_values_supported: ['RS256'],
-          grant_types_supported: ['authorization_code'],
-          scopes_supported: SUPPORTED_SCOPES,
-          response_types_supported: ['code'],
-          code_challenge_methods_supported: ['S256'],
-          capabilities: [
-            'launch-ehr',
-            'permission-patient',
-            'permission-user',
-            'client-public',
-            'client-confidential-symmetric',
-            'client-confidential-asymmetric'
-          ]
-        }.to_json
-
-      proc {
-        [200, { 'Content-Type' => 'application/json' }, [response_body]]
-      }
-    end
-
     def remove_transfer_encoding_and_content_length_header(headers)
       headers.delete('transfer-encoding') if headers['transfer-encoding'].present?
 
@@ -140,8 +114,12 @@ module CarinForBlueButtonTestKit
       headers.delete('Content-Length')
     end
 
+    def supported_searches
+      @supported_searches ||= SEARCHES_BY_PRIORITY
+    end
+
     def match_request_to_expectation(resource_type, params)
-      matched_search = SEARCHES_BY_PRIORITY[resource_type.to_sym].select do |expectation|
+      matched_search = supported_searches[resource_type.to_sym].select do |expectation|
         (params.keys.map(&:to_s) & expectation).sort == expectation
       end.map(&:first)
 
@@ -176,14 +154,14 @@ module CarinForBlueButtonTestKit
     def resource_endpoint(url)
       return unless url.start_with?('http://', 'https://')
 
-      match = %r{custom/c4bb_v200_client/fhir/(.*)\?}.match(url)
+      match = %r{custom/#{suite_id}/fhir/(.*)\?}.match(url)
       match[1] if match.present?
     end
 
     def resource_id_endpoint(url)
       return unless url.start_with?('http://', 'https://')
 
-      match = %r{custom/c4bb_v200_client/fhir/(.*)}.match(url)
+      match = %r{custom/#{suite_id}/fhir/(.*)}.match(url)
       match[1] if match.present?
     end
 
@@ -206,7 +184,11 @@ module CarinForBlueButtonTestKit
     end
 
     def new_link
-      "#{Inferno::Application['base_url']}/custom/c4bb_v200_client/fhir"
+      "#{Inferno::Application['base_url']}/custom/#{suite_id}/fhir"
+    end
+
+    def suite_id
+      C4BBV200ClientSuite.id
     end
 
     # @private

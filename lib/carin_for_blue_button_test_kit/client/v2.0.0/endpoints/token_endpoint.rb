@@ -1,79 +1,77 @@
-require_relative '../tags'
+# frozen_string_literal: true
+
+require 'udap_security_test_kit'
+require 'smart_app_launch_test_kit'
 require_relative '../urls'
-require_relative '../mock_server'
-require_relative '../mock_authorization'
+require_relative '../tags'
 
 module CarinForBlueButtonTestKit
-  module MockAuthorization
-    CARIN_PATIENT_ID = '888'.freeze # Must exist on the FHIR_REFERENCE_SERVER (env var)
-
+  module MockUdapSmartServer
     class TokenEndpoint < Inferno::DSL::SuiteEndpoint
-      include CarinForBlueButtonTestKit::MockServer
+      include SMARTAppLaunch::MockSMARTServer::SMARTTokenResponseCreation
+      include UDAPSecurityTestKit::MockUDAPServer::UDAPTokenResponseCreation
+      include URLs
 
       def test_run_identifier
-        extract_client_id
-      end
-
-      def tags
-        [TOKEN_TAG]
+        case request.params[:grant_type]
+        when UDAPSecurityTestKit::CLIENT_CREDENTIALS_TAG
+          UDAPSecurityTestKit::MockUDAPServer.client_id_from_client_assertion(request.params[:client_assertion])
+        when UDAPSecurityTestKit::AUTHORIZATION_CODE_TAG
+          UDAPSecurityTestKit::MockUDAPServer.issued_token_to_client_id(request.params[:code])
+        when UDAPSecurityTestKit::REFRESH_TOKEN_TAG
+          UDAPSecurityTestKit::MockUDAPServer.issued_token_to_client_id(
+            UDAPSecurityTestKit::MockUDAPServer.refresh_token_to_authorization_code(request.params[:refresh_token])
+          )
+        end
       end
 
       def make_response
-        client_id = extract_client_id
-        access_token = JWT.encode({ inferno_client_id: client_id }, nil, 'none')
-        granted_scopes = SUPPORTED_SCOPES & requested_scopes
-
-        response_hash = { access_token:, scope: granted_scopes.join(' '), token_type: 'bearer',
-                          expires_in: 3600 }
-
-        response_hash.merge!(patient: CARIN_PATIENT_ID)
-
-        response.body = response_hash.to_json
-        response.headers['Cache-Control'] = 'no-store'
-        response.headers['Pragma'] = 'no-cache'
-        response.status = 200
-      end
-
-      private
-
-      def extract_client_id
-        # Public client            || confidential client asymmetric          || confidential client symmetric
-        request.params[:client_id] || extract_client_id_from_client_assertion || extract_client_id_from_basic_auth
-      end
-
-      def extract_client_id_from_client_assertion
-        encoded_jwt = request.params[:client_assertion]
-        return unless encoded_jwt.present?
-
-        jwt_payload =
-          begin
-            JWT.decode(encoded_jwt, nil, false)&.first # skip signature verification
-          rescue StandardError
-            nil
+        if request.params[:udap].present?
+          case request.params[:grant_type]
+          when UDAPSecurityTestKit::AUTHORIZATION_CODE_TAG
+            make_udap_authorization_code_token_response
+          when UDAPSecurityTestKit::REFRESH_TOKEN_TAG
+            make_udap_refresh_token_response
+          else
+            UDAPSecurityTestKit::MockUDAPServer.update_response_for_invalid_assertion(
+              response,
+              "unsupported grant_type: #{request.params[:grant_type]}"
+            )
           end
-
-        jwt_payload['iss'] || jwt_payload['sub'] if jwt_payload.present?
+        else
+          suite_options_list = Inferno::Repositories::TestSessions.new.find(result.test_session_id)&.suite_options
+          suite_options_hash = suite_options_list&.map { |option| [option.id, option.value] }&.to_h
+          smart_authentication_approach =
+            SMARTAppLaunch::SMARTClientOptions.smart_authentication_approach(suite_options_hash)
+          
+          case request.params[:grant_type]
+          when SMARTAppLaunch::AUTHORIZATION_CODE_TAG
+            make_smart_authorization_code_token_response(smart_authentication_approach)
+          when SMARTAppLaunch::REFRESH_TOKEN_TAG
+            make_smart_refresh_token_response(smart_authentication_approach)
+          else
+            SMARTAppLaunch::MockSMARTServer.update_response_for_invalid_assertion(
+              response,
+              "unsupported grant_type: #{request.params[:grant_type]}"
+            )
+          end
+        end
       end
 
-      def extract_client_id_from_basic_auth
-        encoded_credentials = request.headers['authorization']&.delete_prefix('Basic ')
-        return unless encoded_credentials.present?
-
-        decoded_credentials = Base64.decode64(encoded_credentials)
-        decoded_credentials&.split(':')&.first
+      def update_result
+        nil # never update for now
       end
 
-      def requested_scopes
-        auth_request = requests_repo.tagged_requests(result.test_session_id, [AUTHORIZE_TAG]).last
-        return [] unless auth_request
+      def tags
+        tags = [UDAPSecurityTestKit::TOKEN_TAG]
+        tags << (request.params[:udap].present? ? UDAPSecurityTestKit::UDAP_TAG : SMARTAppLaunch::SMART_TAG)
+        if [UDAPSecurityTestKit::CLIENT_CREDENTIALS_TAG, 
+            UDAPSecurityTestKit::AUTHORIZATION_CODE_TAG, 
+            UDAPSecurityTestKit::REFRESH_TOKEN_TAG].include?(request.params[:grant_type])
+          tags << request.params[:grant_type]
+        end
 
-        auth_params = if auth_request.verb.downcase == 'get'
-                        auth_request.query_parameters
-                      else
-                        URI.decode_www_form(auth_request.request_body)&.to_h
-                      end
-        scope_str = auth_params&.dig('scope')
-        scope_str ? URI.decode_www_form_component(scope_str).split : []
+        tags
       end
     end
   end

@@ -28,7 +28,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
 
   let(:reference_server_token) { 'SAMPLE_TOKEN' }
   let(:client_id) { 'SAMPLE_CLIENT_ID' }
-  let(:bearer_token) { JWT.encode({ inferno_client_id: 'SAMPLE_CLIENT_ID' }, nil, 'none') }
+  let(:bearer_token) { SMARTAppLaunch::MockSMARTServer.client_id_to_token(client_id, 5) }
 
   let(:resume_claims_data_url) do
     "#{Inferno::Application['base_url']}/custom/c4bb_v200_client/resume_claims_data?test_run_identifier=#{client_id}"
@@ -97,7 +97,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
 
     expect(response_body['resourceType']).to eq('Bundle')
     expect(response_body['entry'].first['resource']['resourceType']).to eq('Patient')
-    expect(last_request.env['inferno.tags']).to include('carin_resource_api', 'Patient', '_id')
+    expect(last_request.env['inferno.tags']).to include('resource_api', 'Patient', '_id')
     get(resume_claims_data_url)
     result = results_repo.find(result.id)
     expect(result.result).to eq('pass')
@@ -126,7 +126,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
     expect(response_body['resourceType']).to eq('Bundle')
     expect(response_body['entry'].length).to eq 10
     expect(response_body['entry'].first['resource']['resourceType']).to eq('ExplanationOfBenefit')
-    expect(last_request.env['inferno.tags']).to include('carin_resource_api',
+    expect(last_request.env['inferno.tags']).to include('resource_api',
                                                         'ExplanationOfBenefit_Inpatient_Institutional',
                                                         'ExplanationOfBenefit_Outpatient_Institutional',
                                                         'ExplanationOfBenefit_Oral',
@@ -154,7 +154,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
 
     result = run(test, client_id:)
 
-    header 'Authorization', 'Bearer WRONG_TOKEN'
+    header 'Authorization', "Bearer #{SMARTAppLaunch::MockSMARTServer.client_id_to_token('wrong_client_id', 5)}"
     get(patient_api_request)
 
     expect(last_response).to be_server_error

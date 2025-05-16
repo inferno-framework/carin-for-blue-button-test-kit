@@ -1,6 +1,6 @@
 module CarinForBlueButtonTestKit
-  TOKEN_PATH = '/mock_auth/token'.freeze
-  AUTH_PATH = '/mock_auth/authorization'.freeze
+  TOKEN_PATH = '/auth/token'.freeze
+  AUTHORIZATION_PATH = '/auth/authorization'.freeze
   JKWS_PATH = '/.well-known/jwks.json'.freeze
   SMART_CONFIG_PATH = '/.well-known/smart-configuration'.freeze
   PATIENT_PATH = '/fhir/Patient'.freeze
@@ -22,7 +22,7 @@ module CarinForBlueButtonTestKit
     end
 
     def authorization_url
-      @authorization_url ||= base_url + AUTH_PATH
+      @authorization_url ||= base_url + AUTHORIZATION_PATH
     end
 
     def jwks_url
@@ -33,16 +33,20 @@ module CarinForBlueButtonTestKit
       @smart_configuration_url ||= base_url + SMART_CONFIG_PATH
     end
 
-    def base_fhir_url
-      @base_fhir_url ||= base_url + BASE_FHIR_PATH
+    def fhir_base_url
+      @fhir_base_url ||= base_url + BASE_FHIR_PATH
+    end
+
+    def client_fhir_base_url # alias for OIDC from SMART / UDAP client tests
+      fhir_base_url
     end
 
     def patient_url
       @patient_url ||= base_url + PATIENT_PATH
     end
 
-    def submit_url
-      @submit_url ||= base_url + RESOURCE_API_PATH
+    def resource_api_url
+      @resource_api_url ||= base_url + RESOURCE_API_PATH
     end
 
     def resource_id_url
