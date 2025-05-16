@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'CARIN IG for Blue Button® Test Kit'
   spec.homepage      = 'https://github.com/inferno-framework/carin-for-blue-button-test-kit'
   spec.license       = 'Apache-2.0'
-  spec.add_dependency 'inferno_core', '~> 0.6.9'
+  spec.add_dependency 'inferno_core', '0.6.8'
   spec.add_dependency 'smart_app_launch_test_kit', '~> 0.6.2'
   spec.add_dependency 'udap_security_test_kit', '~> 0.11.4'
   spec.add_development_dependency 'database_cleaner-sequel', '~> 1.8'
