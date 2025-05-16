@@ -1,3 +1,4 @@
+require_relative '06_eob_oral_group/attestation_test_requirement_144'
 require_relative '06_eob_oral_group/attestation_test_requirement_148'
 require_relative '06_eob_oral_group/attestation_test_requirement_149'
 require_relative '06_eob_oral_group/attestation_test_requirement_150'
@@ -11,13 +12,7 @@ module CarinForBlueButtonTestKit
     title 'Explanation of Benefit - Oral'
     short_title 'EOB Oral'
 
-    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@148',
-                          'hl7.fhir.us.carin-bb_2.0.0@149',
-                          'hl7.fhir.us.carin-bb_2.0.0@150',
-                          'hl7.fhir.us.carin-bb_2.0.0@151',
-                          'hl7.fhir.us.carin-bb_2.0.0@152',
-                          'hl7.fhir.us.carin-bb_2.0.0@153'
-
+    test from: :carin_server_requirement_144_145_146_attestation
     test from: :carin_server_requirement_148_attestation
     test from: :carin_server_requirement_149_attestation
     test from: :carin_server_requirement_150_attestation

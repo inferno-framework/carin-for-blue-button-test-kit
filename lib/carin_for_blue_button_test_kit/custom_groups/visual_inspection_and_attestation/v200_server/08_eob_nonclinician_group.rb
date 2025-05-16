@@ -7,10 +7,6 @@ module CarinForBlueButtonTestKit
     title 'Explanation of Benefit - Professional NonClinician'
     short_title 'EOB Professional NonClinician'
 
-    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@168',
-                          'hl7.fhir.us.carin-bb_2.0.0@170',
-                          'hl7.fhir.us.carin-bb_2.0.0@173'
-
     test from: :carin_server_requirement_168_170_attestation
     test from: :carin_server_requirement_173_attestation
   end

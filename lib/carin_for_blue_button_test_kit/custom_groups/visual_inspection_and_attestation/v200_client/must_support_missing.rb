@@ -2,7 +2,7 @@ module CarinForBlueButtonTestKit
   class CARIN4BBMustSupportMissingTest < Inferno::Test
     title 'Interprets missing Must Support data elements'
     description <<~DESCRIPTION
-      The Health IT Module behaving as a client must interpret missing Must Support data elements within resource instances as
+      The Health IT Module must interpret missing Must Support data elements within resource instances as
       data not present in the Health Plan API actors system.
     DESCRIPTION
     id :c4bb_must_support_missing
@@ -14,7 +14,7 @@ module CarinForBlueButtonTestKit
       wait(
         identifier:,
         message: <<~MESSAGE
-          The developer of the Health IT Module attests that the Health IT Module behaving as a client interpreted missing Must Support
+          The developer of the Health IT Module attests that the Health IT Module interpreted missing Must Support
           data elements within resource instances as data not present in the Health Plan API actors system.
 
           [Click here](#{resume_pass_url}?token=#{identifier}) if the tester visually confirmed system **meets** this requirement.

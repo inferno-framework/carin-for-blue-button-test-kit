@@ -5,8 +5,6 @@ module CarinForBlueButtonTestKit
     id :c4bb_practitioner
     title 'Practitioner'
 
-    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@186'
-
     test from: :carin_server_requirement_186_attestation
   end
 end

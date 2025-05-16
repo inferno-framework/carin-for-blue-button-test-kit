@@ -6,9 +6,6 @@ module CarinForBlueButtonTestKit
     id :c4bb_organization
     title 'Organization'
 
-    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@177',
-                          'hl7.fhir.us.carin-bb_2.0.0@178'
-
     test from: :carin_server_requirement_177_attestation
     test from: :carin_server_requirement_178_attestation
   end

@@ -1,6 +1,6 @@
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement153 < Inferno::Test
-    title 'Oral line item subsites apply to associated tooth surfaces'
+    title 'Applies oral line item subsites to associated tooth surfaces'
     description <<~DESCRIPTION
       All oral line item subsites (`item.subSite` repetitions) apply to all the line item's
       associated tooth surfaces, including those specified in `item.bodySite` and `supportingInfo[additionalbodysite]`,

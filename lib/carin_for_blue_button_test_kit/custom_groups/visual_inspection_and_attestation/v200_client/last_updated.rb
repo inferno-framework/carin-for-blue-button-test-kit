@@ -2,7 +2,7 @@ module CarinForBlueButtonTestKit
   class CARIN4BBLastUpdatedTest < Inferno::Test
     title 'Uses meta.lastUpdated value appropriately'
     description <<~DESCRIPTION
-      The Health IT Module behaving as a client must use the meta.lastUpdated value to determine if the associated data is
+      The Health IT Module must use the meta.lastUpdated value to determine if the associated data is
       accurate as of the date of service or as of the current date.
     DESCRIPTION
     id :c4bb_last_updated
@@ -15,7 +15,7 @@ module CarinForBlueButtonTestKit
       wait(
         identifier:,
         message: <<~MESSAGE
-          The developer of the Health IT Module attests that the Health IT Module behaving as a client used the
+          The developer of the Health IT Module attests that the Health IT Module used the
           meta.lastUpdated value to determine if the associated data is accurate as of the date of service or as of the current date.
 
           [Click here](#{resume_pass_url}?token=#{identifier}) if the tester visually confirmed system **meets** this requirement.

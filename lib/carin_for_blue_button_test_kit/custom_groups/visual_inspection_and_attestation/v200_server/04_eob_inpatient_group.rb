@@ -7,9 +7,6 @@ module CarinForBlueButtonTestKit
     title 'Explanation of Benefit - Inpatient Institutional'
     short_title 'EOB Inpatient Institutional'
 
-    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@130',
-                          'hl7.fhir.us.carin-bb_2.0.0@132'
-
     test from: :carin_server_requirement_130_attestation
     test from: :carin_server_requirement_132_attestation
   end

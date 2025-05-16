@@ -10,12 +10,6 @@ module CarinForBlueButtonTestKit
     title 'Explanation of Benefit - Pharmacy'
     short_title 'EOB Pharmacy'
 
-    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@161',
-                          'hl7.fhir.us.carin-bb_2.0.0@162',
-                          'hl7.fhir.us.carin-bb_2.0.0@163',
-                          'hl7.fhir.us.carin-bb_2.0.0@164',
-                          'hl7.fhir.us.carin-bb_2.0.0@165'
-
     test from: :carin_server_requirement_161_attestation
     test from: :carin_server_requirement_162_attestation
     test from: :carin_server_requirement_163_attestation

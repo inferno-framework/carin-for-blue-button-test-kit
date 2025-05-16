@@ -2,7 +2,7 @@ module CarinForBlueButtonTestKit
   class CARIN4BBMustSupportProcessTest < Inferno::Test
     title 'Processes Must Support data elements'
     description <<~DESCRIPTION
-      The Health IT Module behaving as a client must process all Must Support data elements without error.
+      The Health IT Module must process all Must Support data elements without error.
     DESCRIPTION
     id :c4bb_must_support_process
 
@@ -13,7 +13,7 @@ module CarinForBlueButtonTestKit
       wait(
         identifier:,
         message: <<~MESSAGE
-          I attest that the Health IT Module behaving as a client successfully processed all resource instances containing
+          I attest that the Health IT Module successfully processed all resource instances containing
           Must Support data elements without generating an error or causing the application to fail.
 
           [Click here](#{resume_pass_url}?token=#{identifier}) if the tester visually confirmed system **meets** this requirement.
