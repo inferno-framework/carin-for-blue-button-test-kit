@@ -83,6 +83,19 @@ module CarinForBlueButtonTestKit
       end
     end
 
+    requirement_sets(
+      {
+        identifier: 'hl7.fhir.us.carin-bb_2.0.0',
+        title: 'CARIN IG for Blue Button® v2.0.0',
+        actor: 'Consumer'
+      },
+      {
+        identifier: 'hl7.fhir.us.carin-bb_2.0.0',
+        title: 'CARIN IG for Blue Button® v2.0.0',
+        actor: 'Health Plan/Consumer'
+      }
+    )
+
     suite_option  :client_type,
                   title: 'Client Security Type',
                   list_options: [
