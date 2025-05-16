@@ -2,12 +2,15 @@
 
 source 'https://rubygems.org'
 
+gem 'inferno_core',
+    git: 'git@github.com:inferno-framework/inferno-core.git',
+    branch: 'fi-3942-requirements-collection-command'
+
 gemspec
 
 group :development, :test do
   gem 'debug'
   gem 'foreman'
-  gem 'roo', '~> 2.7.1'
 end
 
 group :test do
