@@ -17,7 +17,7 @@ module CarinForBlueButtonTestKit
           I attest that each FHIR resource returned by the Health IT Module includes the appropriate
           CARIN-BB profile URL(s) in the `meta.profile` element.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.  
+          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
           [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
         MESSAGE
       )

@@ -2,7 +2,7 @@ module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement48_57 < Inferno::Test
     title 'Secures data'
     description <<~DESCRIPTION
-      The Health IT Module 
+      The Health IT Module
       - Enables members to direct the communication of CARIN4BB data through authenticated, authorized, and secure channels.
       - Protects CARIN4BB data with proper security and privacy protections to avoid malicious or unintentional exposure of
         such information.
@@ -28,7 +28,7 @@ module CarinForBlueButtonTestKit
       wait(
         identifier:,
         message: <<~MESSAGE
-          I attest that the Health IT Module 
+          I attest that the Health IT Module
           - Enables members to direct the communication of CARIN4BB data through authenticated, authorized, and secure channels.
           - Protects CARIN4BB data with proper security and privacy protections to avoid malicious or unintentional exposure of
             such information.
