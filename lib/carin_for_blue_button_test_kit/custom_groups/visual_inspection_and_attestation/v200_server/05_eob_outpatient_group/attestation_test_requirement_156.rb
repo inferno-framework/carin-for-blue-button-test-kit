@@ -2,9 +2,9 @@ module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement156 < Inferno::Test
     title 'Maps CPCDS data when line item data is unavailable'
     description <<~DESCRIPTION
-      The Health IT Module maps CPCDS data elements to `EOB.item` or `EOB.header` per claims submission standards.
-      If line item amounts are not available, the Health IT Module provides the claim amounts and amount types
-      in the header-level fields.
+      The Health IT Module maps CPCDS data to either `EOB.item` or `EOB.header` as appropriate:
+          - When line item amounts are available, they are provided in `EOB.item`.
+          - When line item amounts are not available, claim-level amounts and amount types are provided in `EOB.header`.
     DESCRIPTION
     id :carin_server_requirement_156_attestation
 
