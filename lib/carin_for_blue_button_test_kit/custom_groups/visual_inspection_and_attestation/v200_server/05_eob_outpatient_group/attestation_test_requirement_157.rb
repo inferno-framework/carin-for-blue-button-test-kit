@@ -9,11 +9,9 @@ module CarinForBlueButtonTestKit
     DESCRIPTION
     id :carin_server_requirement_157_158_159_attestation
 
-    verifies_requirements(
-      'hl7.fhir.us.carin-bb_2.0.0@157',
-      'hl7.fhir.us.carin-bb_2.0.0@158',
-      'hl7.fhir.us.carin-bb_2.0.0@159'
-    )
+    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@157',
+                          'hl7.fhir.us.carin-bb_2.0.0@158',
+                          'hl7.fhir.us.carin-bb_2.0.0@159'
 
     run do
       identifier = SecureRandom.hex(32)

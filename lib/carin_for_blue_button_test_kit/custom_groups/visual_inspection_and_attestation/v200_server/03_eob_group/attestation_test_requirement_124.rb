@@ -11,13 +11,11 @@ module CarinForBlueButtonTestKit
     DESCRIPTION
     id :carin_server_requirement_124_125_127_128_129_attestation
 
-    verifies_requirements(
-      'hl7.fhir.us.carin-bb_2.0.0@124',
-      'hl7.fhir.us.carin-bb_2.0.0@125',
-      'hl7.fhir.us.carin-bb_2.0.0@127',
-      'hl7.fhir.us.carin-bb_2.0.0@128',
-      'hl7.fhir.us.carin-bb_2.0.0@129'
-    )
+    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@124',
+                          'hl7.fhir.us.carin-bb_2.0.0@125',
+                          'hl7.fhir.us.carin-bb_2.0.0@127',
+                          'hl7.fhir.us.carin-bb_2.0.0@128',
+                          'hl7.fhir.us.carin-bb_2.0.0@129'
 
     run do
       identifier = SecureRandom.hex(32)
