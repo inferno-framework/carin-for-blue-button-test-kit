@@ -7,7 +7,10 @@ module CarinForBlueButtonTestKit
     DESCRIPTION
     id :c4bb_last_updated
 
-    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@90', 'hl7.fhir.us.carin-bb_2.0.0@180',
+    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@90',
+                          'hl7.fhir.us.carin-bb_2.0.0@94',
+                          'hl7.fhir.us.carin-bb_2.0.0@180',
+                          'hl7.fhir.us.carin-bb_2.0.0@184',
                           'hl7.fhir.us.carin-bb_2.0.0@188'
 
     run do
