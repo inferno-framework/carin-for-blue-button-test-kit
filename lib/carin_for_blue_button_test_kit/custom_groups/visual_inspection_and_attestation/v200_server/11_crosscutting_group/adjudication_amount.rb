@@ -12,16 +12,8 @@ module CarinForBlueButtonTestKit
 
     id :adjudication_amount
 
-    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@143',
-                          'hl7.fhir.us.carin-bb_2.0.0@154',
-                          'hl7.fhir.us.carin-bb_2.0.0@155',
-                          'hl7.fhir.us.carin-bb_2.0.0@190',
-                          'hl7.fhir.us.carin-bb_2.0.0@191',
-                          'hl7.fhir.us.carin-bb_2.0.0@192',
-                          'hl7.fhir.us.carin-bb_2.0.0@193',
-                          'hl7.fhir.us.carin-bb_2.0.0@194',
-                          'hl7.fhir.us.carin-bb_2.0.0@195',
-                          'hl7.fhir.us.carin-bb_2.0.0@196'
+    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@142',
+                          'hl7.fhir.us.carin-bb_2.0.0@197'
 
     run do
       identifier = SecureRandom.hex(32)
