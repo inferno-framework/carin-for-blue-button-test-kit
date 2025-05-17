@@ -10,7 +10,7 @@ module CarinForBlueButtonTestKit
       - (Status 410): deleted resource
 
       The Health IT Module rejects any unauthorized request by returning an HTTP 401 "Unauthorized", HTTP 403 "Forbidden",
-      or HTTP 404 "Not Found" .
+      or HTTP 404 "Not Found".
     DESCRIPTION
     id :carin_server_requirement_97_attestation
 
