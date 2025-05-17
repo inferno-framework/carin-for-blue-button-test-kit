@@ -18,9 +18,9 @@ module CarinForBlueButtonTestKit
           The developer of the Health IT Module attests that the Health IT Module used the
           meta.lastUpdated value to determine if the associated data is accurate as of the date of service or as of the current date.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the tester visually confirmed system **meets** this requirement.
+          [Click here](#{resume_pass_url}?token=#{identifier}) if the tester visually confirmed system **meets** these requirements.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the tester visually confirmed system **does not meet** this requirement.
+          [Click here](#{resume_fail_url}?token=#{identifier}) if the tester visually confirmed system **does not meet** these requirements.
         MESSAGE
       )
     end

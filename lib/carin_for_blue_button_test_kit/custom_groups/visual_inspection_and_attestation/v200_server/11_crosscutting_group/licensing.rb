@@ -23,9 +23,9 @@ module CarinForBlueButtonTestKit
           requirements for each terminology content artifact utilized within a functioning implementation and obtained
           terminology licenses from the Third-Party IP owner for each code system and/or other specified artifact used.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
+          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
         MESSAGE
       )
     end

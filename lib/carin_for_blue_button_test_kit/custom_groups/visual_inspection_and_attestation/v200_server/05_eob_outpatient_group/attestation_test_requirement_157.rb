@@ -26,8 +26,8 @@ module CarinForBlueButtonTestKit
           - Populates `item.productOrService` whenever `EOB.item` is present,
           - Enforces that `item.productOrService` has a cardinality of 1..1.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
+          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
+          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
         MESSAGE
       )
     end

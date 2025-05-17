@@ -31,9 +31,9 @@ module CarinForBlueButtonTestKit
           I further attest that the Health IT Module rejects any unauthorized request by returning an HTTP 401 "Unauthorized",
           HTTP 403 "Forbidden", or HTTP 404 "Not Found" .
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
+          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
         MESSAGE
       )
     end

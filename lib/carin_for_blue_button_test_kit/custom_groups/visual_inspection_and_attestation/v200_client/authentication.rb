@@ -20,9 +20,9 @@ module CarinForBlueButtonTestKit
           - Directed communication through authenticated, authorized, and secure channels.
           - Used the SMART App Launch Framework’s standalone launch.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the tester visually confirmed system **meets** this requirement.
+          [Click here](#{resume_pass_url}?token=#{identifier}) if the tester visually confirmed system **meets** these requirements.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the tester visually confirmed system **does not meet** this requirement.
+          [Click here](#{resume_fail_url}?token=#{identifier}) if the tester visually confirmed system **does not meet** these requirements.
         MESSAGE
       )
     end

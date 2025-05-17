@@ -38,9 +38,9 @@ module CarinForBlueButtonTestKit
           - `permission-patient`: support for patient-level scopes (e.g. patient Observation.read)
           - `permission-user`: support for user-level scopes (e.g. user/Appointment.read)
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
+          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
         MESSAGE
       )
     end

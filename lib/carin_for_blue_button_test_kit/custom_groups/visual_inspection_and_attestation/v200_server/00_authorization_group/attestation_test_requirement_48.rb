@@ -40,9 +40,9 @@ module CarinForBlueButtonTestKit
             of NIST guidelines (SP 800-52).
           - Supports the FHIR US Core [Patient Privacy and Security requirements](https://www.hl7.org/fhir/us/core/security.html).
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
+          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
         MESSAGE
       )
     end

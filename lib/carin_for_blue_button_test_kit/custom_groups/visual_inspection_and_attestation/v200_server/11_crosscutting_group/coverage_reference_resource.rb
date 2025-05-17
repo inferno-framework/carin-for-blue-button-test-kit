@@ -21,9 +21,9 @@ module CarinForBlueButtonTestKit
         message: <<~MESSAGE
           I attest that the Health IT Module returns the Coverage Reference Resource with data that was effective as of the date of service of the claim.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
+          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
         MESSAGE
       )
     end

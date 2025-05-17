@@ -26,8 +26,8 @@ module CarinForBlueButtonTestKit
           - Claim-level totals are in `EOB.total`,
           - Mixed network claims set `C4BB Payer Benefit Payment Status` to 'Other'.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
+          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
+          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
         MESSAGE
       )
     end

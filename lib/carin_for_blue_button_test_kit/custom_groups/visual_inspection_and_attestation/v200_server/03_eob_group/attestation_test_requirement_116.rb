@@ -23,8 +23,8 @@ module CarinForBlueButtonTestKit
           - Sets `ExplanationOfBenefit.outcome` to "complete",
           - Populates `ExplanationOfBenefit.insurer` with the same value as `insurance.coverage.organization`.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
+          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
+          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
         MESSAGE
       )
     end

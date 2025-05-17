@@ -36,9 +36,9 @@ module CarinForBlueButtonTestKit
           `.meta.lastUpdated` means the last time the data was updated or the date of creation in the payer's
           system of record, whichever comes last.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
+          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
         MESSAGE
       )
     end

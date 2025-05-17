@@ -28,9 +28,9 @@ module CarinForBlueButtonTestKit
           The developer of the Health IT Module attests that the Health IT Module only populates
           `.adjudication.amount` if `.item.adjudication` is not available.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
+          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
         MESSAGE
       )
     end
