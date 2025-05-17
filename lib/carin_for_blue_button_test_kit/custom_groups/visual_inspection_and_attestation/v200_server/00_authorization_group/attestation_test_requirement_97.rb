@@ -7,10 +7,10 @@ module CarinForBlueButtonTestKit
       - (Status 401/4xx): unauthorized request
       - (Status 403): insufficient scope
       - (Status 404): unknown resource
-      - (Status 410): deleted resource.
+      - (Status 410): deleted resource
 
       The Health IT Module rejects any unauthorized request by returning an HTTP 401 "Unauthorized", HTTP 403 "Forbidden",
-      or HTTP 404 "Not Found" .
+      or HTTP 404 "Not Found".
     DESCRIPTION
     id :carin_server_requirement_97_attestation
 
@@ -26,10 +26,10 @@ module CarinForBlueButtonTestKit
           - (Status 401/4xx): unauthorized request
           - (Status 403): insufficient scope
           - (Status 404): unknown resource
-          - (Status 410): deleted resource.
+          - (Status 410): deleted resource
 
           I further attest that the Health IT Module rejects any unauthorized request by returning an HTTP 401 "Unauthorized",
-          HTTP 403 "Forbidden", or HTTP 404 "Not Found" .
+          HTTP 403 "Forbidden", or HTTP 404 "Not Found".
 
           [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
 
