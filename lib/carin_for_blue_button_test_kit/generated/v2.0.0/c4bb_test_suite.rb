@@ -4,7 +4,6 @@ require_relative '../../version'
 require_relative '../../capability_statement/capability_statement_group'
 require_relative '../../custom_groups/v2.0.0/c4bb_smart_launch_group'
 require_relative '../../custom_groups/visual_inspection_and_attestation/v200_server'
-
 require_relative 'patient_group'
 require_relative 'eob_group'
 require_relative 'coverage_group'

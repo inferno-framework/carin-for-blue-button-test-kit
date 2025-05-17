@@ -4,7 +4,6 @@ require_relative '../../version'
 require_relative '../../capability_statement/capability_statement_group'
 require_relative '../../custom_groups/v2.0.0-dev-nonfinancial/c4bb_smart_launch_group'
 
-
 require_relative 'patient_group'
 require_relative 'eob_group'
 require_relative 'coverage_group'
@@ -105,7 +104,6 @@ module CarinForBlueButtonTestKit
         group from: :c4bb_v200devnonfinancial_practitioner
         group from: :c4bb_v200devnonfinancial_related_person
       end
-
     end
   end
 end

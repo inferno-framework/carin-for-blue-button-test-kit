@@ -3,7 +3,7 @@ require_relative '../../version'
 
 require_relative '../../capability_statement/capability_statement_group'
 require_relative '<%= smart_launch_file_name %>'
-<% if module_name == "CARIN4BBV200" %>require_relative '../../custom_groups/visual_inspection_and_attestation/v200_server'<% end %>
+<%- if module_name == "CARIN4BBV200" -%>require_relative '../../custom_groups/visual_inspection_and_attestation/v200_server'<%- end -%>
 
 <% group_file_list.each do |file_name| %>require_relative '<%= file_name %>'
 <% end %>
@@ -95,9 +95,10 @@ module CarinForBlueButtonTestKit
     <% group_id_list.each do |id| %>
         group from: :<%= id %><% end %>
       end
-<% if module_name == "CARIN4BBV200" %>      group from: :c4bb_server_v200_visual_inspection_and_attestation do
+      <%- if module_name == "CARIN4BBV200" -%>      group from: :c4bb_server_v200_visual_inspection_and_attestation do
         optional
-      end<% end %>
+      end
+      <%- end -%>
     end
   end
 end
