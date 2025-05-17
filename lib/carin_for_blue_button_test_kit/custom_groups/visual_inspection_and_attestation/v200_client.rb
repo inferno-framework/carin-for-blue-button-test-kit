@@ -1,6 +1,4 @@
-require_relative 'v200_client/must_support_process'
 require_relative 'v200_client/must_support_display'
-require_relative 'v200_client/must_support_retain'
 require_relative 'v200_client/must_support_missing'
 require_relative 'v200_client/must_support_absent_reason'
 require_relative 'v200_client/last_updated'
@@ -19,9 +17,7 @@ module CarinForBlueButtonTestKit
     run_as_group
 
     test from: :c4bb_authentication
-    test from: :c4bb_must_support_process
     test from: :c4bb_must_support_display
-    test from: :c4bb_must_support_retain
     test from: :c4bb_must_support_missing
     test from: :c4bb_must_support_absent_reason
     test from: :c4bb_last_updated

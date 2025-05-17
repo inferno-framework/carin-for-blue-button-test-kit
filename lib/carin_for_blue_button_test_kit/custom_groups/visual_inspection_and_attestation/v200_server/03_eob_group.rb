@@ -6,7 +6,6 @@ require_relative '03_eob_group/attestation_test_requirement_118'
 require_relative '03_eob_group/attestation_test_requirement_119'
 require_relative '03_eob_group/attestation_test_requirement_120'
 require_relative '03_eob_group/attestation_test_requirement_124'
-require_relative '03_eob_group/attestation_test_requirement_142'
 
 module CarinForBlueButtonTestKit
   class CarinEOBAttestationGroup < Inferno::TestGroup
@@ -22,6 +21,5 @@ module CarinForBlueButtonTestKit
     test from: :carin_server_requirement_119_attestation
     test from: :carin_server_requirement_120_attestation
     test from: :carin_server_requirement_124_125_127_128_129_attestation
-    test from: :carin_server_requirement_142_197_attestation
   end
 end
