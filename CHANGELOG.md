@@ -1,5 +1,5 @@
 # 0.15.1
-* FI-3995 Fix search template input description and regenerate by @Shaumik-Ashraf in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/72
+* FI-3995: Fix search template input description and regenerate by @Shaumik-Ashraf in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/72
 * FI-3813: Use core MustSupport features by @dehall in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/70
 * FI-3662: verifies_requirements annotations by @elsaperelli in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/74
 * FI-3973: Client Auth by @karlnaden in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/73
