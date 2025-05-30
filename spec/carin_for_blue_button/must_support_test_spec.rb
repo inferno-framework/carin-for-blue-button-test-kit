@@ -1,30 +1,12 @@
-RSpec.describe CarinForBlueButtonTestKit::MustSupportTest do
+RSpec.describe CarinForBlueButtonTestKit::MustSupportTest, :runnable do
 
   let(:json_string_stub) do
     File.read(File.join(__dir__, '..', 'fixtures', 'c4bb_patient_stub.json'))
   end
 
-  let(:patient_must_support_test) { Inferno::Repositories::Tests.new.find('c4bb_v200_patient_must_support_test')}
+  let(:patient_must_support_test) { Inferno::Repositories::Tests.new.find('c4bb_v200_patient_must_support_test') }
 
-  # copied from us-core-test-kit
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('c4bb_v200') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
-
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-      test_session_id: test_session.id,
-      name: name,
-      value: value,
-      type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session: test_session, test_run: test_run).run(runnable)
-  end
-
+  let(:suite_id) { 'c4bb_v200' }
 
   def generate_patient_resource(json_addition)
     complete_json_string = json_string_stub + json_addition
