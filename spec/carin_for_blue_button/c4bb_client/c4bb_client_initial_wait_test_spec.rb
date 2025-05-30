@@ -5,11 +5,10 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
   include Rack::Test::Methods
   include RequestHelpers
 
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('c4bb_v200_client') }
+  let(:suite_id) { 'c4bb_v200_client' }
+  let(:suite) { Inferno::Repositories::TestSuites.new.find(suite_id) }
   let(:test) { Inferno::Repositories::Tests.new.find('c4bb_v200_initial_wait_test') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:results_repo) { Inferno::Repositories::Results.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: 'c4bb_v200_client') }
 
   let(:base_url) { "#{Inferno::Application['base_url']}/custom/c4bb_v200_client/fhir" }
   let(:fhir_server) { ENV.fetch('FHIR_REFERENCE_SERVER') }
@@ -59,21 +58,6 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
                           resource: FHIR.from_contents(c4bb_patient_resource.to_json)
                         ))
     bundle
-  end
-
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name:,
-        value:,
-        type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
   end
 
   it 'Passes and responds 200 if valid Patient API request sent to the provided URL and Bearer token is correct' do
