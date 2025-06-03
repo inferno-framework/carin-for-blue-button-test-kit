@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'v200_server/00_authorization_group'
 require_relative 'v200_server/01_must_support_group'
 require_relative 'v200_server/03_eob_group'

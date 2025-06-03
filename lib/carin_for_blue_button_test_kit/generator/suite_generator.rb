@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'naming'
 
 module CarinForBlueButtonTestKit
@@ -26,11 +28,11 @@ module CarinForBlueButtonTestKit
       end
 
       def base_output_file_name
-        "c4bb_test_suite.rb"
+        'c4bb_test_suite.rb'
       end
 
       def class_name
-        "C4BBTestSuite"
+        'C4BBTestSuite'
       end
 
       def module_name
@@ -83,7 +85,7 @@ module CarinForBlueButtonTestKit
       end
 
       def capability_statement_file_name
-        "../capability_statement/capability_statement_group"
+        '../capability_statement/capability_statement_group'
       end
 
       def capability_statement_group_id

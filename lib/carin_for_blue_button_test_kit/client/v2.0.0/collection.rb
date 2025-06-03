@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   SET_TO_BE_GATHERED = { Coverage: ['c4bb-Coverage'],
-                         ExplanationOfBenefit: ['c4bb-EOBInpatient', 'c4bb-EOBOral', 'c4bb-EOBOutpatient',
-                                                'c4bb-EOBPharmacy', 'c4bb-EOBProfessional'],
+                         ExplanationOfBenefit: %w[c4bb-EOBInpatient c4bb-EOBOral c4bb-EOBOutpatient
+                                                  c4bb-EOBPharmacy c4bb-EOBProfessional],
                          Organization: ['c4bb-Organization'],
                          Patient: ['888'],
                          Practitioner: ['c4bb-Practitioner'],

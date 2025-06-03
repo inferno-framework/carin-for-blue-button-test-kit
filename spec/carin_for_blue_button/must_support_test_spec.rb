@@ -1,5 +1,6 @@
-RSpec.describe CarinForBlueButtonTestKit::MustSupportTest, :runnable do
+# frozen_string_literal: true
 
+RSpec.describe CarinForBlueButtonTestKit::MustSupportTest, :runnable do
   let(:json_string_stub) do
     File.read(File.join(__dir__, '..', 'fixtures', 'c4bb_patient_stub.json'))
   end
@@ -10,17 +11,17 @@ RSpec.describe CarinForBlueButtonTestKit::MustSupportTest, :runnable do
 
   def generate_patient_resource(json_addition)
     complete_json_string = json_string_stub + json_addition
-    return FHIR.from_contents(complete_json_string)
+    FHIR.from_contents(complete_json_string)
   end
 
   def execute_mock_test(patient_resource)
     allow_any_instance_of(patient_must_support_test)
-    .to receive(:scratch_resources).and_return(
-    {
-      all: [patient_resource]
-    }
-    )
-    return run(patient_must_support_test)
+      .to receive(:scratch_resources).and_return(
+        {
+          all: [patient_resource]
+        }
+      )
+    run(patient_must_support_test)
   end
 
   describe 'must support test for choice elements with correct deceased inputs' do
@@ -43,7 +44,6 @@ RSpec.describe CarinForBlueButtonTestKit::MustSupportTest, :runnable do
   end
 
   describe 'must support test for choice elements with incorrect deceased inputs' do
-
     def run_expect_error(patient_resource)
       result = execute_mock_test(patient_resource)
       expect(result.result).to eq('skip')

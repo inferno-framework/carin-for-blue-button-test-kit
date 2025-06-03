@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'naming'
 
 module CarinForBlueButtonTestKit
@@ -6,9 +8,9 @@ module CarinForBlueButtonTestKit
       class << self
         def generate(ig_metadata, base_output_dir)
           ig_metadata.groups
-            .each do |group|
-              new(group, base_output_dir: base_output_dir).generate
-            end
+                     .each do |group|
+            new(group, base_output_dir: base_output_dir).generate
+          end
         end
       end
 
@@ -85,17 +87,17 @@ module CarinForBlueButtonTestKit
       def specific_resource_type
         case profile_identifier
         when 'eob_inpatient_institutional'
-          return "ExplanationOfBenefitInpatientInstitutional"
+          'ExplanationOfBenefitInpatientInstitutional'
         when 'eob_oral'
-          return "ExplanationOfBenefitOral"
+          'ExplanationOfBenefitOral'
         when 'eob_outpatient_institutional'
-          return "ExplanationOfBenefitOutpatientInstitutional"
+          'ExplanationOfBenefitOutpatientInstitutional'
         when 'eob_pharmacy'
-          return "ExplanationOfBenefitPharmacy"
+          'ExplanationOfBenefitPharmacy'
         when 'eob_professional_non_clinician'
-          return "ExplanationOfBenefitProfessionalNonClinician"
+          'ExplanationOfBenefitProfessionalNonClinician'
         else
-          return self.resource_type
+          resource_type
         end
       end
 
@@ -113,26 +115,26 @@ module CarinForBlueButtonTestKit
           id: test_id,
           file_name: base_output_file_name
         }
-          group_metadata.add_test(**test_metadata)
+        group_metadata.add_test(**test_metadata)
       end
 
       def description
         <<~DESCRIPTION
-        #{description_intro}
-        It verifies the presence of mandatory elements and that elements with
-        required bindings contain appropriate values. CodeableConcept element
-        bindings will fail if none of their codings have a code/system belonging
-        to the bound ValueSet. Quantity, Coding, and code element bindings will
-        fail if their code/system are not found in the valueset.
+          #{description_intro}
+          It verifies the presence of mandatory elements and that elements with
+          required bindings contain appropriate values. CodeableConcept element
+          bindings will fail if none of their codings have a code/system belonging
+          to the bound ValueSet. Quantity, Coding, and code element bindings will
+          fail if their code/system are not found in the valueset.
         DESCRIPTION
       end
 
       def description_intro
-          <<~GENERIC_INTRO
+        <<~GENERIC_INTRO
           This test verifies resources returned from the first search conform to
           the [#{profile_name}](#{profile_url}).
           Systems must demonstrate at least one valid example in order to pass this test.
-          GENERIC_INTRO
+        GENERIC_INTRO
       end
     end
   end

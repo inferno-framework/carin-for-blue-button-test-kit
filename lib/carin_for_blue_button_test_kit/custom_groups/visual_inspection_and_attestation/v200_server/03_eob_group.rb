@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '03_eob_group/attestation_test_requirement_105'
 require_relative '03_eob_group/attestation_test_requirement_108'
 require_relative '03_eob_group/attestation_test_requirement_115'

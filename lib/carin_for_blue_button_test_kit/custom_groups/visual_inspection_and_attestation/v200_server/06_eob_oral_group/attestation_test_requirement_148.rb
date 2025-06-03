@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement148 < Inferno::Test
     title 'Populates facility information when differs from billing'

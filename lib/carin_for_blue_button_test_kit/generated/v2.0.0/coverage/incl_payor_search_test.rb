@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
@@ -7,15 +9,15 @@ module CarinForBlueButtonTestKit
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for Coverage search by id + _include=Coverage:payor'
-      description %(Tests that the server responds correctly when using _include="Coverage:payor" as a search parameter 
+      description %(Tests that the server responds correctly when using _include="Coverage:payor" as a search parameter
 
       )
 
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'Coverage',
-        search_param_names: ['_include'],
-        include_parameters: [{:path=>"payor", :target=>["Organization", "Patient", "RelatedPerson"]}]
+          search_param_names: ['_include'],
+          include_parameters: [{ path: 'payor', target: %w[Organization Patient RelatedPerson] }]
         )
       end
 

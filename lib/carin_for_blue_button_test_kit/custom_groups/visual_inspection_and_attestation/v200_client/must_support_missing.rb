@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class CARIN4BBMustSupportMissingTest < Inferno::Test
     title 'Interprets missing Must Support data elements'

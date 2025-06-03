@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class ConformanceSupportTest < Inferno::Test
     id :carin_bb_conformance_support

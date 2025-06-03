@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement120 < Inferno::Test
     title 'Reference contains identifier of immediately preceding or following ExplanationOfBenefit'

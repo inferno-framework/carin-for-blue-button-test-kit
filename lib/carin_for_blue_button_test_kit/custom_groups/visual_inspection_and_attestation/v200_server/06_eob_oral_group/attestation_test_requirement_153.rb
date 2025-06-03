@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement153 < Inferno::Test
     title 'Applies oral line item subsites to associated tooth surfaces'

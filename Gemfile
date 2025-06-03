@@ -8,6 +8,10 @@ group :development, :test do
   gem 'debug'
   gem 'foreman'
   gem 'roo', '~> 2.7.1'
+
+  gem 'rubocop', '~> 1.56'
+  gem 'rubocop-rake', '~> 0.6.0'
+  gem 'rubocop-rspec', require: false
 end
 
 group :test do

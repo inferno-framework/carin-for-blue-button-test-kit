@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'related_person/id_search_test'
 require_relative 'related_person/lastupdated_search_test'
 require_relative 'related_person/read_test'
@@ -71,12 +73,12 @@ read succeeds.
       id :c4bb_v200devnonfinancial_related_person
       run_as_group
       optional
-      
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'related_person', 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'related_person', 'metadata.yml'),
+                                                                  aliases: true))
       end
-  
+
       test from: :c4bb_v200devnonfinancial_related_person__id_search_test
       test from: :c4bb_v200devnonfinancial_related_person__lastUpdated_search_test
       test from: :c4bb_v200devnonfinancial_related_person_read_test

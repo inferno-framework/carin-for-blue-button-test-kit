@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class CARIN4BBLastUpdatedTest < Inferno::Test
     title 'Uses meta.lastUpdated value appropriately'

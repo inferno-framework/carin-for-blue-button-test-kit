@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement151 < Inferno::Test
     title 'Specifies primary body site'

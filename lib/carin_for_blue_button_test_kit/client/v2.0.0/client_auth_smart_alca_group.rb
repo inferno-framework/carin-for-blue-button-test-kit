@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'smart_app_launch_test_kit'
 
 module CarinForBlueButtonTestKit
@@ -23,8 +25,8 @@ module CarinForBlueButtonTestKit
          id: :c4bb_v200_client_token_smart_alca_verification,
          config: { options: { endpoint_suite_id: :c4bb_v200_client } }
     test from: :smart_client_token_use_verification,
-          config: {
-            options: { access_request_tags: [RESOURCE_ID_TAG, RESOURCE_API_TAG] }
-          }
+         config: {
+           options: { access_request_tags: [RESOURCE_ID_TAG, RESOURCE_API_TAG] }
+         }
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
@@ -18,8 +20,7 @@ none are returned, the test is skipped.
 
       id :c4bb_v200devnonfinancial_related_person__lastUpdated_search_test
       optional
-      
-      
+
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'RelatedPerson',

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement60_67 < Inferno::Test
     title 'Supports SMART Core Capabilities'

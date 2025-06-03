@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement132 < Inferno::Test
     title 'Includes in-network or out-of-network payment status'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
@@ -7,15 +9,16 @@ module CarinForBlueButtonTestKit
       include CarinForBlueButtonTestKit::CarinSearchTest
 
       title 'Server returns valid results for ExplanationOfBenefit search by id + _include=ExplanationOfBenefit:provider'
-      description %(Tests that the server responds correctly when using _include="ExplanationOfBenefit:provider" as a search parameter 
+      description %(Tests that the server responds correctly when using _include="ExplanationOfBenefit:provider" as a search parameter
 
       )
 
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'ExplanationOfBenefit',
-        search_param_names: ['_include'],
-        include_parameters: [{:path=>"provider", :target=>["Practitioner", "Organization", "PractitionerRole"]}]
+          search_param_names: ['_include'],
+          include_parameters: [{ path: 'provider',
+                                 target: %w[Practitioner Organization PractitionerRole] }]
         )
       end
 

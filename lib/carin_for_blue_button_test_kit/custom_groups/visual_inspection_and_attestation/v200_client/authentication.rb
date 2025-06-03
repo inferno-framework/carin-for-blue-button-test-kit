@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class CARIN4BBAuthTest < Inferno::Test
     title 'Uses appropriate authentication'

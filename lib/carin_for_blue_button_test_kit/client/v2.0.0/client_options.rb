@@ -11,13 +11,13 @@ module CarinForBlueButtonTestKit
       SMARTAppLaunch::SMARTClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_SYMMETRIC
     SMART_APP_LAUNCH_CONFIDENTIAL_ASYMMETRIC =
       SMARTAppLaunch::SMARTClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_ASYMMETRIC
-    UDAP_AUTHORIZATION_CODE = 
+    UDAP_AUTHORIZATION_CODE =
       UDAPSecurityTestKit::UDAPClientOptions::UDAP_AUTHORIZATION_CODE
 
     def selected_security_ig(suite_options)
       if suite_options[:client_type].include?(UDAPSecurityTestKit::UDAP_TAG)
         UDAPSecurityTestKit::UDAP_TAG
-      else 
+      else
         SMARTAppLaunch::SMART_TAG
       end
     end

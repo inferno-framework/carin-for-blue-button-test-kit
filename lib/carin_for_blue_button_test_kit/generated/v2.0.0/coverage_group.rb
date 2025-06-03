@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'coverage/id_search_test'
 require_relative 'coverage/lastupdated_search_test'
 require_relative 'coverage/incl_payor_search_test'
@@ -73,9 +75,10 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'coverage', 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'coverage', 'metadata.yml'),
+                                                                  aliases: true))
       end
-  
+
       test from: :c4bb_v200_coverage__id_search_test
       test from: :c4bb_v200_coverage__lastUpdated_search_test
       test from: :c4bb_v200_coverage_include_Coverage_payor_search_test

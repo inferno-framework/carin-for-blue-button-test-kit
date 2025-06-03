@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement119 < Inferno::Test
     title 'Updates reference when the reference is adjusted by another reference'

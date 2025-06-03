@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../urls'
 require_relative '../client_validation_test'
 
@@ -45,7 +47,8 @@ module CarinForBlueButtonTestKit
       ]
     end
 
-    def suite_id # allow overriding without extension - used by resource_previous_search_params logic
+    # allow overriding without extension - used by resource_previous_search_params logic
+    def suite_id
       return config.options[:suite_id] if config.options[:suite_id].present?
 
       C4BBV200ClientSuite.id

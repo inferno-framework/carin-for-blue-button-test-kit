@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'user_input_response'
 require_relative 'urls'
 require_relative 'collection'
@@ -46,7 +48,7 @@ module CarinForBlueButtonTestKit
       params
     end
 
-    def carin_resource_response(request, test = nil, test_result = nil)
+    def carin_resource_response(request, _test = nil, _test_result = nil)
       endpoint = resource_endpoint(request.url)
       if endpoint
         request_parameters = get_params(request.query_string)
@@ -84,7 +86,7 @@ module CarinForBlueButtonTestKit
       response.body = response_resource.to_json
     end
 
-    def read_next_page(request, test = nil, test_result = nil)
+    def read_next_page(request, _test = nil, _test_result = nil)
       server_response = server_proxy.get('', JSON.parse(request.params.to_json))
       response.status = server_response.status
       response.response_headers = remove_transfer_encoding_header(server_response.headers)
@@ -124,7 +126,7 @@ module CarinForBlueButtonTestKit
       end.map(&:first)
 
       if matched_search.present?
-        return params.select do |key, value|
+        return params.select do |key, _value|
           matched_search.include?(key.to_s) || key == '_revInclude' || key == '_include'
         end
       end

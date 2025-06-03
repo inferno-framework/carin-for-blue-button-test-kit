@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement150 < Inferno::Test
     title 'Uses procedure codes not revenue codes'

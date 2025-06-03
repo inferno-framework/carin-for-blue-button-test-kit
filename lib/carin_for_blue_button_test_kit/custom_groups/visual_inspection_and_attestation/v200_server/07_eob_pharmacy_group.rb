@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '07_eob_pharmacy_group/attestation_test_requirement_161'
 require_relative '07_eob_pharmacy_group/attestation_test_requirement_162'
 require_relative '07_eob_pharmacy_group/attestation_test_requirement_163'

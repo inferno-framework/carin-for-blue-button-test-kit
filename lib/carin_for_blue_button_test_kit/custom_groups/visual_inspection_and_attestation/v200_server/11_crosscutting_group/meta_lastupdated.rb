@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class MetaLastUpdatedTest < Inferno::Test
     title 'Properly populates ".lastUpdated"'

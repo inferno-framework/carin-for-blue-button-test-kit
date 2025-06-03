@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../urls'
 require_relative '../client_validation_test'
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '05_eob_outpatient_group/attestation_test_requirement_157'
 require_relative '05_eob_outpatient_group/attestation_test_requirement_156'
 

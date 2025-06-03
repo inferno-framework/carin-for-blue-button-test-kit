@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement144_145_146 < Inferno::Test
     title 'Correctly maps CPCDS data to EOB.item and EOB.total fields'

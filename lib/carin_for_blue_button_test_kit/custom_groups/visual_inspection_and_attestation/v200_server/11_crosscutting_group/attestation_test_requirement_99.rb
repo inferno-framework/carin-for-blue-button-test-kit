@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement99 < Inferno::Test
     title 'Lists CARIN-BB profiles in the meta.profile of each resource'

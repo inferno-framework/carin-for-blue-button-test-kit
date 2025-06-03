@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   module ClientValidationTest
     def all_resource_types
-      ['Patient', 'Coverage', 'Organization', 'Practitioner', 'RelatedPerson',
-       'ExplanationOfBenefit_Inpatient_Institutional', 'ExplanationOfBenefit_Outpatient_Institutional',
-       'ExplanationOfBenefit_Oral', 'ExplanationOfBenefit_Pharmacy', 'ExplanationOfBenefit_Professional_NonClinician']
+      %w[Patient Coverage Organization Practitioner RelatedPerson
+         ExplanationOfBenefit_Inpatient_Institutional ExplanationOfBenefit_Outpatient_Institutional
+         ExplanationOfBenefit_Oral ExplanationOfBenefit_Pharmacy ExplanationOfBenefit_Professional_NonClinician]
     end
 
     def previous_claims_data_request_resources(resource_type_tag)
@@ -30,7 +32,7 @@ module CarinForBlueButtonTestKit
     end
 
     def previous_claims_data_request_resources_scratch(resource_type_tag)
-      previous_claims_data_request_resources(resource_type_tag).each do |request, resources|
+      previous_claims_data_request_resources(resource_type_tag).each_value do |resources|
         resources.each do |resource|
           next unless resource_type_tag.to_s.include?(resource.resourceType)
 

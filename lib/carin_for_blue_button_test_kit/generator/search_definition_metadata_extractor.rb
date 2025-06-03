@@ -46,7 +46,7 @@ module CarinForBlueButtonTestKit
                           path.scan(/[. ]as[( ]([^)]*)[)]?/).flatten.map do |as_type|
                             path.gsub!(/[. ]as[( ](#{as_type}[^)]*)[)]?/, as_type.upcase_first) if as_type.present?
                           end
-                          path.split('|').map{ |element| element.strip.gsub('Resource.', "#{resource}.") }
+                          path.split('|').map { |element| element.strip.gsub('Resource.', "#{resource}.") }
                         else
                           []
                         end
@@ -99,15 +99,15 @@ module CarinForBlueButtonTestKit
 
       def target_paths
         return [] if param.nil?
+
         include_params = []
 
         target = param.target || []
         paths.each do |path|
-          include_params.push({path: path, target: target})
+          include_params.push({ path: path, target: target })
         end
         include_params
       end
-
 
       def contains_multiple?
         profile_element&.max == '*'

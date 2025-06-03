@@ -2,5 +2,5 @@
 
 module CarinForBlueButtonTestKit
   VERSION = '0.15.1'
-  LAST_UPDATED = '2025-05-20'.freeze
+  LAST_UPDATED = '2025-05-20'
 end

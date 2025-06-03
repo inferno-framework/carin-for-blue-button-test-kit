@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement5 < Inferno::Test
     title 'Does not include absent data with unknown reason'

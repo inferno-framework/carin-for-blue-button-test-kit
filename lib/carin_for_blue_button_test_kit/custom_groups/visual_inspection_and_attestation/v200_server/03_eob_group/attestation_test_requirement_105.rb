@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement105 < Inferno::Test
     title 'Uses versioned references when point-in-time data is maintained'

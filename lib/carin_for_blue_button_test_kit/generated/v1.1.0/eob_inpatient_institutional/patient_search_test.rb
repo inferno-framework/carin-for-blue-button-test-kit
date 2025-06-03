@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
@@ -28,17 +30,17 @@ requirement of CARIN IG for Blue Button® v1.1.0.
       )
 
       id :c4bb_v110_eob_inpatient_institutional_patient_search_test
-      
+
       input :patient_ids,
-        title: 'Patient IDs',
-        type: 'text',
-        description: %q(
-          
+            title: 'Patient IDs',
+            type: 'text',
+            description: '
+
 Comma separated list of patient IDs that in sum
 contain all MUST SUPPORT elements
 
-        )
-      
+        '
+
       def self.properties
         @properties ||= SearchTestProperties.new(
           first_search: true,

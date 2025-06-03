@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement162 < Inferno::Test
     title 'Populates with "compound" and maps correctly'

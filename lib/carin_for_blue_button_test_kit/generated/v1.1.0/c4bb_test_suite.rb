@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'smart_app_launch_test_kit'
 require_relative '../../version'
 
@@ -17,7 +19,7 @@ module CarinForBlueButtonTestKit
       description %(
         The CARIN for Blue Button test suite validates system conformance to the HL7® FHIR® [CARIN for Blue Button® Implementation Guide](http://hl7.org/fhir/us/carin-bb/STU1.1).
 
-        
+
       )
 
       links [
@@ -41,8 +43,8 @@ module CarinForBlueButtonTestKit
 
       def self.metadata
         @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true)[:groups].map do |raw_metadata|
-            Generator::GroupMetadata.new(raw_metadata)
-          end
+          Generator::GroupMetadata.new(raw_metadata)
+        end
       end
 
       id :c4bb_v110
@@ -69,8 +71,8 @@ module CarinForBlueButtonTestKit
       )
 
       input :url,
-        title: 'FHIR Endpoint',
-        description: 'URL of the FHIR endpoint'
+            title: 'FHIR Endpoint',
+            description: 'URL of the FHIR endpoint'
 
       fhir_client do
         url :url
@@ -88,12 +90,12 @@ module CarinForBlueButtonTestKit
         )
 
         input :smart_auth_info,
-            title: 'OAuth Credentials',
-            type: :auth_info,
-            optional: true
+              title: 'OAuth Credentials',
+              type: :auth_info,
+              optional: true
 
         group from: :capability_statement_group
-    
+
         group from: :c4bb_v110_patient
         group from: :c4bb_v110_eob
         group from: :c4bb_v110_coverage

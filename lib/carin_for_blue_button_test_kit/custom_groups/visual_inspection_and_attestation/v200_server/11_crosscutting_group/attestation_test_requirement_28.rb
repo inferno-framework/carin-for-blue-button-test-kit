@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement28 < Inferno::Test
     title 'Ensures conformant CPCDS data'

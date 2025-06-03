@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement115 < Inferno::Test
     title 'Does not use a data absent reason for EOB.type'

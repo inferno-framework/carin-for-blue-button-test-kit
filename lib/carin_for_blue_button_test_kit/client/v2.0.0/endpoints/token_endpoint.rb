@@ -43,7 +43,7 @@ module CarinForBlueButtonTestKit
           suite_options_hash = suite_options_list&.map { |option| [option.id, option.value] }&.to_h
           smart_authentication_approach =
             SMARTAppLaunch::SMARTClientOptions.smart_authentication_approach(suite_options_hash)
-          
+
           case request.params[:grant_type]
           when SMARTAppLaunch::AUTHORIZATION_CODE_TAG
             make_smart_authorization_code_token_response(smart_authentication_approach)
@@ -65,8 +65,8 @@ module CarinForBlueButtonTestKit
       def tags
         tags = [UDAPSecurityTestKit::TOKEN_TAG]
         tags << (request.params[:udap].present? ? UDAPSecurityTestKit::UDAP_TAG : SMARTAppLaunch::SMART_TAG)
-        if [UDAPSecurityTestKit::CLIENT_CREDENTIALS_TAG, 
-            UDAPSecurityTestKit::AUTHORIZATION_CODE_TAG, 
+        if [UDAPSecurityTestKit::CLIENT_CREDENTIALS_TAG,
+            UDAPSecurityTestKit::AUTHORIZATION_CODE_TAG,
             UDAPSecurityTestKit::REFRESH_TOKEN_TAG].include?(request.params[:grant_type])
           tags << request.params[:grant_type]
         end

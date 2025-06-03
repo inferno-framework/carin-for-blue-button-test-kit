@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../read_test'
 require 'json'
 
@@ -10,14 +12,14 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the Patient read interaction.'
 
       id :c4bb_v110_patient_read_test
-      
+
       input :additional_patient_ids,
-        title: "Additional patient IDs",
-        type: 'text',
-        description: "Comma separated list of patient IDs that in sum
+            title: 'Additional patient IDs',
+            type: 'text',
+            description: "Comma separated list of patient IDs that in sum
                           contain all MUST SUPPORT elements. This is optional, but must be provided if executing only the Patient test group.",
-        optional: true
-      
+            optional: true
+
       def resource_type
         'Patient'
       end
@@ -28,6 +30,7 @@ module CarinForBlueButtonTestKit
 
       def resource_ids
         return [] unless respond_to? :additional_patient_ids
+
         additional_patient_ids.split(',').map(&:strip)
       end
 

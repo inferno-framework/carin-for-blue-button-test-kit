@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../read_test'
 require 'json'
 
@@ -10,7 +12,7 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the ExplanationOfBenefit read interaction.'
 
       id :c4bb_v200devnonfinancial_eob_inpatient_institutional_non_financial_read_test
-      
+
       def resource_type
         'ExplanationOfBenefit'
       end
@@ -21,6 +23,7 @@ module CarinForBlueButtonTestKit
 
       def resource_ids
         return [] unless respond_to? :additional_eob_inpatient_institutional_non_financial_ids
+
         additional_eob_inpatient_institutional_non_financial_ids.split(',').map(&:strip)
       end
 

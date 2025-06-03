@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement108 < Inferno::Test
     title 'Supports versioned and unversioned references'

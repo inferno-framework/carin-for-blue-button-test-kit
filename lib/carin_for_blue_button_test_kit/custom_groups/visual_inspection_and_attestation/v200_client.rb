@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'v200_client/must_support_display'
 require_relative 'v200_client/must_support_missing'
 require_relative 'v200_client/must_support_absent_reason'

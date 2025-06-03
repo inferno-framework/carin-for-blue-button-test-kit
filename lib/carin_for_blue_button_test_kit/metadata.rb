@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'version'
 
 module CarinForBlueButtonTestKit
@@ -59,7 +61,7 @@ module CarinForBlueButtonTestKit
 
       Please report any issues with this set of tests in the [issues section](https://github.com/inferno-framework/carin-for-blue-button-test-kit/issues) of the repository.
     DESCRIPTION
-    suite_ids [:c4bb_v110, :c4bb_v200, :c4bb_v200_client, :c4bb_v200devnonfinancial]
+    suite_ids %i[c4bb_v110 c4bb_v200 c4bb_v200_client c4bb_v200devnonfinancial]
     tags ['CARIN']
     last_updated LAST_UPDATED
     version VERSION

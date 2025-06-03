@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement124_125_127_128_129 < Inferno::Test
     title 'Correctly populates EOB.insurance'

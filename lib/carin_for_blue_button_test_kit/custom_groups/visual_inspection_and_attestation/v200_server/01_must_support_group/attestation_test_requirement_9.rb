@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement9 < Inferno::Test
     title 'Omits Must Support elements with cardinality >= 0 if data is not present'

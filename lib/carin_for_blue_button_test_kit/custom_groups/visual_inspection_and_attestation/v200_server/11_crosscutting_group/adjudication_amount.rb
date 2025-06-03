@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AdjudicationAmountTest < Inferno::Test
     title 'Properly uses ".adjudication.amount"'

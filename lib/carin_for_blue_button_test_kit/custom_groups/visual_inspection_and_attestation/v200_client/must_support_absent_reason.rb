@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class CARIN4BBMustSupportAbsentReasonTest < Inferno::Test
     title 'Processes Must Support elements that assert missing information'

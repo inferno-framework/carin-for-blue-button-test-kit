@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '00_authorization_group/attestation_test_requirement_48'
 require_relative '00_authorization_group/attestation_test_requirement_60'
 require_relative '00_authorization_group/attestation_test_requirement_97'

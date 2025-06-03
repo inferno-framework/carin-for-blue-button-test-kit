@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement173 < Inferno::Test
     title 'Associates supportingInfo with line items'

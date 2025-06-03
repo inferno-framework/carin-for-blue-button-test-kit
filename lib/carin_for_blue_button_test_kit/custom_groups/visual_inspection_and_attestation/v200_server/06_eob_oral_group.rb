@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '06_eob_oral_group/attestation_test_requirement_144'
 require_relative '06_eob_oral_group/attestation_test_requirement_148'
 require_relative '06_eob_oral_group/attestation_test_requirement_149'

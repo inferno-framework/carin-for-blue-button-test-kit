@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class CoverageReferenceResourceTest < Inferno::Test
     title 'Returns Coverage Reference Resource with correct data'

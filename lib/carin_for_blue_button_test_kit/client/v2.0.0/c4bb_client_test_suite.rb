@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'endpoints/resource_api_endpoint'
 require_relative 'endpoints/token_endpoint'
 require_relative 'endpoints/authorization_endpoint'
@@ -113,7 +115,9 @@ module CarinForBlueButtonTestKit
     route(:get, SMARTAppLaunch::SMART_DISCOVERY_PATH, lambda { |_env|
       SMARTAppLaunch::MockSMARTServer.smart_server_metadata(id)
     })
-    route(:get, SMARTAppLaunch::OIDC_DISCOVERY_PATH, ->(_env) {SMARTAppLaunch::MockSMARTServer.openid_connect_metadata(id) }) 
+    route(:get, SMARTAppLaunch::OIDC_DISCOVERY_PATH, lambda { |_env|
+      SMARTAppLaunch::MockSMARTServer.openid_connect_metadata(id)
+    })
     route(
       :get,
       SMARTAppLaunch::OIDC_JWKS_PATH,
@@ -121,7 +125,7 @@ module CarinForBlueButtonTestKit
     )
 
     suite_endpoint :post, UDAPSecurityTestKit::REGISTRATION_PATH,
-                    UDAPSecurityTestKit::MockUDAPServer::RegistrationEndpoint
+                   UDAPSecurityTestKit::MockUDAPServer::RegistrationEndpoint
     suite_endpoint :post, UDAPSecurityTestKit::TOKEN_PATH, MockUdapSmartServer::TokenEndpoint
     suite_endpoint :get,  UDAPSecurityTestKit::AUTHORIZATION_PATH, MockUdapSmartServer::AuthorizationEndpoint
     suite_endpoint :post, UDAPSecurityTestKit::AUTHORIZATION_PATH, MockUdapSmartServer::AuthorizationEndpoint

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class CarinLicensingTest < Inferno::Test
     title 'Complies with licensing requirements'

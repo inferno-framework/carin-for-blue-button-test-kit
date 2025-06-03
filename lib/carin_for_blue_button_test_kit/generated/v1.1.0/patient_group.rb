@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'patient/read_test'
 require_relative 'patient/validation_test'
 require_relative 'patient/must_support_test'
@@ -46,9 +48,10 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'patient', 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'patient', 'metadata.yml'),
+                                                                  aliases: true))
       end
-  
+
       test from: :c4bb_v110_patient_read_test
       test from: :c4bb_v110_patient_validation_test
       test from: :c4bb_v110_patient_must_support_test

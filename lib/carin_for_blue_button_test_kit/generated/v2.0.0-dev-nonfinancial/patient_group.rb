@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'patient/id_search_test'
 require_relative 'patient/lastupdated_search_test'
 require_relative 'patient/read_test'
@@ -72,9 +74,10 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'patient', 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'patient', 'metadata.yml'),
+                                                                  aliases: true))
       end
-  
+
       test from: :c4bb_v200devnonfinancial_patient__id_search_test
       test from: :c4bb_v200devnonfinancial_patient__lastUpdated_search_test
       test from: :c4bb_v200devnonfinancial_patient_read_test

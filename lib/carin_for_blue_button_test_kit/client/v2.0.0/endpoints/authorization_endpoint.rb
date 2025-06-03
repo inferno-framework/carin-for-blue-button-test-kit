@@ -20,7 +20,7 @@ module CarinForBlueButtonTestKit
       def suite_options
         @suite_options ||=
           Inferno::Repositories::TestSessions.new.find(result.test_session_id)
-            &.suite_options&.map { |so| [so.id, so.value] }&.to_h
+                                             &.suite_options&.map { |so| [so.id, so.value] }&.to_h
       end
 
       def make_response

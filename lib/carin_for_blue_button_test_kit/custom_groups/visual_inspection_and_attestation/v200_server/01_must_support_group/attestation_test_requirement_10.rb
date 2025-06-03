@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement10 < Inferno::Test
     title 'Follows FHIR and US Core guidance when data is unavailable'

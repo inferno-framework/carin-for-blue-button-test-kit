@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement168 < Inferno::Test
     title 'Sequentially numbers and properly references diagnosis.sequence'

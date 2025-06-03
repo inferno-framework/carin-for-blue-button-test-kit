@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../lib/carin_for_blue_button_test_kit/client/v2.0.0/initial_wait_test'
 require_relative '../../request_helper'
 
@@ -64,10 +66,10 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
     allow(test).to receive_messages(suite:, parent: suite)
 
     patient_fhir_api_request = stub_request(:get, server_patient_api_request)
-      .with(
-        headers: { 'Authorization' => "Bearer #{reference_server_token}" }
-      )
-      .to_return(status: 200, body: c4bb_patient_search_bundle.to_json)
+                               .with(
+                                 headers: { 'Authorization' => "Bearer #{reference_server_token}" }
+                               )
+                               .to_return(status: 200, body: c4bb_patient_search_bundle.to_json)
 
     result = run(test, client_id:)
 
@@ -92,10 +94,10 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
     allow(test).to receive_messages(suite:, parent: suite)
 
     eob_fhir_include_search = stub_request(:get, server_eob_include_search)
-      .with(
-        headers: { 'Authorization' => "Bearer #{reference_server_token}" }
-      )
-      .to_return(status: 200, body: c4bb_eob_include_bundle.to_json)
+                              .with(
+                                headers: { 'Authorization' => "Bearer #{reference_server_token}" }
+                              )
+                              .to_return(status: 200, body: c4bb_eob_include_bundle.to_json)
 
     result = run(test, client_id:)
 
@@ -156,10 +158,10 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
     allow(test).to receive_messages(suite:, parent: suite)
 
     patient_fhir_api_request = stub_request(:get, server_patient_api_request)
-      .with(
-        headers: { 'Authorization' => "Bearer #{reference_server_token}" }
-      )
-      .to_return(status: 200, body: c4bb_patient_search_bundle.to_json)
+                               .with(
+                                 headers: { 'Authorization' => "Bearer #{reference_server_token}" }
+                               )
+                               .to_return(status: 200, body: c4bb_patient_search_bundle.to_json)
 
     result = run(test, client_id:)
 
@@ -185,10 +187,10 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
     allow(test).to receive_messages(suite:, parent: suite)
 
     patient_fhir_api_request = stub_request(:get, server_patient_api_request)
-      .with(
-        headers: { 'Authorization' => "Bearer #{reference_server_token}" }
-      )
-      .to_return(status: 404, body: c4bb_patient_search_bundle.to_json)
+                               .with(
+                                 headers: { 'Authorization' => "Bearer #{reference_server_token}" }
+                               )
+                               .to_return(status: 404, body: c4bb_patient_search_bundle.to_json)
 
     result = run(test, client_id:)
 

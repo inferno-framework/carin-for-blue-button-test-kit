@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement156 < Inferno::Test
     title 'Maps CPCDS data when line item data is unavailable'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'date_search_validator'
 require_relative 'fhir_resource_navigation'
 require_relative 'search_test_properties'

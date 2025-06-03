@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '10_practitioner_group/attestation_test_requirement_186'
 
 module CarinForBlueButtonTestKit

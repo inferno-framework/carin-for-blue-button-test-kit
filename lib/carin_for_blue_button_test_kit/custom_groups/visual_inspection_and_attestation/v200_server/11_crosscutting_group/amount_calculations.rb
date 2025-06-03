@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AmountCalculationTest < Inferno::Test
     title 'Properly calculates "amount" fields'

@@ -69,7 +69,7 @@ module CarinForBlueButtonTestKit
     end
 
     def validate_date_search(search_value, target_value)
-      if target_value.kind_of?(FHIR::Model)
+      if target_value.is_a?(FHIR::Model)
         validate_period_search(search_value, target_value)
       else
         validate_datetime_search(search_value, target_value)

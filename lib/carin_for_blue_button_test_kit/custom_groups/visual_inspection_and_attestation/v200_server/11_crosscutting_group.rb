@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '11_crosscutting_group/adjudication_amount'
 require_relative '11_crosscutting_group/amount_calculations'
 require_relative '11_crosscutting_group/coverage_reference_resource'

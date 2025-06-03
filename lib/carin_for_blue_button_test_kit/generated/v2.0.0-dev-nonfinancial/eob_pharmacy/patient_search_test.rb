@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
@@ -29,17 +31,17 @@ requirement of CARIN IG for Blue Button® v2.0.0-dev-nonfinancial.
       verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@100'
 
       id :c4bb_v200devnonfinancial_eob_pharmacy_patient_search_test
-      
+
       input :patient_ids,
-        title: 'Patient IDs',
-        type: 'text',
-        description: %q(
-          
+            title: 'Patient IDs',
+            type: 'text',
+            description: '
+
 Comma separated list of patient IDs that in sum
 contain all MUST SUPPORT elements
 
-        )
-      
+        '
+
       def self.properties
         @properties ||= SearchTestProperties.new(
           first_search: true,

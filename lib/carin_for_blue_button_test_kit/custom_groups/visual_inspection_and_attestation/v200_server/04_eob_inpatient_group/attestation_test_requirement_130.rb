@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement130 < Inferno::Test
     title 'Provides claim amounts if line item amounts unavailable'

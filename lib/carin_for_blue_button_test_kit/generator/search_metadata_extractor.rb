@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require_relative 'search_definition_metadata_extractor'
 
 module CarinForBlueButtonTestKit
   class Generator
     class SearchMetadataExtractor
       COMBO_EXTENSION_URL =
-        'http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination'.freeze
+        'http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination'
 
       attr_accessor :resource_capabilities, :ig_resources, :resource, :profile_elements
 
@@ -31,13 +33,13 @@ module CarinForBlueButtonTestKit
         return [] if no_search_params?
 
         resource_capabilities.searchParam
-          .select { |search_param| ['SHALL', 'SHOULD'].include? conformance_expectation(search_param) }
-          .map do |search_param|
-            {
-              names: [search_param.name],
-              expectation: conformance_expectation(search_param)
-            }
-          end
+                             .select { |search_param| %w[SHALL SHOULD].include? conformance_expectation(search_param) }
+                             .map do |search_param|
+          {
+            names: [search_param.name],
+            expectation: conformance_expectation(search_param)
+          }
+        end
       end
 
       def search_extensions
@@ -49,7 +51,7 @@ module CarinForBlueButtonTestKit
 
         search_extensions
           .select { |extension| extension.url == COMBO_EXTENSION_URL }
-          .select { |extension| ['SHALL', 'SHOULD'].include? conformance_expectation(extension) }
+          .select { |extension| %w[SHALL SHOULD].include? conformance_expectation(extension) }
           .map do |extension|
             names = extension.extension.select { |param| param.valueString.present? }.map(&:valueString)
             {
@@ -61,13 +63,11 @@ module CarinForBlueButtonTestKit
 
       def include_searches
         resource_capabilities.searchInclude.map do |param|
-          begin
-            {
-              names: [param.sub("#{resource}:", "")],
-              expectation: 'SHALL',
-              include_search: true
-            }
-          end
+          {
+            names: [param.sub("#{resource}:", '')],
+            expectation: 'SHALL',
+            include_search: true
+          }
         end
       end
 
@@ -77,10 +77,10 @@ module CarinForBlueButtonTestKit
       end
 
       def search_definitions
-          search_param_names.each_with_object({}) do |name, definitions|
-              definitions[name.to_sym] =
-              SearchDefinitionMetadataExtractor.new(name, ig_resources, resource, profile_elements).search_definition
-          end
+        search_param_names.each_with_object({}) do |name, definitions|
+          definitions[name.to_sym] =
+            SearchDefinitionMetadataExtractor.new(name, ig_resources, resource, profile_elements).search_definition
+        end
       end
     end
   end

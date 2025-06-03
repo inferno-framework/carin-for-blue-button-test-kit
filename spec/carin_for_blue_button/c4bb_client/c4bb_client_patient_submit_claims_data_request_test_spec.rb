@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../lib/carin_for_blue_button_test_kit/client/v2.0.0/claim_data_request_tests/' \
                  'patient_claims_data_request_test'
 
@@ -63,7 +65,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientPatientSubmitClaimsDataReque
   let(:access_token) { 'SAMPLE_TOKEN' }
 
   def create_fhir_api_request(url: patient_api_request, body: nil, status: 200,
-                              tags: ['resource_api', 'Patient', '_id'], headers: nil)
+                              tags: %w[resource_api Patient _id], headers: nil)
     headers ||= [
       {
         type: 'request',

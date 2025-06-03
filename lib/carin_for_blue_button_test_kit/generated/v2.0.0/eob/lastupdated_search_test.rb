@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../carin_search_test'
 require_relative '../../../generator/group_metadata'
 
@@ -17,7 +19,7 @@ none are returned, the test is skipped.
       verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@100'
 
       id :c4bb_v200_eob__lastUpdated_search_test
-      
+
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'ExplanationOfBenefit',

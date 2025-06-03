@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '04_eob_inpatient_group/attestation_test_requirement_130'
 require_relative '04_eob_inpatient_group/attestation_test_requirement_132'
 

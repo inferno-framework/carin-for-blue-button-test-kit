@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement178 < Inferno::Test
     title 'Does not populate "address" when part of Billing Provider'

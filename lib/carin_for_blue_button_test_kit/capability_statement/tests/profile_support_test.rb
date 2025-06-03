@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class ProfileSupportTest < Inferno::Test
     id :carin_bb_profile_support
@@ -18,13 +20,13 @@ module CarinForBlueButtonTestKit
 
       supported_resources =
         capability_statement.rest
-          &.each_with_object([]) do |rest, resources|
-            rest.resource.each { |resource| resources << resource.type }
-          end.uniq
+                            &.each_with_object([]) do |rest, resources|
+          rest.resource.each { |resource| resources << resource.type }
+        end&.uniq
 
       carin_bb_resources = config.options[:carin_bb_resources]
       carin_bb_resources.each do |resource_type|
-        fail_message = 'CARIN for Blue Button ' + resource_type + ' profile not supported'
+        fail_message = "CARIN for Blue Button #{resource_type} profile not supported"
         assert supported_resources.include?(resource_type), fail_message
       end
     end

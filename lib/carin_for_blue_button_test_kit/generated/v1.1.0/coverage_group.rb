@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'coverage/read_test'
 require_relative 'coverage/validation_test'
 require_relative 'coverage/must_support_test'
@@ -46,9 +48,10 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'coverage', 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'coverage', 'metadata.yml'),
+                                                                  aliases: true))
       end
-  
+
       test from: :c4bb_v110_coverage_read_test
       test from: :c4bb_v110_coverage_validation_test
       test from: :c4bb_v110_coverage_must_support_test

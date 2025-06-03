@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'udap_security_test_kit'
 require_relative '../tags'
 require_relative '../mock_server'

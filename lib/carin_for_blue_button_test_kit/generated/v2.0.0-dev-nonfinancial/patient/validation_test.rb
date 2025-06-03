@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../validation_test'
 require_relative './read_test'
 

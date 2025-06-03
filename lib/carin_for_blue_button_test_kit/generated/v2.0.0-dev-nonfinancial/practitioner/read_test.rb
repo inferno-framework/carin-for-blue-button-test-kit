@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../read_test'
 require 'json'
 
@@ -10,7 +12,7 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the Practitioner read interaction.'
 
       id :c4bb_v200devnonfinancial_practitioner_read_test
-      
+
       def resource_type
         'Practitioner'
       end
@@ -21,6 +23,7 @@ module CarinForBlueButtonTestKit
 
       def resource_ids
         return [] unless respond_to? :additional_practitioner_ids
+
         additional_practitioner_ids.split(',').map(&:strip)
       end
 

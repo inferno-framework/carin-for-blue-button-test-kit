@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement164 < Inferno::Test
     title 'Populates "quantity" for all compound code values'

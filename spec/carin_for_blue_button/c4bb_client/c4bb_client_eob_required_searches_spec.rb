@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../lib/carin_for_blue_button_test_kit/client/v2.0.0/claim_data_request_tests/' \
                  'patient_claims_data_request_test'
 
@@ -101,33 +103,33 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
   end
 
   let(:eob_required_search_tags) do
-    [
-      'resource_api',
-      'ExplanationOfBenefitSearch',
-      'ExplanationOfBenefit_Inpatient_Institutional',
-      'identifier',
-      'service-date',
-      'service-start-date',
-      'billable-period-start',
-      'type'
+    %w[
+      resource_api
+      ExplanationOfBenefitSearch
+      ExplanationOfBenefit_Inpatient_Institutional
+      identifier
+      service-date
+      service-start-date
+      billable-period-start
+      type
     ]
   end
 
   let(:eob_last_upated_search_tags) do
-    [
-      'resource_api',
-      'ExplanationOfBenefitSearch',
-      'ExplanationOfBenefit_Inpatient_Institutional',
-      '_lastUpdated'
+    %w[
+      resource_api
+      ExplanationOfBenefitSearch
+      ExplanationOfBenefit_Inpatient_Institutional
+      _lastUpdated
     ]
   end
 
   let(:eob_id_search_tags) do
-    [
-      'resource_api',
-      'ExplanationOfBenefitSearch',
-      'ExplanationOfBenefit_Inpatient_Institutional',
-      '_id'
+    %w[
+      resource_api
+      ExplanationOfBenefitSearch
+      ExplanationOfBenefit_Inpatient_Institutional
+      _id
     ]
   end
 

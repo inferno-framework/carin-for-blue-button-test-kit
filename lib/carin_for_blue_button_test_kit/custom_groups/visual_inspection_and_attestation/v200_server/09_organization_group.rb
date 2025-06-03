@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '09_organization_group/attestation_test_requirement_177'
 require_relative '09_organization_group/attestation_test_requirement_178'
 

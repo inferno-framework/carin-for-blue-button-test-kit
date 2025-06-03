@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement149 < Inferno::Test
     title 'References sequence number of associated diagnosis'

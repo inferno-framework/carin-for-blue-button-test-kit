@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'eob/patient_search_test'
 require_relative 'eob/id_search_test'
 require_relative 'eob/lastupdated_search_test'
@@ -94,9 +96,10 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'eob', 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'eob', 'metadata.yml'),
+                                                                  aliases: true))
       end
-  
+
       test from: :c4bb_v110_eob_patient_search_test
       test from: :c4bb_v110_eob__id_search_test
       test from: :c4bb_v110_eob__lastUpdated_search_test

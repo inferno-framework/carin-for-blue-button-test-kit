@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe CarinForBlueButtonTestKit::ReadTest, :runnable do
   let(:patient_json_string) do
     File.read(File.join(__dir__, '..', 'fixtures', 'c4bb_patient_example.json'))

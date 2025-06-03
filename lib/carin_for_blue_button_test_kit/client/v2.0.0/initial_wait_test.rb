@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'smart_app_launch_test_kit'
 require_relative 'urls'
 
@@ -26,7 +28,7 @@ module CarinForBlueButtonTestKit
           title: 'Launch Context',
           type: 'textarea',
           optional: true,
-          description: SMARTAppLaunch::INPUT_LAUNCH_CONTEXT_DESCRIPTION       
+          description: SMARTAppLaunch::INPUT_LAUNCH_CONTEXT_DESCRIPTION
     input :fhir_user_relative_reference,
           title: 'FHIR User Relative Reference',
           type: 'text',

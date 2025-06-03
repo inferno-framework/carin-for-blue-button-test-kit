@@ -44,6 +44,7 @@ module CarinForBlueButtonTestKit
 
       def delayed?
         return false if resource == 'Patient'
+
         no_patient_searches?
       end
 
@@ -74,8 +75,8 @@ module CarinForBlueButtonTestKit
       def add_delayed_references(delayed_profiles, ig_resources)
         self.delayed_references =
           references
-            .select { |reference| (reference[:profiles] & delayed_profiles).present? }
-            .map do |reference|
+          .select { |reference| (reference[:profiles] & delayed_profiles).present? }
+          .map do |reference|
             profile_urls = (reference[:profiles] & delayed_profiles)
             delayed_resources = profile_urls.map { |url| ig_resources.resource_for_profile(url) }
             {

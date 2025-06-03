@@ -89,7 +89,7 @@ module CarinForBlueButtonTestKit
       end
 
       def generate
-        if !is_eob_subgroup?
+        unless is_eob_subgroup?
           File.open(output_file_name, 'w') { |f| f.write(output) }
           group_metadata.id = group_id
           group_metadata.file_name = base_output_file_name
@@ -128,7 +128,7 @@ module CarinForBlueButtonTestKit
         # Remove calls to search tests for EOB subgroups (all subgroup search tests handled in EOB root tests)
         @test_file_list = @test_file_list.reject { |test_name| test_name.include?('search_test') } if is_eob_subgroup?
 
-        @test_file_list = @test_file_list.concat(eob_subgroups_test_file_list) if is_eob_root_group?
+        @test_file_list.concat(eob_subgroups_test_file_list) if is_eob_root_group?
         @test_file_list
       end
 

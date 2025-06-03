@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '08_eob_nonclinician_group/attestation_test_requirement_168_170'
 require_relative '08_eob_nonclinician_group/attestation_test_requirement_173'
 

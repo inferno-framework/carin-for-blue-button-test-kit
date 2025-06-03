@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class AttestationTestCarinV2Requirement177 < Inferno::Test
     title 'Properly populates the NPI identifier'

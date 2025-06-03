@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
   class FHIRVersionTest < Inferno::Test
     id :carin_bb_fhir_version

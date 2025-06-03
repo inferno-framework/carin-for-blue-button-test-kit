@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/carin_for_blue_button_test_kit/version'
 
 Gem::Specification.new do |spec|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '01_must_support_group/attestation_test_requirement_2'
 require_relative '01_must_support_group/attestation_test_requirement_5'
 require_relative '01_must_support_group/attestation_test_requirement_7'

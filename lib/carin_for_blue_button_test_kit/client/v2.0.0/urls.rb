@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 module CarinForBlueButtonTestKit
-  TOKEN_PATH = '/auth/token'.freeze
-  AUTHORIZATION_PATH = '/auth/authorization'.freeze
-  JKWS_PATH = '/.well-known/jwks.json'.freeze
-  SMART_CONFIG_PATH = '/.well-known/smart-configuration'.freeze
-  PATIENT_PATH = '/fhir/Patient'.freeze
-  RESOURCE_API_PATH = '/fhir/:endpoint'.freeze
-  RESOURCE_ID_PATH = '/fhir/:endpoint/:id'.freeze
-  METADATA_PATH = '/fhir/metadata'.freeze
-  BASE_FHIR_PATH = '/fhir'.freeze
-  RESUME_PASS_PATH = '/resume_pass'.freeze
-  RESUME_CLAIMS_DATA_PATH = '/resume_claims_data'.freeze
-  RESUME_FAIL_PATH = '/resume_fail'.freeze
+  TOKEN_PATH = '/auth/token'
+  AUTHORIZATION_PATH = '/auth/authorization'
+  JKWS_PATH = '/.well-known/jwks.json'
+  SMART_CONFIG_PATH = '/.well-known/smart-configuration'
+  PATIENT_PATH = '/fhir/Patient'
+  RESOURCE_API_PATH = '/fhir/:endpoint'
+  RESOURCE_ID_PATH = '/fhir/:endpoint/:id'
+  METADATA_PATH = '/fhir/metadata'
+  BASE_FHIR_PATH = '/fhir'
+  RESUME_PASS_PATH = '/resume_pass'
+  RESUME_CLAIMS_DATA_PATH = '/resume_claims_data'
+  RESUME_FAIL_PATH = '/resume_fail'
 
   module URLs
     def base_url
@@ -37,7 +39,8 @@ module CarinForBlueButtonTestKit
       @fhir_base_url ||= base_url + BASE_FHIR_PATH
     end
 
-    def client_fhir_base_url # alias for OIDC from SMART / UDAP client tests
+    # alias for OIDC from SMART / UDAP client tests
+    def client_fhir_base_url
       fhir_base_url
     end
 

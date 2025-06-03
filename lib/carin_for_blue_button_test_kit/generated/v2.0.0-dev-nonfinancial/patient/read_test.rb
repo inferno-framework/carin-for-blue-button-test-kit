@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../read_test'
 require 'json'
 
@@ -10,7 +12,7 @@ module CarinForBlueButtonTestKit
       description 'A server SHALL support the Patient read interaction.'
 
       id :c4bb_v200devnonfinancial_patient_read_test
-      
+
       def resource_type
         'Patient'
       end
@@ -21,6 +23,7 @@ module CarinForBlueButtonTestKit
 
       def resource_ids
         return [] unless respond_to? :additional_patient_ids
+
         additional_patient_ids.split(',').map(&:strip)
       end
 
