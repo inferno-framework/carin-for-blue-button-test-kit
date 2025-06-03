@@ -3,10 +3,7 @@ require_relative '../../../lib/carin_for_blue_button_test_kit/client/v2.0.0/clai
 
 RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
   let(:suite_id) { 'c4bb_v200_client' }
-  let(:suite) { Inferno::Repositories::TestSuites.new.find(suite_id) }
   let(:test) { Inferno::Repositories::Tests.new.find('eob_required_searches') }
-  let(:results_repo) { Inferno::Repositories::Results.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite_id) }
   let(:result) { repo_create(:result, test_session_id: test_session.id) }
 
   let(:c4bb_eob_include_bundle) do

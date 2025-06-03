@@ -6,7 +6,6 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
   include RequestHelpers
 
   let(:suite_id) { 'c4bb_v200_client' }
-  let(:suite) { Inferno::Repositories::TestSuites.new.find(suite_id) }
   let(:test) { Inferno::Repositories::Tests.new.find('c4bb_v200_initial_wait_test') }
   let(:results_repo) { Inferno::Repositories::Results.new }
 

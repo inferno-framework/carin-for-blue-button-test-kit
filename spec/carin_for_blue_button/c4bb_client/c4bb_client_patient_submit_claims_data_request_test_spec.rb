@@ -3,9 +3,7 @@ require_relative '../../../lib/carin_for_blue_button_test_kit/client/v2.0.0/clai
 
 RSpec.describe CarinForBlueButtonTestKit::C4BBClientPatientSubmitClaimsDataRequestTest do
   let(:suite_id) { 'c4bb_v200_client' }
-  let(:suite) { Inferno::Repositories::TestSuites.new.find(suite_id) }
   let(:test) { Inferno::Repositories::Tests.new.find('patient_claims_data_request_test') }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite_id) }
   let(:result) { repo_create(:result, test_session_id: test_session.id) }
 
   let(:c4bb_patient_resource) do
