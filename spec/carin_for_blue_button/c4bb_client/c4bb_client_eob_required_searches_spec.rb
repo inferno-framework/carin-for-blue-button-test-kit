@@ -2,11 +2,8 @@ require_relative '../../../lib/carin_for_blue_button_test_kit/client/v2.0.0/clai
                  'patient_claims_data_request_test'
 
 RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('c4bb_v200_client') }
+  let(:suite_id) { 'c4bb_v200_client' }
   let(:test) { Inferno::Repositories::Tests.new.find('eob_required_searches') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:results_repo) { Inferno::Repositories::Results.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: 'c4bb_v200_client') }
   let(:result) { repo_create(:result, test_session_id: test_session.id) }
 
   let(:c4bb_eob_include_bundle) do
@@ -162,20 +159,6 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientEOBRequiredSearches do
       headers:,
       tags:
     )
-  end
-
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name:,
-        value:,
-        type: runnable.config.input_type(name) || 'text'
-      )
-    end
-    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
   end
 
   it 'passes if successful FHIR search requests for all required searches for EOB was made' do
