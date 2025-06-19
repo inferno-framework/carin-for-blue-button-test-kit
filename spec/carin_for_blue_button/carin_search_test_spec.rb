@@ -1,27 +1,11 @@
-RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest do
+RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest, :runnable do
   let(:eob_json_string) do
     File.read(File.join(__dir__, '..', 'fixtures', 'c4bb_eob_inpatient_example.json'))
   end
 
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('c4bb_v200') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
+  let(:suite_id) { 'c4bb_v200' }
   let(:url) { 'http://example.com/fhir' }
   let(:error_outcome) { FHIR::OperationOutcome.new(issue: [{ severity: 'error' }]) }
-
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name:,
-        value:,
-        type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
-  end
 
   def setup_mock_test(search_test, eob_resource)
     allow_any_instance_of(search_test).to receive(:scratch_resources).and_return(

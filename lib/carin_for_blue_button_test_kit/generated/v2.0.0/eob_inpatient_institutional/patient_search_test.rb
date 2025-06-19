@@ -26,14 +26,19 @@ requirement of CARIN IG for Blue Button® v2.0.0.
 
 
       )
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@100'
 
       id :c4bb_v200_eob_inpatient_institutional_patient_search_test
       
       input :patient_ids,
         title: 'Patient IDs',
         type: 'text',
-        description: 'Comma separated list of patient IDs that in sum
-                          contain all MUST SUPPORT elements'
+        description: %q(
+          
+Comma separated list of patient IDs that in sum
+contain all MUST SUPPORT elements
+
+        )
       
       def self.properties
         @properties ||= SearchTestProperties.new(

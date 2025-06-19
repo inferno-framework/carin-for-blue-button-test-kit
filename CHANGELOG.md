@@ -1,3 +1,18 @@
+# 0.15.1
+* FI-3995: Fix search template input description and regenerate by @Shaumik-Ashraf in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/72
+* FI-3813: Use core MustSupport features by @dehall in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/70
+* FI-3662: verifies_requirements annotations by @elsaperelli in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/74
+* FI-3973: Client Auth by @karlnaden in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/73
+
+# 0.15.0
+##Breaking Change
+This release updates the CARIN IG for Blue Button® Test Kit to use AuthInfo
+rather than OAuthCredentials for storing auth information. As a result of this
+change, any test kits which rely on this test kit will need to be updated to use
+AuthInfo rather than OAuthCredentials inputs.
+
+* FI-3746: Use AuthInfo by @Jammjammjamm in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/68
+
 # 0.14.0
 
 * **Ruby Version Update:** Upgraded Ruby to `3.3.6`.

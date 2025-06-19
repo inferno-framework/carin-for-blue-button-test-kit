@@ -10,6 +10,9 @@ module CarinForBlueButtonTestKit
       description %(<%=
         description %>
       )
+      <%- if module_name.include?('V200') -%>
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@100'
+      <%- end -%>
 
       id :<%= test_id %><% if optional? %>
       optional
@@ -18,7 +21,9 @@ module CarinForBlueButtonTestKit
       input :<%=input_id%>,
         title: '<%=input_title.strip%>',
         type: 'text',
-        description: '<%=input_description.strip%>'<%if !needs_patient_id?%>,
+        description: %q(
+          <%=input_description.split("\n").map(&:strip).join("\n")%>
+        )<%if !needs_patient_id?%>,
         optional: true<% end %>
       <% end %>
       def self.properties

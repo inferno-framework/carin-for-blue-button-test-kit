@@ -25,6 +25,7 @@ module CarinForBlueButtonTestKit
       * application/fhir+json
     )
     uses_request :capability_statement
+    verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@98'
 
     run do
       assert_resource_type(:capability_statement)

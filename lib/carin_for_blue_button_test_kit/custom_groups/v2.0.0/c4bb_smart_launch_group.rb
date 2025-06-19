@@ -22,15 +22,36 @@ module CarinForBlueButtonTestKit
         They then perform a standalone launch to obtain an access token which
         can be used by the remaining tests to access patient data.
       )
-      input_order :url,
-                  :standalone_client_id,
-                  :standalone_client_secret,
-                  :standalone_requested_scopes,
-                  :use_pkce,
-                  :pkce_code_challenge_method
+
+      config(
+        inputs: {
+          received_scopes: { name: :standalone_received_scopes },
+          smart_auth_info: {
+            options: {
+              components: [
+                {
+                  name: :requested_scopes,
+                  default: %(
+                    launch/patient openid fhirUser
+                    patient/ExplanationOfBenefit.read patient/Coverage.read
+                    patient/Patient.read patient/Organization.read
+                    patient/Practitioner.read user/ExplanationOfBenefit.read
+                    user/Coverage.read user/Patient.read
+                    user/Organization.read user/Practitioner.read
+                  ).gsub(/\s{2,}/, ' ').strip
+                }
+              ]
+            }
+          }
+        },
+        outputs: {
+          patient_id: { name: :patient_ids }
+        }
+      )
 
       group from: :smart_discovery do
         run_as_group
+        verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@58'
 
         test from: :c4bb_v200_smart_capabilities do
           config(
@@ -75,32 +96,17 @@ module CarinForBlueButtonTestKit
 
           * [Standalone Launch Sequence](https://www.hl7.org/fhir/smart-app-launch/1.0.0/index.html#standalone-launch-sequence)
         )
-
-        config(
-          inputs: {
-            requested_scopes: {
-              default: %(
-                launch/patient openid fhirUser
-                patient/ExplanationOfBenefit.read patient/Coverage.read
-                patient/Patient.read patient/Organization.read
-                patient/Practitioner.read user/ExplanationOfBenefit.read
-                user/Coverage.read user/Patient.read
-                user/Organization.read user/Practitioner.read
-              ).gsub(/\s{2,}/, ' ').strip
-            }
-          },
-          outputs: {
-            patient_id: { name: :patient_ids },
-            smart_credentials: { name: :smart_credentials }
-          }
-        )
+        verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@1', 'hl7.fhir.us.carin-bb_2.0.0@60',
+                              'hl7.fhir.us.carin-bb_2.0.0@68', 'hl7.fhir.us.carin-bb_2.0.0@69',
+                              'hl7.fhir.us.carin-bb_2.0.0@70', 'hl7.fhir.us.carin-bb_2.0.0@71',
+                              'hl7.fhir.us.carin-bb_2.0.0@72', 'hl7.fhir.us.carin-bb_2.0.0@73',
+                              'hl7.fhir.us.carin-bb_2.0.0@74', 'hl7.fhir.us.carin-bb_2.0.0@75',
+                              'hl7.fhir.us.carin-bb_2.0.0@76', 'hl7.fhir.us.carin-bb_2.0.0@77',
+                              'hl7.fhir.us.carin-bb_2.0.0@78', 'hl7.fhir.us.carin-bb_2.0.0@79',
+                              'hl7.fhir.us.carin-bb_2.0.0@80', 'hl7.fhir.us.carin-bb_2.0.0@81'
 
         test from: :c4bb_v200_smart_scopes do
           config(
-            inputs: {
-              requested_scopes: { name: :standalone_requested_scopes },
-              received_scopes: { name: :standalone_received_scopes }
-            },
             options: {
               required_scopes: %w[
                 openid

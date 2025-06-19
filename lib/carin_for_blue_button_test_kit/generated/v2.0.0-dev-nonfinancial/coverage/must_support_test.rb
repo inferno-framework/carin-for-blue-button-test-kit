@@ -17,10 +17,12 @@ module CarinForBlueButtonTestKit
 
                 * Coverage.beneficiary
         * Coverage.class
-        * Coverage.class.name
-        * Coverage.class.value
         * Coverage.class:group
+        * Coverage.class:group.name
+        * Coverage.class:group.value
         * Coverage.class:plan
+        * Coverage.class:plan.name
+        * Coverage.class:plan.value
         * Coverage.identifier
         * Coverage.meta
         * Coverage.meta.lastUpdated
@@ -30,6 +32,7 @@ module CarinForBlueButtonTestKit
         * Coverage.status
         * Coverage.subscriberId
       )
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@11'
 
       id :c4bb_v200devnonfinancial_coverage_must_support_test
 

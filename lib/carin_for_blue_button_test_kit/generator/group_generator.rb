@@ -25,7 +25,7 @@ module CarinForBlueButtonTestKit
       end
 
       def output
-        @output ||= ERB.new(template).result(binding)
+        @output ||= ERB.new(template, trim_mode: '-').result(binding)
       end
 
       def base_output_file_name
@@ -93,8 +93,8 @@ module CarinForBlueButtonTestKit
           File.open(output_file_name, 'w') { |f| f.write(output) }
           group_metadata.id = group_id
           group_metadata.file_name = base_output_file_name
-          File.open(metadata_file_name, 'w') { |f| f.write(YAML.dump(group_metadata.to_hash)) }
         end
+        File.open(metadata_file_name, 'w') { |f| f.write(YAML.dump(group_metadata.to_hash)) }
       end
 
       def test_id_list

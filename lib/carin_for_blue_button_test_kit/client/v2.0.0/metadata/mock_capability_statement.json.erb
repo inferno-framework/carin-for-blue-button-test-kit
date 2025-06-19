@@ -9,11 +9,10 @@
   ],
   "implementation": {
       "description": "Inferno CARIN For Blue Button Client Testing Simulation Server",
-      "url": "http://localhost:8080/reference-server/r4"
+      "url": "<%= Inferno::Application['base_url']  %>/custom/c4bb_v200_client/fhir"
   },
   "fhirVersion": "4.0.1",
   "format": [
-      "application/fhir+xml",
       "application/fhir+json"
   ],
   "implementationGuide": [
@@ -30,11 +29,11 @@
                 "extension": [
                     {
                         "url": "token",
-                        "valueUri": "<%= Inferno::Application['base_url']  %>/custom/c4bb_v200_client/mock_auth/token"
+                        "valueUri": "<%= Inferno::Application['base_url']  %>/custom/c4bb_v200_client/auth/token"
                     },
                     {
                         "url": "authorize",
-                        "valueUri": "<%= Inferno::Application['base_url']  %>/custom/c4bb_v200_client/mock_auth/authorization"
+                        "valueUri": "<%= Inferno::Application['base_url']  %>/custom/c4bb_v200_client/auth/authorization"
                     }
                 ]
             }

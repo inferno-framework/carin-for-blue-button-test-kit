@@ -74,7 +74,7 @@ module CarinForBlueButtonTestKit
     def resource_type_endpoint(url)
       return unless url.start_with?('http://', 'https://')
 
-      match = %r{custom/c4bb_v200_client/fhir/(.*)\?}.match(url)
+      match = %r{custom/#{suite_id}/fhir/(.*)\?}.match(url)
       match[1] if match.present?
     end
 

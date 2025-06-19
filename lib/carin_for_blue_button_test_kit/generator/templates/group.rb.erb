@@ -8,6 +8,11 @@ module CarinForBlueButtonTestKit
       description %(
 <%=description %>
       )
+      <%- if title.include?('Explanation') && module_name.include?('V200') -%>
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@95', 'hl7.fhir.us.carin-bb_2.0.0@103'
+      <%- elsif module_name.include?('V200') -%>
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@95'
+      <%- end -%>
 
       id :<%= group_id %>
       run_as_group<% if optional? %>

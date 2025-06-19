@@ -22,7 +22,7 @@ module CarinForBlueButtonTestKit
       end
 
       def output
-        @output ||= ERB.new(template).result(binding)
+        @output ||= ERB.new(template, trim_mode: '-').result(binding)
       end
 
       def base_output_file_name
@@ -96,7 +96,7 @@ module CarinForBlueButtonTestKit
       def build_must_support_list_string(uscdi_only)
         slice_names = group_metadata.must_supports[:slices]
           .select { |slice| slice[:uscdi_only].presence == uscdi_only.presence }
-          .map { |slice| slice[:name] }
+          .map { |slice| slice[:slice_id] }
 
         element_names = group_metadata.must_supports[:elements]
           .select { |element| element[:uscdi_only].presence == uscdi_only.presence }

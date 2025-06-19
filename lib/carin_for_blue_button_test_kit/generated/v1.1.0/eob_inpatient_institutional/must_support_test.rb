@@ -17,9 +17,9 @@ module CarinForBlueButtonTestKit
 
                 * ExplanationOfBenefit.adjudication
         * ExplanationOfBenefit.adjudication.category
-        * ExplanationOfBenefit.adjudication.reason
         * ExplanationOfBenefit.adjudication:adjudicationamounttype
         * ExplanationOfBenefit.adjudication:denialreason
+        * ExplanationOfBenefit.adjudication:denialreason.reason
         * ExplanationOfBenefit.billablePeriod
         * ExplanationOfBenefit.billablePeriod.end
         * ExplanationOfBenefit.billablePeriod.start
@@ -39,14 +39,16 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.insurer
         * ExplanationOfBenefit.item
         * ExplanationOfBenefit.item.adjudication
-        * ExplanationOfBenefit.item.adjudication.amount
         * ExplanationOfBenefit.item.adjudication.category
-        * ExplanationOfBenefit.item.adjudication.category.coding.code
-        * ExplanationOfBenefit.item.adjudication.reason
-        * ExplanationOfBenefit.item.adjudication.value
         * ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+        * ExplanationOfBenefit.item.adjudication:adjudicationamounttype.amount
+        * ExplanationOfBenefit.item.adjudication:adjudicationamounttype.category
         * ExplanationOfBenefit.item.adjudication:allowedunits
+        * ExplanationOfBenefit.item.adjudication:allowedunits.category
+        * ExplanationOfBenefit.item.adjudication:allowedunits.value
         * ExplanationOfBenefit.item.adjudication:denialreason
+        * ExplanationOfBenefit.item.adjudication:denialreason.category
+        * ExplanationOfBenefit.item.adjudication:denialreason.reason
         * ExplanationOfBenefit.item.modifier
         * ExplanationOfBenefit.item.noteNumber
         * ExplanationOfBenefit.item.productOrService
@@ -76,23 +78,35 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.status
         * ExplanationOfBenefit.subType.coding.code
         * ExplanationOfBenefit.supportingInfo
-        * ExplanationOfBenefit.supportingInfo.category.coding.code
-        * ExplanationOfBenefit.supportingInfo.code
-        * ExplanationOfBenefit.supportingInfo.timing[x]
         * ExplanationOfBenefit.supportingInfo:admissionperiod
+        * ExplanationOfBenefit.supportingInfo:admissionperiod.category
         * ExplanationOfBenefit.supportingInfo:admtype
+        * ExplanationOfBenefit.supportingInfo:admtype.category
+        * ExplanationOfBenefit.supportingInfo:admtype.code
         * ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus
+        * ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.category
+        * ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.code
         * ExplanationOfBenefit.supportingInfo:clmrecvddate
+        * ExplanationOfBenefit.supportingInfo:clmrecvddate.category
+        * ExplanationOfBenefit.supportingInfo:clmrecvddate.timing[x]
         * ExplanationOfBenefit.supportingInfo:discharge-status
+        * ExplanationOfBenefit.supportingInfo:discharge-status.category
+        * ExplanationOfBenefit.supportingInfo:discharge-status.code
         * ExplanationOfBenefit.supportingInfo:drg
+        * ExplanationOfBenefit.supportingInfo:drg.category
+        * ExplanationOfBenefit.supportingInfo:drg.code
         * ExplanationOfBenefit.supportingInfo:medicalrecordnumber
         * ExplanationOfBenefit.supportingInfo:patientaccountnumber
         * ExplanationOfBenefit.supportingInfo:pointoforigin
+        * ExplanationOfBenefit.supportingInfo:pointoforigin.category
+        * ExplanationOfBenefit.supportingInfo:pointoforigin.code
         * ExplanationOfBenefit.supportingInfo:typeofbill
+        * ExplanationOfBenefit.supportingInfo:typeofbill.category
+        * ExplanationOfBenefit.supportingInfo:typeofbill.code
         * ExplanationOfBenefit.total
-        * ExplanationOfBenefit.total.amount
         * ExplanationOfBenefit.total.category
         * ExplanationOfBenefit.total:adjudicationamounttype
+        * ExplanationOfBenefit.total:adjudicationamounttype.amount
         * ExplanationOfBenefit.total:benefitpaymentstatus
         * ExplanationOfBenefit.type.coding.code
         * ExplanationOfBenefit.use

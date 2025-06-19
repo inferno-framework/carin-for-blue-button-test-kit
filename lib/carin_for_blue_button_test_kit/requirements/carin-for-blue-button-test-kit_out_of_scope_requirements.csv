@@ -1,5 +1,4 @@
 ﻿Req Set,ID,Reason,Details
-hl7.fhir.us.carin-bb_2.0.0,7,Not Verifiable,Can't know if the Health Plan API actor knows the precise reason for the absence of data
 hl7.fhir.us.carin-bb_2.0.0,15,Not Verifiable,There's no point in checking that maybe something exists that could exist.
 hl7.fhir.us.carin-bb_2.0.0,16,Not Verifiable,Nothing to verify
 hl7.fhir.us.carin-bb_2.0.0,18,Not Verifiable,There's no point in checking that maybe something exists that could exist.
@@ -20,10 +19,7 @@ hl7.fhir.us.carin-bb_2.0.0,82,Not Tested,"Maybe - It's a ""MAY"" requirement but
 hl7.fhir.us.carin-bb_2.0.0,84,Not Verifiable,Doesn't specify where and how these will be recorded so they are not verifiable.
 hl7.fhir.us.carin-bb_2.0.0,85,Not Verifiable,"Unclear wth ""IG related data"" is"
 hl7.fhir.us.carin-bb_2.0.0,88,Not Verifiable,There's no point in checking that maybe something exists that could exist.
-hl7.fhir.us.carin-bb_2.0.0,91,Not Verifiable,Cannot know what data was effective at what time
 hl7.fhir.us.carin-bb_2.0.0,92,Not Verifiable,There's no point in checking that maybe something exists that could exist.
-hl7.fhir.us.carin-bb_2.0.0,93,Not Verifiable,Cannot know when data was last changed
-hl7.fhir.us.carin-bb_2.0.0,94,Not Verifiable,Cannot verify the internal of an app
 hl7.fhir.us.carin-bb_2.0.0,96,Not Verifiable,Overly broad
 hl7.fhir.us.carin-bb_2.0.0,104,Not Verifiable,There's no point in checking that maybe something exists that could exist.
 hl7.fhir.us.carin-bb_2.0.0,106,Not Verifiable,There's no point in checking that maybe something exists that could exist.
@@ -36,18 +32,14 @@ hl7.fhir.us.carin-bb_2.0.0,137,Not Verifiable,Cannot confirm if client apps assi
 hl7.fhir.us.carin-bb_2.0.0,138,Not Verifiable,Cannot confirm how a client uses values
 hl7.fhir.us.carin-bb_2.0.0,139,Not Verifiable,Cannot confirm if client apps assign value to something
 hl7.fhir.us.carin-bb_2.0.0,140,Not Verifiable,Cannot confirm how a client uses values
-hl7.fhir.us.carin-bb_2.0.0,143,Not Verifiable,Appears to be business logic not a calculation that we can confirm
 hl7.fhir.us.carin-bb_2.0.0,147,Not Verifiable,Cannot confirm how a client uses values
-hl7.fhir.us.carin-bb_2.0.0,154,Not Verifiable,Appears to be business logic not a calculation that we can confirm
-hl7.fhir.us.carin-bb_2.0.0,155,Not Verifiable,Appears to be business logic not a calculation that we can confirm
+hl7.fhir.us.carin-bb_2.0.0,148,Not Verifiable,Service facility is an organization. Provider and care team are practitioners. They definitely won't be referencing the same objects. Can't compare `id`s as these are internal identifiers. More global identifiers like NPI are not required. So we don't have a way to compare these fields.
+hl7.fhir.us.carin-bb_2.0.0,149,Not Verifiable,There's no `.diagnosisSequence` on `.item`. This is likely a typo.
 hl7.fhir.us.carin-bb_2.0.0,166,Not Verifiable,Cannot know how clients interpret data.
 hl7.fhir.us.carin-bb_2.0.0,167,Not Verifiable,Cannot know how clients interpret data.
 hl7.fhir.us.carin-bb_2.0.0,169,Not Verifiable,Unclear if this should *only* be populated if it's different
 hl7.fhir.us.carin-bb_2.0.0,174,Not Verifiable,"This is a definition, not a requirement."
 hl7.fhir.us.carin-bb_2.0.0,176,Not Verifiable,Cannot know when data was in effect
-hl7.fhir.us.carin-bb_2.0.0,180,Not Verifiable,Cannot confirm how a client uses values
 hl7.fhir.us.carin-bb_2.0.0,181,Not Verifiable,Business rule that we cannot verify
 hl7.fhir.us.carin-bb_2.0.0,182,Not Verifiable,Cannot know 
-hl7.fhir.us.carin-bb_2.0.0,184,Not Verifiable,Cannot confirm how a client uses values
 hl7.fhir.us.carin-bb_2.0.0,185,Not Verifiable,Cannot know 
-hl7.fhir.us.carin-bb_2.0.0,188,Not Verifiable,Cannot confirm how a client uses values

@@ -28,12 +28,13 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.insurer
         * ExplanationOfBenefit.item
         * ExplanationOfBenefit.item.adjudication
-        * ExplanationOfBenefit.item.adjudication.amount
         * ExplanationOfBenefit.item.adjudication.category
-        * ExplanationOfBenefit.item.adjudication.category.coding.code
-        * ExplanationOfBenefit.item.adjudication.reason
         * ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+        * ExplanationOfBenefit.item.adjudication:adjudicationamounttype.amount
+        * ExplanationOfBenefit.item.adjudication:adjudicationamounttype.category
         * ExplanationOfBenefit.item.adjudication:denialreason
+        * ExplanationOfBenefit.item.adjudication:denialreason.category
+        * ExplanationOfBenefit.item.adjudication:denialreason.reason
         * ExplanationOfBenefit.item.detail
         * ExplanationOfBenefit.item.detail.productOrService
         * ExplanationOfBenefit.item.detail.quantity
@@ -60,23 +61,37 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.related.relationship
         * ExplanationOfBenefit.status
         * ExplanationOfBenefit.supportingInfo
-        * ExplanationOfBenefit.supportingInfo.category.coding.code
-        * ExplanationOfBenefit.supportingInfo.code
-        * ExplanationOfBenefit.supportingInfo.timing[x]
-        * ExplanationOfBenefit.supportingInfo.value[x]
         * ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus
+        * ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.category
+        * ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.code
         * ExplanationOfBenefit.supportingInfo:brandgenericindicator
+        * ExplanationOfBenefit.supportingInfo:brandgenericindicator.category
+        * ExplanationOfBenefit.supportingInfo:brandgenericindicator.code
         * ExplanationOfBenefit.supportingInfo:clmrecvddate
+        * ExplanationOfBenefit.supportingInfo:clmrecvddate.category
+        * ExplanationOfBenefit.supportingInfo:clmrecvddate.timing[x]
         * ExplanationOfBenefit.supportingInfo:compoundcode
+        * ExplanationOfBenefit.supportingInfo:compoundcode.category
+        * ExplanationOfBenefit.supportingInfo:compoundcode.code
         * ExplanationOfBenefit.supportingInfo:dawcode
+        * ExplanationOfBenefit.supportingInfo:dawcode.category
+        * ExplanationOfBenefit.supportingInfo:dawcode.code
         * ExplanationOfBenefit.supportingInfo:dayssupply
+        * ExplanationOfBenefit.supportingInfo:dayssupply.category
+        * ExplanationOfBenefit.supportingInfo:dayssupply.value[x]
         * ExplanationOfBenefit.supportingInfo:refillNum
+        * ExplanationOfBenefit.supportingInfo:refillNum.category
+        * ExplanationOfBenefit.supportingInfo:refillNum.value[x]
         * ExplanationOfBenefit.supportingInfo:rxoriginCode
+        * ExplanationOfBenefit.supportingInfo:rxoriginCode.category
+        * ExplanationOfBenefit.supportingInfo:rxoriginCode.code
         * ExplanationOfBenefit.total
         * ExplanationOfBenefit.total.amount
         * ExplanationOfBenefit.total.category
         * ExplanationOfBenefit.total:adjudicationamounttype
+        * ExplanationOfBenefit.total:adjudicationamounttype.amount
         * ExplanationOfBenefit.total:benefitpaymentstatus
+        * ExplanationOfBenefit.total:benefitpaymentstatus.amount
         * ExplanationOfBenefit.type.coding.code
         * ExplanationOfBenefit.use
       )

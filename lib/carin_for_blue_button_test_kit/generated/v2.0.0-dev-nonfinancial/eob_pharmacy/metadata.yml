@@ -305,144 +305,191 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: ExplanationOfBenefit.identifier:uniqueclaimid
+  - :slice_id: ExplanationOfBenefit.item.serviced[x]:servicedDate
+    :slice_name: servicedDate
+    :path: item.serviced[x]
+    :discriminator:
+      :type: type
+      :code: Date
+  - :slice_id: ExplanationOfBenefit.identifier:uniqueclaimid
+    :slice_name: uniqueclaimid
     :path: identifier
     :discriminator:
       :type: patternCodeableConcept
       :path: type
       :code: uc
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType
-  - :name: ExplanationOfBenefit.supportingInfo:dayssupply
+  - :slice_id: ExplanationOfBenefit.supportingInfo:dayssupply
+    :slice_name: dayssupply
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: dayssupply
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:dawcode
+  - :slice_id: ExplanationOfBenefit.supportingInfo:dawcode
+    :slice_name: dawcode
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: dawcode
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:refillNum
+  - :slice_id: ExplanationOfBenefit.supportingInfo:refillNum
+    :slice_name: refillNum
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: refillnum
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:refillsAuthorized
+  - :slice_id: ExplanationOfBenefit.supportingInfo:refillsAuthorized
+    :slice_name: refillsAuthorized
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: refillsauthorized
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:brandgenericindicator
+  - :slice_id: ExplanationOfBenefit.supportingInfo:brandgenericindicator
+    :slice_name: brandgenericindicator
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: brandgenericindicator
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:rxoriginCode
+  - :slice_id: ExplanationOfBenefit.supportingInfo:rxoriginCode
+    :slice_name: rxoriginCode
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: rxorigincode
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:clmrecvddate
+  - :slice_id: ExplanationOfBenefit.supportingInfo:clmrecvddate
+    :slice_name: clmrecvddate
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: clmrecvddate
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.supportingInfo:compoundcode
+  - :slice_id: ExplanationOfBenefit.supportingInfo:compoundcode
+    :slice_name: compoundcode
     :path: supportingInfo
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: compoundcode
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType
-  - :name: ExplanationOfBenefit.item.adjudication:rejectreason
+  - :slice_id: ExplanationOfBenefit.item.adjudication:rejectreason
+    :slice_name: rejectreason
     :path: item.adjudication
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: rejectreason
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
-  - :name: ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+  - :slice_id: ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+    :slice_name: adjudicationamounttype
     :path: item.adjudication
     :discriminator:
       :type: requiredBinding
       :path: category
       :values:
-      - submitted
-      - copay
-      - eligible
-      - deductible
-      - benefit
-      - coinsurance
-      - noncovered
-      - priorpayerpaid
-      - paidbypatient
-      - paidbypatientcash
-      - paidbypatientother
-      - paidtopatient
-      - paidtoprovider
-      - memberliability
-      - discount
-      - drugcost
-  - :name: ExplanationOfBenefit.adjudication:billingnetworkstatus
+      - :system: http://terminology.hl7.org/CodeSystem/adjudication
+        :code: submitted
+      - :system: http://terminology.hl7.org/CodeSystem/adjudication
+        :code: copay
+      - :system: http://terminology.hl7.org/CodeSystem/adjudication
+        :code: eligible
+      - :system: http://terminology.hl7.org/CodeSystem/adjudication
+        :code: deductible
+      - :system: http://terminology.hl7.org/CodeSystem/adjudication
+        :code: benefit
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: coinsurance
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: noncovered
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: priorpayerpaid
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: paidbypatient
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: paidbypatientcash
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: paidbypatientother
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: paidtopatient
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: paidtoprovider
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: memberliability
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: discount
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: drugcost
+  - :slice_id: ExplanationOfBenefit.adjudication:billingnetworkstatus
+    :slice_name: billingnetworkstatus
     :path: adjudication
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: billingnetworkstatus
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
-  - :name: ExplanationOfBenefit.adjudication:benefitpaymentstatus
+  - :slice_id: ExplanationOfBenefit.adjudication:benefitpaymentstatus
+    :slice_name: benefitpaymentstatus
     :path: adjudication
     :discriminator:
       :type: patternCodeableConcept
       :path: category
       :code: benefitpaymentstatus
       :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator
-  - :name: ExplanationOfBenefit.total:adjudicationamounttype
+  - :slice_id: ExplanationOfBenefit.total:adjudicationamounttype
+    :slice_name: adjudicationamounttype
     :path: total
     :discriminator:
       :type: requiredBinding
       :path: category
       :values:
-      - submitted
-      - copay
-      - eligible
-      - deductible
-      - benefit
-      - coinsurance
-      - noncovered
-      - priorpayerpaid
-      - paidbypatient
-      - paidbypatientcash
-      - paidbypatientother
-      - paidtopatient
-      - paidtoprovider
-      - memberliability
-      - discount
-      - drugcost
-  - :name: ExplanationOfBenefit.item.serviced[x]:servicedDate
-    :path: item.serviced[x]
-    :discriminator:
-      :type: type
-      :code: Date
+      - :system: http://terminology.hl7.org/CodeSystem/adjudication
+        :code: submitted
+      - :system: http://terminology.hl7.org/CodeSystem/adjudication
+        :code: copay
+      - :system: http://terminology.hl7.org/CodeSystem/adjudication
+        :code: eligible
+      - :system: http://terminology.hl7.org/CodeSystem/adjudication
+        :code: deductible
+      - :system: http://terminology.hl7.org/CodeSystem/adjudication
+        :code: benefit
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: coinsurance
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: noncovered
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: priorpayerpaid
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: paidbypatient
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: paidbypatientcash
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: paidbypatientother
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: paidtopatient
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: paidtoprovider
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: memberliability
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: discount
+      - :system: http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication
+        :code: drugcost
   :elements:
   - :path: meta
   - :path: meta.lastUpdated
   - :path: identifier
-  - :path: identifier.value
+  - :path: identifier:uniqueclaimid.value
   - :path: status
   - :path: type.coding.code
     :fixed_value: pharmacy
@@ -450,12 +497,16 @@
   - :path: patient
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient
   - :path: billablePeriod
   - :path: billablePeriod.start
   - :path: created
   - :path: insurer
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization
   - :path: provider
     :types:
     - Reference
@@ -474,47 +525,47 @@
     - Reference
   - :path: careTeam.role
   - :path: supportingInfo
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: dayssupply
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: dawcode
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: refillnum
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: refillsauthorized
-  - :path: supportingInfo.value[x]
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: brandgenericindicator
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: rxorigincode
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: clmrecvddate
-  - :path: supportingInfo.timing[x]
-  - :path: supportingInfo.category.coding.code
-    :fixed_value: compoundcode
-  - :path: supportingInfo.code
+  - :path: supportingInfo:dayssupply.category
+  - :path: supportingInfo:dayssupply.value[x]
+  - :path: supportingInfo:dawcode.category
+  - :path: supportingInfo:dawcode.code
+  - :path: supportingInfo:refillNum.category
+  - :path: supportingInfo:refillNum.value[x]
+  - :path: supportingInfo:refillsAuthorized.category
+  - :path: supportingInfo:refillsAuthorized.value[x]
+  - :path: supportingInfo:brandgenericindicator.category
+  - :path: supportingInfo:brandgenericindicator.code
+  - :path: supportingInfo:rxoriginCode.category
+  - :path: supportingInfo:rxoriginCode.code
+  - :path: supportingInfo:clmrecvddate.category
+  - :path: supportingInfo:clmrecvddate.timing[x]
+  - :path: supportingInfo:compoundcode.category
+  - :path: supportingInfo:compoundcode.code
   - :path: insurance
   - :path: insurance.focal
   - :path: insurance.coverage
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage
   - :path: item
   - :path: item.sequence
   - :path: item.productOrService
   - :path: item.quantity
   - :path: item.noteNumber
   - :path: item.adjudication
-  - :path: item.adjudication.category.coding.code
-    :fixed_value: rejectreason
-  - :path: item.adjudication.reason
   - :path: item.adjudication.category
-  - :path: item.adjudication.amount
+  - :path: item.adjudication:rejectreason.category
+  - :path: item.adjudication:rejectreason.reason
+  - :path: item.adjudication:adjudicationamounttype.category
+  - :path: item.adjudication:adjudicationamounttype.amount
   - :path: item.detail
   - :path: item.detail.productOrService
   - :path: item.detail.quantity
   - :path: adjudication
   - :path: adjudication.category
-  - :path: adjudication.reason
+  - :path: adjudication:billingnetworkstatus.reason
+  - :path: adjudication:benefitpaymentstatus.reason
   - :path: total
   - :path: total.category
   - :path: total.amount
@@ -1105,8 +1156,6 @@
   :file_name: validation_test.rb
 - :id: c4bb_v200devnonfinancial_eob_pharmacy_must_support_test
   :file_name: must_support_test.rb
-:id: c4bb_v200devnonfinancial_eob_pharmacy
-:file_name: eob_pharmacy_group.rb
 :delayed_references:
 - :path: insurer
   :resources:

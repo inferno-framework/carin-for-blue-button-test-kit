@@ -2,11 +2,8 @@ require_relative '../../../lib/carin_for_blue_button_test_kit/client/v2.0.0/clai
                  'patient_claims_data_request_test'
 
 RSpec.describe CarinForBlueButtonTestKit::C4BBClientPatientSubmitClaimsDataRequestTest do
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('c4bb_v200_client') }
+  let(:suite_id) { 'c4bb_v200_client' }
   let(:test) { Inferno::Repositories::Tests.new.find('patient_claims_data_request_test') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:results_repo) { Inferno::Repositories::Results.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: 'c4bb_v200_client') }
   let(:result) { repo_create(:result, test_session_id: test_session.id) }
 
   let(:c4bb_patient_resource) do
@@ -42,7 +39,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientPatientSubmitClaimsDataReque
   let(:patient_api_request) { "#{base_url}#{patient_endpoint}" }
   let(:eob_include_search) { "#{base_url}#{eob_include_search_endpoint}" }
   let(:eob_include_search_tags) do
-    ['carin_resource_api',
+    ['resource_api',
      'ExplanationOfBenefit_Inpatient_Institutional',
      'ExplanationOfBenefit_Outpatient_Institutional',
      'ExplanationOfBenefit_Oral',
@@ -64,7 +61,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientPatientSubmitClaimsDataReque
   let(:access_token) { 'SAMPLE_TOKEN' }
 
   def create_fhir_api_request(url: patient_api_request, body: nil, status: 200,
-                              tags: ['carin_resource_api', 'Patient', '_id'], headers: nil)
+                              tags: ['resource_api', 'Patient', '_id'], headers: nil)
     headers ||= [
       {
         type: 'request',
@@ -84,20 +81,6 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientPatientSubmitClaimsDataReque
       headers:,
       tags:
     )
-  end
-
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name:,
-        value:,
-        type: runnable.config.input_type(name) || 'text'
-      )
-    end
-    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
   end
 
   it 'passes if successful FHIR API request for Patient resource with _id parameter' do

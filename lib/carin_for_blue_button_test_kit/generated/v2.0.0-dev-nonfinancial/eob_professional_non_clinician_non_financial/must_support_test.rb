@@ -17,9 +17,10 @@ module CarinForBlueButtonTestKit
 
                 * ExplanationOfBenefit.adjudication
         * ExplanationOfBenefit.adjudication.category
-        * ExplanationOfBenefit.adjudication.reason
         * ExplanationOfBenefit.adjudication:billingnetworkstatus
+        * ExplanationOfBenefit.adjudication:billingnetworkstatus.reason
         * ExplanationOfBenefit.adjudication:renderingnetworkstatus
+        * ExplanationOfBenefit.adjudication:renderingnetworkstatus.reason
         * ExplanationOfBenefit.billablePeriod
         * ExplanationOfBenefit.billablePeriod.start
         * ExplanationOfBenefit.careTeam
@@ -29,8 +30,8 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.diagnosis
         * ExplanationOfBenefit.diagnosis.diagnosis[x]
         * ExplanationOfBenefit.diagnosis.type
-        * ExplanationOfBenefit.identifier.value
         * ExplanationOfBenefit.identifier:uniqueclaimid
+        * ExplanationOfBenefit.identifier:uniqueclaimid.value
         * ExplanationOfBenefit.insurance
         * ExplanationOfBenefit.insurance.coverage
         * ExplanationOfBenefit.insurance.focal
@@ -38,11 +39,14 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.item
         * ExplanationOfBenefit.item.adjudication
         * ExplanationOfBenefit.item.adjudication.category
-        * ExplanationOfBenefit.item.adjudication.category.coding.code
-        * ExplanationOfBenefit.item.adjudication.reason
         * ExplanationOfBenefit.item.adjudication:adjustmentreason
+        * ExplanationOfBenefit.item.adjudication:adjustmentreason.category
+        * ExplanationOfBenefit.item.adjudication:adjustmentreason.reason
         * ExplanationOfBenefit.item.adjudication:allowedunits
+        * ExplanationOfBenefit.item.adjudication:allowedunits.category
         * ExplanationOfBenefit.item.adjudication:benefitpaymentstatus
+        * ExplanationOfBenefit.item.adjudication:benefitpaymentstatus.category
+        * ExplanationOfBenefit.item.adjudication:benefitpaymentstatus.reason
         * ExplanationOfBenefit.item.location[x]
         * ExplanationOfBenefit.item.modifier
         * ExplanationOfBenefit.item.noteNumber
@@ -64,10 +68,10 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.related.relationship
         * ExplanationOfBenefit.status
         * ExplanationOfBenefit.supportingInfo
-        * ExplanationOfBenefit.supportingInfo.category.coding.code
-        * ExplanationOfBenefit.supportingInfo.timing[x]
         * ExplanationOfBenefit.supportingInfo:ambulancetransportreason
         * ExplanationOfBenefit.supportingInfo:clmrecvddate
+        * ExplanationOfBenefit.supportingInfo:clmrecvddate.category
+        * ExplanationOfBenefit.supportingInfo:clmrecvddate.timing[x]
         * ExplanationOfBenefit.supportingInfo:dropofflocation
         * ExplanationOfBenefit.supportingInfo:medicalrecordnumber
         * ExplanationOfBenefit.supportingInfo:patientaccountnumber
@@ -75,11 +79,13 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.supportingInfo:pickuplocation
         * ExplanationOfBenefit.supportingInfo:roudtrippurpose
         * ExplanationOfBenefit.supportingInfo:servicefacility
+        * ExplanationOfBenefit.supportingInfo:servicefacility.category
         * ExplanationOfBenefit.supportingInfo:stretcherpurpose
         * ExplanationOfBenefit.supportingInfo:transportationdistance
         * ExplanationOfBenefit.type
         * ExplanationOfBenefit.use
       )
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@11'
 
       id :c4bb_v200devnonfinancial_eob_professional_non_clinician_non_financial_must_support_test
 

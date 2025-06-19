@@ -20,8 +20,8 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.careTeam
         * ExplanationOfBenefit.careTeam.provider
         * ExplanationOfBenefit.careTeam.role
-        * ExplanationOfBenefit.identifier.value
         * ExplanationOfBenefit.identifier:uniqueclaimid
+        * ExplanationOfBenefit.identifier:uniqueclaimid.value
         * ExplanationOfBenefit.insurance
         * ExplanationOfBenefit.insurance.coverage
         * ExplanationOfBenefit.insurance.focal
@@ -50,6 +50,7 @@ module CarinForBlueButtonTestKit
         * ExplanationOfBenefit.type
         * ExplanationOfBenefit.use
       )
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@11'
 
       id :c4bb_v200_eob_must_support_test
 

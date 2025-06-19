@@ -34,7 +34,11 @@ module CarinForBlueButtonTestKit
         * Patient.identifier.system
         * Patient.identifier.value
         * Patient.identifier:memberid
+        * Patient.identifier:memberid.system
+        * Patient.identifier:memberid.value
         * Patient.identifier:uniquememberid
+        * Patient.identifier:uniquememberid.system
+        * Patient.identifier:uniquememberid.value
         * Patient.meta
         * Patient.meta.lastUpdated
         * Patient.name
@@ -45,6 +49,7 @@ module CarinForBlueButtonTestKit
         * Patient.telecom.use
         * Patient.telecom.value
       )
+      verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@11'
 
       id :c4bb_v200_patient_must_support_test
 
