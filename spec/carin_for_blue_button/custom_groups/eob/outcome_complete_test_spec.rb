@@ -6,34 +6,17 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::OutcomeCompleteTest do
     File.read(File.join(__dir__, '..', '..', '..', 'fixtures', 'c4bb_eob_include_bundle.json'))
   end
 
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('c4bb_v200') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
+  let(:suite_id) { 'c4bb_v200' }
   let(:url) { 'http://example.com/fhir' }
   let(:error_outcome) { FHIR::OperationOutcome.new(issue: [{ severity: 'error' }]) }
 
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name:,
-        value:,
-        type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
-  end
-
   def execute_mock_test(eob_test, eob_resource)
-    allow_any_instance_of(eob_test)
-    .to receive(:scratch_resources).and_return(
-    {
-      all: [eob_resource]
-    }
-    )
-    return run(eob_test, url:)
+    allow_any_instance_of(eob_test).to receive(:scratch_resources).and_return(
+                                         {
+                                           all: [eob_resource]
+                                         }
+                                       )
+    run(eob_test, url:) # TODO scratch arg
   end
 
   describe 'eob requiring outcome complete' do
