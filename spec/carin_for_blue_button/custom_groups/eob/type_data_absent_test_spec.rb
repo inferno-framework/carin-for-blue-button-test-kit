@@ -1,4 +1,4 @@
-RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::OutcomeCompleteTest do
+RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::TypeDataAbsentTest do
   let(:eob_json_string) do
     File.read(File.join(__dir__, '..', '..', '..', 'fixtures', 'c4bb_eob_inpatient_example.json'))
   end
