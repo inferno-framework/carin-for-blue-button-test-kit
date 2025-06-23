@@ -1,4 +1,7 @@
 <% test_file_list.each do |file_name| %>require_relative '<%= file_name %>'
+<% end %><% if module_name== 'CARIN4BBV200' && class_name == 'EobGroup' %>require_relative '../../custom_groups/v2.0.0/eob/type_data_absent_test'
+require_relative '../../custom_groups/v2.0.0/eob/insurer_same_test'
+require_relative '../../custom_groups/v2.0.0/eob/outcome_complete_test'
 <% end %>
 module CarinForBlueButtonTestKit
   module <%= module_name %>
@@ -23,7 +26,10 @@ module CarinForBlueButtonTestKit
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '<%= profile_identifier %>', 'metadata.yml'), aliases: true))
       end
   <% test_id_list.each do |id| %>
-      test from: :<%= id %><% end %>
+      test from: :<%= id %><% end %><% if module_name == 'CARIN4BBV200' && class_name == 'EobGroup' %>
+      test from: :c4bb_v200_custom_eob_type_data_absent
+      test from: :c4bb_v200_custom_eob_insurer_same
+      test from: :c4bb_v200_custom_eob_outcome_complete<% end %>
     end
   end
 end
