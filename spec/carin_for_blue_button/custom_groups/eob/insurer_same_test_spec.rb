@@ -2,10 +2,10 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::InsurerSameTest do
   let(:eob_json_string) do
     File.read(File.join(__dir__, '..', '..', '..', 'fixtures', 'c4bb_eob_inpatient_example.json'))
   end
-  let(:coverage_json_string) do
+  let(:coverage_json_string) do # id c4bb-coverage
     File.read(File.join(__dir__, '..', '..', '..', 'fixtures', 'c4bb_eob_coverage_example.json'))
   end
-  let(:coverage_secondary_json_string) do
+  let(:coverage_secondary_json_string) do # id Coverage2
     File.read(File.join(__dir__, '..', '..', '..', 'fixtures', 'c4bb_coverage_example.json'))
   end
 
@@ -26,25 +26,23 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::InsurerSameTest do
     # Use `test` instead of `described_class` to make sure the full id is loaded
     let(:test) { find_test suite, described_class.id }
     let(:eob) { FHIR.from_contents(eob_json_string) }
-    let(:coverage) { FHIR.from_contents(coverage_json_string) }
-    let(:coverage_secondary) { FHIR.from_contents(coverage_secondary_json_string) }
 
     around(:example) do |example|
-      # reverse coverage
-      coverage_stub = stub_request(:get, "#{url}/Coverage/c4bb-eob-coverage")
-                        .to_return(status: 200, body: coverage_secondary.to_json)
-      coverage2_stub = stub_request(:get, "#{url}/Coverage/Coverage2")
-                         .to_return(status: 200, body: coverage.to_json)
+      primary_coverage_stub = stub_request(:get, "#{url}/Coverage/c4bb-coverage").to_return(status: 200, body: coverage_json_string)
 
       example.run
 
-      #expect(coverage_stub).to have_been_made
-      #expect(coverage2_stub).to have_been_made
+      expect(primary_coverage_stub).to have_been_made.at_least_once
     end
 
     it 'passes if the primary insurance matches the insurer and all others do not' do
+      # The next spec short circuits so this request only needs to be stubbed in this spec
+      secondary_coverage_stub = stub_request(:get, "#{url}/Coverage/Coverage2").to_return(status: 200, body: coverage_secondary_json_string)
+
       result = execute_mock_test(test, eob)
       expect(result.result).to eq('pass'), result.result_message
+
+      # expect(secondary_coverage_stub).to have_been_made.at_least_once
     end
 
     it 'fails if the primary insurance does not match the insurer' do

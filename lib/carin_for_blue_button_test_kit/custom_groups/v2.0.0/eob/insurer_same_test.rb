@@ -38,34 +38,14 @@ module CarinForBlueButtonTestKit
         skip_if resources.blank?,
                 "No #{resource_type} resources were returned"
 
-        #pp "D"
-        #pp resources
-        #pp resources[0]
-        #pp resources[0]&.class
-        
         resources.each do |eob|
           eob.insurance.each_with_index do |eob_insurance, index|
             eob_insurance_coverage = get_reference(eob_insurance.coverage, :coverage)
-            #pp "DEBUG"
-            #pp "eob.insurance.coverage"
-            #pp eob_insurance_coverage.to_hash
-            #pp "eob.insurance.coverage reference id"
-            #pp resource_id(eob_insurance_coverage.payor.first)
-            #pp "eob.insurer"
-            #pp eob.insurer.to_hash
-            #pp "eob.insurer reference id"
-            #pp resource_id(eob.insurer)
-            #pp "assertion =="
-            #pp resource_id(eob.insurer) == resource_id(eob_insurance_coverage.payor.first)
-
-            #require 'debug/open_nonstop'
-            #debugger
 
             skip_if eob_insurance_coverage.nil?,
                     "No insurance coverage found for EOB #{eob.id} insurance at index #{index}"
 
             if eob_insurance.focal
-              #pp "ASSERTING FOCAL"
               assert resource_id(eob.insurer) == resource_id(eob_insurance_coverage.payor.first),
                      <<~ERROR_MESSAGE1
                         ExplanationOfBenefit.insurer.reference differs from
