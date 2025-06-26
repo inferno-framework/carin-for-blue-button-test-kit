@@ -312,13 +312,13 @@
     {
       "focal" : true,
       "coverage" : {
-        "reference" : "Coverage/c4bb-coverage"
+        "reference" : "Coverage/c4bb-eob-coverage"
       }
     },
     {
       "focal" : false,
       "coverage" : {
-        "reference" : "Coverage/Coverage2"
+       "reference" : "Coverage/Coverage2"
       }
     }
   ],
