@@ -11,14 +11,7 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::TypeDataAbsentTest do
   let(:error_outcome) { FHIR::OperationOutcome.new(issue: [{ severity: 'error' }]) }
 
   def execute_mock_test(eob_test, eob_resource)
-    allow_any_instance_of(eob_test)
-      .to receive(:scratch_resources).and_return(
-        {
-          all: [eob_resource]
-        }
-      )
-
-    run(eob_test, url:) # TODO: remove stub and pass scratch arg
+    run(eob_test, { url: }, { explanationofbenefit_resources: { all: [eob_resource] } })
   end
 
   describe 'Requires EOB.type to not have a data absent reason' do
