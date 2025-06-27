@@ -14,12 +14,7 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::InsurerSameTest do
   let(:error_outcome) { FHIR::OperationOutcome.new(issue: [{ severity: 'error' }]) }
 
   def execute_mock_test(eob_test, eob_resource)
-    allow_any_instance_of(eob_test).to receive(:scratch_resources).and_return(
-                                         {
-                                           all: [eob_resource]
-                                         }
-                                       )
-    run(eob_test, { url: }, { explanationofbenefit_resources: [eob_resource] })
+    run(eob_test, { url: }, { explanationofbenefit_resources: { all: [eob_resource] } })
   end
 
   describe 'Requires primary insurance to match insurer' do
@@ -42,7 +37,7 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::InsurerSameTest do
       result = execute_mock_test(test, eob)
       expect(result.result).to eq('pass'), result.result_message
 
-      # expect(secondary_coverage_stub).to have_been_made.at_least_once
+      expect(secondary_coverage_stub).to have_been_made.at_least_once
     end
 
     it 'fails if the primary insurance does not match the insurer' do

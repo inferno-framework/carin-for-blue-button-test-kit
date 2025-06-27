@@ -29,8 +29,7 @@ module CarinForBlueButtonTestKit
 
       def get_reference(reference, type)
         reference_id = resource_id(reference)
-        fhir_read(type, reference_id)
-        return resource
+        fhir_read(type, reference_id)&.resource
       end
 
       run do
