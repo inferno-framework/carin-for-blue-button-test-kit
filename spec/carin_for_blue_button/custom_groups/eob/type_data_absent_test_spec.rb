@@ -1,4 +1,8 @@
+require_relative 'eob_scratch_context'
+
 RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::TypeDataAbsentTest do
+  include_context 'eob_scratch_context'
+
   let(:eob_json_string) do
     File.read(File.join(__dir__, '..', '..', '..', 'fixtures', 'c4bb_eob_inpatient_example.json'))
   end
@@ -9,10 +13,6 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::TypeDataAbsentTest do
   let(:suite_id) { 'c4bb_v200' }
   let(:url) { 'http://example.com/fhir' }
   let(:error_outcome) { FHIR::OperationOutcome.new(issue: [{ severity: 'error' }]) }
-
-  def execute_mock_test(eob_test, eob_resource)
-    run(eob_test, { url: }, { explanationofbenefit_resources: { all: [eob_resource] } })
-  end
 
   describe 'Requires EOB.type to not have a data absent reason' do
     let(:eob_type_data_absent_test) do
@@ -26,12 +26,12 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::TypeDataAbsentTest do
     let(:eob2) { FHIR.from_contents(eob_bundle_json_string).entry.first.resource }
 
     it 'passes if an outcome is complete' do
-      result = execute_mock_test(eob_type_data_absent_test, eob)
+      result = run_with_eob_scratch_context(eob_type_data_absent_test, [eob])
       expect(result.result).to eq('pass')
     end
 
     it 'fails if an outcome is not complete' do
-      result = execute_mock_test(eob_type_data_absent_test, eob2)
+      result = run_with_eob_scratch_context(eob_type_data_absent_test, [eob2])
       expect(result.result).to eq('fail')
     end
   end

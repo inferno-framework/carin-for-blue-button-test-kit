@@ -1,4 +1,8 @@
+require_relative 'eob_scratch_context'
+
 RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::OutcomeCompleteTest do
+  include_context 'eob_scratch_context'
+
   let(:eob_complete_json_string) do
     File.read(File.join(__dir__, '..', '..', '..', 'fixtures', 'c4bb_eob_inpatient_example.json'))
   end
@@ -9,15 +13,6 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::OutcomeCompleteTest do
   let(:suite_id) { 'c4bb_v200' }
   let(:url) { 'http://example.com/fhir' }
   let(:error_outcome) { FHIR::OperationOutcome.new(issue: [{ severity: 'error' }]) }
-
-  def execute_mock_test(eob_test, eob_resource)
-    allow_any_instance_of(eob_test).to receive(:scratch_resources).and_return(
-                                         {
-                                           all: [eob_resource]
-                                         }
-                                       )
-    run(eob_test, url:) # TODO scratch arg
-  end
 
   describe 'eob requiring outcome complete' do
     let(:eob_outcome_complete_test) do
@@ -31,12 +26,12 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::OutcomeCompleteTest do
     let(:eob_partial) { FHIR.from_contents(eob_partial_bundle_json_string).entry.first.resource }
 
     it 'passes if an outcome is complete' do
-      result = execute_mock_test(eob_outcome_complete_test, eob_complete)
+      result = run_with_eob_scratch_context(eob_outcome_complete_test, [eob_complete])
       expect(result.result).to eq('pass')
     end
 
     it 'fails if an outcome is not complete' do
-      result = execute_mock_test(eob_outcome_complete_test, eob_partial)
+      result = run_with_eob_scratch_context(eob_outcome_complete_test, [eob_partial])
       expect(result.result).to eq('fail')
     end
   end
