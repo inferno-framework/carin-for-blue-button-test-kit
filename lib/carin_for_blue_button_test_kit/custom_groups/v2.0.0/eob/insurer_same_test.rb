@@ -37,12 +37,19 @@ module CarinForBlueButtonTestKit
         skip_if resources.blank?,
                 "No #{resource_type} resources were returned"
 
+        skip_if !resources
+                  .map(&:insurance)
+                  .flatten
+                  .map(&:coverage)
+                  .map { |eob_insurance_coverage| get_reference(eob_insurance_coverage, :coverage) }
+                  .any?,
+                "None of the ExplanationOfBenefit resources has .insurance.coverage."
+
         resources.each do |eob|
           eob.insurance.each_with_index do |eob_insurance, index|
             eob_insurance_coverage = get_reference(eob_insurance.coverage, :coverage)
 
-            skip_if eob_insurance_coverage.nil?,
-                    "No insurance coverage found for EOB #{eob.id} insurance at index #{index}"
+            next if eob_insurance_coverage.nil?
 
             if eob_insurance.focal
               assert resource_id(eob.insurer) == resource_id(eob_insurance_coverage.payor.first),
