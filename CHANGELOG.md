@@ -1,3 +1,9 @@
+# 0.15.2
+* FI-4105: Requitement Gaps by @edeyoung in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/77
+* FI-3815 Update Test Kit with new RSpec features by @Shaumik-Ashraf in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/79
+* FI-4145: Requirements conversion by @karlnaden in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/76
+* FI-4145: Requirements Conversion Cleanup by @karlnaden in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/82
+
 # 0.15.1
 * FI-3995: Fix search template input description and regenerate by @Shaumik-Ashraf in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/72
 * FI-3813: Use core MustSupport features by @dehall in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/70
