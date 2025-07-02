@@ -25,12 +25,12 @@ RSpec.describe CarinForBlueButtonTestKit::CARIN4BBV200::TypeDataAbsentTest do
     let(:eob) { FHIR.from_contents(eob_json_string) }
     let(:eob2) { FHIR.from_contents(eob_bundle_json_string).entry.first.resource }
 
-    it 'passes if an outcome is complete' do
+    it 'passes if no data absent reason' do
       result = run_with_eob_scratch_context(eob_type_data_absent_test, [eob])
       expect(result.result).to eq('pass')
     end
 
-    it 'fails if an outcome is not complete' do
+    it 'fails if a data absent reason is used' do
       result = run_with_eob_scratch_context(eob_type_data_absent_test, [eob2])
       expect(result.result).to eq('fail')
     end
