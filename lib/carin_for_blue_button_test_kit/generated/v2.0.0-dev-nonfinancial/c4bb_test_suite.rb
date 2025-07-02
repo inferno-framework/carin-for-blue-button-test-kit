@@ -50,6 +50,14 @@ module CarinForBlueButtonTestKit
 
       id :c4bb_v200devnonfinancial
 
+      requirement_sets(
+        {
+          identifier: 'hl7.fhir.us.carin-bb_2.0.0',
+          title: 'CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®)',
+          actor: 'Health Plan',
+        }
+      )
+
       VALIDATION_MESSAGE_FILTERS = [
         /\A\S+: \S+: URL value '.*' does not resolve/
       ].freeze
