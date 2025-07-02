@@ -1,3 +1,6 @@
+# 0.15.3
+* FI-3891 - Flesh out C4BB ExplanationOfBenefit tests by @edeyoung in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/71
+
 # 0.15.2
 * FI-4105: Requitement Gaps by @edeyoung in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/77
 * FI-3815 Update Test Kit with new RSpec features by @Shaumik-Ashraf in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/79
