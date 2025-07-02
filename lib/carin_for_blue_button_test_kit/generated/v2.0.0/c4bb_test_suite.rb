@@ -102,11 +102,12 @@ module CarinForBlueButtonTestKit
             optional: true
 
         group from: :capability_statement_group do
+          
+          # re-using the stu1 group for stu2, but need to update requirements in the children to v2.0.0
           children.find { |child| child.id.ends_with?('carin_bb_instantiate') }
             .verifies_requirements('hl7.fhir.us.carin-bb_2.0.0@17')
           children.find { |child| child.id.ends_with?('carin_bb_json_support') }
             .verifies_requirements('hl7.fhir.us.carin-bb_2.0.0@98')
-            
         end
     
         group from: :c4bb_v200_patient

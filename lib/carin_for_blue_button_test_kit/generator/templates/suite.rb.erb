@@ -46,13 +46,13 @@ module CarinForBlueButtonTestKit
 
       id :<%= suite_id %>
 
-      requirement_sets(<% if module_name == "CARIN4BBV200" || module_name.include?("FINANCIAL") %>
+      <% if module_name == "CARIN4BBV200" || module_name.include?("FINANCIAL") %>requirement_sets(
         {
           identifier: 'hl7.fhir.us.carin-bb_2.0.0',
           title: 'CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®)',
           actor: 'Health Plan',
         }
-      <% end %>)
+      )<% end %>
 
       VALIDATION_MESSAGE_FILTERS = [
         /\A\S+: \S+: URL value '.*' does not resolve/
@@ -100,11 +100,12 @@ module CarinForBlueButtonTestKit
             optional: true
 
         group from: :capability_statement_group<%- if module_name == "CARIN4BBV200" -%> do
+          
+          # re-using the stu1 group for stu2, but need to update requirements in the children to v2.0.0
           children.find { |child| child.id.ends_with?('carin_bb_instantiate') }
             .verifies_requirements('hl7.fhir.us.carin-bb_2.0.0@17')
           children.find { |child| child.id.ends_with?('carin_bb_json_support') }
             .verifies_requirements('hl7.fhir.us.carin-bb_2.0.0@98')
-            
         end<% end %>
     <% group_id_list.each do |id| %>
         group from: :<%= id %><% end %>
