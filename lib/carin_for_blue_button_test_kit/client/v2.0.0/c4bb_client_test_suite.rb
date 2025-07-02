@@ -90,11 +90,6 @@ module CarinForBlueButtonTestKit
         identifier: 'hl7.fhir.us.carin-bb_2.0.0',
         title: 'CARIN IG for Blue Button® v2.0.0',
         actor: 'Consumer'
-      },
-      {
-        identifier: 'hl7.fhir.us.carin-bb_2.0.0',
-        title: 'CARIN IG for Blue Button® v2.0.0',
-        actor: 'Health Plan/Consumer'
       }
     )
 

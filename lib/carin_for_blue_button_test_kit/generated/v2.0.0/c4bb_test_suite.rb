@@ -48,6 +48,14 @@ module CarinForBlueButtonTestKit
 
       id :c4bb_v200
 
+      requirement_sets(
+        {
+          identifier: 'hl7.fhir.us.carin-bb_2.0.0',
+          title: 'CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®)',
+          actor: 'Health Plan',
+        }
+      )
+
       VALIDATION_MESSAGE_FILTERS = [
         /\A\S+: \S+: URL value '.*' does not resolve/
       ].freeze
@@ -93,7 +101,13 @@ module CarinForBlueButtonTestKit
             type: :auth_info,
             optional: true
 
-        group from: :capability_statement_group
+        group from: :capability_statement_group do
+          children.find { |child| child.id.ends_with?('carin_bb_instantiate') }
+            .verifies_requirements('hl7.fhir.us.carin-bb_2.0.0@17')
+          children.find { |child| child.id.ends_with?('carin_bb_json_support') }
+            .verifies_requirements('hl7.fhir.us.carin-bb_2.0.0@98')
+            
+        end
     
         group from: :c4bb_v200_patient
         group from: :c4bb_v200_eob
