@@ -2,10 +2,6 @@
 
 source 'https://rubygems.org'
 
-gem 'inferno_core',
-    git: 'git@github.com:inferno-framework/inferno-core.git',
-    branch: 'main'
-
 gemspec
 
 group :development, :test do
