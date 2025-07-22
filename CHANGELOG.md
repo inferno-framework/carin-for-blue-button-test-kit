@@ -1,3 +1,6 @@
+# 0.16.0
+* Update inferno_core
+
 # 0.15.3
 * FI-3891 - Flesh out C4BB ExplanationOfBenefit tests by @edeyoung in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/71
 
