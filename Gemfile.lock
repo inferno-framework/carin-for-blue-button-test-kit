@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    carin_for_blue_button_test_kit (0.15.3)
+    carin_for_blue_button_test_kit (0.16.0)
       inferno_core (~> 1.0, >= 1.0.2)
       smart_app_launch_test_kit (~> 1.0)
       udap_security_test_kit (~> 0.12.0)
