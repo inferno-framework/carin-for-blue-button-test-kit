@@ -38,32 +38,50 @@ module CarinForBlueButtonTestKit
                           'hl7.fhir.us.carin-bb_2.0.0@195',
                           'hl7.fhir.us.carin-bb_2.0.0@196'
 
+    input :amount_calculations_options,
+          title: 'Properly calculates ',
+          description: %(
+            For:
+                -  C4BB ExplanationOfBenefit Inpatient Institutional `.total.amount`
+                -  C4BB ExplanationOfBenefit Inpatient Institutional `.item.adjudication.amount`
+                -  C4BB ExplanationOfBenefit Inpatient Institutional `.adjudication.amount`
+                -  C4BB ExplanationOfBenefit Outpatient Institutional `.total.amount`
+                -  C4BB ExplanationOfBenefit Outpatient Institutional `.item.adjudication.amount`
+                -  C4BB ExplanationOfBenefit Outpatient Institutional `.adjudication.amount`
+                -  C4BB ExplanationOfBenefit Oral `.total.amount`
+                -  C4BB ExplanationOfBenefit Oral `.item.adjudication.amount`
+                -  C4BB ExplanationOfBenefit Professional NonClinician `.total.amount`
+                -  C4BB ExplanationOfBenefit Professional NonClinician `.item.adjudication.amount`
+
+              The developer of the Health IT Module attests that the Health IT Module calculates the total amount as follows:
+                  - Eligible amount = submitted amount - the noncovered amount - discount.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :amount_calculations_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
+
+
     run do
-      identifier = SecureRandom.hex(32)
-
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          For:
-            -  C4BB ExplanationOfBenefit Inpatient Institutional `.total.amount`
-            -  C4BB ExplanationOfBenefit Inpatient Institutional `.item.adjudication.amount`
-            -  C4BB ExplanationOfBenefit Inpatient Institutional `.adjudication.amount`
-            -  C4BB ExplanationOfBenefit Outpatient Institutional `.total.amount`
-            -  C4BB ExplanationOfBenefit Outpatient Institutional `.item.adjudication.amount`
-            -  C4BB ExplanationOfBenefit Outpatient Institutional `.adjudication.amount`
-            -  C4BB ExplanationOfBenefit Oral `.total.amount`
-            -  C4BB ExplanationOfBenefit Oral `.item.adjudication.amount`
-            -  C4BB ExplanationOfBenefit Professional NonClinician `.total.amount`
-            -  C4BB ExplanationOfBenefit Professional NonClinician `.item.adjudication.amount`
-
-          The developer of the Health IT Module attests that the Health IT Module calculates the total amount as follows:
-              - Eligible amount = submitted amount - the noncovered amount - discount.
-
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
-
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
-        MESSAGE
-      )
+      assert amount_calculations_options == 'true',
+             'Client application did not demonstrate correct usage of the authorization code.'
+      pass amount_calculations_note if amount_calculations_note.present?
     end
+
   end
 end

@@ -13,19 +13,37 @@ module CarinForBlueButtonTestKit
                           'hl7.fhir.us.carin-bb_2.0.0@91',
                           'hl7.fhir.us.carin-bb_2.0.0@175'
 
+    input :coverage_reference_resource_options,
+          title: 'Returns Coverage Reference Resource with correct data',
+          description: %(
+            I attest that the Health IT Module returns the Coverage Reference Resource with data that was effective as of the date of service of the claim.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :coverage_reference_resource_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
+
+
     run do
-      identifier = SecureRandom.hex(32)
-
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that the Health IT Module returns the Coverage Reference Resource with data that was effective as of the date of service of the claim.
-
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
-
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
-        MESSAGE
-      )
+      assert coverage_reference_resource_options == 'true',
+             'Client application did not demonstrate correct usage of the authorization code.'
+      pass coverage_reference_resource_note if coverage_reference_resource_note.present?
     end
+
   end
 end

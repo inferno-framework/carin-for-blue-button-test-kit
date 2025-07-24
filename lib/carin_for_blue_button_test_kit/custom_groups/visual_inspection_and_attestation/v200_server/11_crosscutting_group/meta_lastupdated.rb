@@ -21,26 +21,44 @@ module CarinForBlueButtonTestKit
                           'hl7.fhir.us.carin-bb_2.0.0@183',
                           'hl7.fhir.us.carin-bb_2.0.0@187'
 
+    input :meta_last_updated_options,
+          title: 'Properly populates ',
+          description: %(
+            For
+                - C4BB-Organization
+                - C4BB-Patient
+                - C4BB-Practitioner
+
+              The developer of the Health IT Module attests that#{' '}
+              `.meta.lastUpdated` means the last time the data was updated or the date of creation in the payer's
+              system of record, whichever comes last.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :meta_last_updated_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
+
+
     run do
-      identifier = SecureRandom.hex(32)
-
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          For
-            - C4BB-Organization
-            - C4BB-Patient
-            - C4BB-Practitioner
-
-          The developer of the Health IT Module attests that#{' '}
-          `.meta.lastUpdated` means the last time the data was updated or the date of creation in the payer's
-          system of record, whichever comes last.
-
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
-
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
-        MESSAGE
-      )
+      assert meta_last_updated_options == 'true',
+             'Client application did not demonstrate correct usage of the authorization code.'
+      pass meta_last_updated_note if meta_last_updated_note.present?
     end
+
   end
 end
