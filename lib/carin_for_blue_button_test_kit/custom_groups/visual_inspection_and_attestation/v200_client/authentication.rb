@@ -11,20 +11,39 @@ module CarinForBlueButtonTestKit
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@1',
                           'hl7.fhir.us.carin-bb_2.0.0@48'
 
+    input :c4bb_authentication_options,
+          title: 'Uses appropriate authentication',
+          description: %(
+            I attest that the Health IT Module
+              - Directed communication through authenticated, authorized, and secure channels.
+              - Used the SMART App Launch Framework’s standalone launch.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :c4bb_authentication_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
+
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that the Health IT Module
-          - Directed communication through authenticated, authorized, and secure channels.
-          - Used the SMART App Launch Framework’s standalone launch.
-
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the tester visually confirmed system **meets** these requirements.
-
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the tester visually confirmed system **does not meet** these requirements.
-        MESSAGE
-      )
+      assert c4bb_authentication_options == 'true',
+             'Client application did not demonstrate correct usage of the authorization code.'
+      pass c4bb_authentication_note if c4bb_authentication_note.present?
     end
+
   end
 end

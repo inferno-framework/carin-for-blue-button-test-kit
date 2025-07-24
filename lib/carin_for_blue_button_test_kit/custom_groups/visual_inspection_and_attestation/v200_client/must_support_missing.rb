@@ -9,19 +9,38 @@ module CarinForBlueButtonTestKit
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@6'
 
+    input :c4bb_must_support_missing_options,
+          title: 'Interprets missing Must Support data elements',
+          description: %(
+            The developer of the Health IT Module attests that the Health IT Module interpreted missing Must Support
+              data elements within resource instances as data not present in the Health Plan API actors system.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :c4bb_must_support_missing_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
+
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          The developer of the Health IT Module attests that the Health IT Module interpreted missing Must Support
-          data elements within resource instances as data not present in the Health Plan API actors system.
-
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the tester visually confirmed system **meets** this requirement.
-
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the tester visually confirmed system **does not meet** this requirement.
-        MESSAGE
-      )
+      assert c4bb_must_support_missing_options == 'true',
+             'Client application did not demonstrate correct usage of the authorization code.'
+      pass c4bb_must_support_missing_note if c4bb_must_support_missing_note.present?
     end
+
   end
 end
