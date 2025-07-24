@@ -10,18 +10,38 @@ module CarinForBlueButtonTestKit
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@19'
 
-    run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that when the `display` element is populated, the Health IT Module uses a valid display string defined
-          for that code by the code system (which may allow multiple valid display strings).
+    input :carin_server_requirement_19_attestation_options,
+          title: 'Uses code display string',
+          description: %(
+            I attest that when the `display` element is populated, the Health IT Module uses a valid display string defined
+              for that code by the code system (which may allow multiple valid display strings).
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :carin_server_requirement_19_attestation_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
-        MESSAGE
-      )
+
+
+    run do
+      assert carin_server_requirement_19_attestation_options == 'true',
+             'Client application did not demonstrate correct usage of the authorization code.'
+      pass carin_server_requirement_19_attestation_note if carin_server_requirement_19_attestation_note.present?
     end
+
   end
 end

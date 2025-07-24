@@ -15,24 +15,42 @@ module CarinForBlueButtonTestKit
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@142',
                           'hl7.fhir.us.carin-bb_2.0.0@197'
 
+    input :adjudication_amount_options,
+          title: 'Properly uses ',
+          description: %(
+            For:
+                -  C4BB ExplanationOfBenefit Inpatient Institutional `.adjudication.amount`
+                -  C4BB ExplanationOfBenefit Outpatient Institutional `.adjudication.amount`
+
+              The developer of the Health IT Module attests that the Health IT Module only populates
+              `.adjudication.amount` if `.item.adjudication` is not available.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :adjudication_amount_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
+
+
     run do
-      identifier = SecureRandom.hex(32)
-
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          For:
-            -  C4BB ExplanationOfBenefit Inpatient Institutional `.adjudication.amount`
-            -  C4BB ExplanationOfBenefit Outpatient Institutional `.adjudication.amount`
-
-          The developer of the Health IT Module attests that the Health IT Module only populates
-          `.adjudication.amount` if `.item.adjudication` is not available.
-
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
-
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
-        MESSAGE
-      )
+      assert adjudication_amount_options == 'true',
+             'Client application did not demonstrate correct usage of the authorization code.'
+      pass adjudication_amount_note if adjudication_amount_note.present?
     end
+
   end
 end

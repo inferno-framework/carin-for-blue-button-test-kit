@@ -9,18 +9,38 @@ module CarinForBlueButtonTestKit
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@10'
 
-    run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that the Health IT Module applies FHIR and US Core guidance
-          when the source system lacks data for required elements with minimum cardinality > 0.
+    input :carin_server_requirement_10_attestation_options,
+          title: 'Follows FHIR and US Core guidance when data is unavailable',
+          description: %(
+            I attest that the Health IT Module applies FHIR and US Core guidance
+              when the source system lacks data for required elements with minimum cardinality > 0.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :carin_server_requirement_10_attestation_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
-        MESSAGE
-      )
+
+
+    run do
+      assert carin_server_requirement_10_attestation_options == 'true',
+             'Client application did not demonstrate correct usage of the authorization code.'
+      pass carin_server_requirement_10_attestation_note if carin_server_requirement_10_attestation_note.present?
     end
+
   end
 end

@@ -11,21 +11,40 @@ module CarinForBlueButtonTestKit
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@153'
 
+    input :carin_server_requirement_153_attestation_options,
+          title: 'Applies oral line item subsites to associated tooth surfaces',
+          description: %(
+            I attest that all oral line item subsites (`item.subSite` repetitions) apply to all the line item's
+              associated tooth surfaces, including those specified in `item.bodySite` and `supportingInfo[additionalbodysite]`,
+              with the association established through matching `supportingInfo[additionalbodysite].sequence` values in
+              `item.informationSequence`.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :carin_server_requirement_153_attestation_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
+
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that all oral line item subsites (`item.subSite` repetitions) apply to all the line item's
-          associated tooth surfaces, including those specified in `item.bodySite` and `supportingInfo[additionalbodysite]`,
-          with the association established through matching `supportingInfo[additionalbodysite].sequence` values in
-          `item.informationSequence`.
-
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
-
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
-        MESSAGE
-      )
+      assert carin_server_requirement_153_attestation_options == 'true',
+             'Client application did not demonstrate correct usage of the authorization code.'
+      pass carin_server_requirement_153_attestation_note if carin_server_requirement_153_attestation_note.present?
     end
+
   end
 end

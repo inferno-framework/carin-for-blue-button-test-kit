@@ -9,19 +9,38 @@ module CarinForBlueButtonTestKit
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@165'
 
+    input :carin_server_requirement_165_attestation_options,
+          title: 'Adds ingredient quantity information',
+          description: %(
+            I attest that when the Compound Code is 2, and ingredient quantity information is available,
+              it is mapped to `item.detail.quantity`.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :carin_server_requirement_165_attestation_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
+
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that when the Compound Code is 2, and ingredient quantity information is available,
-          it is mapped to `item.detail.quantity`.
-
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
-
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
-        MESSAGE
-      )
+      assert carin_server_requirement_165_attestation_options == 'true',
+             'Client application did not demonstrate correct usage of the authorization code.'
+      pass carin_server_requirement_165_attestation_note if carin_server_requirement_165_attestation_note.present?
     end
+
   end
 end
