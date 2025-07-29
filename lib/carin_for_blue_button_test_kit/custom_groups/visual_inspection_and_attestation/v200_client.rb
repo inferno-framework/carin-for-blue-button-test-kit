@@ -1,3 +1,4 @@
+require_relative 'urls'
 require_relative 'v200_client/must_support_display'
 require_relative 'v200_client/must_support_missing'
 require_relative 'v200_client/must_support_absent_reason'
@@ -6,6 +7,8 @@ require_relative 'v200_client/authentication'
 
 module CarinForBlueButtonTestKit
   class CarinClientVisualInspectionAndAttestationGroup < Inferno::TestGroup
+    include URLs
+
     id :c4bb_client_v200_visual_inspection_and_attestation
 
     title 'Visual Inspection and Attestation'

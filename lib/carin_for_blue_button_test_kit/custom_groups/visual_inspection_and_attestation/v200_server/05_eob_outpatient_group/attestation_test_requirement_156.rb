@@ -20,6 +20,7 @@ module CarinForBlueButtonTestKit
           - When line item amounts are not available, claim-level amounts and amount types are provided in `EOB.header`.
 
           [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+
           [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
         MESSAGE
       )
