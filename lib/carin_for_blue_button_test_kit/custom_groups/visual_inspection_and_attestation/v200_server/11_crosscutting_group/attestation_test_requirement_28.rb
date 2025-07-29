@@ -18,6 +18,7 @@ module CarinForBlueButtonTestKit
           vocabulary standards, and code sets outlined in the specification.
 
           [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+
           [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
         MESSAGE
       )

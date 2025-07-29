@@ -18,6 +18,7 @@ module CarinForBlueButtonTestKit
           when the source system lacks data for required elements with minimum cardinality > 0.
 
           [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+
           [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
         MESSAGE
       )

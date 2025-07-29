@@ -16,6 +16,7 @@ module CarinForBlueButtonTestKit
           I attest that the Health IT Module does **not** assign a data absent reason to `ExplanationOfBenefit.type`.
 
           [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+
           [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
         MESSAGE
       )
