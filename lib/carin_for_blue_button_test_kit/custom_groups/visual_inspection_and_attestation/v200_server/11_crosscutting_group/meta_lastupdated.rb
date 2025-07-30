@@ -4,10 +4,10 @@ module CarinForBlueButtonTestKit
 
     description <<~DESCRIPTION
       For
-        - C4BB-Organization
-        - C4BB-Patient
-        - C4BB-Practitioner
-        - All reference resources within a C4BB-ExplanationOfBenefit
+      - C4BB-Organization
+      - C4BB-Patient
+      - C4BB-Practitioner
+      - All reference resources within a C4BB-ExplanationOfBenefit
 
       The Health IT Module uses `.meta.lastUpdated` to mean the last time the data was updated or the date of creation in the
       payer's system of record, whichever comes last.
@@ -22,16 +22,16 @@ module CarinForBlueButtonTestKit
                           'hl7.fhir.us.carin-bb_2.0.0@187'
 
     input :meta_last_updated_options,
-          title: 'Properly populates ',
+          title: 'Properly populates ".lastUpdated"',
           description: %(
             For
-                - C4BB-Organization
-                - C4BB-Patient
-                - C4BB-Practitioner
+            - C4BB-Organization
+            - C4BB-Patient
+            - C4BB-Practitioner
 
-              The developer of the Health IT Module attests that#{' '}
-              `.meta.lastUpdated` means the last time the data was updated or the date of creation in the payer's
-              system of record, whichever comes last.
+            The developer of the Health IT Module attests that
+            `.meta.lastUpdated` means the last time the data was updated or the date of creation in the payer's
+            system of record, whichever comes last.
           ),
           type: 'radio',
           default: 'false',
@@ -56,14 +56,14 @@ module CarinForBlueButtonTestKit
       assert meta_last_updated_options == 'true', %(
         The following was not satisfied:
 
-          For
-            - C4BB-Organization
-            - C4BB-Patient
-            - C4BB-Practitioner
-            - All reference resources within a C4BB-ExplanationOfBenefit
+        For
+        - C4BB-Organization
+        - C4BB-Patient
+        - C4BB-Practitioner
+        - All reference resources within a C4BB-ExplanationOfBenefit
 
-          The Health IT Module uses `.meta.lastUpdated` to mean the last time the data was updated or the date of creation in the
-          payer's system of record, whichever comes last.
+        The Health IT Module uses `.meta.lastUpdated` to mean the last time the data was updated or the date of creation in the
+        payer's system of record, whichever comes last.
 
       )
       pass meta_last_updated_note if meta_last_updated_note.present?

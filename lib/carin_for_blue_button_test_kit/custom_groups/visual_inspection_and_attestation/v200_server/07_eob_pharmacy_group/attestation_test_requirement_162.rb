@@ -10,7 +10,7 @@ module CarinForBlueButtonTestKit
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@162'
 
     input :carin_server_requirement_162_attestation_options,
-          title: 'Populates with ',
+          title: 'Populates with "compound" and maps correctly',
           description: %(
             I attest that when the Compound Code is 2, the `item.productOrService` element is populated with the value
               "compound" and that the ingredient information is mapped to `item.detail.productOrService.`

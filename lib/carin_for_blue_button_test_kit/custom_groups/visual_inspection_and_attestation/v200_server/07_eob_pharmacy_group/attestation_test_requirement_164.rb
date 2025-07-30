@@ -9,7 +9,7 @@ module CarinForBlueButtonTestKit
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@164'
 
     input :carin_server_requirement_164_attestation_options,
-          title: 'Populates ',
+          title: 'Populates "quantity" for all compound code values',
           description: %(
             I attest that the `item.quantity` element is populated for all Compound Code values.
           ),

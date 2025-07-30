@@ -4,8 +4,8 @@ module CarinForBlueButtonTestKit
 
     description <<~DESCRIPTION
       For:
-        -  C4BB ExplanationOfBenefit Inpatient Institutional `.adjudication.amount`
-        -  C4BB ExplanationOfBenefit Outpatient Institutional `.adjudication.amount`
+      -  C4BB ExplanationOfBenefit Inpatient Institutional `.adjudication.amount`
+      -  C4BB ExplanationOfBenefit Outpatient Institutional `.adjudication.amount`
 
       The Health IT Module must only populate `.adjudication.amount` if `.item.adjudication` is not available.
     DESCRIPTION
@@ -16,14 +16,14 @@ module CarinForBlueButtonTestKit
                           'hl7.fhir.us.carin-bb_2.0.0@197'
 
     input :adjudication_amount_options,
-          title: 'Properly uses ',
+          title: 'Properly uses ".adjudication.amount"',
           description: %(
             For:
-                -  C4BB ExplanationOfBenefit Inpatient Institutional `.adjudication.amount`
-                -  C4BB ExplanationOfBenefit Outpatient Institutional `.adjudication.amount`
+            -  C4BB ExplanationOfBenefit Inpatient Institutional `.adjudication.amount`
+            -  C4BB ExplanationOfBenefit Outpatient Institutional `.adjudication.amount`
 
-              The developer of the Health IT Module attests that the Health IT Module only populates
-              `.adjudication.amount` if `.item.adjudication` is not available.
+            The developer of the Health IT Module attests that the Health IT Module only populates
+            `.adjudication.amount` if `.item.adjudication` is not available.
           ),
           type: 'radio',
           default: 'false',
@@ -48,11 +48,11 @@ module CarinForBlueButtonTestKit
       assert adjudication_amount_options == 'true', %(
         The following was not satisfied:
 
-          For:
-            -  C4BB ExplanationOfBenefit Inpatient Institutional `.adjudication.amount`
-            -  C4BB ExplanationOfBenefit Outpatient Institutional `.adjudication.amount`
+        For:
+        -  C4BB ExplanationOfBenefit Inpatient Institutional `.adjudication.amount`
+        -  C4BB ExplanationOfBenefit Outpatient Institutional `.adjudication.amount`
 
-          The Health IT Module must only populate `.adjudication.amount` if `.item.adjudication` is not available.
+        The Health IT Module must only populate `.adjudication.amount` if `.item.adjudication` is not available.
 
       )
       pass adjudication_amount_note if adjudication_amount_note.present?

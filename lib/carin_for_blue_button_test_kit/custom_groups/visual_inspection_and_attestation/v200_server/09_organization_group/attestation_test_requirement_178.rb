@@ -10,7 +10,7 @@ module CarinForBlueButtonTestKit
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@178'
 
     input :carin_server_requirement_178_attestation_options,
-          title: 'Does not populate ',
+          title: 'Does not populate "address" when part of Billing Provider',
           description: %(
             I attest that the Health IT Module does not populate the Organization resource `address` element
               when the location where services were rendered is a component of the Billing Provider.
