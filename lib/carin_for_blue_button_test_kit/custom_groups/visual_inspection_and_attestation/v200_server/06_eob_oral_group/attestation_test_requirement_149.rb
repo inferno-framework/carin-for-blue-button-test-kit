@@ -34,17 +34,16 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_149_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_149_attestation_options == 'true', %(
-            The following was not satisfied:
+          The `item.diagnosisSequence` element references the sequence number of the associated
+          diagnosis listed in the ExplanationOfBenefit resource.
 
-            The `item.diagnosisSequence` element references the sequence number of the associated
-            diagnosis listed in the ExplanationOfBenefit resource.
-
-          )
-          pass carin_server_requirement_149_attestation_note if carin_server_requirement_149_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_149_attestation_note if carin_server_requirement_149_attestation_note.present?
+    end
 
   end
 end

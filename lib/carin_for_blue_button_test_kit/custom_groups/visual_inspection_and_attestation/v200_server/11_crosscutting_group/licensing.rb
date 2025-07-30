@@ -39,18 +39,17 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_licensing_test_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_licensing_test_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module abides by the license
+          requirements for each terminology content artifact utilized within a functioning implementation and obtained
+          terminology licenses from the Third-Party IP owner for each code system and/or other specified artifact used.
 
-            The Health IT Module abides by the license
-            requirements for each terminology content artifact utilized within a functioning implementation and obtained
-            terminology licenses from the Third-Party IP owner for each code system and/or other specified artifact used.
-
-          )
-          pass carin_licensing_test_note if carin_licensing_test_note.present?
-        end
+      )
+      pass carin_licensing_test_note if carin_licensing_test_note.present?
+    end
 
   end
 end

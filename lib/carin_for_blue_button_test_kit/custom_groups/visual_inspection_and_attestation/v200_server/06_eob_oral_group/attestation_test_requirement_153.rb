@@ -38,19 +38,18 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_153_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_153_attestation_options == 'true', %(
-            The following was not satisfied:
+          All oral line item subsites (`item.subSite` repetitions) apply to all the line item's
+          associated tooth surfaces, including those specified in `item.bodySite` and `supportingInfo[additionalbodysite]`,
+          with the association established through matching `supportingInfo[additionalbodysite].sequence` values in
+          `item.informationSequence`.
 
-            All oral line item subsites (`item.subSite` repetitions) apply to all the line item's
-            associated tooth surfaces, including those specified in `item.bodySite` and `supportingInfo[additionalbodysite]`,
-            with the association established through matching `supportingInfo[additionalbodysite].sequence` values in
-            `item.informationSequence`.
-
-          )
-          pass carin_server_requirement_153_attestation_note if carin_server_requirement_153_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_153_attestation_note if carin_server_requirement_153_attestation_note.present?
+    end
 
   end
 end

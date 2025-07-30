@@ -34,17 +34,16 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_132_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_132_attestation_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module includes the in-network or out-of-network payment status of the
+          claim within the `EOB.supportingInfo` element, as specified by the CPCDS data elements.
 
-            The Health IT Module includes the in-network or out-of-network payment status of the
-            claim within the `EOB.supportingInfo` element, as specified by the CPCDS data elements.
-
-          )
-          pass carin_server_requirement_132_attestation_note if carin_server_requirement_132_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_132_attestation_note if carin_server_requirement_132_attestation_note.present?
+    end
 
   end
 end

@@ -36,18 +36,17 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_156_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_156_attestation_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module maps CPCDS data to either `EOB.item` or `EOB.header` as appropriate:
+              - When line item amounts are available, they are provided in `EOB.item`.
+              - When line item amounts are not available, claim-level amounts and amount types are provided in `EOB.header`.
 
-            The Health IT Module maps CPCDS data to either `EOB.item` or `EOB.header` as appropriate:
-                - When line item amounts are available, they are provided in `EOB.item`.
-                - When line item amounts are not available, claim-level amounts and amount types are provided in `EOB.header`.
-
-          )
-          pass carin_server_requirement_156_attestation_note if carin_server_requirement_156_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_156_attestation_note if carin_server_requirement_156_attestation_note.present?
+    end
 
   end
 end

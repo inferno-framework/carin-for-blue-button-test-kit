@@ -36,18 +36,17 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_168_170_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_168_170_attestation_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module sequentially numbers all diagnoses at the ExplanationOfBenefit header
+          level using the `diagnosis.sequence` element. I further attest that each `item.diagnosisSequence` element
+          references the appropriate `diagnosis.sequence` number from the header-level diagnoses.
 
-            The Health IT Module sequentially numbers all diagnoses at the ExplanationOfBenefit header
-            level using the `diagnosis.sequence` element. I further attest that each `item.diagnosisSequence` element
-            references the appropriate `diagnosis.sequence` number from the header-level diagnoses.
-
-          )
-          pass carin_server_requirement_168_170_attestation_note if carin_server_requirement_168_170_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_168_170_attestation_note if carin_server_requirement_168_170_attestation_note.present?
+    end
 
   end
 end

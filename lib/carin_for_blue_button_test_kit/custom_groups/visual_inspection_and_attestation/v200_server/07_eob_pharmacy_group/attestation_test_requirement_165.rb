@@ -34,17 +34,16 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_165_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_165_attestation_options == 'true', %(
-            The following was not satisfied:
+          When the Compound Code is 2, and ingredient quantity information is available,
+          it is mapped to `item.detail.quantity`.
 
-            When the Compound Code is 2, and ingredient quantity information is available,
-            it is mapped to `item.detail.quantity`.
-
-          )
-          pass carin_server_requirement_165_attestation_note if carin_server_requirement_165_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_165_attestation_note if carin_server_requirement_165_attestation_note.present?
+    end
 
   end
 end

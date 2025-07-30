@@ -34,17 +34,16 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert c4bb_must_support_missing_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert c4bb_must_support_missing_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module must interpret missing Must Support data elements within resource instances as
+          data not present in the Health Plan API actors system.
 
-            The Health IT Module must interpret missing Must Support data elements within resource instances as
-            data not present in the Health Plan API actors system.
-
-          )
-          pass c4bb_must_support_missing_note if c4bb_must_support_missing_note.present?
-        end
+      )
+      pass c4bb_must_support_missing_note if c4bb_must_support_missing_note.present?
+    end
 
   end
 end

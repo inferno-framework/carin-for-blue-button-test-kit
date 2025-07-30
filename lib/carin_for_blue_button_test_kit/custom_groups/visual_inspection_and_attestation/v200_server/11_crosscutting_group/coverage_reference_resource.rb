@@ -37,17 +37,16 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert coverage_reference_resource_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert coverage_reference_resource_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module returns the Coverage Reference Resource with data that was effective as of the date of service of the claim.#{' '}
+          For example, the data will reflect the employer name in effect at that time.
 
-            The Health IT Module returns the Coverage Reference Resource with data that was effective as of the date of service of the claim.#{' '}
-            For example, the data will reflect the employer name in effect at that time.
-
-          )
-          pass coverage_reference_resource_note if coverage_reference_resource_note.present?
-        end
+      )
+      pass coverage_reference_resource_note if coverage_reference_resource_note.present?
+    end
 
   end
 end

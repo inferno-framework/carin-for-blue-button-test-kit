@@ -34,17 +34,16 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_9_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_9_attestation_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module omits `Must Support` data elements from the resource if the element's minimum
+          cardinality is 0 and no data is available from the source system.
 
-            The Health IT Module omits `Must Support` data elements from the resource if the element's minimum
-            cardinality is 0 and no data is available from the source system.
-
-          )
-          pass carin_server_requirement_9_attestation_note if carin_server_requirement_9_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_9_attestation_note if carin_server_requirement_9_attestation_note.present?
+    end
 
   end
 end

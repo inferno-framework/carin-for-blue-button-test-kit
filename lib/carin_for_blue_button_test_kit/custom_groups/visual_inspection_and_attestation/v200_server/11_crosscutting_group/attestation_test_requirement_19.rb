@@ -35,18 +35,17 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_19_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_19_attestation_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module ensures that when the `display` element is populated,
+          it contains one of the display strings defined for the associated code
+          in the code system.
 
-            The Health IT Module ensures that when the `display` element is populated,
-            it contains one of the display strings defined for the associated code
-            in the code system.
-
-          )
-          pass carin_server_requirement_19_attestation_note if carin_server_requirement_19_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_19_attestation_note if carin_server_requirement_19_attestation_note.present?
+    end
 
   end
 end

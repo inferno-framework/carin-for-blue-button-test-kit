@@ -32,16 +32,15 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_164_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_164_attestation_options == 'true', %(
-            The following was not satisfied:
+          The `item.quantity` element is populated for all Compound Code values.
 
-            The `item.quantity` element is populated for all Compound Code values.
-
-          )
-          pass carin_server_requirement_164_attestation_note if carin_server_requirement_164_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_164_attestation_note if carin_server_requirement_164_attestation_note.present?
+    end
 
   end
 end

@@ -34,17 +34,16 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_151_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_151_attestation_options == 'true', %(
-            The following was not satisfied:
+          The primary body site for each line item (tooth or oral cavity) is specified in the
+          `item.bodySite` element of the ExplanationOfBenefit resource.
 
-            The primary body site for each line item (tooth or oral cavity) is specified in the
-            `item.bodySite` element of the ExplanationOfBenefit resource.
-
-          )
-          pass carin_server_requirement_151_attestation_note if carin_server_requirement_151_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_151_attestation_note if carin_server_requirement_151_attestation_note.present?
+    end
 
   end
 end

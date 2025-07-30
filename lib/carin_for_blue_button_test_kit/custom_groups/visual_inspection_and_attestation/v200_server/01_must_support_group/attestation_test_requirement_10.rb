@@ -34,17 +34,16 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_10_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_10_attestation_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module follows the FHIR core specification and US Core guidance when no data is available
+          for required data elements (minimum cardinality > 0).
 
-            The Health IT Module follows the FHIR core specification and US Core guidance when no data is available
-            for required data elements (minimum cardinality > 0).
-
-          )
-          pass carin_server_requirement_10_attestation_note if carin_server_requirement_10_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_10_attestation_note if carin_server_requirement_10_attestation_note.present?
+    end
 
   end
 end

@@ -52,23 +52,22 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert meta_last_updated_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert meta_last_updated_options == 'true', %(
-            The following was not satisfied:
+          For
+            - C4BB-Organization
+            - C4BB-Patient
+            - C4BB-Practitioner
+            - All reference resources within a C4BB-ExplanationOfBenefit
 
-            For
-              - C4BB-Organization
-              - C4BB-Patient
-              - C4BB-Practitioner
-              - All reference resources within a C4BB-ExplanationOfBenefit
+          The Health IT Module uses `.meta.lastUpdated` to mean the last time the data was updated or the date of creation in the
+          payer's system of record, whichever comes last.
 
-            The Health IT Module uses `.meta.lastUpdated` to mean the last time the data was updated or the date of creation in the
-            payer's system of record, whichever comes last.
-
-          )
-          pass meta_last_updated_note if meta_last_updated_note.present?
-        end
+      )
+      pass meta_last_updated_note if meta_last_updated_note.present?
+    end
 
   end
 end

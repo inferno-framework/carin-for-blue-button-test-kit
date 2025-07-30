@@ -36,18 +36,17 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_130_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_130_attestation_options == 'true', %(
-            The following was not satisfied:
+          If line item amounts are not available, the Health IT Module provides the claim amounts
+          and corresponding amount types in the ExplanationOfBenefit (EOB) header data elements, as specified
+          by the CPCDS data elements.
 
-            If line item amounts are not available, the Health IT Module provides the claim amounts
-            and corresponding amount types in the ExplanationOfBenefit (EOB) header data elements, as specified
-            by the CPCDS data elements.
-
-          )
-          pass carin_server_requirement_130_attestation_note if carin_server_requirement_130_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_130_attestation_note if carin_server_requirement_130_attestation_note.present?
+    end
 
   end
 end

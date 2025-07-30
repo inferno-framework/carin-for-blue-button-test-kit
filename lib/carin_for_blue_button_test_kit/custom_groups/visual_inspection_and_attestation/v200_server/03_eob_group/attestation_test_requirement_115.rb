@@ -32,16 +32,15 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_115_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_115_attestation_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module does not assign a data absent reason to the `ExplanationOfBenefit.type` element.
 
-            The Health IT Module does not assign a data absent reason to the `ExplanationOfBenefit.type` element.
-
-          )
-          pass carin_server_requirement_115_attestation_note if carin_server_requirement_115_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_115_attestation_note if carin_server_requirement_115_attestation_note.present?
+    end
 
   end
 end

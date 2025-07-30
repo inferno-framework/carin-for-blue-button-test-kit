@@ -36,18 +36,17 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_152_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_152_attestation_options == 'true', %(
-            The following was not satisfied:
+          Additional body sites (tooth or oral cavity) are specified in `supportingInfo[additionalbodysite]`
+          elements, and that each `supportingInfo[additionalbodysite].sequence` matches the associated line item's
+          `item.informationSequence`.
 
-            Additional body sites (tooth or oral cavity) are specified in `supportingInfo[additionalbodysite]`
-            elements, and that each `supportingInfo[additionalbodysite].sequence` matches the associated line item's
-            `item.informationSequence`.
-
-          )
-          pass carin_server_requirement_152_attestation_note if carin_server_requirement_152_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_152_attestation_note if carin_server_requirement_152_attestation_note.present?
+    end
 
   end
 end

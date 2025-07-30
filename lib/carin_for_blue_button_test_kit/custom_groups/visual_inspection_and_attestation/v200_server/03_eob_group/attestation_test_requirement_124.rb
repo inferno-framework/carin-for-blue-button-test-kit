@@ -46,21 +46,20 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_124_125_127_128_129_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_124_125_127_128_129_attestation_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module:
+          - Only assigns `True` to `.insurance.focal` when the insurance matches the `ExplanationOfBenefit.insurer`,
+          - Ensures that when `focal = true`, `Coverage.payor` is the same as `EOB.insurer`,
+          - When `focal = true`, sets `Coverage.payor` to an Organization identifier,
+          - When `focal = false`, sets `insurance.coverage.display` to the name of the other carrier,
+          - Populates `insurance.coverage` the same as `insurance.coverage.organization`.
 
-            The Health IT Module:
-            - Only assigns `True` to `.insurance.focal` when the insurance matches the `ExplanationOfBenefit.insurer`,
-            - Ensures that when `focal = true`, `Coverage.payor` is the same as `EOB.insurer`,
-            - When `focal = true`, sets `Coverage.payor` to an Organization identifier,
-            - When `focal = false`, sets `insurance.coverage.display` to the name of the other carrier,
-            - Populates `insurance.coverage` the same as `insurance.coverage.organization`.
-
-          )
-          pass carin_server_requirement_124_125_127_128_129_attestation_note if carin_server_requirement_124_125_127_128_129_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_124_125_127_128_129_attestation_note if carin_server_requirement_124_125_127_128_129_attestation_note.present?
+    end
 
   end
 end

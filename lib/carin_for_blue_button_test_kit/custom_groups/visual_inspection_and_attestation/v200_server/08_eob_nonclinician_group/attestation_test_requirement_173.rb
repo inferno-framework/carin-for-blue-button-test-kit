@@ -36,18 +36,17 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_173_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_173_attestation_options == 'true', %(
-            The following was not satisfied:
+          Every `supportingInfo` repetition with a Transportation Services Category code is associated
+          with at least one ExplanationOfBenefit line item by referencing `supportingInfo.sequence` through the
+          `item.informationSequence` element.
 
-            Every `supportingInfo` repetition with a Transportation Services Category code is associated
-            with at least one ExplanationOfBenefit line item by referencing `supportingInfo.sequence` through the
-            `item.informationSequence` element.
-
-          )
-          pass carin_server_requirement_173_attestation_note if carin_server_requirement_173_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_173_attestation_note if carin_server_requirement_173_attestation_note.present?
+    end
 
   end
 end

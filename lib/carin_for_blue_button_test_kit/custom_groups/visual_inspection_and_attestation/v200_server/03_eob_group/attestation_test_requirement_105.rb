@@ -36,18 +36,17 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_105_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_105_attestation_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module uses versioned references when an ExplanationOfBenefit
+          references another resource whenever point-in-time data is maintained, reflecting the data
+          effective as of the date of service or admission on the claim.
 
-            The Health IT Module uses versioned references when an ExplanationOfBenefit
-            references another resource whenever point-in-time data is maintained, reflecting the data
-            effective as of the date of service or admission on the claim.
-
-          )
-          pass carin_server_requirement_105_attestation_note if carin_server_requirement_105_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_105_attestation_note if carin_server_requirement_105_attestation_note.present?
+    end
 
   end
 end

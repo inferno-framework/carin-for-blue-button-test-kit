@@ -36,18 +36,17 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_5_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_5_attestation_options == 'true', %(
-            The following was not satisfied:
+          In situations where information for a particular data element is not present and
+          the reason for its absence is unknown, the Health IT Module does not include the data element in
+          the resource instance returned as part of the query results.
 
-            In situations where information for a particular data element is not present and
-            the reason for its absence is unknown, the Health IT Module does not include the data element in
-            the resource instance returned as part of the query results.
-
-          )
-          pass carin_server_requirement_5_attestation_note if carin_server_requirement_5_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_5_attestation_note if carin_server_requirement_5_attestation_note.present?
+    end
 
   end
 end

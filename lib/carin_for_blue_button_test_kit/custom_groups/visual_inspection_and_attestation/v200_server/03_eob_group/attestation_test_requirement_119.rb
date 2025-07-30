@@ -38,19 +38,18 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_119_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_119_attestation_options == 'true', %(
-            The following was not satisfied:
+          When an ExplanationOfBenefit resource returned by the Health IT Module
+          has been adjusted by another ExplanationOfBenefit,
+          the `.related.reference` field is populated with the identifier of the adjusting ExplanationOfBenefit,
+          and the `.related.relationship` field is assigned the value `replacedby`.
 
-            When an ExplanationOfBenefit resource returned by the Health IT Module
-            has been adjusted by another ExplanationOfBenefit,
-            the `.related.reference` field is populated with the identifier of the adjusting ExplanationOfBenefit,
-            and the `.related.relationship` field is assigned the value `replacedby`.
-
-          )
-          pass carin_server_requirement_119_attestation_note if carin_server_requirement_119_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_119_attestation_note if carin_server_requirement_119_attestation_note.present?
+    end
 
   end
 end

@@ -37,18 +37,17 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert c4bb_authentication_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert c4bb_authentication_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module must
+          - Direct communication through authenticated, authorized, and secure channels.
+          - Use the SMART App Launch Framework’s standalone launch.
 
-            The Health IT Module must
-            - Direct communication through authenticated, authorized, and secure channels.
-            - Use the SMART App Launch Framework’s standalone launch.
-
-          )
-          pass c4bb_authentication_note if c4bb_authentication_note.present?
-        end
+      )
+      pass c4bb_authentication_note if c4bb_authentication_note.present?
+    end
 
   end
 end

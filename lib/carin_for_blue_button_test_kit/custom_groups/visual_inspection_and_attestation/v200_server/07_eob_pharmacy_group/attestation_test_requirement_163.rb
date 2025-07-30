@@ -34,17 +34,16 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_163_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_163_attestation_options == 'true', %(
-            The following was not satisfied:
+          Both `item.productOrService` and `item.detail.productOrService` elements are populated with
+          an 11-digit NDC code.
 
-            Both `item.productOrService` and `item.detail.productOrService` elements are populated with
-            an 11-digit NDC code.
-
-          )
-          pass carin_server_requirement_163_attestation_note if carin_server_requirement_163_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_163_attestation_note if carin_server_requirement_163_attestation_note.present?
+    end
 
   end
 end

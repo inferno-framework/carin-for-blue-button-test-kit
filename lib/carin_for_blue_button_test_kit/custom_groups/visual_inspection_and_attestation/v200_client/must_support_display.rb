@@ -33,16 +33,15 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert c4bb_must_support_display_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert c4bb_must_support_display_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module must be capable of displaying all Must Support data elements.
 
-            The Health IT Module must be capable of displaying all Must Support data elements.
-
-          )
-          pass c4bb_must_support_display_note if c4bb_must_support_display_note.present?
-        end
+      )
+      pass c4bb_must_support_display_note if c4bb_must_support_display_note.present?
+    end
 
   end
 end

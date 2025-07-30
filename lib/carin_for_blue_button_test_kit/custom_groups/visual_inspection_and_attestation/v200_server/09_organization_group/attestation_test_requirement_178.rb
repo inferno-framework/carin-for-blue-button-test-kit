@@ -34,17 +34,16 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_178_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_178_attestation_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module does not populate the Organization resource `address` element
+          when the location where services were rendered is a component of the Billing Provider.
 
-            The Health IT Module does not populate the Organization resource `address` element
-            when the location where services were rendered is a component of the Billing Provider.
-
-          )
-          pass carin_server_requirement_178_attestation_note if carin_server_requirement_178_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_178_attestation_note if carin_server_requirement_178_attestation_note.present?
+    end
 
   end
 end

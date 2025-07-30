@@ -33,16 +33,15 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert c4bb_must_support_absent_reason_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert c4bb_must_support_absent_reason_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module must process Must Support elements that assert missing information.
 
-            The Health IT Module must process Must Support elements that assert missing information.
-
-          )
-          pass c4bb_must_support_absent_reason_note if c4bb_must_support_absent_reason_note.present?
-        end
+      )
+      pass c4bb_must_support_absent_reason_note if c4bb_must_support_absent_reason_note.present?
+    end
 
   end
 end

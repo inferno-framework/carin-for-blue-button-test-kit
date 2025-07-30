@@ -34,17 +34,16 @@ module CarinForBlueButtonTestKit
           type: 'textarea',
           optional: true
 
+    run do
+      assert carin_server_requirement_186_attestation_options == 'true', %(
+        The following was not satisfied:
 
-        run do
-          assert carin_server_requirement_186_attestation_options == 'true', %(
-            The following was not satisfied:
+          The Health IT Module populates the Practitioner resource with at least one identifier,
+          either an NPI or a Tax ID.
 
-            The Health IT Module populates the Practitioner resource with at least one identifier,
-            either an NPI or a Tax ID.
-
-          )
-          pass carin_server_requirement_186_attestation_note if carin_server_requirement_186_attestation_note.present?
-        end
+      )
+      pass carin_server_requirement_186_attestation_note if carin_server_requirement_186_attestation_note.present?
+    end
 
   end
 end
