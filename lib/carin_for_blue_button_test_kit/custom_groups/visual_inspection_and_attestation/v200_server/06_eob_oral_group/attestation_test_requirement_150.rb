@@ -37,12 +37,17 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_150_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_150_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_150_attestation_note if carin_server_requirement_150_attestation_note.present?
-    end
+            The `item.productOrService` element in an oral ExplanationOfBenefit resource
+            is populated with CPT or HCPCS procedure codes as CodeableConcept values, and that revenue
+            codes are not used for oral claims.
+
+          )
+          pass carin_server_requirement_150_attestation_note if carin_server_requirement_150_attestation_note.present?
+        end
 
   end
 end

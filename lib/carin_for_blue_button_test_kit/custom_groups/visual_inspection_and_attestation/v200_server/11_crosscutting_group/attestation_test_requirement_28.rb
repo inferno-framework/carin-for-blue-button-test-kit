@@ -35,12 +35,16 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_28_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_28_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_28_attestation_note if carin_server_requirement_28_attestation_note.present?
-    end
+            The Health IT Module ensures that data representing the Common Payer Consumer Data Set (CPCDS)
+            conforms to the specified profiles, vocabulary standards, and code sets required by the specification.
+
+          )
+          pass carin_server_requirement_28_attestation_note if carin_server_requirement_28_attestation_note.present?
+        end
 
   end
 end

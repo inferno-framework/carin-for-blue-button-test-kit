@@ -39,12 +39,18 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_118_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_118_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_118_attestation_note if carin_server_requirement_118_attestation_note.present?
-    end
+            When an ExplanationOfBenefit resource returned by the Health IT Module
+            adjusts a prior ExplanationOfBenefit, the `.related.reference`
+            field is populated with the identifier of the prior ExplanationOfBenefit, and the `.related.relationship` field
+            is assigned the value `prior`.
+
+          )
+          pass carin_server_requirement_118_attestation_note if carin_server_requirement_118_attestation_note.present?
+        end
 
   end
 end

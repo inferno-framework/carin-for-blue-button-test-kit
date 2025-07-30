@@ -58,12 +58,25 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_48_57_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_48_57_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_48_57_attestation_note if carin_server_requirement_48_57_attestation_note.present?
-    end
+            The Health IT Module
+            - Enables members to direct the communication of CARIN4BB data through authenticated, authorized, and secure channels.
+            - Protects CARIN4BB data with proper security and privacy protections to avoid malicious or unintentional exposure of
+              such information.
+            - Secures all consumer-directed payer data exchanges in transit and limits access only to authorized individuals.
+            - Ensures that APIs fully and successfully implement privacy and security features such as, but not limited to, those
+              required to comply with HIPAA privacy and security requirements and other applicable law protecting the privacy and
+              security of protected health information.
+            - Uses either current or the immediately prior release of Transport Level Security (TLS) as specified by the current release
+              of NIST guidelines (SP 800-52).
+            - Supports the FHIR US Core [Patient Privacy and Security requirements](https://www.hl7.org/fhir/us/core/security.html).
+
+          )
+          pass carin_server_requirement_48_57_attestation_note if carin_server_requirement_48_57_attestation_note.present?
+        end
 
   end
 end

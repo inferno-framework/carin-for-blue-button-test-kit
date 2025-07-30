@@ -38,12 +38,16 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert coverage_reference_resource_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert coverage_reference_resource_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass coverage_reference_resource_note if coverage_reference_resource_note.present?
-    end
+            The Health IT Module returns the Coverage Reference Resource with data that was effective as of the date of service of the claim.#{' '}
+            For example, the data will reflect the employer name in effect at that time.
+
+          )
+          pass coverage_reference_resource_note if coverage_reference_resource_note.present?
+        end
 
   end
 end

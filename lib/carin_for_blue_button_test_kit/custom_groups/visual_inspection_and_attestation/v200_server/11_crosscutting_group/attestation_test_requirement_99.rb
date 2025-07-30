@@ -35,12 +35,16 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_99_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_99_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_99_attestation_note if carin_server_requirement_99_attestation_note.present?
-    end
+            The Health IT Module includes the appropriate CARIN-BB profile URL(s) in the `meta.profile` field
+            of each FHIR resource instance it returns.
+
+          )
+          pass carin_server_requirement_99_attestation_note if carin_server_requirement_99_attestation_note.present?
+        end
 
   end
 end

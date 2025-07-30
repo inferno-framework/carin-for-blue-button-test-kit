@@ -49,12 +49,23 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_97_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_97_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_97_attestation_note if carin_server_requirement_97_attestation_note.present?
-    end
+            The Health IT Module returns the following response classes:
+            - (Status 400): invalid parameter
+            - (Status 401/4xx): unauthorized request
+            - (Status 403): insufficient scope
+            - (Status 404): unknown resource
+            - (Status 410): deleted resource
+
+            The Health IT Module rejects any unauthorized request by returning an HTTP 401 "Unauthorized", HTTP 403 "Forbidden",
+            or HTTP 404 "Not Found".
+
+          )
+          pass carin_server_requirement_97_attestation_note if carin_server_requirement_97_attestation_note.present?
+        end
 
   end
 end

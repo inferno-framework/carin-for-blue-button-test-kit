@@ -37,12 +37,17 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_152_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_152_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_152_attestation_note if carin_server_requirement_152_attestation_note.present?
-    end
+            Additional body sites (tooth or oral cavity) are specified in `supportingInfo[additionalbodysite]`
+            elements, and that each `supportingInfo[additionalbodysite].sequence` matches the associated line item's
+            `item.informationSequence`.
+
+          )
+          pass carin_server_requirement_152_attestation_note if carin_server_requirement_152_attestation_note.present?
+        end
 
   end
 end

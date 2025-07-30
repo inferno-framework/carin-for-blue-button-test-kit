@@ -39,12 +39,18 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_7_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_7_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_7_attestation_note if carin_server_requirement_7_attestation_note.present?
-    end
+            When a Must Support element is missing and the reason for the absence is known,
+            the Health IT Module includes a reason using either:
+            - a value such as a nullFlavor from the relevant value set, or  
+            - the `dataAbsentReason` extension.
+
+          )
+          pass carin_server_requirement_7_attestation_note if carin_server_requirement_7_attestation_note.present?
+        end
 
   end
 end

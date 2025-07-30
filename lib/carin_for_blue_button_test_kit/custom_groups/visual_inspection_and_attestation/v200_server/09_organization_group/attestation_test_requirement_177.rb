@@ -37,12 +37,17 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_177_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_177_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_177_attestation_note if carin_server_requirement_177_attestation_note.present?
-    end
+            The Health IT Module populates the Service Facility `identifier[NPI]` in the
+            Organization resource when assigned, and uses the value 'NPI has not been assigned' when no
+            NPI has been assigned to the Service Location Organization.
+
+          )
+          pass carin_server_requirement_177_attestation_note if carin_server_requirement_177_attestation_note.present?
+        end
 
   end
 end

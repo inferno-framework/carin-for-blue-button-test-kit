@@ -35,12 +35,16 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_149_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_149_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_149_attestation_note if carin_server_requirement_149_attestation_note.present?
-    end
+            The `item.diagnosisSequence` element references the sequence number of the associated
+            diagnosis listed in the ExplanationOfBenefit resource.
+
+          )
+          pass carin_server_requirement_149_attestation_note if carin_server_requirement_149_attestation_note.present?
+        end
 
   end
 end

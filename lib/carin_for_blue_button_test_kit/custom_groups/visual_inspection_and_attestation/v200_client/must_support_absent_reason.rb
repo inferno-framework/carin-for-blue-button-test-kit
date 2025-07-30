@@ -34,12 +34,15 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert c4bb_must_support_absent_reason_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert c4bb_must_support_absent_reason_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass c4bb_must_support_absent_reason_note if c4bb_must_support_absent_reason_note.present?
-    end
+            The Health IT Module must process Must Support elements that assert missing information.
+
+          )
+          pass c4bb_must_support_absent_reason_note if c4bb_must_support_absent_reason_note.present?
+        end
 
   end
 end

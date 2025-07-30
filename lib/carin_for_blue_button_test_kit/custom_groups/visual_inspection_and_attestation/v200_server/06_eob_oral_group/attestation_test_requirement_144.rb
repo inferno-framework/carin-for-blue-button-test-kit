@@ -42,12 +42,18 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_144_145_146_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_144_145_146_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_144_145_146_attestation_note if carin_server_requirement_144_145_146_attestation_note.present?
-    end
+            The Health IT Module maps CPCDS data elements to:
+            - `EOB.item` for line item amounts, amount types, and network status,
+            - `EOB.total` for claim-level totals,
+            - `C4BB Payer Benefit Payment Status` is set to 'Other' when lines are both in-network and out-of-network.
+
+          )
+          pass carin_server_requirement_144_145_146_attestation_note if carin_server_requirement_144_145_146_attestation_note.present?
+        end
 
   end
 end

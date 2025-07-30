@@ -37,12 +37,17 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_108_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_108_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_108_attestation_note if carin_server_requirement_108_attestation_note.present?
-    end
+            The Health IT Module supports both versioned and non-versioned ExplanationOfBenefit
+            reference approaches when referencing another resource,
+            and returns the same content for referenced resources in either case.
+
+          )
+          pass carin_server_requirement_108_attestation_note if carin_server_requirement_108_attestation_note.present?
+        end
 
   end
 end

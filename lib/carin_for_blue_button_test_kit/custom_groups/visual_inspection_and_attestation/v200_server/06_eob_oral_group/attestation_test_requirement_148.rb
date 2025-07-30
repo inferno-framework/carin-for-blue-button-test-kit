@@ -37,12 +37,17 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_148_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_148_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_148_attestation_note if carin_server_requirement_148_attestation_note.present?
-    end
+            The Health Plan API populates `supportingInfo[service`facility`] with the name, full address,
+            and identifier of the facility where services were rendered, when that facility differs from the Billing or
+            Rendering Provider.
+
+          )
+          pass carin_server_requirement_148_attestation_note if carin_server_requirement_148_attestation_note.present?
+        end
 
   end
 end

@@ -38,12 +38,17 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert c4bb_authentication_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert c4bb_authentication_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass c4bb_authentication_note if c4bb_authentication_note.present?
-    end
+            The Health IT Module must
+            - Direct communication through authenticated, authorized, and secure channels.
+            - Use the SMART App Launch Framework’s standalone launch.
+
+          )
+          pass c4bb_authentication_note if c4bb_authentication_note.present?
+        end
 
   end
 end

@@ -42,12 +42,18 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_157_158_159_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_157_158_159_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_157_158_159_attestation_note if carin_server_requirement_157_158_159_attestation_note.present?
-    end
+            The Health IT Module:
+            - Defines CPT, HCPCS, or HIPPS codes in `item.productOrService` as CodeableConcepts,
+            - Ensures `item.productOrService` is populated whenever `.item` is present,
+            - Enforces a cardinality of 1..1 for `item.productOrService`.
+
+          )
+          pass carin_server_requirement_157_158_159_attestation_note if carin_server_requirement_157_158_159_attestation_note.present?
+        end
 
   end
 end

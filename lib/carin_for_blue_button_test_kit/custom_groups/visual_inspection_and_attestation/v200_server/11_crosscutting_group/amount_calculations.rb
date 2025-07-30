@@ -76,12 +76,34 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert amount_calculations_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert amount_calculations_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass amount_calculations_note if amount_calculations_note.present?
-    end
+            For:
+              -  C4BB ExplanationOfBenefit Inpatient Institutional `.total.amount`
+              -  C4BB ExplanationOfBenefit Inpatient Institutional `.item.adjudication.amount`
+              -  C4BB ExplanationOfBenefit Inpatient Institutional `.adjudication.amount`
+              -  C4BB ExplanationOfBenefit Outpatient Institutional `.total.amount`
+              -  C4BB ExplanationOfBenefit Outpatient Institutional `.item.adjudication.amount`
+              -  C4BB ExplanationOfBenefit Outpatient Institutional `.adjudication.amount`
+              -  C4BB ExplanationOfBenefit Oral `.total.amount`
+              -  C4BB ExplanationOfBenefit Oral `.item.adjudication.amount`
+              -  C4BB ExplanationOfBenefit Professional NonClinician `.total.amount`
+              -  C4BB ExplanationOfBenefit Professional NonClinician `.item.adjudication.amount`
+
+            The Health IT Module calculates the total amount as follows:
+                 - Eligible amount = submitted amount - the noncovered amount - discount.
+
+            The subscriber pays the member liability = deductible + coinsurance + copay + noncovered.
+
+            (Part of the member liability may have already been paid to the provider as paidbypatient).
+
+            The eligible amount - the member liability is the payment amount to the provider (paidtoprovider) or the subscriber (paidtopatient).
+
+          )
+          pass amount_calculations_note if amount_calculations_note.present?
+        end
 
   end
 end

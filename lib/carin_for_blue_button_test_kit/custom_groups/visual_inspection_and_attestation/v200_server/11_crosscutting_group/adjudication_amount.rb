@@ -45,12 +45,19 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert adjudication_amount_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert adjudication_amount_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass adjudication_amount_note if adjudication_amount_note.present?
-    end
+            For:
+              -  C4BB ExplanationOfBenefit Inpatient Institutional `.adjudication.amount`
+              -  C4BB ExplanationOfBenefit Outpatient Institutional `.adjudication.amount`
+
+            The Health IT Module must only populate `.adjudication.amount` if `.item.adjudication` is not available.
+
+          )
+          pass adjudication_amount_note if adjudication_amount_note.present?
+        end
 
   end
 end

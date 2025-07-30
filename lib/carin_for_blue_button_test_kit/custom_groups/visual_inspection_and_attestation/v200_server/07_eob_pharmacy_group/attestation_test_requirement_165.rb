@@ -35,12 +35,16 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert carin_server_requirement_165_attestation_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert carin_server_requirement_165_attestation_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass carin_server_requirement_165_attestation_note if carin_server_requirement_165_attestation_note.present?
-    end
+            When the Compound Code is 2, and ingredient quantity information is available,
+            it is mapped to `item.detail.quantity`.
+
+          )
+          pass carin_server_requirement_165_attestation_note if carin_server_requirement_165_attestation_note.present?
+        end
 
   end
 end

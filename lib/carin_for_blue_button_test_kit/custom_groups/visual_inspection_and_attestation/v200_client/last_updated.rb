@@ -39,12 +39,16 @@ module CarinForBlueButtonTestKit
           optional: true
 
 
+        run do
+          assert c4bb_last_updated_options == 'true', %(
+            The following was not satisfied:
 
-    run do
-      assert c4bb_last_updated_options == 'true',
-             'Client application did not demonstrate correct usage of the authorization code.'
-      pass c4bb_last_updated_note if c4bb_last_updated_note.present?
-    end
+            The Health IT Module must use the meta.lastUpdated value to determine if the associated data is
+            accurate as of the date of service or as of the current date.
+
+          )
+          pass c4bb_last_updated_note if c4bb_last_updated_note.present?
+        end
 
   end
 end
