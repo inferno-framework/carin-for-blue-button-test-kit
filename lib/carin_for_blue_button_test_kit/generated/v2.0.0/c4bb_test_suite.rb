@@ -117,9 +117,15 @@ module CarinForBlueButtonTestKit
         group from: :c4bb_v200_practitioner
         group from: :c4bb_v200_related_person
       end
-      group from: :c4bb_server_v200_visual_inspection_and_attestation do
-        optional
+      group from: :c4bb_server_v200_visual_inspection_and_attestation,
+        optional: true
+
+      def self.recursive_remove_input(runnable, input)
+          runnable.inputs.delete(input)
+          runnable.input_order.delete(input)
+          runnable.children.each { |child_runnable| recursive_remove_input(child_runnable, input) }
       end
+      recursive_remove_input(groups.last, :url)
     end
   end
 end
