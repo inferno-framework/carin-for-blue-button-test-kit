@@ -1,4 +1,3 @@
-require_relative 'urls'
 require_relative 'v200_server/00_authorization_group'
 require_relative 'v200_server/01_must_support_group'
 require_relative 'v200_server/03_eob_group'
@@ -13,8 +12,6 @@ require_relative 'v200_server/11_crosscutting_group'
 
 module CarinForBlueButtonTestKit
   class CarinServerVisualInspectionAndAttestationGroup < Inferno::TestGroup
-    include URLs
-
     id :c4bb_server_v200_visual_inspection_and_attestation
 
     title 'Visual Inspection and Attestation'
