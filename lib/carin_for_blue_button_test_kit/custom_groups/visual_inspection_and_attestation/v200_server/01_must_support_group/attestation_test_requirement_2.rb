@@ -10,20 +10,43 @@ module CarinForBlueButtonTestKit
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@2'
 
+    input :carin_server_requirement_2_attestation_options,
+          title: 'Returns maintained data',
+          description: %(
+            I attest that the Health IT Module is capable of populating and returning all data elements maintained
+              by the payer as part of the query results, as specified by the CARIN Blue Button Health Plan API
+              CapabilityStatement.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :carin_server_requirement_2_attestation_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that the Health IT Module is capable of populating and returning all data elements maintained
+      assert carin_server_requirement_2_attestation_options == 'true', %(
+        The following was not satisfied:
+
+          The Health IT Module is capable of populating and returning all data elements maintained
           by the payer as part of the query results, as specified by the CARIN Blue Button Health Plan API
           CapabilityStatement.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
-
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
-        MESSAGE
       )
+      pass carin_server_requirement_2_attestation_note if carin_server_requirement_2_attestation_note.present?
     end
+
   end
 end

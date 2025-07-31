@@ -13,19 +13,41 @@ module CarinForBlueButtonTestKit
                           'hl7.fhir.us.carin-bb_2.0.0@184',
                           'hl7.fhir.us.carin-bb_2.0.0@188'
 
+    input :c4bb_last_updated_options,
+          title: 'Uses meta.lastUpdated value appropriately',
+          description: %(
+            The developer of the Health IT Module attests that the Health IT Module used the
+              meta.lastUpdated value to determine if the associated data is accurate as of the date of service or as of the current date.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :c4bb_last_updated_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          The developer of the Health IT Module attests that the Health IT Module used the
-          meta.lastUpdated value to determine if the associated data is accurate as of the date of service or as of the current date.
+      assert c4bb_last_updated_options == 'true', %(
+        The following was not satisfied:
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the tester visually confirmed system **meets** these requirements.
+          The Health IT Module must use the meta.lastUpdated value to determine if the associated data is
+          accurate as of the date of service or as of the current date.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the tester visually confirmed system **does not meet** these requirements.
-        MESSAGE
       )
+      pass c4bb_last_updated_note if c4bb_last_updated_note.present?
     end
+
   end
 end

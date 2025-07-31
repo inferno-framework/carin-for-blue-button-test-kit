@@ -9,19 +9,41 @@ module CarinForBlueButtonTestKit
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@132'
 
+    input :carin_server_requirement_132_attestation_options,
+          title: 'Includes in-network or out-of-network payment status',
+          description: %(
+            I attest that the Health IT Module includes the in-network or out-of-network payment status of the
+              claim within the `EOB.supportingInfo` element, as specified by the CPCDS data elements.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :carin_server_requirement_132_attestation_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that the Health IT Module includes the in-network or out-of-network payment status of the
+      assert carin_server_requirement_132_attestation_options == 'true', %(
+        The following was not satisfied:
+
+          The Health IT Module includes the in-network or out-of-network payment status of the
           claim within the `EOB.supportingInfo` element, as specified by the CPCDS data elements.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
-
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
-        MESSAGE
       )
+      pass carin_server_requirement_132_attestation_note if carin_server_requirement_132_attestation_note.present?
     end
+
   end
 end

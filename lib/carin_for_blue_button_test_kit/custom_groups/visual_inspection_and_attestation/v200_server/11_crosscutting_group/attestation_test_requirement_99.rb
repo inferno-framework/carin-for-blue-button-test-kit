@@ -9,19 +9,41 @@ module CarinForBlueButtonTestKit
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@99'
 
+    input :carin_server_requirement_99_attestation_options,
+          title: 'Lists CARIN-BB profiles in the meta.profile of each resource',
+          description: %(
+            I attest that each FHIR resource returned by the Health IT Module includes the appropriate
+              CARIN-BB profile URL(s) in the `meta.profile` element.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :carin_server_requirement_99_attestation_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that each FHIR resource returned by the Health IT Module includes the appropriate
-          CARIN-BB profile URL(s) in the `meta.profile` element.
+      assert carin_server_requirement_99_attestation_options == 'true', %(
+        The following was not satisfied:
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+          The Health IT Module includes the appropriate CARIN-BB profile URL(s) in the `meta.profile` field
+          of each FHIR resource instance it returns.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
-        MESSAGE
       )
+      pass carin_server_requirement_99_attestation_note if carin_server_requirement_99_attestation_note.present?
     end
+
   end
 end

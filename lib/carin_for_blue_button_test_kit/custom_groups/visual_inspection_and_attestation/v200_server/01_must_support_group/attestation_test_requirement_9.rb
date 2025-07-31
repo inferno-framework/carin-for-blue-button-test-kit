@@ -9,19 +9,41 @@ module CarinForBlueButtonTestKit
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@9'
 
+    input :carin_server_requirement_9_attestation_options,
+          title: 'Omits Must Support elements with cardinality >= 0 if data is not present',
+          description: %(
+            I attest that the Health IT Module omits `Must Support` elements with minimum cardinality = 0
+              when the source system has no data available for them.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :carin_server_requirement_9_attestation_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that the Health IT Module omits `Must Support` elements with minimum cardinality = 0
-          when the source system has no data available for them.
+      assert carin_server_requirement_9_attestation_options == 'true', %(
+        The following was not satisfied:
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+          The Health IT Module omits `Must Support` data elements from the resource if the element's minimum
+          cardinality is 0 and no data is available from the source system.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
-        MESSAGE
       )
+      pass carin_server_requirement_9_attestation_note if carin_server_requirement_9_attestation_note.present?
     end
+
   end
 end

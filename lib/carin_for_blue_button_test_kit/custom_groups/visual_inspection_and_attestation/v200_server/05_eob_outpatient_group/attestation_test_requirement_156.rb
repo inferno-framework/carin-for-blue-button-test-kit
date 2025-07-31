@@ -10,20 +10,43 @@ module CarinForBlueButtonTestKit
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@156'
 
+    input :carin_server_requirement_156_attestation_options,
+          title: 'Maps CPCDS data when line item data is unavailable',
+          description: %(
+            I attest that the Health IT Module maps CPCDS data to either `EOB.item` or `EOB.header` as appropriate:
+              - When line item amounts are available, they are provided in `EOB.item`.
+              - When line item amounts are not available, claim-level amounts and amount types are provided in `EOB.header`.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :carin_server_requirement_156_attestation_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that the Health IT Module maps CPCDS data to either `EOB.item` or `EOB.header` as appropriate:
-          - When line item amounts are available, they are provided in `EOB.item`.
-          - When line item amounts are not available, claim-level amounts and amount types are provided in `EOB.header`.
+      assert carin_server_requirement_156_attestation_options == 'true', %(
+        The following was not satisfied:
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+          The Health IT Module maps CPCDS data to either `EOB.item` or `EOB.header` as appropriate:
+              - When line item amounts are available, they are provided in `EOB.item`.
+              - When line item amounts are not available, claim-level amounts and amount types are provided in `EOB.header`.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
-        MESSAGE
       )
+      pass carin_server_requirement_156_attestation_note if carin_server_requirement_156_attestation_note.present?
     end
+
   end
 end

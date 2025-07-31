@@ -13,21 +13,46 @@ module CarinForBlueButtonTestKit
                           'hl7.fhir.us.carin-bb_2.0.0@145',
                           'hl7.fhir.us.carin-bb_2.0.0@146'
 
+    input :carin_server_requirement_144_145_146_attestation_options,
+          title: 'Correctly maps CPCDS data to EOB.item and EOB.total fields',
+          description: %(
+            I attest that the Health IT Module maps CPCDS data elements as follows:
+
+              - Line-level data (amounts, types, network status) are provided in `EOB.item`,
+              - Claim-level totals are in `EOB.total`,
+              - Mixed network claims set `C4BB Payer Benefit Payment Status` to 'Other'.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :carin_server_requirement_144_145_146_attestation_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that the Health IT Module maps CPCDS data elements as follows:
+      assert carin_server_requirement_144_145_146_attestation_options == 'true', %(
+        The following was not satisfied:
 
-          - Line-level data (amounts, types, network status) are provided in `EOB.item`,
-          - Claim-level totals are in `EOB.total`,
-          - Mixed network claims set `C4BB Payer Benefit Payment Status` to 'Other'.
+          The Health IT Module maps CPCDS data elements to:
+          - `EOB.item` for line item amounts, amount types, and network status,
+          - `EOB.total` for claim-level totals,
+          - `C4BB Payer Benefit Payment Status` is set to 'Other' when lines are both in-network and out-of-network.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
-        MESSAGE
       )
+      pass carin_server_requirement_144_145_146_attestation_note if carin_server_requirement_144_145_146_attestation_note.present?
     end
+
   end
 end

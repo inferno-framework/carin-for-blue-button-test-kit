@@ -8,18 +8,39 @@ module CarinForBlueButtonTestKit
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@164'
 
+    input :carin_server_requirement_164_attestation_options,
+          title: 'Populates "quantity" for all compound code values',
+          description: %(
+            I attest that the `item.quantity` element is populated for all Compound Code values.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :carin_server_requirement_164_attestation_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that the `item.quantity` element is populated for all Compound Code values.
+      assert carin_server_requirement_164_attestation_options == 'true', %(
+        The following was not satisfied:
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+          The `item.quantity` element is populated for all Compound Code values.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
-        MESSAGE
       )
+      pass carin_server_requirement_164_attestation_note if carin_server_requirement_164_attestation_note.present?
     end
+
   end
 end

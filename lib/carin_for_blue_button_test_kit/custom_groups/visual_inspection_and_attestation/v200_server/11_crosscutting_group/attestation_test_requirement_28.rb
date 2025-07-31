@@ -9,19 +9,41 @@ module CarinForBlueButtonTestKit
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@28'
 
+    input :carin_server_requirement_28_attestation_options,
+          title: 'Ensures conformant CPCDS data',
+          description: %(
+            I attest that the Health IT Module ensures CPCDS data conforms to the specified profiles,
+              vocabulary standards, and code sets outlined in the specification.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :carin_server_requirement_28_attestation_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that the Health IT Module ensures CPCDS data conforms to the specified profiles,
-          vocabulary standards, and code sets outlined in the specification.
+      assert carin_server_requirement_28_attestation_options == 'true', %(
+        The following was not satisfied:
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
+          The Health IT Module ensures that data representing the Common Payer Consumer Data Set (CPCDS)
+          conforms to the specified profiles, vocabulary standards, and code sets required by the specification.
 
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
-        MESSAGE
       )
+      pass carin_server_requirement_28_attestation_note if carin_server_requirement_28_attestation_note.present?
     end
+
   end
 end

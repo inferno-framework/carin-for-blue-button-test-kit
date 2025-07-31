@@ -10,20 +10,43 @@ module CarinForBlueButtonTestKit
 
     verifies_requirements 'hl7.fhir.us.carin-bb_2.0.0@150'
 
+    input :carin_server_requirement_150_attestation_options,
+          title: 'Uses procedure codes not revenue codes',
+          description: %(
+            I attest that the `item.productOrService` element in an oral ExplanationOfBenefit resource
+              is populated with CPT or HCPCS procedure codes as CodeableConcept values, and that revenue
+              codes are not used for oral claims.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :carin_server_requirement_150_attestation_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that the `item.productOrService` element in an oral ExplanationOfBenefit resource
+      assert carin_server_requirement_150_attestation_options == 'true', %(
+        The following was not satisfied:
+
+          The `item.productOrService` element in an oral ExplanationOfBenefit resource
           is populated with CPT or HCPCS procedure codes as CodeableConcept values, and that revenue
           codes are not used for oral claims.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** this requirement.
-
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** this requirement.
-        MESSAGE
       )
+      pass carin_server_requirement_150_attestation_note if carin_server_requirement_150_attestation_note.present?
     end
+
   end
 end

@@ -13,21 +13,46 @@ module CarinForBlueButtonTestKit
                           'hl7.fhir.us.carin-bb_2.0.0@158',
                           'hl7.fhir.us.carin-bb_2.0.0@159'
 
+    input :carin_server_requirement_157_158_159_attestation_options,
+          title: 'Correctly populates EOB.item.productOrService',
+          description: %(
+            I attest that the Health IT Module:
+
+              - Defines CPT, HCPCS, or HIPPS codes in `item.productOrService` and represents them as CodeableConcepts,
+              - Populates `item.productOrService` whenever `EOB.item` is present,
+              - Enforces that `item.productOrService` has a cardinality of 1..1.
+          ),
+          type: 'radio',
+          default: 'false',
+          options: {
+            list_options: [
+              {
+                label: 'Yes',
+                value: 'true'
+              },
+              {
+                label: 'No',
+                value: 'false'
+              }
+            ]
+          }
+    input :carin_server_requirement_157_158_159_attestation_note,
+          title: 'Notes, if applicable:',
+          type: 'textarea',
+          optional: true
+
     run do
-      identifier = SecureRandom.hex(32)
-      wait(
-        identifier:,
-        message: <<~MESSAGE
-          I attest that the Health IT Module:
+      assert carin_server_requirement_157_158_159_attestation_options == 'true', %(
+        The following was not satisfied:
 
-          - Defines CPT, HCPCS, or HIPPS codes in `item.productOrService` and represents them as CodeableConcepts,
-          - Populates `item.productOrService` whenever `EOB.item` is present,
-          - Enforces that `item.productOrService` has a cardinality of 1..1.
+          The Health IT Module:
+          - Defines CPT, HCPCS, or HIPPS codes in `item.productOrService` as CodeableConcepts,
+          - Ensures `item.productOrService` is populated whenever `.item` is present,
+          - Enforces a cardinality of 1..1 for `item.productOrService`.
 
-          [Click here](#{resume_pass_url}?token=#{identifier}) if the system **meets** these requirements.
-          [Click here](#{resume_fail_url}?token=#{identifier}) if the system **does not meet** these requirements.
-        MESSAGE
       )
+      pass carin_server_requirement_157_158_159_attestation_note if carin_server_requirement_157_158_159_attestation_note.present?
     end
+
   end
 end
