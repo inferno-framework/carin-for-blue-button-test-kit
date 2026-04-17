@@ -423,7 +423,7 @@ module CarinForBlueButtonTestKit
     def matched_base_resources(_resource, referenced_resource_types, returned_resources_all, values_found)
       included_refs = included_refs(returned_resources_all, referenced_resource_types)
 
-      values_found.select do |base_resource_references|
+      values_found.select { |value| value.is_a?(FHIR::Reference) }.select do |base_resource_references|
         included_refs.any? do |referenced_resource|
           reference_match?(base_resource_references.reference, referenced_resource)
         end
