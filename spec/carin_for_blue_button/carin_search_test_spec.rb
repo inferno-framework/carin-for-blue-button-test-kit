@@ -432,6 +432,30 @@ RSpec.describe CarinForBlueButtonTestKit::CarinSearchTest, :runnable do
       expect(result.result_message).to eq('No ExplanationOfBenefit references Patient/456 in the search result.')
       expect(request).to have_been_made.once
     end
+
+    it 'does not raise an exception when the base resource has a non-Reference value at the include path' do
+      # An invalid resource may have a primitive string where a Reference object is expected.
+      # resolve_path returns whatever is stored, so matched_base_resources must guard against non-Reference values.
+      malformed_bundle_json = {
+        resourceType: 'Bundle',
+        entry: [
+          {
+            resource: {
+              resourceType: 'ExplanationOfBenefit',
+              id: explanation_of_benefit_id,
+              patient: "Patient/#{patient_id}" # string instead of {"reference": "..."}
+            }
+          },
+          { resource: JSON.parse(patient.to_json) }
+        ]
+      }.to_json
+
+      request = stub_request(:get, "#{url}/ExplanationOfBenefit?#{search_params_patient}")
+                .to_return(status: 200, body: malformed_bundle_json)
+
+      expect { run(explanation_of_benefit_include_test_patient, url:) }.not_to raise_error
+      expect(request).to have_been_made.once
+    end
   end
 
   describe 'search ExplanationofBenefit with _include * param' do
