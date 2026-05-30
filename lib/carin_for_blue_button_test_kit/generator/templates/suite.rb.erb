@@ -64,6 +64,10 @@ module CarinForBlueButtonTestKit
         exclude_message do |message|
           VALIDATION_MESSAGE_FILTERS.any? { |filter| filter.match? message.message }
         end
+
+        validation_context do
+          snomedCT '731000124108'
+        end
       end
 
       config(
