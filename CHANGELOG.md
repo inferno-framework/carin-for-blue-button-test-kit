@@ -7,7 +7,6 @@ https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/89
 * ID-107 Check types of values returned from resolve_path by @karlnaden in:
 https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/88
 
-
 # 0.16.0
 * Update inferno_core
 
