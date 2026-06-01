@@ -2,9 +2,9 @@ PATH
   remote: .
   specs:
     carin_for_blue_button_test_kit (0.16.1)
-      inferno_core (~> 1.2, >= 1.2.2)
-      smart_app_launch_test_kit (~> 1.0, >= 1.0.1)
-      udap_security_test_kit (~> 0.12, >= 0.12.1)
+      inferno_core (~> 1.3, >= 1.3.1)
+      smart_app_launch_test_kit (~> 1.0, >= 1.0.2)
+      udap_security_test_kit (~> 0.12, >= 0.12.2)
 
 GEM
   remote: https://rubygems.org/
@@ -157,7 +157,7 @@ GEM
       mutex_m
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
-    inferno_core (1.2.2)
+    inferno_core (1.3.1)
       activesupport (~> 7.2.3.1)
       base62-rb (= 0.3.1)
       blueprinter (= 0.25.2)
@@ -201,7 +201,7 @@ GEM
       aes_key_wrap
       bindata
       httpclient
-    jwt (2.10.2)
+    jwt (3.2.0)
       base64
     kramdown (2.5.2)
       rexml (>= 3.4.4)
@@ -315,10 +315,10 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.19.0)
-    smart_app_launch_test_kit (1.0.1)
+    smart_app_launch_test_kit (1.0.2)
       inferno_core (~> 1.2, >= 1.2.2)
       json-jwt (~> 1.15.3)
-      jwt (~> 2.6)
+      jwt (~> 3.2)
       tls_test_kit (~> 1.0, >= 1.0.2)
     snaky_hash (2.0.4)
       hashie (>= 0.1.0, < 6)
@@ -350,9 +350,9 @@ GEM
     tty-screen (0.8.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    udap_security_test_kit (0.12.1)
+    udap_security_test_kit (0.12.2)
       inferno_core (~> 1.2, >= 1.2.2)
-      jwt (~> 2.3)
+      jwt (~> 3.2)
     unicode-display_width (2.6.0)
     unicode_utils (1.4.0)
     version_gem (1.1.9)
@@ -448,11 +448,11 @@ CHECKSUMS
   http-cookie (1.1.6) sha256=ba4b82be64de61dc281243dac70e3c382c45142f20268ed9276a3670c93feaa9
   httpclient (2.9.0) sha256=4b645958e494b2f86c2f8a2f304c959baa273a310e77a2931ddb986d83e498c8
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
-  inferno_core (1.2.2) sha256=1ad8cfcb53a3c55723b4b802d467b7ff638a86ee81df4e425aba36c74bcd4284
+  inferno_core (1.3.1) sha256=32243f07d228965d22d661f0fbb0353a5aae6e13c663c51655e4f7d3cdad4260
   io-console (0.8.2) sha256=d6e3ae7a7cc7574f4b8893b4fca2162e57a825b223a177b7afa236c5ef9814cc
   irb (1.18.0) sha256=de9454a0703a54704b9811a5ef31a60c86949fbf4013fcf244fabc7c775248e3
   json-jwt (1.15.3.1) sha256=92b27378212b6aa72aba93a537eabd7f7ac7ad38e12b638863cd7727e0dcb08f
-  jwt (2.10.2) sha256=31e1ee46f7359883d5e622446969fe9c118c3da87a0b1dca765ce269c3a0c4f4
+  jwt (3.2.0) sha256=5419b1fe37b1da0982bd07051f573a8b8789ab724c2aa7e785e4784a3ed217d7
   kramdown (2.5.2) sha256=1ba542204c66b6f9111ff00dcc26075b95b220b07f2905d8261740c82f7f02fa
   kramdown-parser-gfm (1.1.0) sha256=fb39745516427d2988543bf01fc4cf0ab1149476382393e0e9c48592f6581729
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
@@ -507,7 +507,7 @@ CHECKSUMS
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   sequel (5.42.0) sha256=d7309e3f792372ffad1d06a7ff826bdefa86623a055bc2f57b344eca5c77848b
   sidekiq (7.2.4) sha256=810e02f486ce5e102dbe6b71a19b4bf839791e11b74942ec38f5e1a6d44a0778
-  smart_app_launch_test_kit (1.0.1) sha256=e2d8922dbc5f0e38203d5a35e4aa5beaeeed84eb1e176791be1ffaf3f885b5ce
+  smart_app_launch_test_kit (1.0.2) sha256=c2f9a8d387e848a5048a037cdfb822d9e16544cdb5d4551a95c0e1d536f6f721
   snaky_hash (2.0.4) sha256=2b12758c57defa6796341a1620f84b1a23737421d8d7e2575d0550b53cc4fece
   sqlite3 (1.7.3-aarch64-linux) sha256=0ccb8c001cd2617f4801a2c816142d3c9bc299e3f3e0f49e03812f3610b0891c
   sqlite3 (1.7.3-arm-linux) sha256=eb653026d44f8502b74564e585245485a5667d72f8888854e53c561f816541b0
@@ -525,7 +525,7 @@ CHECKSUMS
   tty-markdown (0.7.2) sha256=1ed81db97028d006ba81e2cfd9fe0a04b0eb28650ad0d4086ed6e5627f4ac511
   tty-screen (0.8.2) sha256=c090652115beae764336c28802d633f204fb84da93c6a968aa5d8e319e819b50
   tzinfo (2.0.6) sha256=8daf828cc77bcf7d63b0e3bdb6caa47e2272dcfaf4fbfe46f8c3a9df087a829b
-  udap_security_test_kit (0.12.1) sha256=578c36d3f87f017d9811395baf2a4fc6867a815d05150c4805d666c27aeb5721
+  udap_security_test_kit (0.12.2) sha256=98847fd62c7ecf440d0a2789f40eabb64a9f7bcabb6f0760282586e896a816db
   unicode-display_width (2.6.0) sha256=12279874bba6d5e4d2728cef814b19197dbb10d7a7837a869bab65da943b7f5a
   unicode_utils (1.4.0) sha256=b922d0cf2313b6b7136ada6645ce7154ffc86418ca07d53b058efe9eb72f2a40
   version_gem (1.1.9) sha256=0c1a0962ae543c84a00889bb018d9f14d8f8af6029d26b295d98774e3d2eb9a4
