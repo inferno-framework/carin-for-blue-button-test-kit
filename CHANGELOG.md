@@ -1,9 +1,11 @@
+# 0.16.2
+* ID-95: Update FHIR Validator to v1.0.78 by @karlnaden in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/91#top
+
 # 0.16.1
 * ID-134 Updated gems to newest released versions of inferno-core (1.2.2), smart-app-launch-test-kit (1.0.1), udap-security-test-kit (0.12.1) by @FlexonyoPizza in:
 https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/89
 * ID-107 Check types of values returned from resolve_path by @karlnaden in:
 https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/88
-
 
 # 0.16.0
 * Update inferno_core
