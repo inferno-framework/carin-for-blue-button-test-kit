@@ -49,7 +49,7 @@ module CarinForBlueButtonTestKit
           eob.insurance.each_with_index do |eob_insurance, index|
             eob_insurance_coverage = get_reference(eob_insurance.coverage, :coverage)
 
-            next if eob_insurance_coverage.nil?
+            next if eob_insurance_coverage.nil? || !eob_insurance_coverage.is_a?(FHIR::Coverage)
 
             if eob_insurance.focal
               assert resource_id(eob.insurer) == resource_id(eob_insurance_coverage.payor.first),
