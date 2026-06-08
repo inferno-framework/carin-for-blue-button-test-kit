@@ -169,15 +169,16 @@ module CarinForBlueButtonTestKit
 
       resources
         .select { |resource| resource.is_a?(resource_class) || resource.is_a?(FHIR::Reference) }
-        .select { |resource| (resource.is_a?(FHIR::Reference) ? resource.reference.split('/').last : resource.id).present? }
+        .select { |resource| (resource.is_a?(FHIR::Reference) ? resource.reference&.split('/')&.last : resource.id).present? }
         .compact
-        .uniq { |resource| resource.is_a?(FHIR::Reference) ? resource.reference.split('/').last : resource.id }
+        .uniq { |resource| resource.is_a?(FHIR::Reference) ? resource.reference&.split('/')&.last : resource.id }
+        .compact
     end
 
     def resource_id(resource)
       return if resource.blank?
 
-      resource.is_a?(FHIR::Reference) ? resource.reference.split('/').last : resource.id
+      resource.is_a?(FHIR::Reference) ? resource.reference&.split('/')&.last : resource.id
     end
 
     def perform_response_validation(returned_resources, search_params)
@@ -240,7 +241,7 @@ module CarinForBlueButtonTestKit
     def match_found?(values_found, type, param_value)
       case type
       when 'Reference'
-        values_found.any? { |val| param_value.split(',').any? { |item| val.include?(item) } }
+        values_found.any? { |val| param_value.split(',').any? { |item| val&.include?(item) } }
       when 'CodeableConcept'
         codings = values_found.flat_map { |val| val.coding || nil }.compact
         if param_value.include? '|'
@@ -423,7 +424,7 @@ module CarinForBlueButtonTestKit
     def matched_base_resources(_resource, referenced_resource_types, returned_resources_all, values_found)
       included_refs = included_refs(returned_resources_all, referenced_resource_types)
 
-      values_found.select { |value| value.is_a?(FHIR::Reference) }.select do |base_resource_references|
+      values_found.select { |value| value.is_a?(FHIR::Reference) && value.reference.present? }.select do |base_resource_references|
         included_refs.any? do |referenced_resource|
           reference_match?(base_resource_references.reference, referenced_resource)
         end
@@ -440,6 +441,8 @@ module CarinForBlueButtonTestKit
     end
 
     def reference_match?(reference, local_reference)
+      return false if reference.blank?
+
       regex_pattern = %r{^(#{Regexp.escape(local_reference)}|\S+/#{Regexp.escape(local_reference)}(?:[/|]\S+)*)$}
       reference.match?(regex_pattern)
     end
@@ -468,7 +471,7 @@ module CarinForBlueButtonTestKit
       resources.each do |resource|
         references_to_save.each do |reference_to_save|
           resolve_path(resource, reference_to_save[:path])
-            .select { |reference| reference.is_a?(FHIR::Reference) && !reference.contained? }
+            .select { |reference| reference.is_a?(FHIR::Reference) && !reference.contained? && reference.reference.present? }
             .each do |reference|
               resource_type = reference.resource_class.name.demodulize
               need_to_save = reference_to_save[:resources].include?(resource_type)
