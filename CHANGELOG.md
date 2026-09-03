@@ -1,3 +1,6 @@
+# 0.16.3
+* ID-122: client suite fix by @karlnaden in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/94#top
+
 # 0.16.2
 * ID-95: Update FHIR Validator to v1.0.78 by @karlnaden in https://github.com/inferno-framework/carin-for-blue-button-test-kit/pull/91#top
 

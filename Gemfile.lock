@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    carin_for_blue_button_test_kit (0.16.2)
+    carin_for_blue_button_test_kit (0.16.3)
       inferno_core (~> 1.4, >= 1.4.3)
       smart_app_launch_test_kit (~> 1.0, >= 1.0.2)
       udap_security_test_kit (~> 0.12, >= 0.12.2)
@@ -401,7 +401,7 @@ CHECKSUMS
   bindata (2.5.1) sha256=53186a1ec2da943d4cb413583d680644eb810aacbf8902497aac8f191fad9e58
   blueprinter (0.25.2) sha256=398b8b071e18734a2b10c66c45d0c1066a498c71f7130e5117c361f8ef5e894b
   byebug (13.0.0) sha256=d2263efe751941ca520fa29744b71972d39cbc41839496706f5d9b22e92ae05d
-  carin_for_blue_button_test_kit (0.16.2)
+  carin_for_blue_button_test_kit (0.16.3)
   coderay (1.1.3) sha256=dc530018a4684512f8f38143cd2a096c9f02a1fc2459edcfe534787a7fc77d4b
   concurrent-ruby (1.3.8) sha256=b2f1be836e968ccc78ccfce277ea79c72a88633f22306782c16ff23fb415d1e1
   connection_pool (2.5.5) sha256=e54ff92855753df1fd7c59fa04a398833355f27dd14c074f8c83a05f72a716ad
