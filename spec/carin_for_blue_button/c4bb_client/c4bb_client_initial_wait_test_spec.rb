@@ -141,7 +141,7 @@ RSpec.describe CarinForBlueButtonTestKit::C4BBClientInitialWaitTest do
     get(patient_api_request)
 
     expect(last_response).to be_server_error
-    expect(last_response.body).to match(/find test run with identifier/)
+    expect(last_response.body).to match(/identifier 'wrong_client_id' is not associated with a waiting session./)
 
     result = results_repo.find(result.id)
     expect(result.result).to eq('wait')
